@@ -44,39 +44,48 @@ public class Main extends Application {
         VBox left = new VBox(10);
         back.getChildren().add(left);
         left.setAlignment(Pos.BOTTOM_CENTER);
-
+        left.setPadding(new Insets(20, 50, 20, 20));
+        left.setSpacing(20);
         //Create right VBox for right side of screen
         VBox right = new VBox(10);
         back.getChildren().add(right);
         right.setAlignment(Pos.TOP_CENTER);
-
+        right.setPadding(new Insets(20, 50, 20, 20));
+        left.setSpacing(20);
         //Add text for skill points remaining
         Text remain = new Text("Skill Points Remaining: " + skillPoints);
         remain.setFill(Color.WHITE);
-        remain.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        remain.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         right.getChildren().add(remain);
 
         //Choose difficulty
         Text diff = new Text("Choose your difficulty level below: ");
-        HBox diffHBox = new HBox();
-        diffHBox.getChildren().add(diff);
-        diffHBox.setAlignment(Pos.BOTTOM_CENTER);
+        diff.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        diff.setFill(Color.WHITE);
+
+        left.getChildren().add(diff);
+        left.setAlignment(Pos.TOP_CENTER);
 
         //Creating radio button for difficulty and adding to vbox
         ToggleGroup difficulty = new ToggleGroup();
         RadioButton easy = new RadioButton("Easy");
         easy.setTextFill(Color.WHITE);
-        easy.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        easy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
         RadioButton medium = new RadioButton("Medium");
         medium.setTextFill(Color.WHITE);
-        medium.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        medium.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
         RadioButton hard = new RadioButton("Hard");
         hard.setTextFill(Color.WHITE);
-        hard.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
+
+
         //Adding radiobuttons to togglegroup
         easy.setToggleGroup(difficulty);
         medium.setToggleGroup(difficulty);
         hard.setToggleGroup(difficulty);
+//        easy.setStyle("margin: 0 10px 0 10px;");
+//        medium.setStyle("margin: 0 10px 0 10px;");
+//        hard.setStyle("margin: 0 10px 0 10px;");
         //Event handler for easy button
         easy.setOnAction((ActionEvent e) -> {
             skillPoints = 16;
@@ -119,31 +128,31 @@ public class Main extends Application {
         right.getChildren().add(trait4);
 
         //Edit each of the trait hboxs to have trait and then bar to select amount of trait wanted
-        Text t1 = new Text("Trait 1: " + t1val);
+        Text t1 = new Text("Pilot: " + t1val );
         trait1.getChildren().add(t1);
         t1.setFill(Color.WHITE);
-        t1.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
-        Text t2 = new Text("Trait 2: " + t2val);
+        t1.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        Text t2 = new Text("Fighter: " + t2val);
         t2.setFill(Color.WHITE);
-        t2.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t2.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait2.getChildren().add(t2);
-        Text t3 = new Text("Trait 3: " + t3val);
+        Text t3 = new Text("Merchant: " + t3val);
         trait3.getChildren().add(t3);
         t3.setFill(Color.WHITE);
-        t3.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
-        Text t4 = new Text("Trait 4: " + t4val);
+        t3.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        Text t4 = new Text("Engineer: " + t4val );
         trait4.getChildren().add(t4);
         t4.setFill(Color.WHITE);
-        t4.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t4.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
 
         //progress bar 1 with buttons to move
         Button t1dec = new Button("<");
         ProgressBar t1pb = new ProgressBar(0);
         Button t1inc = new Button(">");
         t1dec.setTextFill(Color.WHITE);
-        t1dec.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t1dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t1inc.setTextFill(Color.WHITE);
-        t1inc.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t1inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait1.getChildren().add(t1dec);
         trait1.getChildren().add(t1pb);
         trait1.getChildren().add(t1inc);
@@ -154,7 +163,7 @@ public class Main extends Application {
                 t1val = 0;
                 skillPoints--;
             }
-            t1.setText("Trait 1: " + t1val);
+            t1.setText("Pilot: " + t1val);
             t1pb.setProgress(t1val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
 
@@ -170,7 +179,7 @@ public class Main extends Application {
                 t1val = 16;
                 skillPoints--;
             }
-            t1.setText("Trait 1: " + t1val);
+            t1.setText("Pilot: " + t1val);
             t1pb.setProgress(t1val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
         });
@@ -180,9 +189,9 @@ public class Main extends Application {
         ProgressBar t2pb = new ProgressBar(0);
         Button t2inc = new Button(">");
         t2dec.setTextFill(Color.WHITE);
-        t2dec.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t2dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t2inc.setTextFill(Color.WHITE);
-        t2inc.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t2inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait2.getChildren().add(t2dec);
         trait2.getChildren().add(t2pb);
         trait2.getChildren().add(t2inc);
@@ -193,7 +202,7 @@ public class Main extends Application {
                 t2val = 0;
                 skillPoints--;
             }
-            t2.setText("Trait 2: " + t2val);
+            t2.setText("Fighter: " + t2val);
             t2pb.setProgress(t2val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
 
@@ -209,7 +218,7 @@ public class Main extends Application {
                 t2val = 16;
                 skillPoints--;
             }
-            t2.setText("Trait 2: " + t2val);
+            t2.setText("Fighter: " + t2val);
             t2pb.setProgress(t2val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
         });
@@ -219,9 +228,9 @@ public class Main extends Application {
         ProgressBar t3pb = new ProgressBar(0);
         Button t3inc = new Button(">");
         t3dec.setTextFill(Color.WHITE);
-        t3dec.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t3dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t3inc.setTextFill(Color.WHITE);
-        t3inc.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t3inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait3.getChildren().add(t3dec);
         trait3.getChildren().add(t3pb);
         trait3.getChildren().add(t3inc);
@@ -232,7 +241,7 @@ public class Main extends Application {
                 t3val = 0;
                 skillPoints--;
             }
-            t3.setText("Trait 3: " + t3val);
+            t3.setText("Merchant: " + t3val);
             t3pb.setProgress(t3val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
 
@@ -248,7 +257,7 @@ public class Main extends Application {
                 t3val = 16;
                 skillPoints--;
             }
-            t3.setText("Trait 3: " + t3val);
+            t3.setText("Merchant: " + t3val);
             t3pb.setProgress(t3val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
         });
@@ -257,9 +266,9 @@ public class Main extends Application {
         ProgressBar t4pb = new ProgressBar(0);
         Button t4inc = new Button(">");
         t4dec.setTextFill(Color.WHITE);
-        t4dec.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t4dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t4inc.setTextFill(Color.WHITE);
-        t4inc.setStyle("-fx-font-size: 20px; -fx-font-family: Montserrat', sans-serif;");
+        t4inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait4.getChildren().add(t4dec);
         trait4.getChildren().add(t4pb);
         trait4.getChildren().add(t4inc);
@@ -270,7 +279,7 @@ public class Main extends Application {
                 t4val = 0;
                 skillPoints--;
             }
-            t4.setText("Trait 4: " + t4val);
+            t4.setText("Engineer " + t4val);
             t4pb.setProgress(t4val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
 
@@ -286,7 +295,7 @@ public class Main extends Application {
                 t4val = 16;
                 skillPoints--;
             }
-            t4.setText("Trait 4: " + t4val);
+            t4.setText("Engineer: " + t4val);
             t4pb.setProgress(t4val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
         });

@@ -44,9 +44,7 @@ public class Main extends Application {
             this.name = null;
         }
 
-        public String getName() {
-            return this.name;
-        }
+        public String getName() { return this.name; }
 
         public void setName(String name) {
             this.name = name;
@@ -416,9 +414,6 @@ public class Main extends Application {
         //spaceTrader.setY(260.0f);
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
-        //instantiating a new character
-        //Character character = new Character(null);
-
         //animation
       /*  FadeTransition ft = new FadeTransition(Duration.millis(3000.0));
         ft.setFromValue(1.0);
@@ -594,19 +589,6 @@ public class Main extends Application {
             primaryStage.show();
         }));
 
-        next.setOnMouseClicked((mouseEvent -> {
-            character.setCredits(startingCredits);
-            character.setSkillPoints(skillPoints);
-            character.setTrait1Val(t1val);
-            character.setTrait2Val(t2val);
-            character.setTrait3Val(t3val);
-            character.setTrait4Val(t4val);
-            primaryStage.setScene(scene3);
-            primaryStage.setTitle("Scene 3");
-            primaryStage.show();
-        }));
-
-
         //Scene 3: Character Screen
 
         // Backing structure setup
@@ -624,26 +606,39 @@ public class Main extends Application {
         HBox BT2 = new HBox();
         BT2.getChildren().add(backToScene2);
         BT2.setAlignment(Pos.BASELINE_LEFT);
+        next.setOnMouseClicked((mouseEvent -> {
+            character.setCredits(startingCredits);
+            character.setSkillPoints(skillPoints);
+            character.setTrait1Val(t1val);
+            character.setTrait2Val(t2val);
+            character.setTrait3Val(t3val);
+            character.setTrait4Val(t4val);
+            // adding buttons and functionality
+            Text yourCharacter = new Text("WELCOME,\n" + character.getName());
+            yourCharacter.setFill(Color.INDIANRED);
+            yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
-        // adding buttons and functionality
-        Text yourCharacter = new Text("YOUR\nCHARACTER");
-        yourCharacter.setFill(Color.INDIANRED);
-        yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
+            Text yourNameIs = new Text("Your name is: " + character.getName());
+            yourNameIs.setFill(Color.WHITE);
+            yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
 
-        Text yourNameIs = new Text("Your name is: " + character.getName());
-        yourNameIs.setFill(Color.WHITE);
-        yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            Text yourTraits = new Text("Your points for Pilot: " + character.getTrait1Val()
+                    + "\nYour points for Fighter: " + character.getTrait2Val()
+                    + "\nYour points for Merchant: " + character.getTrait3Val()
+                    + "\nYour points for Engineer: " + character.getTrait4Val());
+            yourTraits.setFill(Color.WHITE);
+            yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
 
-        Text yourTraits = new Text("Your points for Trait 1: " + character.getTrait1Val()
-                + "\nYour points for Trait 2" + character.getTrait2Val()
-                + "\nYour points for Trait 3: " + character.getTrait3Val()
-                + "\nYour points for Trait 4: " + character.getTrait4Val());
-        yourTraits.setFill(Color.WHITE);
-        yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            Text yourDiff = new Text("Based on your difficulty level, you have " + character.getCredits() + " credits");
+            yourDiff.setFill(Color.WHITE);
+            yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            vb3.getChildren().addAll(yourCharacter, BT2, yourNameIs, yourTraits, yourDiff);
+            primaryStage.setScene(scene3);
+            primaryStage.setTitle("Scene 3");
+            primaryStage.show();
+        }));
 
-        Text yourDiff = new Text("Your difficulty level is: " + "To fill in later " + character.getCredits());
-        yourDiff.setFill(Color.WHITE);
-        yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+
 
         //adding the shadow when the mouse cursor is on
         backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -661,8 +656,6 @@ public class Main extends Application {
                         backToScene2.setEffect(null);
                     }
                 });
-
-        vb3.getChildren().addAll(yourCharacter, BT2, yourNameIs, yourTraits, yourDiff);
 
         //back to scene 2 button
         backToScene2.setOnMouseClicked((mouseEvent -> {

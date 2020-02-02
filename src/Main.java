@@ -21,12 +21,12 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 
-import java.util.StringTokenizer;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class Main extends Application {
 
-    private Scene scene1, scene2, scene3;
+    private Scene scene1;
+    private Scene scene2;
+    private Scene scene3;
 
 
     /**
@@ -46,7 +46,9 @@ public class Main extends Application {
             this.name = null;
         }
 
-        public String getName() { return this.name; }
+        public String getName() {
+            return this.name;
+        }
 
         public void setName(String name) {
             this.name = name;
@@ -226,12 +228,12 @@ public class Main extends Application {
 
         //progress bar 1 with buttons to move
         Button t1dec = new Button("<");
+        t1dec.setStyle("-fx-background-color: black; -fx-border-color: white");
         ProgressBar t1pb = new ProgressBar(0);
         Button t1inc = new Button(">");
-        t1dec.setTextFill(Color.WHITE);
-        t1dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t1inc.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t1dec.setTextFill(Color.WHITE);;
         t1inc.setTextFill(Color.WHITE);
-        t1inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait1.getChildren().add(t1dec);
         trait1.getChildren().add(t1pb);
         trait1.getChildren().add(t1inc);
@@ -265,12 +267,12 @@ public class Main extends Application {
 
         //Progress bar 2
         Button t2dec = new Button("<");
+        t2dec.setStyle("-fx-background-color: black; -fx-border-color: white");
         ProgressBar t2pb = new ProgressBar(0);
         Button t2inc = new Button(">");
+        t2inc.setStyle("-fx-background-color: black; -fx-border-color: white");
         t2dec.setTextFill(Color.WHITE);
-        t2dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t2inc.setTextFill(Color.WHITE);
-        t2inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait2.getChildren().add(t2dec);
         trait2.getChildren().add(t2pb);
         trait2.getChildren().add(t2inc);
@@ -304,12 +306,12 @@ public class Main extends Application {
 
         //Progress Bar 3
         Button t3dec = new Button("<");
+        t3dec.setStyle("-fx-background-color: black; -fx-border-color: white");
         ProgressBar t3pb = new ProgressBar(0);
         Button t3inc = new Button(">");
+        t3inc.setStyle("-fx-background-color: black; -fx-border-color: white");
         t3dec.setTextFill(Color.WHITE);
-        t3dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t3inc.setTextFill(Color.WHITE);
-        t3inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait3.getChildren().add(t3dec);
         trait3.getChildren().add(t3pb);
         trait3.getChildren().add(t3inc);
@@ -342,12 +344,12 @@ public class Main extends Application {
         });
 
         Button t4dec = new Button("<");
+        t4dec.setStyle("-fx-background-color: black; -fx-border-color: white");
         ProgressBar t4pb = new ProgressBar(0);
         Button t4inc = new Button(">");
+        t4inc.setStyle("-fx-background-color: black; -fx-border-color: white");
         t4dec.setTextFill(Color.WHITE);
-        t4dec.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         t4inc.setTextFill(Color.WHITE);
-        t4inc.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
         trait4.getChildren().add(t4dec);
         trait4.getChildren().add(t4pb);
         trait4.getChildren().add(t4inc);

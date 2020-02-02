@@ -1,6 +1,7 @@
 package src;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -37,12 +38,13 @@ public class CharacterTraitSelector extends Application {
         VBox left = new VBox(10);
         back.getChildren().add(left);
         left.setAlignment(Pos.BOTTOM_CENTER);
+        left.setPadding(new Insets(20, 50, 20, 20));
 
         //Create right VBox for right side of screen
         VBox right = new VBox(10);
         back.getChildren().add(right);
         right.setAlignment(Pos.TOP_CENTER);
-
+        right.setPadding(new Insets(20, 50, 20, 20));
         //Add text for skill points remaining
         Text remain = new Text("Skill Points Remaining: " + skillPoints);
         right.getChildren().add(remain);
@@ -58,6 +60,9 @@ public class CharacterTraitSelector extends Application {
         RadioButton easy = new RadioButton("Easy");
         RadioButton medium = new RadioButton("Medium");
         RadioButton hard = new RadioButton("Hard");
+        easy.setStyle("margin: 0 10px 0 10px;");
+        medium.setStyle("margin: 0 10px 0 10px;");
+        hard.setStyle("margin: 0 10px 0 10px;");
         //Adding radiobuttons to togglegroup
         easy.setToggleGroup(difficulty);
         medium.setToggleGroup(difficulty);
@@ -104,13 +109,13 @@ public class CharacterTraitSelector extends Application {
         right.getChildren().add(trait4);
 
         //Edit each of the trait hboxs to have trait and then bar to select amount of trait wanted
-        Text t1 = new Text("Trait 1: " + t1val);
+        Text t1 = new Text("Pilot: " + t1val);
         trait1.getChildren().add(t1);
-        Text t2 = new Text("Trait 2: " + t2val);
+        Text t2 = new Text("Fighter: " + t2val);
         trait2.getChildren().add(t2);
-        Text t3 = new Text("Trait 3: " + t3val);
+        Text t3 = new Text("Merchant: " + t3val);
         trait3.getChildren().add(t3);
-        Text t4 = new Text("Trait 4: " + t4val);
+        Text t4 = new Text("Engineer: " + t4val);
         trait4.getChildren().add(t4);
 
         //progress bar 1 with buttons to move

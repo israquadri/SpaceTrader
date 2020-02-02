@@ -620,18 +620,18 @@ public class Main extends Application {
 
             Text yourNameIs = new Text("Your name is: " + character.getName());
             yourNameIs.setFill(Color.WHITE);
-            yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
 
             Text yourTraits = new Text("Your points for Pilot: " + character.getTrait1Val()
                     + "\nYour points for Fighter: " + character.getTrait2Val()
                     + "\nYour points for Merchant: " + character.getTrait3Val()
                     + "\nYour points for Engineer: " + character.getTrait4Val());
             yourTraits.setFill(Color.WHITE);
-            yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
 
-            Text yourDiff = new Text("Based on your difficulty level, you have " + character.getCredits() + " credits");
+            Text yourDiff = new Text("Based on your difficulty level, you\nhave " + character.getCredits() + " credits");
             yourDiff.setFill(Color.WHITE);
-            yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
+            yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
             vb3.getChildren().addAll(yourCharacter, BT2, yourNameIs, yourTraits, yourDiff);
             primaryStage.setScene(scene3);
             primaryStage.setTitle("Scene 3");

@@ -1,5 +1,6 @@
 package src;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.Duration;
 
 import java.util.StringTokenizer;
 import java.util.concurrent.atomic.AtomicReference;
@@ -39,7 +41,7 @@ public class Main extends Application {
         private int trait3val;
         private int trait4val;
 
-        //Getter and Setter-ville
+        //GETTER AND SETTER FOR CHARACTER
         public Character() {
             this.name = null;
         }
@@ -100,7 +102,7 @@ public class Main extends Application {
 
     }
 
-    //Character Trait Selector setup
+    //CHARACTER CONFIGURATION SETUP
 
     HBox back = new HBox();
     int skillPoints = 16;
@@ -154,14 +156,12 @@ public class Main extends Application {
         hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
 
 
-        //Adding radiobuttons to togglegroup
+        //Adding radio buttons to toggle group
         easy.setToggleGroup(difficulty);
         medium.setToggleGroup(difficulty);
         hard.setToggleGroup(difficulty);
-//        easy.setStyle("margin: 0 10px 0 10px;");
-//        medium.setStyle("margin: 0 10px 0 10px;");
-//        hard.setStyle("margin: 0 10px 0 10px;");
-        //Event handler for easy button
+
+        //EVENT HANDLER FOR EASY BUTTON
         easy.setOnAction((ActionEvent e) -> {
             skillPoints = 16;
             startingCredits = 1000;
@@ -384,7 +384,7 @@ public class Main extends Application {
 
 
     }
-
+    //START METHOD FOR SPACE TRADER APP
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -397,7 +397,7 @@ public class Main extends Application {
         // space trader drop shadow
         DropShadow ds = new DropShadow();
         ds.setOffsetY(7.0f);
-        ds.setColor(Color.GRAY);
+        ds.setColor(Color.WHITE);
 
         //Space Trader Game Title
         VBox vbox = new VBox();
@@ -406,24 +406,13 @@ public class Main extends Application {
         vbox.setAlignment(Pos.TOP_CENTER);
         vbox.setPadding(new Insets(100, 50, 50, 50));
 
-
+        // SPACE TRADER APP TITLE
         spaceTrader.setFill(Color.INDIANRED);
         spaceTrader.setEffect(ds);
         spaceTrader.setCache(true);
-        //spaceTrader.setX(10.0f);
-        //spaceTrader.setY(260.0f);
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
-        //animation
-      /*  FadeTransition ft = new FadeTransition(Duration.millis(3000.0));
-        ft.setFromValue(1.0);
-        ft.setToValue(0.3);
-        ft.setCycleCount(4);
-        ft.setAutoReverse(true);
-        ft.play();*/
-
-
-        // rocket image
+        // ROCKET IMAGE
         Image image = new Image("file:rocket.jpg");
         ImageView iv = new ImageView();
         iv.setImage(image);
@@ -434,7 +423,15 @@ public class Main extends Application {
         rocketHBox.setAlignment(Pos.BOTTOM_CENTER);
         rocketHBox.setPadding(new Insets(10, 10, 30, 10));
 
-        //start game button
+        // ROCKET ANIMATION
+        RotateTransition rotate = new RotateTransition(Duration.millis(3000));
+        rotate.setNode(iv);
+        rotate.setByAngle(360);
+        rotate.setCycleCount(50);
+        rotate.setAutoReverse(false);
+        rotate.play();
+
+        // START GAME BUTTON
         Button startButton = new Button("Start game!");
         BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800, 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
@@ -443,7 +440,7 @@ public class Main extends Application {
         startButton.setTextFill(Color.WHITE);
         startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
 
-        //hover effect on start button
+        // DROP SHADOW HOVER EFFECT ON START BUTTON
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
         shadow.setWidth(1.5);
@@ -464,7 +461,7 @@ public class Main extends Application {
                     }
                 });
 
-        //adding boxes to scene1
+        // SCENE 1 BACKING STRUCTURE
         root.setCenter(startButton);
         root.setTop(vbox);
         root.setBottom(rocketHBox);
@@ -472,26 +469,26 @@ public class Main extends Application {
         primaryStage.setScene(scene1);
         primaryStage.show();
 
-        //stuff for setting up scene 2
-        //BorderPane bp2 = new BorderPane();
+        // SET UP SCENE 2
         VBox vb2 = new VBox(40.0);
         vb2.setPadding(new Insets(50.0, 10.0, 20.0, 10.0));
 
-        //back to home button
+        // BACK TO HOME BUTTON
         Button backToHome = new Button("Back to Home");
         backToHome.setTextFill(Color.WHITE);
         backToHome.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
         backToHome.setAlignment(Pos.BASELINE_LEFT);
+
+        //CHARACTER CONFIGURATION TITLE
         Text charConfig = new Text("CHARACTER\nCONFIGURATION");
         charConfig.setFill(Color.INDIANRED);
         charConfig.setStyle("-fx-background-color: white; -fx-font-size: 50px; -fx-font-color: white; -fx-font-family: 'Press Start 2P', cursive; -fx-set-padding-left: 70px;");
         HBox nameHBox = new HBox(charConfig);
         nameHBox.setPadding(new Insets(90.0, 50.0, 50.0, 50.0));
         nameHBox.setAlignment(Pos.TOP_CENTER);
-
         back.setPadding(new Insets(50, 50, 50, 50));
 
-        //backToHome button hover effect
+        // BACK TO HOME DROP SHADOW HOVER EFFECT
         backToHome.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -499,7 +496,6 @@ public class Main extends Application {
                         backToHome.setEffect(shadow);
                     }
                 });
-        //removing shadow when mouse cursor is off
         backToHome.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -509,7 +505,7 @@ public class Main extends Application {
                 });
 
 
-        //character field to enter name and press 'ENTER'
+        // CHARACTER FIELD WHERE USER ENTERS CHARACTER NAME
         TextField characterField = new TextField("type name, press ENTER");
         characterField.setPrefWidth(400);
         characterField.setMaxWidth(300);
@@ -520,7 +516,7 @@ public class Main extends Application {
         nameBox.getChildren().add(enter);
         nameBox.setAlignment(Pos.TOP_CENTER);
 
-
+        //INSTANTIATE NEW CHARACTER WHEN USER TYPES NAME IN CHARACTER TEXT FIELD
         Character character = new Character();
         enter.setOnMouseClicked((mouseEvent -> {
             String characterName = new String(characterField.getText());
@@ -528,10 +524,10 @@ public class Main extends Application {
                 Alert a = new Alert(AlertType.ERROR, "Character name cannot be" +
                         " blank. Please try again!");
                 a.show();
-            } else if (characterName.length() < 4) {
+            } else if (characterName.length() < 3) {
                 Alert a = new Alert(AlertType.ERROR, "'" + characterName +
                         "' is too short. Character name must be at least" +
-                        " 4 characters. Please try again!");
+                        " 3 characters. Please try again!");
                 a.show();
             } else {
                 character.setName(characterName);
@@ -542,13 +538,13 @@ public class Main extends Application {
         }));
 
 
-        //Continue to scene 3 button
+        //CONTINUE TO SCENE 3 BUTTON
         Button next = new Button("CONTINUE");
-        //help why isn't this on the right
         next.setAlignment(Pos.CENTER_RIGHT);
         next.setTextFill(Color.WHITESMOKE);
         next.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
 
+        //HOVER EFFECT FOR 'CONTINUE' BUTTON
         next.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -556,7 +552,6 @@ public class Main extends Application {
                         next.setEffect(shadow);
                     }
                 });
-        //removing shadow when mouse cursor is off
         next.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -565,10 +560,8 @@ public class Main extends Application {
                     }
                 });
 
-        // adding elements to scene2
-        //bp2.setCenter(nameBox);
-        //bp2.setTop(s2box);
-        //bp2.setBottom(next);
+
+        //CHARACTER CONFIGURATION
         format();
         vb2.getChildren().addAll(charConfig, backToHome, nameBox, back, next);
         //bp2.setRight(back);
@@ -576,13 +569,14 @@ public class Main extends Application {
         vb2.setBackground(new Background(myBI));
         scene2 = new Scene(vb2, 800, 800);
 
-        // Start button taking user to next screen
+        // START BUTTON TAKES USER TO SCENE 2
         startButton.setOnMouseClicked((mouseEvent -> {
             primaryStage.setScene(scene2);
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();
         }));
 
+        // BACK TO HOME BUTTON TAKES USER TO SCENE 1
         backToHome.setOnMouseClicked((mouseEvent -> {
             primaryStage.setScene(scene1);
             primaryStage.setTitle("Space Trader");
@@ -591,7 +585,7 @@ public class Main extends Application {
 
         //Scene 3: Character Screen
 
-        // Backing structure setup
+        // SCENE 3 BACKING STRUCTURE SET UP
         VBox vb3 = new VBox(20.0);
         scene3 = new Scene(vb3, 800, 800);
         scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
@@ -599,13 +593,15 @@ public class Main extends Application {
         vb3.setBackground(new Background(myBI));
 
 
-        //back to Scene 2
+        //BACK TO SCENE 2 BUTTON
         Button backToScene2 = new Button("Back to Character\nConfiguration");
         backToScene2.setTextFill(Color.WHITE);
         backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
         HBox BT2 = new HBox();
         BT2.getChildren().add(backToScene2);
         BT2.setAlignment(Pos.BASELINE_LEFT);
+
+        //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
             character.setCredits(startingCredits);
             character.setSkillPoints(skillPoints);
@@ -613,7 +609,7 @@ public class Main extends Application {
             character.setTrait2Val(t2val);
             character.setTrait3Val(t3val);
             character.setTrait4Val(t4val);
-            // adding buttons and functionality
+            // ADDING CHARACTER SHEET SCREEN TEXT NODES
             Text yourCharacter = new Text("WELCOME,\n" + character.getName());
             yourCharacter.setFill(Color.INDIANRED);
             yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
@@ -640,7 +636,7 @@ public class Main extends Application {
 
 
 
-        //adding the shadow when the mouse cursor is on
+        //DROP SHADOW EFFECT
         backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -648,7 +644,6 @@ public class Main extends Application {
                         backToScene2.setEffect(shadow);
                     }
                 });
-        //removing shadow when mouse cursor is off
         backToScene2.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -657,19 +652,15 @@ public class Main extends Application {
                     }
                 });
 
-        //back to scene 2 button
+        //BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {
             primaryStage.setScene(scene2);
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();
         }));
-        //
+
 
     }
-
-    //private boolean isString(TextField input, String message) {
-    //
-    //}
 
 
     public static void main(String[] args) {

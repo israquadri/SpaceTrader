@@ -14,8 +14,8 @@ public class Character {
         this.name = name;
     }
 
-    public String getName(Character c) {
-        return c.name;
+    public String getName() {
+        return this.name;
     }
 
     public void setName(String name) {

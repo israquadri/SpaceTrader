@@ -1,4 +1,5 @@
 package src;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,11 +26,87 @@ public class Main extends Application {
 
     private Scene scene1, scene2, scene3;
 
+
+    /**
+     * This inner class is for the Character
+     */
+    public class Character {
+        private String name;
+        private int skillPoints;
+        private int credits;
+        private int trait1val;
+        private int trait2val;
+        private int trait3val;
+        private int trait4val;
+
+        //Getter and Setter-ville
+        public Character() {
+            this.name = null;
+        }
+
+        public String getName() {
+            return this.name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getSkillPoints() {
+            return this.skillPoints;
+        }
+
+        public void setSkillPoints(int skillPoints) {
+            this.skillPoints = skillPoints;
+        }
+
+        public int getCredits() {
+            return this.credits;
+        }
+
+        public void setCredits(int credits) {
+            this.credits = credits;
+        }
+
+        public int getTrait1Val() {
+            return this.trait1val;
+        }
+
+        public void setTrait1Val(int trait1val) {
+            this.trait1val = trait1val;
+        }
+
+        public int getTrait2Val() {
+            return this.trait2val;
+        }
+
+        public void setTrait2Val(int trait2val) {
+            this.trait2val = trait2val;
+        }
+
+        public int getTrait3Val() {
+            return this.trait3val;
+        }
+
+        public void setTrait3Val(int trait3val) {
+            this.trait3val = trait3val;
+        }
+
+        public int getTrait4Val() {
+            return this.trait4val;
+        }
+
+        public void setTrait4Val(int trait4val) {
+            this.trait4val = trait4val;
+        }
+
+    }
+
     //Character Trait Selector setup
 
     HBox back = new HBox();
     int skillPoints = 16;
-    int credits = 1000;
+    int startingCredits = 1000;
     int t1val = 0;
     int t2val = 0;
     int t3val = 0;
@@ -89,7 +166,7 @@ public class Main extends Application {
         //Event handler for easy button
         easy.setOnAction((ActionEvent e) -> {
             skillPoints = 16;
-            credits = 1000;
+            startingCredits = 1000;
             remain.setText("Skill Points Remaining: " + skillPoints);
 
 
@@ -97,14 +174,14 @@ public class Main extends Application {
         //event handler for medium button
         medium.setOnAction((ActionEvent e) -> {
             skillPoints = 12;
-            credits = 500;
+            startingCredits = 500;
             remain.setText("Skill Points Remaining: " + skillPoints);
 
         });
         //event handler for hard button
         hard.setOnAction((ActionEvent e) -> {
             skillPoints = 8;
-            credits = 100;
+            startingCredits = 100;
             remain.setText("Skill Points Remaining: " + skillPoints);
 
         });
@@ -117,9 +194,13 @@ public class Main extends Application {
         //CHARACTER TRAIT SELECTOR BEGINS
         //Create area where traits are selected (Create 4 hboxes to house each of the four traits)
         HBox trait1 = new HBox(2);
+        trait1.setSpacing(5);
         HBox trait2 = new HBox(2);
+        trait2.setSpacing(5);
         HBox trait3 = new HBox(2);
+        trait3.setSpacing(5);
         HBox trait4 = new HBox(2);
+        trait4.setSpacing(5);
 
         //Add each trait hbox to the right vbox
         right.getChildren().add(trait1);
@@ -306,30 +387,6 @@ public class Main extends Application {
 
     }
 
-    /**
-     * This inner class is for the Character
-     */
-    class Character {
-        private String name;
-        private String difficulty;
-        private int Trait1SkillLevel;
-        private int Trait2SkillLevel;
-        private int Trait3SkillLevel;
-        private int Trait4SkillLevel;
-
-        public Character() {
-
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-    }
-
-    Character character = new Character();
-
-
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -338,8 +395,6 @@ public class Main extends Application {
         scene1 = new Scene(root, 800, 800);
         scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
         scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
-
-        Character character = new Character();
 
         // space trader drop shadow
         DropShadow ds = new DropShadow();
@@ -470,12 +525,30 @@ public class Main extends Application {
         nameBox.getChildren().add(enter);
         nameBox.setAlignment(Pos.TOP_CENTER);
 
-        enter.setOnAction(actionEvent -> {
-            String characterName = characterField.getText();
-        });
+
+        Character character = new Character();
+        enter.setOnMouseClicked((mouseEvent -> {
+            String characterName = new String(characterField.getText());
+            if (characterName.length() == 0) {
+                Alert a = new Alert(AlertType.ERROR, "Character name cannot be" +
+                        " blank. Please try again!");
+                a.show();
+            } else if (characterName.length() < 4) {
+                Alert a = new Alert(AlertType.ERROR, "'" + characterName +
+                        "' is too short. Character name must be at least" +
+                        " 4 characters. Please try again!");
+                a.show();
+            } else {
+                character.setName(characterName);
+                Alert a = new Alert(AlertType.CONFIRMATION, "Welcome to" +
+                        " Space Trader, " + character.getName() + "!");
+                a.show();
+            }
+        }));
+
 
         //Continue to scene 3 button
-        Button next = new Button("Continue");
+        Button next = new Button("CONTINUE");
         //help why isn't this on the right
         next.setAlignment(Pos.CENTER_RIGHT);
         next.setTextFill(Color.WHITESMOKE);
@@ -522,29 +595,16 @@ public class Main extends Application {
         }));
 
         next.setOnMouseClicked((mouseEvent -> {
+            character.setCredits(startingCredits);
+            character.setSkillPoints(skillPoints);
+            character.setTrait1Val(t1val);
+            character.setTrait2Val(t2val);
+            character.setTrait3Val(t3val);
+            character.setTrait4Val(t4val);
             primaryStage.setScene(scene3);
             primaryStage.setTitle("Scene 3");
             primaryStage.show();
         }));
-
-
-
-/*        Character character = new Character();
-        enter.setOnMouseClicked((mouseEvent -> {
-            String characterName = new String(characterField.getText());
-            if (characterName.length() == 0) {
-                Alert a = new Alert(AlertType.ERROR, "Character name cannot be" +
-                        " blank. Please try again!");
-                a.show();
-            } else if (characterName.length() < 4) {
-                Alert a = new Alert(AlertType.ERROR, "'" + characterName +
-                        "' is too short. Please try again!");
-                a.show();
-            } else {
-
-            }
-        }));*/
-
 
 
         //Scene 3: Character Screen
@@ -570,15 +630,18 @@ public class Main extends Application {
         yourCharacter.setFill(Color.INDIANRED);
         yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
-        Text yourNameIs = new Text("Your name is: " + character.name);
+        Text yourNameIs = new Text("Your name is: " + character.getName());
         yourNameIs.setFill(Color.WHITE);
         yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
 
-        Text yourTraits = new Text("Your points for Trait 1: " + t1val + "\nYour points for Trait 2" + t2val + "\nYour points for Trait 3: " + t3val + "\nYour points for Trait 4: " + t4val);
+        Text yourTraits = new Text("Your points for Trait 1: " + character.getTrait1Val()
+                + "\nYour points for Trait 2" + character.getTrait2Val()
+                + "\nYour points for Trait 3: " + character.getTrait3Val()
+                + "\nYour points for Trait 4: " + character.getTrait4Val());
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
 
-        Text yourDiff = new Text("Your difficulty level is: " + "To fill in later " + credits);
+        Text yourDiff = new Text("Your difficulty level is: " + "To fill in later " + character.getCredits());
         yourDiff.setFill(Color.WHITE);
         yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Montserrat', sans-serif;");
 

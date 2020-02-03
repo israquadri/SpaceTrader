@@ -390,7 +390,7 @@ public class Main extends Application {
 
     //START METHOD FOR SPACE TRADER APP
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         //Scene 1: Welcome Screen
         BorderPane root = new BorderPane();
@@ -437,12 +437,15 @@ public class Main extends Application {
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
-        BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800, 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800,
+                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
         root.setBackground(new Background(myBI));
         startButton.setAlignment(Pos.BASELINE_CENTER);
         startButton.setTextFill(Color.WHITE);
-        startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
+        startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px;"
+                + " -fx-font-family: 'Press Start 2P', cursive;");
 
         // DROP SHADOW HOVER EFFECT ON START BUTTON
         DropShadow shadow = new DropShadow();
@@ -480,13 +483,16 @@ public class Main extends Application {
         // BACK TO HOME BUTTON
         Button backToHome = new Button("Back to Home");
         backToHome.setTextFill(Color.WHITE);
-        backToHome.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        backToHome.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
+                + " -fx-font-family: 'Press Start 2P', cursive;");
         backToHome.setAlignment(Pos.BASELINE_LEFT);
 
         //CHARACTER CONFIGURATION TITLE
         Text charConfig = new Text("CHARACTER\nCONFIGURATION");
         charConfig.setFill(Color.INDIANRED);
-        charConfig.setStyle("-fx-background-color: white; -fx-font-size: 50px; -fx-font-color: white; -fx-font-family: 'Press Start 2P', cursive; -fx-set-padding-left: 70px;");
+        charConfig.setStyle("-fx-background-color: white; -fx-font-size: 50px;"
+                + " -fx-font-color: white; -fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-set-padding-left: 70px;");
         HBox nameHBox = new HBox(charConfig);
         nameHBox.setPadding(new Insets(90.0, 50.0, 50.0, 50.0));
         nameHBox.setAlignment(Pos.TOP_CENTER);
@@ -595,9 +601,9 @@ public class Main extends Application {
         backToScene2.setTextFill(Color.WHITE);
         backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-        HBox BT2 = new HBox();
-        BT2.getChildren().add(backToScene2);
-        BT2.setAlignment(Pos.BASELINE_LEFT);
+        HBox bt2 = new HBox();
+        bt2.getChildren().add(backToScene2);
+        bt2.setAlignment(Pos.BASELINE_LEFT);
 
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
@@ -639,7 +645,7 @@ public class Main extends Application {
             yourDiff.setFill(Color.WHITE);
             yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                     + " -fx-font-family: 'Press Start 2P', cursive;");
-            vb3.getChildren().addAll(yourCharacter, BT2, yourNameIs, yourTraits, yourDiff);
+            vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff);
             primaryStage.setScene(scene3);
             primaryStage.setTitle("Scene 3");
             primaryStage.show();

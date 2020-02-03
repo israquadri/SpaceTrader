@@ -5,18 +5,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.input.SwipeEvent;
-import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.scene.input.MouseEvent;
 
-import javax.swing.*;
 
 public class CharacterTraitSelector extends Application {
     //Create new HBox to act as framework for entirety of screen
@@ -34,7 +28,8 @@ public class CharacterTraitSelector extends Application {
         back.setAlignment(Pos.CENTER);
         back.setSpacing(30);
 
-        //Create a new vbox for left side of screen and add box for name, radio button for difficulty.
+        //Create a new vbox for left side of screen and add box
+        // for name, radio button for difficulty.
         VBox left = new VBox(10);
         back.getChildren().add(left);
         left.setAlignment(Pos.BOTTOM_CENTER);

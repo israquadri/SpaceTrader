@@ -15,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -30,6 +32,8 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
+
+import java.io.File;
 
 
 public class Main extends Application {
@@ -176,13 +180,13 @@ public class Main extends Application {
 
         //CHARACTER TRAIT SELECTOR BEGINS
         //Create area where traits are selected (Create 4 hboxes to house each of the four traits)
-        HBox trait1 = new HBox(2);
+        HBox trait1 = new HBox(5);
         trait1.setSpacing(5);
-        HBox trait2 = new HBox(2);
+        HBox trait2 = new HBox(5);
         trait2.setSpacing(5);
-        HBox trait3 = new HBox(2);
+        HBox trait3 = new HBox(5);
         trait3.setSpacing(5);
-        HBox trait4 = new HBox(2);
+        HBox trait4 = new HBox(5);
         trait4.setSpacing(5);
 
         //Add each trait hbox to the right vbox
@@ -406,6 +410,11 @@ public class Main extends Application {
         rotate.setAutoReverse(false);
         rotate.play();
 
+        //MUSIC :)
+        Media spaceTraderIntroSong = new Media(new File("./SpaceTraderIntroSong.m4a").toURI().toString());
+        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
+        songplayer.play();
+
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
         BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800,
@@ -577,6 +586,8 @@ public class Main extends Application {
 
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
+            //Stop the Space Trader Intro Music
+            songplayer.stop();
 
             // SCENE 3 BACKING STRUCTURE SET UP
             VBox vb3 = new VBox(20.0);

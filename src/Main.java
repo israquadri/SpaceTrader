@@ -28,82 +28,6 @@ public class Main extends Application {
     private Scene scene2;
     private Scene scene3;
 
-
-    /**
-     * This inner class is for the Character
-     */
-    public class Character {
-        private String name;
-        private int skillPoints;
-        private int credits;
-        private int trait1val;
-        private int trait2val;
-        private int trait3val;
-        private int trait4val;
-
-        //GETTER AND SETTER FOR CHARACTER
-        public Character() {
-            this.name = null;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getSkillPoints() {
-            return this.skillPoints;
-        }
-
-        public void setSkillPoints(int skillPoints) {
-            this.skillPoints = skillPoints;
-        }
-
-        public int getCredits() {
-            return this.credits;
-        }
-
-        public void setCredits(int credits) {
-            this.credits = credits;
-        }
-
-        public int getTrait1Val() {
-            return this.trait1val;
-        }
-
-        public void setTrait1Val(int trait1val) {
-            this.trait1val = trait1val;
-        }
-
-        public int getTrait2Val() {
-            return this.trait2val;
-        }
-
-        public void setTrait2Val(int trait2val) {
-            this.trait2val = trait2val;
-        }
-
-        public int getTrait3Val() {
-            return this.trait3val;
-        }
-
-        public void setTrait3Val(int trait3val) {
-            this.trait3val = trait3val;
-        }
-
-        public int getTrait4Val() {
-            return this.trait4val;
-        }
-
-        public void setTrait4Val(int trait4val) {
-            this.trait4val = trait4val;
-        }
-
-    }
-
     //CHARACTER CONFIGURATION SETUP
 
     HBox back = new HBox();
@@ -119,7 +43,8 @@ public class Main extends Application {
         //Format the backing hbox
         back.setAlignment(Pos.CENTER);
 
-        //Create a new vbox for left side of screen and add box for name, radio button for difficulty.
+        //Create a new vbox for left side of screen and add box
+        // for name, radio button for difficulty.
         VBox left = new VBox(10);
         back.getChildren().add(left);
         left.setAlignment(Pos.BOTTOM_CENTER);
@@ -149,13 +74,16 @@ public class Main extends Application {
         ToggleGroup difficulty = new ToggleGroup();
         RadioButton easy = new RadioButton("Easy");
         easy.setTextFill(Color.WHITE);
-        easy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
+        easy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
+                + " sans-serif; margin: 0 10px 0 10px;");
         RadioButton medium = new RadioButton("Medium");
         medium.setTextFill(Color.WHITE);
-        medium.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
+        medium.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
+                + " sans-serif; margin: 0 10px 0 10px;");
         RadioButton hard = new RadioButton("Hard");
         hard.setTextFill(Color.WHITE);
-        hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif; margin: 0 10px 0 10px;");
+        hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
+                + " sans-serif; margin: 0 10px 0 10px;");
 
 
         //Adding radio buttons to toggle group
@@ -208,8 +136,9 @@ public class Main extends Application {
         right.getChildren().add(trait3);
         right.getChildren().add(trait4);
 
-        //Edit each of the trait hboxs to have trait and then bar to select amount of trait wanted
-        Text t1 = new Text("Pilot: " + t1val );
+        //Edit each of the trait hboxs to have trait and then bar to
+        // select amount of trait wanted
+        Text t1 = new Text("Pilot: " + t1val);
         trait1.getChildren().add(t1);
         t1.setFill(Color.WHITE);
         t1.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
@@ -221,7 +150,7 @@ public class Main extends Application {
         trait3.getChildren().add(t3);
         t3.setFill(Color.WHITE);
         t3.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
-        Text t4 = new Text("Engineer: " + t4val );
+        Text t4 = new Text("Engineer: " + t4val);
         trait4.getChildren().add(t4);
         t4.setFill(Color.WHITE);
         t4.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
@@ -232,7 +161,7 @@ public class Main extends Application {
         ProgressBar t1pb = new ProgressBar(0);
         Button t1inc = new Button(">");
         t1inc.setStyle("-fx-background-color: black; -fx-border-color: white");
-        t1dec.setTextFill(Color.WHITE);;
+        t1dec.setTextFill(Color.WHITE);
         t1inc.setTextFill(Color.WHITE);
         trait1.getChildren().add(t1dec);
         trait1.getChildren().add(t1pb);
@@ -380,12 +309,85 @@ public class Main extends Application {
             t4pb.setProgress(t4val / 16.0);
             remain.setText("Skill Points Remaining: " + skillPoints);
         });
-        //CHARACTER TRAIT ALLOCATOR ENDS
+    }
+    //CHARACTER TRAIT ALLOCATOR ENDS
 
+    /**
+     * This inner class is for the Character
+     */
+    public class Character {
+        private String name;
+        private int skillPoints;
+        private int credits;
+        private int trait1val;
+        private int trait2val;
+        private int trait3val;
+        private int trait4val;
 
+        //GETTER AND SETTER FOR CHARACTER
+        public Character() {
+            this.name = null;
+        }
 
+        public String getName() {
+            return this.name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getSkillPoints() {
+            return this.skillPoints;
+        }
+
+        public void setSkillPoints(int skillPoints) {
+            this.skillPoints = skillPoints;
+        }
+
+        public int getCredits() {
+            return this.credits;
+        }
+
+        public void setCredits(int credits) {
+            this.credits = credits;
+        }
+
+        public int getTrait1Val() {
+            return this.trait1val;
+        }
+
+        public void setTrait1Val(int trait1val) {
+            this.trait1val = trait1val;
+        }
+
+        public int getTrait2Val() {
+            return this.trait2val;
+        }
+
+        public void setTrait2Val(int trait2val) {
+            this.trait2val = trait2val;
+        }
+
+        public int getTrait3Val() {
+            return this.trait3val;
+        }
+
+        public void setTrait3Val(int trait3val) {
+            this.trait3val = trait3val;
+        }
+
+        public int getTrait4Val() {
+            return this.trait4val;
+        }
+
+        public void setTrait4Val(int trait4val) {
+            this.trait4val = trait4val;
+        }
 
     }
+
+
     //START METHOD FOR SPACE TRADER APP
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -523,18 +525,18 @@ public class Main extends Application {
         enter.setOnMouseClicked((mouseEvent -> {
             String characterName = new String(characterField.getText());
             if (characterName.length() == 0) {
-                Alert a = new Alert(AlertType.ERROR, "Character name cannot be" +
-                        " blank. Please try again!");
+                Alert a = new Alert(AlertType.ERROR, "Character name cannot be"
+                        + " blank. Please try again!");
                 a.show();
             } else if (characterName.length() < 3) {
-                Alert a = new Alert(AlertType.ERROR, "'" + characterName +
-                        "' is too short. Character name must be at least" +
-                        " 3 characters. Please try again!");
+                Alert a = new Alert(AlertType.ERROR, "'" + characterName
+                        + "' is too short. Character name must be at least"
+                        + " 3 characters. Please try again!");
                 a.show();
             } else {
                 character.setName(characterName);
-                Alert a = new Alert(AlertType.CONFIRMATION, "Welcome to" +
-                        " Space Trader, " + character.getName() + "!");
+                Alert a = new Alert(AlertType.CONFIRMATION, "Welcome to"
+                        + " Space Trader, " + character.getName() + "!");
                 a.show();
             }
         }));
@@ -544,7 +546,8 @@ public class Main extends Application {
         Button next = new Button("CONTINUE");
         next.setAlignment(Pos.CENTER_RIGHT);
         next.setTextFill(Color.WHITESMOKE);
-        next.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        next.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
+                + " -fx-font-family: 'Press Start 2P', cursive;");
 
         //HOVER EFFECT FOR 'CONTINUE' BUTTON
         next.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -587,18 +590,11 @@ public class Main extends Application {
 
         //Scene 3: Character Screen
 
-        // SCENE 3 BACKING STRUCTURE SET UP
-        VBox vb3 = new VBox(20.0);
-        scene3 = new Scene(vb3, 800, 800);
-        scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
-        vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
-        vb3.setBackground(new Background(myBI));
-
-
         //BACK TO SCENE 2 BUTTON
         Button backToScene2 = new Button("Back to Character\nConfiguration");
         backToScene2.setTextFill(Color.WHITE);
-        backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
+                + " -fx-font-family: 'Press Start 2P', cursive;");
         HBox BT2 = new HBox();
         BT2.getChildren().add(backToScene2);
         BT2.setAlignment(Pos.BASELINE_LEFT);
@@ -611,25 +607,38 @@ public class Main extends Application {
             character.setTrait2Val(t2val);
             character.setTrait3Val(t3val);
             character.setTrait4Val(t4val);
+
+            // SCENE 3 BACKING STRUCTURE SET UP
+            VBox vb3 = new VBox(20.0);
+            scene3 = new Scene(vb3, 800, 800);
+            scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+            vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
+            vb3.setBackground(new Background(myBI));
+
             // ADDING CHARACTER SHEET SCREEN TEXT NODES
             Text yourCharacter = new Text("WELCOME,\n" + character.getName());
             yourCharacter.setFill(Color.INDIANRED);
-            yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
+            yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px;"
+                    + " -fx-font-family: 'Press Start 2P', cursive;");
 
             Text yourNameIs = new Text("Your name is: " + character.getName());
             yourNameIs.setFill(Color.WHITE);
-            yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
+            yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
+                    + " -fx-font-family: 'Press Start 2P', cursive;");
 
             Text yourTraits = new Text("Your points for Pilot: " + character.getTrait1Val()
                     + "\nYour points for Fighter: " + character.getTrait2Val()
                     + "\nYour points for Merchant: " + character.getTrait3Val()
                     + "\nYour points for Engineer: " + character.getTrait4Val());
             yourTraits.setFill(Color.WHITE);
-            yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
+            yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
+                    + " -fx-font-family: 'Press Start 2P', cursive;");
 
-            Text yourDiff = new Text("Based on your difficulty level, you\nhave " + character.getCredits() + " credits");
+            Text yourDiff = new Text("Based on your difficulty level, you\nhave "
+                    + character.getCredits() + " credits");
             yourDiff.setFill(Color.WHITE);
-            yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple; -fx-font-family: 'Press Start 2P', cursive;");
+            yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
+                    + " -fx-font-family: 'Press Start 2P', cursive;");
             vb3.getChildren().addAll(yourCharacter, BT2, yourNameIs, yourTraits, yourDiff);
             primaryStage.setScene(scene3);
             primaryStage.setTitle("Scene 3");

@@ -82,12 +82,12 @@ public class Main extends Application {
         //Add text for skill points remaining
         Text remain = new Text("Skill Points Remaining: " + p1.getSkillPoints());
         remain.setFill(Color.WHITE);
-        remain.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        remain.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         right.getChildren().add(remain);
 
         //Choose difficulty
         Text diff = new Text("Choose your difficulty level below: ");
-        diff.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        diff.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         diff.setFill(Color.WHITE);
 
         left.getChildren().add(diff);
@@ -97,16 +97,13 @@ public class Main extends Application {
         ToggleGroup difficulty = new ToggleGroup();
         RadioButton easy = new RadioButton("Easy");
         easy.setTextFill(Color.WHITE);
-        easy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        easy.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         RadioButton medium = new RadioButton("Medium");
         medium.setTextFill(Color.WHITE);
-        medium.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        medium.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         RadioButton hard = new RadioButton("Hard");
         hard.setTextFill(Color.WHITE);
-        hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        hard.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 
 
         //Adding radio buttons to toggle group
@@ -127,10 +124,10 @@ public class Main extends Application {
             t2.setText("Fighter: " + p1.getTrait2Val());
             t3.setText("Merchant: " + p1.getTrait3Val());
             t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 16.0);
-            t2pb.setProgress(p1.getTrait2Val() / 16.0);
-            t3pb.setProgress(p1.getTrait3Val() / 16.0);
-            t4pb.setProgress(p1.getTrait4Val() / 16.0);
+            t1pb.setProgress(p1.getTrait1Val() / 8.0);
+            t2pb.setProgress(p1.getTrait2Val() / 8.0);
+            t3pb.setProgress(p1.getTrait3Val() / 8.0);
+            t4pb.setProgress(p1.getTrait4Val() / 8.0);
 
 
         });
@@ -147,10 +144,10 @@ public class Main extends Application {
             t2.setText("Fighter: " + p1.getTrait2Val());
             t3.setText("Merchant: " + p1.getTrait3Val());
             t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 16.0);
-            t2pb.setProgress(p1.getTrait2Val() / 16.0);
-            t3pb.setProgress(p1.getTrait3Val() / 16.0);
-            t4pb.setProgress(p1.getTrait4Val() / 16.0);
+            t1pb.setProgress(p1.getTrait1Val() / 8.0);
+            t2pb.setProgress(p1.getTrait2Val() / 8.0);
+            t3pb.setProgress(p1.getTrait3Val() / 8.0);
+            t4pb.setProgress(p1.getTrait4Val() / 8.0);
 
         });
         //event handler for hard button
@@ -166,10 +163,10 @@ public class Main extends Application {
             t2.setText("Fighter: " + p1.getTrait2Val());
             t3.setText("Merchant: " + p1.getTrait3Val());
             t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 16.0);
-            t2pb.setProgress(p1.getTrait2Val() / 16.0);
-            t3pb.setProgress(p1.getTrait3Val() / 16.0);
-            t4pb.setProgress(p1.getTrait4Val() / 16.0);
+            t1pb.setProgress(p1.getTrait1Val() / 8.0);
+            t2pb.setProgress(p1.getTrait2Val() / 8.0);
+            t3pb.setProgress(p1.getTrait3Val() / 8.0);
+            t4pb.setProgress(p1.getTrait4Val() / 8.0);
 
         });
         //Adding radio buttons to vbox
@@ -199,16 +196,16 @@ public class Main extends Application {
         // select amount of trait wanted
         trait1.getChildren().add(t1);
         t1.setFill(Color.WHITE);
-        t1.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t1.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         t2.setFill(Color.WHITE);
-        t2.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t2.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         trait2.getChildren().add(t2);
         trait3.getChildren().add(t3);
         t3.setFill(Color.WHITE);
-        t3.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t3.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         trait4.getChildren().add(t4);
         t4.setFill(Color.WHITE);
-        t4.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t4.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 
         //progress bar 1 with buttons to move
         Button t1dec = new Button("<");
@@ -228,7 +225,7 @@ public class Main extends Application {
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
             t1.setText("Pilot: " + p1.getTrait1Val());
-            t1pb.setProgress(p1.getTrait1Val() / 16.0);
+            t1pb.setProgress(p1.getTrait1Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
@@ -239,12 +236,12 @@ public class Main extends Application {
                 p1.setSkillPoints(0);
                 p1.setTrait1Val(p1.getTrait1Val() - 1);
             }
-            if (p1.getTrait1Val() > 16) {
-                p1.setTrait1Val(16);
-                p1.setSkillPoints(p1.getSkillPoints() - 1);
+            if (p1.getTrait1Val() > 8) {
+                p1.setTrait1Val(8);
+                p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
             t1.setText("Pilot: " + p1.getTrait1Val());
-            t1pb.setProgress(p1.getTrait1Val() / 16.0);
+            t1pb.setProgress(p1.getTrait1Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -266,7 +263,7 @@ public class Main extends Application {
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
             t2.setText("Fighter: " + p1.getTrait2Val());
-            t2pb.setProgress(p1.getTrait2Val() / 16.0);
+            t2pb.setProgress(p1.getTrait2Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
@@ -277,12 +274,12 @@ public class Main extends Application {
                 p1.setSkillPoints(0);
                 p1.setTrait2Val(p1.getTrait2Val() - 1);
             }
-            if (p1.getTrait2Val() > 16) {
-                p1.setTrait2Val(16);
-                p1.setSkillPoints(p1.getSkillPoints() - 1);
+            if (p1.getTrait2Val() > 8) {
+                p1.setTrait2Val(8);
+                p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
             t2.setText("Fighter: " + p1.getTrait2Val());
-            t2pb.setProgress(p1.getTrait2Val() / 16.0);
+            t2pb.setProgress(p1.getTrait2Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -304,7 +301,7 @@ public class Main extends Application {
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
             t3.setText("Merchant: " + p1.getTrait3Val());
-            t3pb.setProgress(p1.getTrait3Val() / 16.0);
+            t3pb.setProgress(p1.getTrait3Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
@@ -315,12 +312,12 @@ public class Main extends Application {
                 p1.setSkillPoints(0);
                 p1.setTrait3Val(p1.getTrait3Val() - 1);
             }
-            if (p1.getTrait3Val() > 16) {
-                p1.setTrait3Val(16);
-                p1.setSkillPoints(p1.getSkillPoints() - 1);
+            if (p1.getTrait3Val() > 8) {
+                p1.setTrait3Val(8);
+                p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
             t3.setText("Merchant: " + p1.getTrait3Val());
-            t3pb.setProgress(p1.getTrait3Val() / 16.0);
+            t3pb.setProgress(p1.getTrait3Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -341,7 +338,7 @@ public class Main extends Application {
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
             t4.setText("Engineer " + p1.getTrait4Val());
-            t4pb.setProgress(p1.getTrait4Val() / 16.0);
+            t4pb.setProgress(p1.getTrait4Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
@@ -352,12 +349,12 @@ public class Main extends Application {
                 p1.setSkillPoints(0);
                 p1.setTrait4Val(p1.getTrait4Val() - 1);
             }
-            if (p1.getTrait4Val() > 16) {
-                p1.setTrait4Val(16);
-                p1.setSkillPoints(p1.getSkillPoints() - 1);
+            if (p1.getTrait4Val() > 8) {
+                p1.setTrait4Val(8);
+                p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
             t4.setText("Engineer: " + p1.getTrait4Val());
-            t4pb.setProgress(p1.getTrait4Val() / 16.0);
+            t4pb.setProgress(p1.getTrait4Val() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -411,9 +408,13 @@ public class Main extends Application {
         rotate.play();
 
         //MUSIC :)
+        //Intro Music
         Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
-        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
-        songplayer.play();
+        MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
+        introsongplayer.play();
+        //Completed Character sound token
+        Media completecharactersound = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+        MediaPlayer soundplyr = new MediaPlayer(completecharactersound);
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
@@ -497,35 +498,14 @@ public class Main extends Application {
 
         // CHARACTER FIELD WHERE USER ENTERS CHARACTER NAME
         TextField characterField = new TextField();
-        characterField.setPromptText("type name, press ENTER");
+        characterField.setPromptText("Name:");
+        characterField.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         characterField.setPrefWidth(400);
         characterField.setMaxWidth(300);
         HBox nameBox = new HBox();
         nameBox.setSpacing(10);
         nameBox.getChildren().add(characterField);
-        Button enter = new Button("ENTER");
-        nameBox.getChildren().add(enter);
         nameBox.setAlignment(Pos.TOP_CENTER);
-
-        //INSTANTIATE NEW CHARACTER WHEN USER TYPES NAME IN CHARACTER TEXT FIELD
-        enter.setOnMouseClicked((mouseEvent -> {
-            String characterName = new String(characterField.getText());
-            if (characterName.length() == 0) {
-                Alert a = new Alert(AlertType.ERROR, "Character name cannot be"
-                        + " blank. Please try again!");
-                a.show();
-            } else if (characterName.length() < 3) {
-                Alert a = new Alert(AlertType.ERROR, "'" + characterName
-                        + "' is too short. Character name must be at least"
-                        + " 3 characters. Please try again!");
-                a.show();
-            } else {
-                p1.setName(characterName);
-                Alert a = new Alert(AlertType.CONFIRMATION, "Welcome to"
-                        + " Space Trader, " + p1.getName() + "!");
-                a.show();
-            }
-        }));
 
 
         //CONTINUE TO SCENE 3 BUTTON
@@ -586,8 +566,8 @@ public class Main extends Application {
 
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
-            //Stop the Space Trader Intro Music
-            songplayer.stop();
+            //Set the name of the p1 object
+            p1.setName(characterField.getText());
             // SCENE 3 BACKING STRUCTURE SET UP
             VBox vb3 = new VBox(20.0);
             scene3 = new Scene(vb3, 800, 800);
@@ -620,9 +600,17 @@ public class Main extends Application {
             yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                     + " -fx-font-family: 'Press Start 2P', cursive;");
             vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff);
-            primaryStage.setScene(scene3);
-            primaryStage.setTitle("Scene 3");
-            primaryStage.show();
+            //Stops continue button from working if name, difficulty, and skill points are not all used
+            if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+                //Stop the Space Trader Intro Music
+                introsongplayer.stop();
+                //Start the completed character sound effect
+                soundplyr.play();
+                //Activate next scene
+                primaryStage.setScene(scene3);
+                primaryStage.setTitle("Scene 3");
+                primaryStage.show();
+            }
         }));
 
 
@@ -645,6 +633,9 @@ public class Main extends Application {
 
         //BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {
+            //Stop intro song and start character finish song
+            introsongplayer.play();
+            soundplyr.stop();
             primaryStage.setScene(scene2);
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();

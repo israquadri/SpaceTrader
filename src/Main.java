@@ -411,9 +411,6 @@ public class Main extends Application {
         rotate.play();
 
         //MUSIC :)
-        Media spaceTraderIntroSong = new Media(new File("./SpaceTraderIntroSong.m4a").toURI().toString());
-        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
-        songplayer.play();
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
@@ -587,7 +584,6 @@ public class Main extends Application {
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
             //Stop the Space Trader Intro Music
-            songplayer.stop();
 
             // SCENE 3 BACKING STRUCTURE SET UP
             VBox vb3 = new VBox(20.0);

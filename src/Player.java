@@ -1,6 +1,6 @@
 package src;
 
-public class Character {
+public class Player {
     private String name;
     private int skillPoints;
     private int credits;
@@ -10,12 +10,11 @@ public class Character {
     private int trait4val;
 
     //Getter and Setter-ville
-    public Character(String name) {
-        this.name = name;
+    public Player() {
     }
 
-    public String getName(Character c) {
-        return c.name;
+    public String getName() {
+        return this.name;
     }
 
     public void setName(String name) {

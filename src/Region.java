@@ -7,8 +7,11 @@ public class Region {
 	private int technologyLevel;
 	private String description;
 
-	public Region() {
-
+	public Region(int xCoord, int yCoord, int technologyLevel, String description) {
+		this.xCoord = xCoord;
+		this.yCoord = yCoord;
+		this.technologyLevel = technologyLevel;
+		this.description = description;
 	}
 
 	public int getxCoord() {

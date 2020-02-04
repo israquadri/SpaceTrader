@@ -15,8 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+//import javafx.scene.media.Media;
+//import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -566,8 +566,10 @@ public class Main extends Application {
 
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
+
             //Set the name of the p1 object
             p1.setName(characterField.getText());
+
             // SCENE 3 BACKING STRUCTURE SET UP
             VBox vb3 = new VBox(20.0);
             scene3 = new Scene(vb3, 800, 800);

@@ -600,6 +600,12 @@ public class Main extends Application {
             yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                     + " -fx-font-family: 'Press Start 2P', cursive;");
             vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff);
+            //error pop-up if character name is not valid
+            if (p1.getName().length() == 0) {
+                Alert a = new Alert(AlertType.ERROR, "Your name cannot be blank! Please"
+                        + " enter a name.");
+                a.show();
+            }
             //Stops continue button from working if name, difficulty, and skill points are not all used
             if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
                 //Stop the Space Trader Intro Music

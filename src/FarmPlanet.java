@@ -7,11 +7,7 @@ import java.awt.*;
 import java.util.Random;
 
 public class FarmPlanet extends Region {
-
-	Random randomX = new Random();
-	Random randomY = new Random();
-
-
+	
 	public FarmPlanet() {
 		super(0, 0, 3, "Planet F is a planet where the simple live is lived on the farm.");
 	}

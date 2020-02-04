@@ -11,10 +11,6 @@ import java.util.Random;
 
 public class WesternRegion extends Region {
 
-	Random randomX = new Random();
-	Random randomY = new Random();
-
-
 	public WesternRegion() {
 		super(0, 0, 3, "Planet W is a planet where the culture of the wild west reigns free.");
 	}

@@ -8,10 +8,6 @@ import java.util.Random;
 
 public class SafariPlanet extends Region {
 
-	Random randomX = new Random();
-	Random randomY = new Random();
-
-
 	public SafariPlanet() {
 		super(0, 0, 3, "Planet S is a jungle of the universe's most dangerous creatures.");
 	}

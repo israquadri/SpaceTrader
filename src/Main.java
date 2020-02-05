@@ -34,6 +34,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.Random;
 
 
 public class Main extends Application {
@@ -367,8 +368,8 @@ public class Main extends Application {
         BorderPane root = new BorderPane();
         scene1 = new Scene(root, 800, 800);
         scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
-        scene1.getStylesheets().add(
-                "https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
+        //scene1.getStylesheets().add(
+                //"https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
 
         // space trader drop shadow
         DropShadow ds = new DropShadow();
@@ -389,7 +390,7 @@ public class Main extends Application {
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
         // ROCKET IMAGE
-        Image image = new Image("file:rocket.jpg");
+        Image image = new Image("rocket.jpg");
         ImageView iv = new ImageView();
         iv.setImage(image);
         iv.setFitHeight(350);
@@ -418,7 +419,7 @@ public class Main extends Application {
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
-        BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800,
+        BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
@@ -564,6 +565,9 @@ public class Main extends Application {
         bt2.getChildren().add(backToScene2);
         bt2.setAlignment(Pos.BASELINE_LEFT);
 
+        Button toScene4 = new Button("Into the Universe!");
+
+
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
 
@@ -576,6 +580,9 @@ public class Main extends Application {
             scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
             vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
             vb3.setBackground(new Background(myBI));
+
+            toScene4.setTextFill(Color.BLACK);
+            toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: midnightblue;");
 
             // ADDING CHARACTER SHEET SCREEN TEXT NODES
             Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -615,6 +622,11 @@ public class Main extends Application {
             }
         }));
 
+        toScene4.setOnMouseClicked(mouseEvent -> {
+            src.RegionPage regionPage = new RegionPage(primaryStage);
+        });
+
+
 
 
         //DROP SHADOW EFFECT
@@ -643,6 +655,14 @@ public class Main extends Application {
             primaryStage.show();
         }));
 
+
+        //HOW TO CALL REGION PAGE
+        //make an instance of the class, and the class is page
+
+        Random x = new Random();
+        Random y = new Random();
+        Region region1 = new Region(x.nextInt(), y.nextInt(), 3, "Farm");
+        Region region2 = new Region(x.nextInt(), y.nextInt(), 2, "Safari");
 
     }
 }

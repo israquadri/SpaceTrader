@@ -390,7 +390,7 @@ public class Main extends Application {
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
         // ROCKET IMAGE
-        Image image = new Image("file:rocket.jpg");
+        Image image = new Image("rocket.jpg");
         ImageView iv = new ImageView();
         iv.setImage(image);
         iv.setFitHeight(350);
@@ -415,7 +415,7 @@ public class Main extends Application {
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
-        BackgroundImage myBI = new BackgroundImage(new Image("file:galaxy.jpg", 800,
+        BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
@@ -652,6 +652,11 @@ public class Main extends Application {
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();
         }));
+
+
+        //HOW TO CALL REGION PAGE
+        //make an instance of the class, and the class is page
+        RegionPage rp = new RegionPage();
 
     }
 }

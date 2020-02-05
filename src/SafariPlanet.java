@@ -21,5 +21,5 @@ public class SafariPlanet extends Region {
 	TextField display = new TextField(this.getDescription());
 	TextField location = new TextField("Location of planet: " + this.getxCoord() + ", " + this.getyCoord());
 	TextField tlDisplay = new TextField("Technology level " + this.getTechnologyLevel());
-	//Image west = new Image("file:west.jpg");
+	//Image west = new Image("yellowstone.jpg");
 }

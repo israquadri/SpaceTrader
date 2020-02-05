@@ -50,8 +50,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         src.Player p1 = new src.Player();
         WelcomePage welcomePage = new WelcomePage(primaryStage, p1);
-
-
-//
+        
     }
 }

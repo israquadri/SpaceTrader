@@ -82,12 +82,12 @@ public class Main extends Application {
         //Add text for skill points remaining
         Text remain = new Text("Skill Points Remaining: " + p1.getSkillPoints());
         remain.setFill(Color.WHITE);
-        remain.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        remain.setStyle("-fx-font-size: 20px;");
         right.getChildren().add(remain);
 
         //Choose difficulty
         Text diff = new Text("Choose your difficulty level below: ");
-        diff.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        diff.setStyle("-fx-font-size: 20px;");
         diff.setFill(Color.WHITE);
 
         left.getChildren().add(diff);
@@ -97,16 +97,13 @@ public class Main extends Application {
         ToggleGroup difficulty = new ToggleGroup();
         RadioButton easy = new RadioButton("Easy");
         easy.setTextFill(Color.WHITE);
-        easy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        easy.setStyle("-fx-font-size: 20px; margin: 0 10px 0 10px;");
         RadioButton medium = new RadioButton("Medium");
         medium.setTextFill(Color.WHITE);
-        medium.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        medium.setStyle("-fx-font-size: 20px; margin: 0 10px 0 10px;");
         RadioButton hard = new RadioButton("Hard");
         hard.setTextFill(Color.WHITE);
-        hard.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat',"
-                + " sans-serif; margin: 0 10px 0 10px;");
+        hard.setStyle("-fx-font-size: 20px; margin: 0 10px 0 10px;");
 
 
         //Adding radio buttons to toggle group
@@ -199,16 +196,17 @@ public class Main extends Application {
         // select amount of trait wanted
         trait1.getChildren().add(t1);
         t1.setFill(Color.WHITE);
-        t1.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t1.setStyle("-fx-font-size: 20px;");
+        // -fx-font-family: 'Montserrat', sans-serif;
         t2.setFill(Color.WHITE);
-        t2.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t2.setStyle("-fx-font-size: 20px;");
         trait2.getChildren().add(t2);
         trait3.getChildren().add(t3);
         t3.setFill(Color.WHITE);
-        t3.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t3.setStyle("-fx-font-size: 20px;");
         trait4.getChildren().add(t4);
         t4.setFill(Color.WHITE);
-        t4.setStyle("-fx-font-size: 20px; -fx-font-family: 'Montserrat', sans-serif;");
+        t4.setStyle("-fx-font-size: 20px;");
 
         //progress bar 1 with buttons to move
         Button t1dec = new Button("<");
@@ -370,8 +368,8 @@ public class Main extends Application {
         BorderPane root = new BorderPane();
         scene1 = new Scene(root, 800, 800);
         scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
-        scene1.getStylesheets().add(
-                "https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
+        //scene1.getStylesheets().add(
+                //"https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
 
         // space trader drop shadow
         DropShadow ds = new DropShadow();

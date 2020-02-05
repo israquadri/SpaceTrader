@@ -650,6 +650,6 @@ public class Main extends Application {
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();
         }));
-        
+
     }
 }

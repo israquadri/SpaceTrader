@@ -584,6 +584,7 @@ public class Main extends Application {
         bt2.getChildren().add(backToScene2);
         bt2.setAlignment(Pos.BASELINE_LEFT);
 
+
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
             //Stop the Space Trader Intro Music
@@ -649,7 +650,6 @@ public class Main extends Application {
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();
         }));
-
-
+        
     }
 }

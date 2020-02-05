@@ -16,7 +16,7 @@ public class SafariPlanet extends Region {
 	VBox safariVB = new VBox();
 	Scene scene5 = new Scene(safariVB);
 
-	TextField welcome = new TextField("Welcome to the Jungle");
+	TextField welcome = new TextField("Welcome to the Safari");
 	Canvas marketplace = new Canvas();
 	TextField display = new TextField(this.getDescription());
 	TextField location = new TextField("Location of planet: " + this.getxCoord() + ", " + this.getyCoord());

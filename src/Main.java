@@ -410,12 +410,12 @@ public class Main extends Application {
 
         //MUSIC :)
         //Intro Music
-        Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
+      /*  Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
         MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
         introsongplayer.play();
         //Completed Character sound token
         Media completecharactersound = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        MediaPlayer soundplyr = new MediaPlayer(completecharactersound);
+        MediaPlayer soundplyr = new MediaPlayer(completecharactersound);*/
 
         // START GAME BUTTON
         Button startButton = new Button("Start game!");
@@ -612,9 +612,9 @@ public class Main extends Application {
             //Stops continue button from working if name, difficulty, and skill points are not all used
             if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
                 //Stop the Space Trader Intro Music
-                introsongplayer.stop();
+                //introsongplayer.stop();
                 //Start the completed character sound effect
-                soundplyr.play();
+                //soundplyr.play();
                 //Activate next scene
                 primaryStage.setScene(scene3);
                 primaryStage.setTitle("Scene 3");
@@ -648,8 +648,8 @@ public class Main extends Application {
         //BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {
             //Stop intro song and start character finish song
-            introsongplayer.play();
-            soundplyr.stop();
+            //introsongplayer.play();
+            //soundplyr.stop();
             primaryStage.setScene(scene2);
             primaryStage.setTitle("Welcome user!");
             primaryStage.show();

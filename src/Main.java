@@ -581,7 +581,7 @@ public class Main extends Application {
             vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
             vb3.setBackground(new Background(myBI));
 
-            toScene4.setTextFill(Color.BLACK);
+            toScene4.setTextFill(Color.WHITE);
             toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: midnightblue;");
 
             // ADDING CHARACTER SHEET SCREEN TEXT NODES
@@ -608,7 +608,7 @@ public class Main extends Application {
             yourDiff.setFill(Color.WHITE);
             yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                     + " -fx-font-family: 'Press Start 2P', cursive;");
-            vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff);
+            vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
             //Stops continue button from working if name, difficulty, and skill points are not all used
             if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
                 //Stop the Space Trader Intro Music

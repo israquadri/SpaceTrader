@@ -594,6 +594,10 @@ public class Main extends Application {
             vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
             vb3.setBackground(new Background(myBI));
 
+            Button toScene4 = new Button("Into the Universe!");
+            toScene4.setTextFill(Color.MIDNIGHTBLUE);
+            toScene4.setStyle("-fx-font-size: 20px;");
+
             // ADDING CHARACTER SHEET SCREEN TEXT NODES
             Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
             yourCharacter.setFill(Color.INDIANRED);
@@ -618,7 +622,7 @@ public class Main extends Application {
             yourDiff.setFill(Color.WHITE);
             yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                     + " -fx-font-family: 'Press Start 2P', cursive;");
-            vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff);
+            vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
             primaryStage.setScene(scene3);
             primaryStage.setTitle("Scene 3");
             primaryStage.show();

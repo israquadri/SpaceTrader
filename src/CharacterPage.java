@@ -64,7 +64,7 @@ public class CharacterPage {
 		//Stops continue button from working if name, difficulty, and skill points are not all used
 
 		// CHRIS HELP HERE I DONT KNOW HOW TO GET EASY, MEDIUM, and HARD
-		/*if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+/*		if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
 			//Stop the Space Trader Intro Music
 			//introsongplayer.stop();
 			//Start the completed character sound effect

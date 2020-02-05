@@ -34,6 +34,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.util.Random;
 
 
 public class Main extends Application {
@@ -582,6 +583,8 @@ public class Main extends Application {
         bt2.getChildren().add(backToScene2);
         bt2.setAlignment(Pos.BASELINE_LEFT);
 
+        Button toScene4 = new Button("Into the Universe!");
+
 
         //PROCEED TO SCENE 3 BUTTON
         next.setOnMouseClicked((mouseEvent -> {
@@ -594,9 +597,8 @@ public class Main extends Application {
             vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
             vb3.setBackground(new Background(myBI));
 
-            Button toScene4 = new Button("Into the Universe!");
-            toScene4.setTextFill(Color.MIDNIGHTBLUE);
-            toScene4.setStyle("-fx-font-size: 20px;");
+            toScene4.setTextFill(Color.BLACK);
+            toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: midnightblue;");
 
             // ADDING CHARACTER SHEET SCREEN TEXT NODES
             Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -628,6 +630,11 @@ public class Main extends Application {
             primaryStage.show();
         }));
 
+        toScene4.setOnMouseClicked(mouseEvent -> {
+            src.RegionPage regionPage = new RegionPage(primaryStage);
+        });
+
+
 
 
         //DROP SHADOW EFFECT
@@ -656,7 +663,11 @@ public class Main extends Application {
 
         //HOW TO CALL REGION PAGE
         //make an instance of the class, and the class is page
-        RegionPage rp = new RegionPage();
+
+        Random x = new Random();
+        Random y = new Random();
+        Region region1 = new Region(x.nextInt(), y.nextInt(), 3, "Farm");
+        Region region2 = new Region(x.nextInt(), y.nextInt(), 2, "Safari");
 
     }
 }

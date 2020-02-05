@@ -14,10 +14,7 @@ import javafx.stage.Stage;
 public class CharacterPage {
 
 	public CharacterPage(Stage primaryStage, Player p1) {
-
-		//Set the name of the p1 object
-		//p1.setName(characterField.getText());
-
+		
 		// SCENE 3 BACKING STRUCTURE SET UP
 		VBox vb3 = new VBox(20.0);
 		Scene scene3 = new Scene(vb3, 800, 800);

@@ -411,7 +411,10 @@ public class ConfigPage {
 				});
 
 		next.setOnMouseClicked(mouseEvent -> {
-			CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			p1.setName(characterField.getText());
+			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			}
 		});
 
 

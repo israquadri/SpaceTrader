@@ -19,6 +19,8 @@ import javafx.util.Duration;
 public class WelcomePage {
 
 	public WelcomePage(Stage primaryStage) {
+		//Create Player
+		Player p1 = new Player();
 		//Scene 1: Welcome Screen
 		Scene scene1;
 		BorderPane root = new BorderPane();

@@ -20,8 +20,11 @@ public class CoordGenerator {
         for (int i = 0; i < 10; i++) {
             int xCoord = rd.nextInt(range);
             int yCoord = rd.nextInt(range);
-            while (x.containsValue(xCoord) || x.containsValue(xCoord + 20) || x.containsValue(xCoord - 20)) {
+            while (x.containsValue(xCoord) || x.containsValue(xCoord + 10) || x.containsValue(xCoord - 10)) {
                 xCoord = rd.nextInt(range);
+            }
+            while (y.containsValue(yCoord) || y.containsValue(yCoord + 10) || y.containsValue(yCoord - 10)) {
+                yCoord = rd.nextInt(range);
             }
             x.put(count, xCoord);
             y.put(count, yCoord);

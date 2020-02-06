@@ -428,8 +428,7 @@ public class ConfigPage {
 				a.show();
 			}
 		});
-
-
+		
 		//CHARACTER CONFIGURATION
 		vb2.getChildren().addAll(charConfig, backToHome, nameBox, back, next);
 		//bp2.setRight(back);

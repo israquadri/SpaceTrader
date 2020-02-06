@@ -33,9 +33,28 @@ public class CharacterPage {
 		Button toScene4 = new Button("Continue");
 		toScene4.setTextFill(Color.WHITE);
 
-		// INTRO MUSIC FOR STOPPING DURING BUTTON PRESS
-		Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
-		MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
+		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
+				+ " -fx-font-family: 'Press Start 2P', cursive;");
+
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+
+		//DROP SHADOW EFFECT
+		toScene4.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toScene4.setEffect(shadow);
+					}
+				});
+		toScene4.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toScene4.setEffect(null);
+					}
+				});
 
 		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
@@ -61,8 +80,6 @@ public class CharacterPage {
 				});
 
 		HBox bt2 = new HBox();
-//        bt2.getChildren().add(backToScene2);
-//        bt2.setAlignment(Pos.BASELINE_LEFT);
 
 		// ADDING CHARACTER SHEET SCREEN TEXT NODES
 		Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -89,6 +106,8 @@ public class CharacterPage {
 		yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 		vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
+		toScene4.setAlignment(Pos.BASELINE_LEFT);
+
 
 
 		toScene4.setAlignment(Pos.BASELINE_LEFT);
@@ -107,6 +126,9 @@ public class CharacterPage {
 		backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
 
+		bt2.getChildren().add(backToScene2);
+		backToScene2.setAlignment(Pos.BASELINE_LEFT);
+
 		//DROP SHADOW EFFECT
 		backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
@@ -122,6 +144,17 @@ public class CharacterPage {
 						backToScene2.setEffect(null);
 					}
 				});
+		backToScene2.setOnMouseClicked((mouseEvent -> {
+			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+		}));
+
+
+        backToScene2.setOnMouseClicked((mouseEvent -> {
+
+			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+	}));
+
+
 
 	//BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {

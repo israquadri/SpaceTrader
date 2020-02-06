@@ -1,23 +1,25 @@
 package src;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class CharacterPage {
 
 	public CharacterPage(Stage primaryStage, Player p1) {
-
-		//Set the name of the p1 object
-		//p1.setName(characterField.getText());
-
+		
 		// SCENE 3 BACKING STRUCTURE SET UP
 		VBox vb3 = new VBox(20.0);
 		Scene scene3 = new Scene(vb3, 800, 800);
@@ -30,11 +32,31 @@ public class CharacterPage {
 
 		Button toScene4 = new Button("Continue");
 		toScene4.setTextFill(Color.WHITE);
-		toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: indianred; -fx-font-family: 'Press Start 2P', cursive;");
+
+		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
+				+ " -fx-font-family: 'Press Start 2P', cursive;");
+
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+
+		//DROP SHADOW EFFECT
+		toScene4.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toScene4.setEffect(shadow);
+					}
+				});
+		toScene4.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toScene4.setEffect(null);
+					}
+				});
 
 		HBox bt2 = new HBox();
-//        bt2.getChildren().add(backToScene2);
-//        bt2.setAlignment(Pos.BASELINE_LEFT);
 
 		// ADDING CHARACTER SHEET SCREEN TEXT NODES
 		Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -61,31 +83,21 @@ public class CharacterPage {
 		yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 		vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
-		//Stops continue button from working if name, difficulty, and skill points are not all used
+		toScene4.setAlignment(Pos.BASELINE_LEFT);
 
-		// CHRIS HELP HERE I DONT KNOW HOW TO GET EASY, MEDIUM, and HARD
-/*		if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-			//Stop the Space Trader Intro Music
-			//introsongplayer.stop();
-			//Start the completed character sound effect
-			//soundplyr.play();
-			//Activate next scene
-			primaryStage.setScene(scene3);
-			primaryStage.setTitle("Scene 3");
-			primaryStage.show();
-		}*/
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
 			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
 		});
 
-		DropShadow shadow = new DropShadow();
-		shadow.setColor(Color.CORAL);
-		shadow.setWidth(1.5);
+		//BACK TO SCENE 2 BUTTON
 		Button backToScene2 = new Button("Back to Character\nConfiguration");
 		backToScene2.setTextFill(Color.WHITE);
 		backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
+
+		bt2.getChildren().add(backToScene2);
+		backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
 		//DROP SHADOW EFFECT
 		backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -102,16 +114,16 @@ public class CharacterPage {
 						backToScene2.setEffect(null);
 					}
 				});
+		backToScene2.setOnMouseClicked((mouseEvent -> {
+			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+		}));
 
-/*	//BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {
-		//Stop intro song and start character finish song
-		//introsongplayer.play();
-		//soundplyr.stop();
-		//primaryStage.setScene(configPage);
-		primaryStage.setTitle("Welcome user!");
-		primaryStage.show();
-	}));*/
+
+			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+	}));
+
+
 		primaryStage.setTitle("Your character");
 		primaryStage.setScene(scene3);
 		primaryStage.show();

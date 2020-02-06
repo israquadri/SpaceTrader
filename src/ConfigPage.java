@@ -412,6 +412,7 @@ public class ConfigPage {
 
 		next.setOnMouseClicked(mouseEvent -> {
 			p1.setName(characterField.getText());
+			//Stops continue button from working if name, difficulty, and skill points are not all used
 			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
 				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
 			}

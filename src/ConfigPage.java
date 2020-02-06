@@ -415,7 +415,18 @@ public class ConfigPage {
 				});
 
 		next.setOnMouseClicked(mouseEvent -> {
-			CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			p1.setName(characterField.getText());
+			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+				//Stop the Space Trader Intro Music
+				//introsongplayer.stop();
+				//Start the completed character sound effect
+				//soundplyr.play();
+				//Activate next scene
+				CharacterPage characterPage = new CharacterPage(primaryStage, p1);;
+			} else {
+				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish creating your character!");
+				a.show();
+			}
 		});
 
 

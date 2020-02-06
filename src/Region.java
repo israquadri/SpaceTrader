@@ -1,21 +1,26 @@
 package src;
 
-public class Region {
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+
+public class Region extends Node {
 
 	private int xCoord;
 	private int yCoord;
 	private int technologyLevel;
 	private String description;
+	private Image img;
 
 	public Region() {
 
 	}
 
-	public Region(int xCoord, int yCoord, int technologyLevel, String description) {
+	public Region(int xCoord, int yCoord, int technologyLevel, String description, Image img) {
 		this.xCoord = xCoord;
 		this.yCoord = yCoord;
 		this.technologyLevel = technologyLevel;
 		this.description = description;
+		this.img = img;
 	}
 
 	public int getxCoord() {
@@ -34,6 +39,10 @@ public class Region {
 		return this.description;
 	}
 
+	public Image getImg() {
+		return this.img;
+	}
+
 	public void setxCoord(int num) {
 		this.xCoord = num;
 	}
@@ -50,5 +59,13 @@ public class Region {
 		this.description = description;
 	}
 
+	public void setImg(Image img) {
+		this.img = img;
+	}
 
+
+	@Override
+	public Node getStyleableNode() {
+		return null;
+	}
 }

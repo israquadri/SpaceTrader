@@ -8,17 +8,18 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class CharacterPage {
 
 	public CharacterPage(Stage primaryStage, Player p1) {
-
-		//Set the name of the p1 object
-		//p1.setName(characterField.getText());
-
+		
 		// SCENE 3 BACKING STRUCTURE SET UP
 		VBox vb3 = new VBox(20.0);
 		Scene scene3 = new Scene(vb3, 800, 800);
@@ -29,8 +30,9 @@ public class CharacterPage {
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vb3.setBackground(new Background(myBI));
 
-		Button toScene4 = new Button("Into the Universe!");
+		Button toScene4 = new Button("Continue");
 		toScene4.setTextFill(Color.WHITE);
+
 		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 
@@ -55,8 +57,6 @@ public class CharacterPage {
 				});
 
 		HBox bt2 = new HBox();
-//        bt2.getChildren().add(backToScene2);
-//        bt2.setAlignment(Pos.BASELINE_LEFT);
 
 		// ADDING CHARACTER SHEET SCREEN TEXT NODES
 		Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -87,7 +87,7 @@ public class CharacterPage {
 
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
-			src.RegionPage regionPage = new RegionPage(primaryStage);
+			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
 		});
 
 		//BACK TO SCENE 2 BUTTON
@@ -95,9 +95,9 @@ public class CharacterPage {
 		backToScene2.setTextFill(Color.WHITE);
 		backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
+
 		bt2.getChildren().add(backToScene2);
 		backToScene2.setAlignment(Pos.BASELINE_LEFT);
-
 
 		//DROP SHADOW EFFECT
 		backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -114,15 +114,15 @@ public class CharacterPage {
 						backToScene2.setEffect(null);
 					}
 				});
+		backToScene2.setOnMouseClicked((mouseEvent -> {
+			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+		}));
 
-	//BACK TO SCENE 2 BUTTON
         backToScene2.setOnMouseClicked((mouseEvent -> {
-		//Stop intro song and start character finish song
-		//introsongplayer.play();
-		//soundplyr.stop();
-		//primaryStage.setScene(configPage);
+
 			ConfigPage configPage = new ConfigPage(primaryStage, p1);
 	}));
+
 
 		primaryStage.setTitle("Your character");
 		primaryStage.setScene(scene3);

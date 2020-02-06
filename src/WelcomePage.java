@@ -11,30 +11,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+
 public class WelcomePage {
 
-	public WelcomePage(Stage primaryStage, Player p1) {
+	public WelcomePage(Stage primaryStage) {
+		//Create Player
+		Player p1 = new Player();
+
 		//Scene 1: Welcome Screen
 		Scene scene1;
 		BorderPane root = new BorderPane();
 		scene1 = new Scene(root, 800, 800);
 		scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
-		//scene1.getStylesheets().add(
-		//"https://fonts.googleapis.com/css?family=Montserrat&display=swap\" rel=\"stylesheet");
 
-		// space trader drop shadow
+		//Space trader drop shadow
 		DropShadow ds = new DropShadow();
 		ds.setOffsetY(7.0f);
 		ds.setColor(Color.WHITE);
 
-		//start button
-		//Button
-		//       HBox back = new HBox();
+		//Start Button
 		Button startButton = new Button("Start game!");
 		startButton.setAlignment(Pos.BASELINE_CENTER);
 		startButton.setTextFill(Color.WHITE);
@@ -42,6 +45,7 @@ public class WelcomePage {
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 
 
+		//EVENT HANDLER TO SEND TO CONFIG PAGE
 		startButton.setOnMouseClicked((mouseEvent -> {
 			ConfigPage configPage = new ConfigPage(primaryStage, p1);
 		}));
@@ -50,6 +54,7 @@ public class WelcomePage {
 		DropShadow shadow = new DropShadow();
 		shadow.setColor(Color.CORAL);
 		shadow.setWidth(1.5);
+
 		//adding the shadow when the mouse cursor is on
 		startButton.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
@@ -58,6 +63,7 @@ public class WelcomePage {
 						startButton.setEffect(shadow);
 					}
 				});
+
 		//removing shadow when mouse cursor is off
 		startButton.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
@@ -99,17 +105,9 @@ public class WelcomePage {
 		rotate.setAutoReverse(false);
 		rotate.play();
 
-		//MUSIC :)
-		//Intro Music
-      /*  Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
-        MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
-        introsongplayer.play();
-        //Completed Character sound token
-        Media completecharactersound = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        MediaPlayer soundplyr = new MediaPlayer(completecharactersound);*/
+		//MUSIC :(
 
 		// START GAME BUTTON
-		//Button startButton = new Button("Start game!");
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
 				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 public class ConfigPage {
 
 	public ConfigPage(Stage primaryStage, Player p1) {
+
 		Scene scene2;
 		HBox back = new HBox();
 
@@ -49,12 +50,14 @@ public class ConfigPage {
 		left.setAlignment(Pos.BOTTOM_CENTER);
 		left.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
+
 		//Create right VBox for right side of screen
 		VBox right = new VBox(10);
 		back.getChildren().add(right);
 		right.setAlignment(Pos.TOP_CENTER);
 		right.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
+
 		//Add text for skill points remaining
 		Text remain = new Text("Skill Points Remaining: " + p1.getSkillPoints());
 		remain.setFill(Color.WHITE);
@@ -91,6 +94,7 @@ public class ConfigPage {
 		easy.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(16);
 			p1.setCredits(1000);
+			p1.setDifficulty("easy");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -111,6 +115,7 @@ public class ConfigPage {
 		medium.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(12);
 			p1.setCredits(500);
+			p1.setDifficulty("medium");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -130,6 +135,7 @@ public class ConfigPage {
 		hard.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(8);
 			p1.setCredits(100);
+			p1.setDifficulty("hard");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -378,6 +384,7 @@ public class ConfigPage {
 		// CHARACTER FIELD WHERE USER ENTERS CHARACTER NAME
 		TextField characterField = new TextField();
 		characterField.setPromptText("Name:");
+		characterField.setText(p1.getName());
 		characterField.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 		characterField.setPrefWidth(400);
 		characterField.setMaxWidth(300);
@@ -417,11 +424,6 @@ public class ConfigPage {
 		next.setOnMouseClicked(mouseEvent -> {
 			p1.setName(characterField.getText());
 			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-				//Stop the Space Trader Intro Music
-				//introsongplayer.stop();
-				//Start the completed character sound effect
-				//soundplyr.play();
-				//Activate next scene
 				CharacterPage characterPage = new CharacterPage(primaryStage, p1);;
 			} else {
 				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish creating your character!");
@@ -432,14 +434,13 @@ public class ConfigPage {
 
 		//CHARACTER CONFIGURATION
 		vb2.getChildren().addAll(charConfig, backToHome, nameBox, back, next);
-		//bp2.setRight(back);
 		vb2.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
 		vb2.setBackground(new Background(myBI));
 		scene2 = new Scene(vb2, 800, 800);
 
 		// BACK TO HOME BUTTON TAKES USER TO SCENE 1
 		backToHome.setOnMouseClicked((mouseEvent -> {
-			WelcomePage welcomePage = new WelcomePage(primaryStage, p1);
+			WelcomePage welcomePage = new WelcomePage(primaryStage);
 		}));
 
 		primaryStage.setTitle("Welcome!");

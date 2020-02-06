@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Map {
     public Map(Stage primaryStage, Region[] regions) {
 
+
         Pane map = new Pane();
         Scene mapScene = new Scene(map, 800, 800);
         map.setStyle("-fx-background-color: black");
@@ -34,6 +35,7 @@ public class Map {
             planet.setLayoutY(r.getyCoord());
             map.getChildren().add(planet);
         }
+
         Label coordinates = new Label("-------");
         coordinates.setTextFill(Color.WHITE);
         coordinates.setAlignment(Pos.BOTTOM_RIGHT);
@@ -48,5 +50,4 @@ public class Map {
         primaryStage.show();
 
     }
-
 }

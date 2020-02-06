@@ -1,3 +1,4 @@
+
 package src;
 
 import javafx.animation.RotateTransition;
@@ -39,10 +40,11 @@ import java.util.Random;
 
 public class Main extends Application {
 
-//    //START METHOD FOR SPACE TRADER APP
+    //    //START METHOD FOR SPACE TRADER APP
     @Override
     public void start(Stage primaryStage) throws Exception {
-        WelcomePage welcomePage = new WelcomePage(primaryStage);
+    WelcomePage welcomePage = new WelcomePage(primaryStage);
 
     }
+
 }

@@ -58,8 +58,8 @@ public class BeforeRegionPage {
 		Region region2 = new Region(x2, y2, 0, "Safari",  new Image("galaxy.jpg"));
 		Region region3 = new Region(x3, y3, 0, "2000s Boy Bands: the Planet",  new Image("galaxy.jpg"));
 		Region region4 = new Region(x4, y4, 0, "Scandinavian",  new Image("galaxy.jpg"));
-		Region region5 = new Region(x5, y5, 0, "1",  new Image("galaxy.jpg"));
-		Region region6 = new Region(x6, y6, 0, "2",  new Image("galaxy.jpg"));
+		Region region5 = new Region(x5, y5, 0, "Arctic",  new Image("arctic.jpg"));
+		Region region6 = new Region(x6, y6, 0, "Desert",  new Image("desert.jpg"));
 		Region region7 = new Region(x7, y7, 0, "3",  new Image("galaxy.jpg"));
 		Region region8 = new Region(x8, y8, 0, "4",  new Image("galaxy.jpg"));
 		Region region9 = new Region(x9, y9, 0, "Wild west",  new Image("galaxy.jpg"));

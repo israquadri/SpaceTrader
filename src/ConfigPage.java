@@ -424,10 +424,7 @@ public class ConfigPage {
 		next.setOnMouseClicked(mouseEvent -> {
 			p1.setName(characterField.getText());
 			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-				CharacterPage characterPage = new CharacterPage(primaryStage, p1);;
-			} else {
-				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish creating your character!");
-				a.show();
+				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
 			}
 		});
 

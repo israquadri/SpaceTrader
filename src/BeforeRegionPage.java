@@ -12,6 +12,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.Random;
+import java.util.HashMap;
 
 public class BeforeRegionPage {
 
@@ -56,39 +57,43 @@ public class BeforeRegionPage {
 					}
 				});
 
-
 		//initiating regions
-		Random randomX = new Random();
-		Random randomY = new Random();
+		CoordGenerator cg = new CoordGenerator(350);
+		HashMap<Integer, Integer> xCoords = cg.getX();
+		HashMap<Integer, Integer> yCoords = cg.getY();
+		for(int i = 0; i < 10; i++) {
+			System.out.println("xCoord " + i + ": " + xCoords.get(i));
+			System.out.println("yCoord " + i + ": " + yCoords.get(i));
+		}
 
-		Region region1 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
 				"Farm region", new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region2 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
 				"Safari",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region3 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region3 = new Region(xCoords.get(2), yCoords.get(2), 0,
 				"2000s Boy Bands: the Planet",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region4 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region4 = new Region(xCoords.get(3), yCoords.get(3), 0,
 				"Scandinavian",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region5 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region5 = new Region(xCoords.get(4), yCoords.get(4), 0,
 				"Arctic",  new Image("arctic.jpg", 800,
 				800, false, true));
-		Region region6 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region6 = new Region(xCoords.get(5), yCoords.get(5), 0,
 				"Desert",  new Image("desert.jpg", 800,
 				800, false, true));
-		Region region7 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region7 = new Region(xCoords.get(6), yCoords.get(6), 0,
 				"3",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region8 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,
 				"4",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region9 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region9 = new Region(xCoords.get(8), yCoords.get(8), 0,
 				"Wild west",  new Image("galaxy.jpg", 800,
 				800, false, true));
-		Region region10 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+		Region region10 = new Region(xCoords.get(9), yCoords.get(9), 0,
 				"Disco",  new Image("galaxy.jpg", 800,
 				800, false, true));
 

@@ -28,9 +28,9 @@ public class CharacterPage {
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vb3.setBackground(new Background(myBI));
 
-		Button toScene4 = new Button("Into the Universe!");
+		Button toScene4 = new Button("Continue");
 		toScene4.setTextFill(Color.WHITE);
-		toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: midnightblue;");
+		toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: indianred; -fx-font-family: 'Press Start 2P', cursive;");
 
 		HBox bt2 = new HBox();
 //        bt2.getChildren().add(backToScene2);
@@ -76,7 +76,7 @@ public class CharacterPage {
 		}*/
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
-			src.RegionPage regionPage = new RegionPage(primaryStage);
+			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
 		});
 
 		DropShadow shadow = new DropShadow();

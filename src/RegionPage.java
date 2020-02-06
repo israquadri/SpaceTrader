@@ -11,10 +11,15 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Background;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import javafx.geometry.Pos;
 =======
 import javafx.scene.layout.GridPane;
 >>>>>>> hayden
+=======
+import javafx.scene.layout.GridPane;
+import javafx.geometry.Pos;
+>>>>>>> a75d68442d1bc08a2011cdc9f7c1058e8c2efafb
 
 import java.awt.*;
 import java.util.Random;
@@ -29,6 +34,7 @@ public class RegionPage {
 
 		Scene regionRoot = new Scene(vbox, 800, 800);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 		primaryStage.setTitle("Into the Universe!");
 		Text text = new Text("Regions of \nthe Universe");
@@ -39,6 +45,9 @@ public class RegionPage {
 				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 =======
+=======
+
+>>>>>>> a75d68442d1bc08a2011cdc9f7c1058e8c2efafb
 		primaryStage.setTitle(region.getDescription());
 		Text text1 = new Text(region.getDescription());
 		Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
@@ -46,7 +55,11 @@ public class RegionPage {
 		text1.setFill(Color.WHITE);
 		text2.setFill(Color.WHITE);
 		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+<<<<<<< HEAD
 >>>>>>> hayden
+=======
+
+>>>>>>> a75d68442d1bc08a2011cdc9f7c1058e8c2efafb
 		vbox.setBackground(new Background(myBI));
 
 

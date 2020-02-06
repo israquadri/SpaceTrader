@@ -56,29 +56,6 @@ public class CharacterPage {
 					}
 				});
 
-		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
-				+ " -fx-font-family: 'Press Start 2P', cursive;");
-
-		DropShadow shadow = new DropShadow();
-		shadow.setColor(Color.CORAL);
-		shadow.setWidth(1.5);
-
-		//DROP SHADOW EFFECT
-		toScene4.addEventHandler(MouseEvent.MOUSE_ENTERED,
-				new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent mouseEvent) {
-						toScene4.setEffect(shadow);
-					}
-				});
-		toScene4.addEventHandler(MouseEvent.MOUSE_EXITED,
-				new EventHandler<MouseEvent>() {
-					@Override
-					public void handle(MouseEvent mouseEvent) {
-						toScene4.setEffect(null);
-					}
-				});
-
 		HBox bt2 = new HBox();
 
 		// ADDING CHARACTER SHEET SCREEN TEXT NODES
@@ -109,10 +86,6 @@ public class CharacterPage {
 		toScene4.setAlignment(Pos.BASELINE_LEFT);
 
 
-
-		toScene4.setAlignment(Pos.BASELINE_LEFT);
-
-
 		toScene4.setOnMouseClicked(mouseEvent -> {
 			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
 		});
@@ -122,10 +95,6 @@ public class CharacterPage {
 		backToScene2.setTextFill(Color.WHITE);
 		backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
-		bt2.getChildren().add(backToScene2);
-		backToScene2.setAlignment(Pos.BASELINE_LEFT);
-
-
 		bt2.getChildren().add(backToScene2);
 		backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
@@ -147,23 +116,6 @@ public class CharacterPage {
 		backToScene2.setOnMouseClicked((mouseEvent -> {
 			ConfigPage configPage = new ConfigPage(primaryStage, p1);
 		}));
-
-
-        backToScene2.setOnMouseClicked((mouseEvent -> {
-
-			ConfigPage configPage = new ConfigPage(primaryStage, p1);
-	}));
-
-
-
-	//BACK TO SCENE 2 BUTTON
-        backToScene2.setOnMouseClicked((mouseEvent -> {
-		//Stop intro song and start character finish song
-		//introsongplayer.play();
-		//soundplyr.stop();
-		//primaryStage.setScene(configPage);
-			ConfigPage configPage = new ConfigPage(primaryStage, p1);
-	}));
 
 		primaryStage.setTitle("Your character");
 		primaryStage.setScene(scene3);

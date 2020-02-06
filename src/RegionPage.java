@@ -20,10 +20,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -54,16 +50,6 @@ public class RegionPage {
 
 		Scene regionRoot = new Scene(vbox, 800, 800);
 
-		regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
-		primaryStage.setTitle("Into the Universe!");
-		Text text = new Text("Regions of \nthe Universe");
-		text.setStyle("-fx-font-size: 50px; -fx-font-family: 'Press Start 2P', cursive;");
-		text.setFill(Color.WHITE);
-		text.setTextAlignment(TextAlignment.CENTER);
-		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
-				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
 		primaryStage.setTitle(region.getDescription());
 		Text text1 = new Text(region.getDescription());
 		Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
@@ -72,8 +58,6 @@ public class RegionPage {
 		text2.setFill(Color.WHITE);
 
 		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-		//BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 		vbox.setBackground(new Background(myBI));
 

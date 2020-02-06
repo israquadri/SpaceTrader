@@ -58,13 +58,13 @@ public class BeforeRegionPage {
 				});
 
 		//initiating regions
-		CoordGenerator cg = new CoordGenerator(350);
+		CoordGenerator cg = new CoordGenerator(600);
 		HashMap<Integer, Integer> xCoords = cg.getX();
 		HashMap<Integer, Integer> yCoords = cg.getY();
-		for(int i = 0; i < 10; i++) {
-			System.out.println("xCoord " + i + ": " + xCoords.get(i));
-			System.out.println("yCoord " + i + ": " + yCoords.get(i));
-		}
+//		for(int i = 0; i < 10; i++) {
+//			System.out.println("xCoord " + i + ": " + xCoords.get(i));
+//			System.out.println("yCoord " + i + ": " + yCoords.get(i));
+//		}
 
 		Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
 				"Farm region", new Image("galaxy.jpg", 800,
@@ -103,7 +103,7 @@ public class BeforeRegionPage {
 		//Button test = new Button(arr[randomNumber].getDescription());
 
 		toRegionPage.setOnMouseClicked(mouseEvent -> {
-			RegionPage regionPage = new RegionPage(primaryStage, p1, arr[randomNumber]);
+			RegionPage regionPage = new RegionPage(primaryStage, p1, arr[randomNumber], arr);
 		});
 
 		vBox.getChildren().addAll(toRegionPage, back);

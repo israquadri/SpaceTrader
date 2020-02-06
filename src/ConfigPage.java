@@ -49,12 +49,14 @@ public class ConfigPage {
 		left.setAlignment(Pos.BOTTOM_CENTER);
 		left.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
+		
 		//Create right VBox for right side of screen
 		VBox right = new VBox(10);
 		back.getChildren().add(right);
 		right.setAlignment(Pos.TOP_CENTER);
 		right.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
+
 		//Add text for skill points remaining
 		Text remain = new Text("Skill Points Remaining: " + p1.getSkillPoints());
 		remain.setFill(Color.WHITE);
@@ -425,7 +427,6 @@ public class ConfigPage {
 
 		//CHARACTER CONFIGURATION
 		vb2.getChildren().addAll(charConfig, backToHome, nameBox, back, next);
-		//bp2.setRight(back);
 		vb2.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
 		vb2.setBackground(new Background(myBI));
 		scene2 = new Scene(vb2, 800, 800);

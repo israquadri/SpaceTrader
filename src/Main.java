@@ -39,12 +39,6 @@ import java.util.Random;
 
 public class Main extends Application {
 
-//    private Scene scene1;
-//    private Scene scene2;
-//    private Scene scene3;
-//
-//    //CHARACTER CONFIGURATION SETUP
-//
 //    //START METHOD FOR SPACE TRADER APP
     @Override
     public void start(Stage primaryStage) throws Exception {

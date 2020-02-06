@@ -1,6 +1,7 @@
 package src;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -17,22 +18,28 @@ import java.util.HashMap;
 public class BeforeRegionPage {
 
 	public BeforeRegionPage(Stage primaryStage, Player p1) {
-		VBox vBox = new VBox(40);
+		HBox hbox = new HBox(40);
+		hbox.setAlignment(Pos.TOP_LEFT);
+		VBox vBox = new VBox(100);
+		//vBox.setPrefWidth(800);
+		//vBox.setPrefHeight(800);
+		vBox.setAlignment(Pos.TOP_CENTER);
 		Scene scene4 = new Scene(vBox, 800, 800);
 		scene4.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 
 		Button back = new Button("Back");
-		back.setTextFill(Color.BLACK);
-		back.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: white; -fx-font-size: 30px;");
+		back.setTextFill(Color.WHITE);
+		back.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 30px;");
 		back.setOnMouseClicked(mouseEvent -> {
 			CharacterPage characterPage = new CharacterPage(primaryStage, p1);
 		});
 
 		Button toRegionPage = new Button("Click here to \nenter the universe!");
-		toRegionPage.setStyle("-fx-background-color: black; -fx-font-size: 30px;"
+		toRegionPage.setStyle("-fx-background-color: black; -fx-font-size: 35px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 		toRegionPage.setTextFill(Color.WHITE);
 		toRegionPage.setTextAlignment(TextAlignment.CENTER);
+		toRegionPage.setMinSize(10,250);
 
 		// DROP SHADOW HOVER EFFECT ON START BUTTON
 		DropShadow shadow = new DropShadow();
@@ -48,6 +55,15 @@ public class BeforeRegionPage {
 					}
 				});
 
+		//adding the shadow when the mouse cursor is on
+		back.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toRegionPage.setEffect(shadow);
+					}
+				});
+
 		//removing shadow when mouse cursor is off
 		toRegionPage.addEventHandler(MouseEvent.MOUSE_EXITED,
 				new EventHandler<MouseEvent>() {
@@ -56,6 +72,15 @@ public class BeforeRegionPage {
 						toRegionPage.setEffect(null);
 					}
 				});
+		//removing shadow when mouse cursor is off
+		back.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toRegionPage.setEffect(null);
+					}
+				});
+
 
 		//initiating regions
 		CoordGenerator cg = new CoordGenerator(600);
@@ -67,7 +92,7 @@ public class BeforeRegionPage {
 //		}
 
 		Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
-				"Farm region", new Image("galaxy.jpg", 800,
+				"Farm", new Image("galaxy.jpg", 800,
 				800, false, true));
 		Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
 				"Safari",  new Image("galaxy.jpg", 800,
@@ -106,7 +131,9 @@ public class BeforeRegionPage {
 			RegionPage regionPage = new RegionPage(primaryStage, p1, arr[randomNumber], arr);
 		});
 
-		vBox.getChildren().addAll(toRegionPage, back);
+		hbox.getChildren().add(back);
+		vBox.getChildren().addAll(hbox, toRegionPage);
+
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
 				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

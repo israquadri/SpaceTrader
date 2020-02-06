@@ -428,16 +428,6 @@ public class ConfigPage {
 				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
 			} else {
 				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish making your character!");
-
-				//Stop the Space Trader Intro Music
-				//introsongplayer.stop();
-				//Start the completed character sound effect
-				//soundplyr.play();
-				//Activate next scene
-				CharacterPage characterPage = new CharacterPage(primaryStage, p1);;
-			} else {
-				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish creating your character!");
-
 				a.show();
 			}
 		});

@@ -48,10 +48,7 @@ public class Main extends Application {
 //    //START METHOD FOR SPACE TRADER APP
     @Override
     public void start(Stage primaryStage) throws Exception {
-        src.Player p1 = new src.Player();
         WelcomePage welcomePage = new WelcomePage(primaryStage);
 
-
-//
     }
 }

@@ -386,6 +386,10 @@ public class ConfigPage {
 		nameBox.getChildren().add(characterField);
 		nameBox.setAlignment(Pos.TOP_CENTER);
 
+		characterField.setOnAction(actionEvent -> {
+			p1.setName(characterField.getText());
+		});
+
 
 		//CONTINUE TO SCENE 3 BUTTON
 		Button next = new Button("CONTINUE");

@@ -439,7 +439,7 @@ public class ConfigPage {
 
 		// BACK TO HOME BUTTON TAKES USER TO SCENE 1
 		backToHome.setOnMouseClicked((mouseEvent -> {
-			WelcomePage welcomePage = new WelcomePage(primaryStage, p1);
+			WelcomePage welcomePage = new WelcomePage(primaryStage);
 		}));
 
 		primaryStage.setTitle("Welcome!");

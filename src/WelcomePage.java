@@ -11,14 +11,20 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
+
 public class WelcomePage {
 
-	public WelcomePage(Stage primaryStage, Player p1) {
+	public WelcomePage(Stage primaryStage) {
+		//Create Player
+		Player p1 = new Player();
 		//Scene 1: Welcome Screen
 		Scene scene1;
 		BorderPane root = new BorderPane();

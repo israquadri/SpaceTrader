@@ -1,8 +1,11 @@
 package src;
 
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
@@ -14,7 +17,7 @@ public class BeforeRegionPage {
 
 	public BeforeRegionPage(Stage primaryStage, Player p1) {
 		VBox vBox = new VBox(40);
-		Scene scene4 = new Scene(vBox, 1000, 1000);
+		Scene scene4 = new Scene(vBox, 800, 800);
 		scene4.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 
 		Button back = new Button("Back");
@@ -25,45 +28,69 @@ public class BeforeRegionPage {
 		});
 
 		Button toRegionPage = new Button("Click here to \nenter the universe!");
-		toRegionPage.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: indianred; -fx-font-size: 30px;");
+		toRegionPage.setStyle("-fx-background-color: black; -fx-font-size: 30px;"
+				+ " -fx-font-family: 'Press Start 2P', cursive;");
 		toRegionPage.setTextFill(Color.WHITE);
 		toRegionPage.setTextAlignment(TextAlignment.CENTER);
+
+		// DROP SHADOW HOVER EFFECT ON START BUTTON
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+
+		//adding the shadow when the mouse cursor is on
+		toRegionPage.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toRegionPage.setEffect(shadow);
+					}
+				});
+
+		//removing shadow when mouse cursor is off
+		toRegionPage.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toRegionPage.setEffect(null);
+					}
+				});
 
 
 		//initiating regions
 		Random randomX = new Random();
 		Random randomY = new Random();
-		int x1 = randomX.nextInt();
-		int y1 = randomY.nextInt();
-		int x2 = randomX.nextInt();
-		int y2 = randomY.nextInt();
-		int x3 = randomX.nextInt();
-		int y3 = randomY.nextInt();
-		int x4 = randomX.nextInt();
-		int y4 = randomY.nextInt();
-		int x5 = randomX.nextInt();
-		int y5 = randomY.nextInt();
-		int x6 = randomX.nextInt();
-		int y6 = randomY.nextInt();
-		int x7 = randomX.nextInt();
-		int y7 = randomY.nextInt();
-		int x8 = randomX.nextInt();
-		int y8 = randomY.nextInt();
-		int x9 = randomX.nextInt();
-		int y9 = randomY.nextInt();
-		int x10 = randomX.nextInt();
-		int y10 = randomY.nextInt();
 
-		Region region1 = new Region(x1, y1, 0, "Farm region", new Image("galaxy.jpg"));
-		Region region2 = new Region(x2, y2, 0, "Safari",  new Image("galaxy.jpg"));
-		Region region3 = new Region(x3, y3, 0, "2000s Boy Bands: the Planet",  new Image("galaxy.jpg"));
-		Region region4 = new Region(x4, y4, 0, "Scandinavian",  new Image("galaxy.jpg"));
-		Region region5 = new Region(x5, y5, 0, "Arctic",  new Image("arctic.jpg"));
-		Region region6 = new Region(x6, y6, 0, "Desert",  new Image("desert.jpg"));
-		Region region7 = new Region(x7, y7, 0, "3",  new Image("galaxy.jpg"));
-		Region region8 = new Region(x8, y8, 0, "4",  new Image("galaxy.jpg"));
-		Region region9 = new Region(x9, y9, 0, "Wild west",  new Image("galaxy.jpg"));
-		Region region10 = new Region(x10, y10, 0, "Disco",  new Image("galaxy.jpg"));
+		Region region1 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Farm region", new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region2 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Safari",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region3 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"2000s Boy Bands: the Planet",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region4 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Scandinavian",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region5 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Arctic",  new Image("arctic.jpg", 800,
+				800, false, true));
+		Region region6 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Desert",  new Image("desert.jpg", 800,
+				800, false, true));
+		Region region7 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"3",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region8 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"4",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region9 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Wild west",  new Image("galaxy.jpg", 800,
+				800, false, true));
+		Region region10 = new Region(randomX.nextInt(), randomY.nextInt(), 0,
+				"Disco",  new Image("galaxy.jpg", 800,
+				800, false, true));
 
 		Region[] arr={region1, region2, region3, region4, region5, region5, region6, region7, region8, region9, region10};
 		Random r = new Random();

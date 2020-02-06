@@ -31,8 +31,10 @@ public class RegionPage {
 		text1.setStyle("-fx-font-size: 40px");
 		text1.setFill(Color.WHITE);
 		text2.setFill(Color.WHITE);
-		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vbox.setBackground(new Background(myBI));
+
+
 
 
 		vbox.getChildren().addAll(text1, text2);

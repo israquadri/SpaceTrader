@@ -384,7 +384,7 @@ public class ConfigPage {
 		// CHARACTER FIELD WHERE USER ENTERS CHARACTER NAME
 		TextField characterField = new TextField();
 		characterField.setPromptText("Name:");
-		characterField.setText(p1.getName());
+//		characterField.setText(p1.getName());
 		characterField.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 		characterField.setPrefWidth(400);
 		characterField.setMaxWidth(300);
@@ -425,6 +425,9 @@ public class ConfigPage {
 			p1.setName(characterField.getText());
 			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
 				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			} else {
+				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish making your character!");
+				a.show();
 			}
 		});
 

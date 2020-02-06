@@ -415,7 +415,11 @@ public class ConfigPage {
 				});
 
 		next.setOnMouseClicked(mouseEvent -> {
-			CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			p1.setName(characterField.getText());
+			//Stops continue button from working if name, difficulty, and skill points are not all used
+			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
+			}
 		});
 
 
@@ -428,7 +432,7 @@ public class ConfigPage {
 
 		// BACK TO HOME BUTTON TAKES USER TO SCENE 1
 		backToHome.setOnMouseClicked((mouseEvent -> {
-			WelcomePage welcomePage = new WelcomePage(primaryStage, p1);
+			WelcomePage welcomePage = new WelcomePage(primaryStage);
 		}));
 
 		primaryStage.setTitle("Welcome!");

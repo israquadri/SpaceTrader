@@ -7,17 +7,18 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class CharacterPage {
 
 	public CharacterPage(Stage primaryStage, Player p1) {
-
-		//Set the name of the p1 object
-		//p1.setName(characterField.getText());
-
+		
 		// SCENE 3 BACKING STRUCTURE SET UP
 		VBox vb3 = new VBox(20.0);
 		Scene scene3 = new Scene(vb3, 800, 800);
@@ -31,6 +32,10 @@ public class CharacterPage {
 		Button toScene4 = new Button("Continue");
 		toScene4.setTextFill(Color.WHITE);
 		toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: indianred; -fx-font-family: 'Press Start 2P', cursive;");
+
+		// INTRO MUSIC FOR STOPPING DURING BUTTON PRESS
+		Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
+		MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
 
 		HBox bt2 = new HBox();
 //        bt2.getChildren().add(backToScene2);
@@ -61,19 +66,6 @@ public class CharacterPage {
 		yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 		vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
-		//Stops continue button from working if name, difficulty, and skill points are not all used
-
-		// CHRIS HELP HERE I DONT KNOW HOW TO GET EASY, MEDIUM, and HARD
-/*		if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-			//Stop the Space Trader Intro Music
-			//introsongplayer.stop();
-			//Start the completed character sound effect
-			//soundplyr.play();
-			//Activate next scene
-			primaryStage.setScene(scene3);
-			primaryStage.setTitle("Scene 3");
-			primaryStage.show();
-		}*/
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
 			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);

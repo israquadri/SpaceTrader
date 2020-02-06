@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 public class ConfigPage {
 
 	public ConfigPage(Stage primaryStage, Player p1) {
+
 		Scene scene2;
 		HBox back = new HBox();
 
@@ -93,6 +94,7 @@ public class ConfigPage {
 		easy.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(16);
 			p1.setCredits(1000);
+			p1.setDifficulty("easy");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -113,6 +115,7 @@ public class ConfigPage {
 		medium.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(12);
 			p1.setCredits(500);
+			p1.setDifficulty("medium");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -132,6 +135,7 @@ public class ConfigPage {
 		hard.setOnAction((ActionEvent e) -> {
 			p1.setSkillPoints(8);
 			p1.setCredits(100);
+			p1.setDifficulty("hard");
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 			p1.setTrait1Val(0);
 			p1.setTrait2Val(0);
@@ -380,6 +384,7 @@ public class ConfigPage {
 		// CHARACTER FIELD WHERE USER ENTERS CHARACTER NAME
 		TextField characterField = new TextField();
 		characterField.setPromptText("Name:");
+		characterField.setText(p1.getName());
 		characterField.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 		characterField.setPrefWidth(400);
 		characterField.setMaxWidth(300);

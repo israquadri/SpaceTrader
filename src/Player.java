@@ -8,6 +8,7 @@ public class Player {
     private int trait2val;
     private int trait3val;
     private int trait4val;
+    private String difficulty;
 
     //Getter and Setter-ville
     public Player() {
@@ -67,6 +68,14 @@ public class Player {
 
     public void setTrait4Val(int trait4val) {
         this.trait4val = trait4val;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public String getDifficulty() {
+        return this.difficulty;
     }
 
 }

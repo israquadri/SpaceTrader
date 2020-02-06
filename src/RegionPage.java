@@ -46,14 +46,21 @@ public class RegionPage {
 		//make the page in the constructor
 		//follow the same structure, but do it here
 		//set on action methods can go here if there is a button in this page
-		VBox vbox = new VBox();
-
+		VBox vbox = new VBox(40);
+		vbox.setMaxWidth( 600);
+		HBox hbox = new HBox(40);
+		hbox.setAlignment(Pos.BOTTOM_RIGHT);
+		vbox.setAlignment(Pos.CENTER);
 		Scene regionRoot = new Scene(vbox, 800, 800);
-
+		regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 		primaryStage.setTitle(region.getDescription());
-		Text text1 = new Text(region.getDescription());
+
+
+		Text text1 = new Text( "You've landed in \n the " + region.getDescription() + " Region!");
+		text1.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
+		text1.setTextAlignment(TextAlignment.CENTER);
 		Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
-		text1.setStyle("-fx-font-size: 40px");
+		text2.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
 		text1.setFill(Color.WHITE);
 		text2.setFill(Color.WHITE);
 
@@ -63,13 +70,16 @@ public class RegionPage {
 
 		Button toMap = new Button("go to map");
 		toMap.setAlignment(Pos.BOTTOM_CENTER);
-
+		toMap.setTextFill(Color.WHITE);
+		toMap.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
+		toMap.setMinSize(10,10);
 		toMap.setOnMouseClicked(mouseEvent -> {
 			Map mapPage = new Map(primaryStage, array);
 		});
 
+		hbox.getChildren().add(toMap);
+		vbox.getChildren().addAll(text1, text2, hbox);
 
-		vbox.getChildren().addAll(text1, text2, toMap);
 		primaryStage.setScene(regionRoot);
 
 	}

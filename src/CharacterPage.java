@@ -117,11 +117,7 @@ public class CharacterPage {
 		backToScene2.setOnMouseClicked((mouseEvent -> {
 			ConfigPage configPage = new ConfigPage(primaryStage, p1);
 		}));
-
-<<<<<<< HEAD
-=======
-
->>>>>>> M4
+		
 		primaryStage.setTitle("Your character");
 		primaryStage.setScene(scene3);
 		primaryStage.show();

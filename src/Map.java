@@ -2,8 +2,6 @@ package src;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ContentDisplay;
@@ -15,9 +13,6 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;

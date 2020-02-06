@@ -1,6 +1,7 @@
 package src;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.RadioButton;
@@ -15,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -32,6 +34,14 @@ public class Map {
             planet.setLayoutY(r.getyCoord());
             map.getChildren().add(planet);
         }
+        Label coordinates = new Label("-------");
+        coordinates.setTextFill(Color.WHITE);
+        coordinates.setAlignment(Pos.BOTTOM_RIGHT);
+        map.getChildren().add(coordinates);
+        map.setOnMouseMoved(e -> {
+            String s = new String("(" + (e.getX()) + "," + (e.getY()) + ")");
+            coordinates.setText(s);
+        });
 
         primaryStage.setScene(mapScene);
         primaryStage.setTitle("Map");

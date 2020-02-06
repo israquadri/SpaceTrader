@@ -1,13 +1,17 @@
 package src;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.geometry.Pos;
 
 import java.awt.*;
 import java.util.Random;

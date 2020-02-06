@@ -34,12 +34,8 @@ public class CharacterPage {
 		toScene4.setStyle("-fx-font-size: 20px; -fx-background-color: indianred; -fx-font-family: 'Press Start 2P', cursive;");
 
 		// INTRO MUSIC FOR STOPPING DURING BUTTON PRESS
-		Media spaceTraderIntroSong = new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString());
-		MediaPlayer introsongplayer = new MediaPlayer(spaceTraderIntroSong);
 
 		HBox bt2 = new HBox();
-//        bt2.getChildren().add(backToScene2);
-//        bt2.setAlignment(Pos.BASELINE_LEFT);
 
 		// ADDING CHARACTER SHEET SCREEN TEXT NODES
 		Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -95,15 +91,6 @@ public class CharacterPage {
 					}
 				});
 
-/*	//BACK TO SCENE 2 BUTTON
-        backToScene2.setOnMouseClicked((mouseEvent -> {
-		//Stop intro song and start character finish song
-		//introsongplayer.play();
-		//soundplyr.stop();
-		//primaryStage.setScene(configPage);
-		primaryStage.setTitle("Welcome user!");
-		primaryStage.show();
-	}));*/
 		primaryStage.setTitle("Your character");
 		primaryStage.setScene(scene3);
 		primaryStage.show();

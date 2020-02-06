@@ -49,7 +49,7 @@ public class ConfigPage {
 		left.setAlignment(Pos.BOTTOM_CENTER);
 		left.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
-		
+
 		//Create right VBox for right side of screen
 		VBox right = new VBox(10);
 		back.getChildren().add(right);

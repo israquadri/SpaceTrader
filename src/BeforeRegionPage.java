@@ -83,7 +83,7 @@ public class BeforeRegionPage {
 
 
 		//initiating regions
-		CoordGenerator cg = new CoordGenerator(600);
+		CoordGenerator cg = new CoordGenerator(700);
 		HashMap<Integer, Integer> xCoords = cg.getX();
 		HashMap<Integer, Integer> yCoords = cg.getY();
 //		for(int i = 0; i < 10; i++) {
@@ -128,6 +128,7 @@ public class BeforeRegionPage {
 		//Button test = new Button(arr[randomNumber].getDescription());
 
 		toRegionPage.setOnMouseClicked(mouseEvent -> {
+			p1.setCurrentRegion(arr[randomNumber]);
 			RegionPage regionPage = new RegionPage(primaryStage, p1, arr[randomNumber], arr);
 		});
 

@@ -61,6 +61,8 @@ public class RegionPage {
 		text1.setTextAlignment(TextAlignment.CENTER);
 		Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
 		text2.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+		Text text3 = new Text("Technology Level: " + region.getTechnologyLevel());
+		text3.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
 		text1.setFill(Color.WHITE);
 		text2.setFill(Color.WHITE);
 
@@ -74,8 +76,29 @@ public class RegionPage {
 		toMap.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
 		toMap.setMinSize(10,10);
 		toMap.setOnMouseClicked(mouseEvent -> {
-			Map mapPage = new Map(primaryStage, array);
+			Map mapPage = new Map(primaryStage, array, p1);
 		});
+
+		// DROP SHADOW HOVER EFFECT ON START BUTTON
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+		//adding the shadow when the mouse cursor is on
+		toMap.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toMap.setEffect(shadow);
+					}
+				});
+		//adding the shadow when the mouse cursor is on
+		toMap.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toMap.setEffect(null);
+					}
+				});
 
 		hbox.getChildren().add(toMap);
 		vbox.getChildren().addAll(text1, text2, hbox);

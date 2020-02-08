@@ -9,6 +9,7 @@ public class Player {
     private int trait3val;
     private int trait4val;
     private String difficulty;
+    private Region currentRegion;
 
     //Getter and Setter-ville
     public Player() {
@@ -76,6 +77,14 @@ public class Player {
 
     public String getDifficulty() {
         return this.difficulty;
+    }
+
+    public void setCurrentRegion(Region r) {
+        this.currentRegion = r;
+    }
+
+    public Region getCurrentRegion() {
+        return this.currentRegion;
     }
 
 }

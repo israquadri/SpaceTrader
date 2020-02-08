@@ -65,6 +65,7 @@ public class RegionPage {
 		text3.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
 		text1.setFill(Color.WHITE);
 		text2.setFill(Color.WHITE);
+		text3.setFill(Color.WHITE);
 
 		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
@@ -101,7 +102,7 @@ public class RegionPage {
 				});
 
 		hbox.getChildren().add(toMap);
-		vbox.getChildren().addAll(text1, text2, hbox);
+		vbox.getChildren().addAll(text1, text2, text3, hbox);
 
 		primaryStage.setScene(regionRoot);
 

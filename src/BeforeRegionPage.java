@@ -93,34 +93,44 @@ public class BeforeRegionPage {
 
 		Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
 				"Farm", new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p1.png", 100,
+                100, false, true));
 		Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
 				"Safari",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p2.png", 100,
+                100, false, true));
 		Region region3 = new Region(xCoords.get(2), yCoords.get(2), 0,
 				"2000s Boy Bands: the Planet",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p3.png", 100,
+                100, false, true));
 		Region region4 = new Region(xCoords.get(3), yCoords.get(3), 0,
 				"Scandinavian",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true),  new Image( "p4.png", 100,
+                100, false, true));
 		Region region5 = new Region(xCoords.get(4), yCoords.get(4), 0,
 				"Arctic",  new Image("arctic.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p5.png", 100,
+                100, false, true));
 		Region region6 = new Region(xCoords.get(5), yCoords.get(5), 0,
 				"Desert",  new Image("desert.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p6.png", 100,
+                100, false, true));
 		Region region7 = new Region(xCoords.get(6), yCoords.get(6), 0,
 				"3",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p7.png", 100,
+                100, false, true));
 		Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,
 				"4",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p8.png", 100,
+                100, false, true));
 		Region region9 = new Region(xCoords.get(8), yCoords.get(8), 0,
 				"Wild west",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p9.png", 100,
+                100, false, true));
 		Region region10 = new Region(xCoords.get(9), yCoords.get(9), 0,
 				"Disco",  new Image("galaxy.jpg", 800,
-				800, false, true));
+				800, false, true), new Image( "p10.png", 100,
+                100, false, true));
 
 		Region[] arr={region1, region2, region3, region4, region5, region5, region6, region7, region8, region9, region10};
 		Random r = new Random();

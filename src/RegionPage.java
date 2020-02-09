@@ -56,7 +56,7 @@ public class RegionPage {
 		primaryStage.setTitle(region.getDescription());
 
 
-		Text text1 = new Text( "You've landed in \n the " + region.getDescription() + " Region!");
+		Text text1 = new Text( "You've landed in \n the " + region.getDescription() + "\n Region!");
 		text1.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
 		text1.setTextAlignment(TextAlignment.CENTER);
 		Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
@@ -67,7 +67,7 @@ public class RegionPage {
 		text2.setFill(Color.WHITE);
 		text3.setFill(Color.WHITE);
 
-		BackgroundImage myBI = new BackgroundImage(region.getImg(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 		vbox.setBackground(new Background(myBI));
 

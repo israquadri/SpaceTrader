@@ -63,6 +63,12 @@ public class Region extends Node {
 		this.img = img;
 	}
 
+	public int distanceBetween(Region r) {
+		double xDiffSquared = Math.pow((this.getxCoord() - r.getxCoord()), 2);
+		double yDiffSquared = Math.pow((this.getyCoord() - r.getyCoord()), 2);
+		return (int) Math.sqrt(xDiffSquared + yDiffSquared);
+	}
+
 
 	@Override
 	public Node getStyleableNode() {

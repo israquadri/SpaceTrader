@@ -92,11 +92,11 @@ public class BeforeRegionPage {
 //		}
 
 		Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
-				"Farm", new Image("galaxy.jpg", 800,
+				"Farm", new Image("farm.png", 800,
 				800, false, true), new Image( "p1.png", 100,
                 100, false, true));
 		Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
-				"Safari",  new Image("galaxy.jpg", 800,
+				"Safari",  new Image("safari.png", 800,
 				800, false, true), new Image( "p2.png", 100,
                 100, false, true));
 		Region region3 = new Region(xCoords.get(2), yCoords.get(2), 0,

@@ -67,7 +67,7 @@ public class RegionPage {
 		text2.setFill(Color.WHITE);
 
 		text3.setFill(Color.WHITE);
-		
+
 		BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 

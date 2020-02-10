@@ -115,7 +115,9 @@ public class BeforeRegionPage2 {
                         t.setText(storyarr[ndx]);
                         ft0.play();
                     } else {
-                        RegionPage rp = new RegionPage(primaryStage, p1, arr[randomNumber], arr);
+                        Region currregion = arr[randomNumber];
+                        p1.setCurrentRegion(currregion);
+                        RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
                     }
                 });
             });
@@ -124,7 +126,9 @@ public class BeforeRegionPage2 {
         //Button to skip story details "c"
         backstory.setOnKeyPressed((KeyEvent w) -> {
             if (w.getText().equals("c")) {
-                RegionPage rp = new RegionPage(primaryStage, p1, arr[randomNumber], arr);
+                Region currregion = arr[randomNumber];
+                p1.setCurrentRegion(currregion);
+                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
             }
 
         });

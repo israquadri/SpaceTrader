@@ -51,7 +51,7 @@ public class RegionPage {
 		HBox hbox = new HBox(40);
 		hbox.setAlignment(Pos.BOTTOM_RIGHT);
 		vbox.setAlignment(Pos.CENTER);
-		Scene regionRoot = new Scene(vbox, 1000, 1000);
+		Scene regionRoot = new Scene(vbox, 800, 800);
 
 
 		regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");

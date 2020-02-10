@@ -30,7 +30,7 @@ public class CharacterPage {
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vb3.setBackground(new Background(myBI));
 
-		Button toScene4 = new Button("Continue");
+		Button toScene4 = new Button("Enter the Universe!");
 		toScene4.setTextFill(Color.WHITE);
 
 		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"

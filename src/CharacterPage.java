@@ -95,7 +95,6 @@ public class CharacterPage {
 		backToScene2.setTextFill(Color.WHITE);
 		backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
-
 		bt2.getChildren().add(backToScene2);
 		backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
@@ -114,14 +113,10 @@ public class CharacterPage {
 						backToScene2.setEffect(null);
 					}
 				});
+
 		backToScene2.setOnMouseClicked((mouseEvent -> {
 			ConfigPage configPage = new ConfigPage(primaryStage, p1);
 		}));
-
-        backToScene2.setOnMouseClicked((mouseEvent -> {
-
-			ConfigPage configPage = new ConfigPage(primaryStage, p1);
-	}));
 
 
 		primaryStage.setTitle("Your character");

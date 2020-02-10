@@ -35,23 +35,28 @@ public class Map {
         for (Region r: regions) {
             Image image = r.getImg2();
             //image.setStyle(" -fx-background-color: transparent;");
-            Button planet = new Button(r.getDescription());
+            Button planet = new Button();
+            if (!r.isVisited()) {
+                planet.setText("Unknown Region");
+            } else {
+                planet.setText(r.getDescription());
+            }
             planet.setGraphic(new ImageView(image));
             planet.setContentDisplay(ContentDisplay.TOP);
-            planet.setStyle("-fx-font-size: 0.9em;\n" +
-                    "    -fx-background-color: transparent;\n" +
-                    "    -fx-graphic-text-gap: 0px;\n" +
-                    "    -fx-font-family: 'Press Start 2P', cursive; ");
+            planet.setStyle("-fx-font-size: 0.9em; -fx-background-color: transparent;"
+                    + "  -fx-graphic-text-gap: 0px; -fx-font-family:"
+                    + " 'Press Start 2P', cursive;");
             planet.setTextFill(Color.WHITESMOKE);
             planet.setLayoutX(r.getxCoord());
             planet.setLayoutY(r.getyCoord());
             map.getChildren().add(planet);
 
-            Tooltip distanceTip = new Tooltip("Distance from current region: \n" + r.distanceBetween(p1.getCurrentRegion()));
+            Tooltip distanceTip = new Tooltip("Distance from current region: " + r.distanceBetween(p1.getCurrentRegion()));
             distanceTip.setShowDelay(Duration.ZERO);
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
+                r.setVisited();
                 p1.setCurrentRegion(r);
                 RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
             });

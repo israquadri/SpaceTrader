@@ -53,6 +53,15 @@ public class RegionPage {
 		vbox.setAlignment(Pos.CENTER);
 		Scene regionRoot = new Scene(vbox, 1000, 1000);
 
+
+		regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+		primaryStage.setTitle("Into the Universe!");
+		Text text = new Text("Regions of \nthe Universe");
+		text.setStyle("-fx-font-size: 50px; -fx-font-family: 'Press Start 2P', cursive;");
+		text.setFill(Color.WHITE);
+		text.setTextAlignment(TextAlignment.CENTER);
+
+
 		primaryStage.setTitle(region.getDescription());
 
 

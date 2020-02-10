@@ -11,6 +11,7 @@ public class Region extends Node {
 	private String description;
 	private Image img1;
 	private Image img2;
+	private boolean visited = false;
 
 	public Region() {
 
@@ -77,6 +78,14 @@ public class Region extends Node {
 		double xDiffSquared = Math.pow((this.getxCoord() - r.getxCoord()), 2);
 		double yDiffSquared = Math.pow((this.getyCoord() - r.getyCoord()), 2);
 		return (int) Math.sqrt(xDiffSquared + yDiffSquared);
+	}
+
+	public void setVisited() {
+		this.visited = true;
+	}
+
+	public boolean isVisited() {
+		return this.visited;
 	}
 
 

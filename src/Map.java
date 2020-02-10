@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.Group;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
@@ -15,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import javafx.scene.image.ImageView;
 import javax.tools.Tool;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,20 +26,37 @@ public class Map {
 
         Pane map = new Pane();
         Scene mapScene = new Scene(map, 800, 800);
-        map.setStyle("-fx-background-color: black");
+        BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
+                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        map.setBackground(new Background(myBI));
+        //map.setStyle("-fx-background-color: black");
 
         for (Region r: regions) {
-            Button planet = new Button(r.getDescription());
-            planet.setStyle("-fx-background-color: white");
+            Image image = r.getImg2();
+            //image.setStyle(" -fx-background-color: transparent;");
+            Button planet = new Button();
+            if (!r.isVisited()) {
+                planet.setText("Unknown Region");
+            } else {
+                planet.setText(r.getDescription());
+            }
+            planet.setGraphic(new ImageView(image));
+            planet.setContentDisplay(ContentDisplay.TOP);
+            planet.setStyle("-fx-font-size: 0.9em; -fx-background-color: transparent;"
+                    + "  -fx-graphic-text-gap: 0px; -fx-font-family:"
+                    + " 'Press Start 2P', cursive;");
+            planet.setTextFill(Color.WHITESMOKE);
             planet.setLayoutX(r.getxCoord());
             planet.setLayoutY(r.getyCoord());
             map.getChildren().add(planet);
 
-            Tooltip distanceTip = new Tooltip("Distance from current region: \n" + r.distanceBetween(p1.getCurrentRegion()));
+            Tooltip distanceTip = new Tooltip("Distance from current region: " + r.distanceBetween(p1.getCurrentRegion()));
             distanceTip.setShowDelay(Duration.ZERO);
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
+                r.setVisited();
                 p1.setCurrentRegion(r);
                 RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
             });
@@ -67,6 +85,7 @@ public class Map {
         }
 
         VBox mapDetails = new VBox();
+
         Label coordinates = new Label("-------");
         coordinates.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         coordinates.setTextFill(Color.WHITE);

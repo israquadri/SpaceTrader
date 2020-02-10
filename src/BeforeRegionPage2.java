@@ -116,6 +116,7 @@ public class BeforeRegionPage2 {
                         ft0.play();
                     } else {
                         Region currregion = arr[randomNumber];
+                        currregion.setVisited();
                         p1.setCurrentRegion(currregion);
                         RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
                     }
@@ -127,6 +128,7 @@ public class BeforeRegionPage2 {
         backstory.setOnKeyPressed((KeyEvent w) -> {
             if (w.getText().equals("c")) {
                 Region currregion = arr[randomNumber];
+                currregion.setVisited();
                 p1.setCurrentRegion(currregion);
                 RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
             }

@@ -24,7 +24,7 @@ public class ConfigPage {
 
 
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		DropShadow shadow = new DropShadow();
 		shadow.setColor(Color.CORAL);

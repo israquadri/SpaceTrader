@@ -109,7 +109,7 @@ public class WelcomePage {
 
 		// START GAME BUTTON
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		root.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
 		root.setBackground(new Background(myBI));

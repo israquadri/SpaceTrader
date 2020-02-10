@@ -26,7 +26,7 @@ public class CharacterPage {
 		scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 		vb3.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+				800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vb3.setBackground(new Background(myBI));
 

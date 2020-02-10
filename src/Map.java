@@ -27,7 +27,7 @@ public class Map {
         Pane map = new Pane();
         Scene mapScene = new Scene(map, 800, 800);
         BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT,
+                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         map.setBackground(new Background(myBI));
         //map.setStyle("-fx-background-color: black");
@@ -37,7 +37,7 @@ public class Map {
             //image.setStyle(" -fx-background-color: transparent;");
             Button planet = new Button();
             if (!r.isVisited()) {
-                planet.setText("Unknown Region");
+                planet.setText("Unknown");
             } else {
                 planet.setText(r.getDescription());
             }
@@ -84,16 +84,46 @@ public class Map {
 
         }
 
-        VBox mapDetails = new VBox();
+        VBox mapDetails = new VBox(10);
 
         Label coordinates = new Label("-------");
         coordinates.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         coordinates.setTextFill(Color.WHITE);
         coordinates.setAlignment(Pos.BOTTOM_RIGHT);
+
         Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getDescription());
         currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         currentRegion.setFill(Color.WHITE);
-        mapDetails.getChildren().addAll(coordinates, currentRegion);
+
+        Button backToOrbit = new Button("Back to Orbit");
+        backToOrbit.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
+        backToOrbit.setTextFill(Color.WHITE);
+        backToOrbit.setOnMouseClicked((MouseEvent m) -> {
+            RegionPage r = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+        });
+
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.CORAL);
+        shadow.setWidth(1.5);
+
+        //DROP SHADOW EFFECT
+        backToOrbit.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        backToOrbit.setEffect(shadow);
+                    }
+                });
+        backToOrbit.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        backToOrbit.setEffect(null);
+                    }
+                });
+
+        mapDetails.getChildren().addAll(coordinates, currentRegion, backToOrbit);
+        mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {
             String s = new String("(" + ((int)e.getX()) + "," + ((int)e.getY()) + ")");

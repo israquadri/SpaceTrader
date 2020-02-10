@@ -106,7 +106,7 @@ public class RegionPage {
 				});
 
 
-		BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 
 		vbox.setBackground(new Background(myBI));

@@ -91,7 +91,7 @@ public class Map {
         mapDetails.getChildren().addAll(coordinates, currentRegion);
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {
-            String s = new String("(" + (e.getX()) + "," + (e.getY()) + ")");
+            String s = new String("(" + ((int)e.getX()) + "," + ((int)e.getY()) + ")");
             coordinates.setText(s);
         });
 

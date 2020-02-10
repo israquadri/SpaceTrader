@@ -30,7 +30,7 @@ public class CharacterPage {
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		vb3.setBackground(new Background(myBI));
 
-		Button toScene4 = new Button("Continue");
+		Button toScene4 = new Button("Enter the Universe!");
 		toScene4.setTextFill(Color.WHITE);
 
 		toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
@@ -87,7 +87,7 @@ public class CharacterPage {
 
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
-			src.BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
+			src.BeforeRegionPage2 beforeRegionPage = new BeforeRegionPage2(primaryStage, p1);
 		});
 
 		//BACK TO SCENE 2 BUTTON

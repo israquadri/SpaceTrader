@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
@@ -53,8 +54,9 @@ public class ConfigPage {
 
 		//Create right VBox for right side of screen
 		VBox right = new VBox(10);
+		right.setPrefWidth(400);
 		back.getChildren().add(right);
-		right.setAlignment(Pos.TOP_CENTER);
+		right.setAlignment(Pos.TOP_RIGHT);
 		right.setPadding(new Insets(20, 50, 20, 20));
 		left.setSpacing(20);
 
@@ -65,7 +67,9 @@ public class ConfigPage {
 		right.getChildren().add(remain);
 
 		//Choose difficulty
-		Text diff = new Text("Choose your difficulty level below: ");
+		Text diff = new Text("Choose your difficulty \n level below: ");
+		diff.setTextAlignment(TextAlignment.CENTER);
+		diff.setLineSpacing(4);
 		diff.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
 		diff.setFill(Color.WHITE);
 
@@ -160,13 +164,13 @@ public class ConfigPage {
 		//CHARACTER TRAIT SELECTOR BEGINS
 		//Create area where traits are selected (Create 4 hboxes to house each of the four traits)
 		HBox trait1 = new HBox(5);
-		trait1.setSpacing(5);
+		trait1.setAlignment(Pos.CENTER_RIGHT);
 		HBox trait2 = new HBox(5);
-		trait2.setSpacing(5);
+		trait2.setAlignment(Pos.CENTER_RIGHT);
 		HBox trait3 = new HBox(5);
-		trait3.setSpacing(5);
+		trait3.setAlignment(Pos.CENTER_RIGHT);
 		HBox trait4 = new HBox(5);
-		trait4.setSpacing(5);
+		trait4.setAlignment(Pos.CENTER_RIGHT);
 
 		//Add each trait hbox to the right vbox
 		right.getChildren().add(trait1);

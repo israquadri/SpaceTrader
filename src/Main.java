@@ -1,4 +1,3 @@
-
 package src;
 
 import javafx.animation.RotateTransition;

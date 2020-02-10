@@ -77,6 +77,35 @@ public class RegionPage {
 
 		text3.setFill(Color.WHITE);
 
+		//Add button to go to market
+		Button toMarket = new Button("Market");
+		toMarket.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
+		toMarket.setTextFill(Color.WHITE);
+		toMarket.setOnMouseClicked((MouseEvent m) -> {
+			Market mkt = new Market(primaryStage, p1, region, array);
+		});
+
+		//Drop Shadow effect
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+		toMarket.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toMarket.setEffect(shadow);
+					}
+				});
+		//adding the shadow when the mouse cursor is on
+		toMarket.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						toMarket.setEffect(null);
+					}
+				});
+
+
 		BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 
@@ -91,10 +120,6 @@ public class RegionPage {
 			Map mapPage = new Map(primaryStage, array, p1);
 		});
 
-		// DROP SHADOW HOVER EFFECT ON START BUTTON
-		DropShadow shadow = new DropShadow();
-		shadow.setColor(Color.CORAL);
-		shadow.setWidth(1.5);
 		//adding the shadow when the mouse cursor is on
 		toMap.addEventHandler(MouseEvent.MOUSE_ENTERED,
 				new EventHandler<MouseEvent>() {
@@ -113,7 +138,7 @@ public class RegionPage {
 				});
 
 		hbox.getChildren().add(toMap);
-		vbox.getChildren().addAll(text1, text2, text3, hbox);
+		vbox.getChildren().addAll(text1, text2, text3, toMarket, hbox);
 
 		primaryStage.setScene(regionRoot);
 

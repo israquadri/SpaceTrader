@@ -116,7 +116,7 @@ public class BeforeRegionPage {
 				800, false, true), new Image( "p6.png", 100,
                 100, false, true));
 		Region region7 = new Region(xCoords.get(6), yCoords.get(6), 0,
-				"3",  new Image("galaxy.jpg", 800,
+				"The Glitch",  new Image("TheGlitch.png", 800,
 				800, false, true), new Image( "p7.png", 100,
                 100, false, true));
 		Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,

@@ -8,14 +8,18 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class CharacterPage {
 
 	public CharacterPage(Stage primaryStage, Player p1) {
-		
+
 		// SCENE 3 BACKING STRUCTURE SET UP
 		VBox vb3 = new VBox(20.0);
 		Scene scene3 = new Scene(vb3, 800, 800);
@@ -81,6 +85,10 @@ public class CharacterPage {
 		vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
 		toScene4.setAlignment(Pos.BASELINE_LEFT);
 
+		//MUSIC for complete character
+		Media completeCharacterSong = new Media((new File("./CompleteCharacterSound.m4a")).toURI().toString());
+		MediaPlayer songplayer2 = new MediaPlayer(completeCharacterSong);
+		songplayer2.play();
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
 			BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
@@ -111,7 +119,8 @@ public class CharacterPage {
 				});
 
 		backToScene2.setOnMouseClicked((mouseEvent -> {
-			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+			ConfigPage configPage = new ConfigPage(primaryStage, p1,
+					new MediaPlayer(new Media((new File("./SpaceTraderIntroSong.m4a")).toURI().toString())));
 		}));
 
 		primaryStage.setTitle("Your character");

@@ -10,14 +10,16 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 
+
 public class ConfigPage {
 
-	public ConfigPage(Stage primaryStage, Player p1) {
+	public ConfigPage(Stage primaryStage, Player p1, MediaPlayer player) {
 
 		Scene scene2;
 		HBox back = new HBox();
@@ -344,6 +346,8 @@ public class ConfigPage {
 			remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 		});
 
+		player.play();
+
 		//CHARACTER TRAIT ALLOCATOR ENDS
 
 		// SET UP SCENE 2
@@ -428,6 +432,7 @@ public class ConfigPage {
 		next.setOnMouseClicked(mouseEvent -> {
 			p1.setName(characterField.getText());
 			if (!p1.getName().equals("") && p1.getSkillPoints() == 0 && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
+				player.stop();
 				CharacterPage characterPage = new CharacterPage(primaryStage, p1);
 			} else {
 				Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish making your character!");

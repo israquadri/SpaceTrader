@@ -44,10 +44,14 @@ public class WelcomePage {
 		startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px;"
 				+ " -fx-font-family: 'Press Start 2P', cursive;");
 
+		//MUSIC
+		Media spaceTraderIntroSong = new Media((new File("./SpaceTraderIntroSong.m4a")).toURI().toString());
+		MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
+		songplayer.play();
 
 		//EVENT HANDLER TO SEND TO CONFIG PAGE
 		startButton.setOnMouseClicked((mouseEvent -> {
-			ConfigPage configPage = new ConfigPage(primaryStage, p1);
+			ConfigPage configPage = new ConfigPage(primaryStage, p1, songplayer);
 		}));
 
 		// DROP SHADOW HOVER EFFECT ON START BUTTON
@@ -104,8 +108,6 @@ public class WelcomePage {
 		rotate.setCycleCount(50);
 		rotate.setAutoReverse(false);
 		rotate.play();
-
-		//MUSIC :(
 
 		// START GAME BUTTON
 		BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,

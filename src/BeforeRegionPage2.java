@@ -56,7 +56,7 @@ public class BeforeRegionPage2 {
                 800, false, true), new javafx.scene.image.Image( "p7.png", 100,
                 100, false, true));
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,
-                "4",  new javafx.scene.image.Image("galaxy.jpg", 800,
+                "Medieval",  new javafx.scene.image.Image("galaxy.jpg", 800,
                 800, false, true), new javafx.scene.image.Image( "p8.png", 100,
                 100, false, true));
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 0,

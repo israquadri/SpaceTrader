@@ -8,13 +8,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class CharacterPage {
 
@@ -87,7 +83,7 @@ public class CharacterPage {
 
 
 		toScene4.setOnMouseClicked(mouseEvent -> {
-			src.BeforeRegionPage2 beforeRegionPage = new BeforeRegionPage2(primaryStage, p1);
+			BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
 		});
 
 		//BACK TO SCENE 2 BUTTON

@@ -20,15 +20,17 @@ public class CoordGenerator {
         for (int i = 0; i < 10; i++) {
             int xCoord = rd.nextInt(range);
             int yCoord = rd.nextInt(range);
-            while (x.containsValue(xCoord) || x.containsValue(xCoord + 15) || x.containsValue(xCoord - 15)) {
+            while (x.containsValue(xCoord) || x.containsValue(xCoord + 15)
+                    || x.containsValue(xCoord - 15)) {
                 xCoord = rd.nextInt(range);
             }
-            while (y.containsValue(yCoord) || y.containsValue(yCoord + 15) || y.containsValue(yCoord - 15)) {
+            while (y.containsValue(yCoord) || y.containsValue(yCoord + 15)
+                    || y.containsValue(yCoord - 15)) {
                 yCoord = rd.nextInt(range);
             }
             x.put(count, xCoord);
             y.put(count, yCoord);
-            count ++;
+            count++;
         }
 
     }

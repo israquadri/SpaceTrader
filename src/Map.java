@@ -1,12 +1,9 @@
 package src;
 
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.Group;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -17,8 +14,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.image.ImageView;
-import javax.tools.Tool;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Map {
 
@@ -51,7 +46,8 @@ public class Map {
             planet.setLayoutY(r.getyCoord());
             map.getChildren().add(planet);
 
-            Tooltip distanceTip = new Tooltip("Distance from current region: " + r.distanceBetween(p1.getCurrentRegion()));
+            Tooltip distanceTip = new Tooltip("Distance from current region: "
+                    + r.distanceBetween(p1.getCurrentRegion()));
             distanceTip.setShowDelay(Duration.ZERO);
             planet.setTooltip(distanceTip);
 
@@ -96,7 +92,8 @@ public class Map {
         currentRegion.setFill(Color.WHITE);
 
         Button backToOrbit = new Button("Back to Orbit");
-        backToOrbit.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
+        backToOrbit.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 20px;");
         backToOrbit.setTextFill(Color.WHITE);
         backToOrbit.setOnMouseClicked((MouseEvent m) -> {
             RegionPage r = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
@@ -126,7 +123,7 @@ public class Map {
         mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {
-            String s = new String("(" + ((int)e.getX()) + "," + ((int)e.getY()) + ")");
+            String s = new String("(" + ((int) e.getX()) + "," + ((int) e.getY()) + ")");
             coordinates.setText(s);
         });
 

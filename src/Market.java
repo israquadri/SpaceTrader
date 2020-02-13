@@ -17,7 +17,7 @@ public class Market {
 
     public Market(Stage primaryStage, Player p1, Region region, Region[] array) {
         VBox root = new VBox(40);
-        Scene mktscene = new Scene(root,800,800);
+        Scene mktscene = new Scene(root, 800, 800);
 
         //HBox for middle of screen
         HBox mid = new HBox(40);
@@ -38,7 +38,8 @@ public class Market {
 
         //Back to Region Page button
         Button back = new Button("Back to Orbit");
-        back.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-background-color: black; -fx-font-size: 20px;");
+        back.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 20px;");
         back.setTextFill(Color.WHITE);
         back.setOnMouseClicked((MouseEvent m) -> {
             RegionPage r = new RegionPage(primaryStage, p1, region, array);

@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -29,46 +28,47 @@ public class BeforeRegionPage {
 
         Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
                 "Farm", new javafx.scene.image.Image("farm.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p1.png", 100,
+                800, false, true), new javafx.scene.image.Image("p1.png", 100,
                 100, false, true));
         Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
                 "Safari",  new javafx.scene.image.Image("safari.png", 800,
-                800, false, true), new javafx.scene.image.Image( "p2.png", 100,
+                800, false, true), new javafx.scene.image.Image("p2.png", 100,
                 100, false, true));
         Region region3 = new Region(xCoords.get(2), yCoords.get(2), 0,
                 "2000s Boy Bands",  new javafx.scene.image.Image("bsb.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p3.png", 100,
+                800, false, true), new javafx.scene.image.Image("p3.png", 100,
                 100, false, true));
         Region region4 = new Region(xCoords.get(3), yCoords.get(3), 0,
                 "Scandinavian",  new javafx.scene.image.Image("scandi.jpg", 800,
-                800, false, true),  new javafx.scene.image.Image( "p4.png", 100,
+                800, false, true),  new javafx.scene.image.Image("p4.png", 100,
                 100, false, true));
         Region region5 = new Region(xCoords.get(4), yCoords.get(4), 0,
                 "Arctic",  new javafx.scene.image.Image("arctic.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p5.png", 100,
+                800, false, true), new javafx.scene.image.Image("p5.png", 100,
                 100, false, true));
         Region region6 = new Region(xCoords.get(5), yCoords.get(5), 0,
                 "Desert",  new javafx.scene.image.Image("desert.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p6.png", 100,
+                800, false, true), new javafx.scene.image.Image("p6.png", 100,
                 100, false, true));
         Region region7 = new Region(xCoords.get(6), yCoords.get(6), 0,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
-                800, false, true), new javafx.scene.image.Image( "p7.png", 100,
+                800, false, true), new javafx.scene.image.Image("p7.png", 100,
                 100, false, true));
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p8.png", 100,
+                800, false, true), new javafx.scene.image.Image("p8.png", 100,
                 100, false, true));
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 0,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
-                800, false, true), new javafx.scene.image.Image( "p9.png", 100,
+                800, false, true), new javafx.scene.image.Image("p9.png", 100,
                 100, false, true));
         Region region10 = new Region(xCoords.get(9), yCoords.get(9), 0,
                 "Disco",  new javafx.scene.image.Image("disco.jpg", 800,
-                800, false, true), new Image( "p10.png", 100,
+                800, false, true), new Image("p10.png", 100,
                 100, false, true));
 
-        Region[] arr={region1, region2, region3, region4, region5, region5, region6, region7, region8, region9, region10};
+        Region[] arr = {region1, region2, region3, region4, region5,
+                        region6, region7, region8, region9, region10};
         Random r = new Random();
         int randomNumber = r.nextInt(arr.length);
 
@@ -79,11 +79,13 @@ public class BeforeRegionPage {
         Scene backstory = new Scene(root, 800, 800);
         root.setStyle("-fx-background-color: black");
 
-        String[] storyarr = {"You began your life on\n your parent's humble farm", "You worked alongside your\n parents for" +
-                " many years, but \n you sought adventure and fame", "Finally, after coming of age\n your parents allow you " +
-                "\nto leave the farm", "With your trusty\n John Antelope TR-4CT0R spaceship \n you venture out into space," +
-        "\n however you run into\n pirates almost immediately", "Escaping, you use\n most of your fuel and resources",
-        "Needing to refuel and resupply\n you land on the nearest\n planet and begin your journey..."};
+        String[] storyarr = {"You began your life on\n your parent's humble farm", "You worked"
+                + " alongside your\n parents for many years, but \n you sought adventure and"
+                + " fame", "Finally, after coming of age\n your parents allow you \nto leave the"
+                + " farm", "With your trusty\n John Antelope TR-4CT0R spaceship \n you venture out"
+                + " into space,\n however you run into\n pirates almost immediately", "Escaping,"
+                + " you use\n most of your fuel and resources", "Needing to refuel and resupply\n "
+                + "you land on the nearest\n planet and begin your journey..."};
 
         Text t = new Text(storyarr[ndx]);
         t.setTextAlignment(TextAlignment.CENTER);

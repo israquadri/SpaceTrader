@@ -142,6 +142,7 @@ public class BeforeRegionPage {
                 Region currregion = arr[randomNumber];
                 currregion.setVisited();
                 p1.setCurrentRegion(currregion);
+                mp.stop();
                 RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
             }
 

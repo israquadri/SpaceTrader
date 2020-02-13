@@ -45,8 +45,8 @@ public class WelcomePage {
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
         //MUSIC
-        Media spaceTraderIntroSong = new Media((new File("./"
-                + "SpaceTraderIntroSong.m4a")).toURI().toString());
+        Media spaceTraderIntroSong = new Media((new File("SpaceTrader" +
+                "IntroSong.m4a")).toURI().toString());
         MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
         songplayer.play();
 

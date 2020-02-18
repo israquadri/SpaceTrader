@@ -7,6 +7,10 @@ public class SpaceShip {
     ArrayList<Item> inventory;
 
 
+    public SpaceShip(int fuel) {
+        this.fuel = fuel;
+        inventory = new ArrayList<Item>();
+    }
     public void addToInventory(Item i) {
         inventory.add(i);
     }
@@ -14,7 +18,7 @@ public class SpaceShip {
     public void removeFromInventory(Item i) {
         inventory.add(i);
     }
-    
+
     public int getFuel() {
         return fuel;
     }

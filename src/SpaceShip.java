@@ -8,7 +8,7 @@ public class SpaceShip {
     String name;
     int cargoCapacity;
     int health;
-
+    int inventorySize = inventory.size();
 
     public SpaceShip(int fuel, String name, int cargoCapacity, int health) {
         this.fuel = fuel;
@@ -48,5 +48,9 @@ public class SpaceShip {
 
     public String getName() {
         return name;
+    }
+
+    public int getInventorySize() {
+        return inventorySize;
     }
 }

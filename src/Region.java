@@ -15,10 +15,13 @@ public class Region extends Node {
     private double tax;
     private String item1Name;
     private String item1Description;
+    private int item1Quantity;
     private String item2Name;
     private String item2Description;
+    private int item2Quantity;
     private String item3Name;
     private String item3Description;
+    private int item3Quantity;
 
     public Region() {
 
@@ -87,6 +90,18 @@ public class Region extends Node {
         return item3Name;
     }
 
+    public int getItem1Quantity() {
+        return item1Quantity;
+    }
+
+    public int getItem2Quantity() {
+        return item2Quantity;
+    }
+
+    public int getItem3Quantity() {
+        return item3Quantity;
+    }
+
     public void setxCoord(int num) {
         this.xCoord = num;
     }
@@ -120,6 +135,18 @@ public class Region extends Node {
 
     public void setItem3Description(String item3Description) {
         this.item3Description = item3Description;
+    }
+
+    public void setItem1Quantity(int item1Quantity) {
+        this.item1Quantity = item1Quantity;
+    }
+
+    public void setItem2Quantity(int item2Quantity) {
+        this.item2Quantity = item2Quantity;
+    }
+
+    public void setItem3Quantity(int item3Quantity) {
+        this.item3Quantity = item3Quantity;
     }
 
     public void setItem1Name(String item1Name) {

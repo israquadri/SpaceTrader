@@ -79,6 +79,14 @@ public class BeforeRegionPage {
         //set the item descriptions and names for each region
         region1.setItem1Name("Fuel");
         region1.setItem1Description("fuel your ship so you can go across the galaxies!");
+        region1.setItem1Quantity(5);
+
+        region1.setItem2Name("Weaponry");
+        region1.setItem2Description("Defend yourself from space pirates!");
+        region1.setItem2Quantity(7);
+
+
+
 
         //Spaceship
         SpaceShip spaceShip = new SpaceShip(50, "John Antelope", 20, 9);

@@ -20,9 +20,13 @@ public class Market {
 
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
         if (spaceShip.getInventory().size() < spaceShip.getCargoCapacity()) {
-            spaceShip.getInventory().add(item);
-            player.setCredits(player.getCredits() - (int)item.getBuyPrice());
-            spaceShip.inventorySize++;
+            if (item.getName().equals("fuel")) {
+                spaceShip.setFuel(spaceShip.getFuel() + 20);
+            } else {
+                spaceShip.getInventory().add(item);
+                player.setCredits(player.getCredits() - (int)item.getBuyPrice());
+                spaceShip.inventorySize++;
+            }
         }
     }
 

@@ -30,4 +30,16 @@ public class Market {
         }
     }
 
+    public int findInventoryIndex(SpaceShip spaceShip, Item item) {
+        int index = 0;
+        for (int i = 0; i < spaceShip.getInventory().size(); i++) {
+            if (spaceShip.getInventory().get(i).equals(item.getName())) {
+                index = i;
+            } else {
+                //throw exception because it isnt there
+            }
+        }
+        return index;
+    }
+
 }

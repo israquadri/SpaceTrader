@@ -35,7 +35,6 @@ public class MarketPage {
         Item item2 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem2Name(), region.getItem2Description(), region.getItem2Quantity());
         Item item3 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem3Name(), region.getItem3Description(), region.getItem3Quantity());
 
-
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);

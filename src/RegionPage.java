@@ -57,7 +57,7 @@ public class RegionPage {
                 + " -fx-background-color: black; -fx-font-size: 20px;");
         toMarket.setTextFill(Color.WHITE);
         toMarket.setOnMouseClicked((MouseEvent m) -> {
-            Market mkt = new Market(primaryStage, p1, region, array);
+            MarketPage mkt = new MarketPage(primaryStage, p1, region, array);
         });
 
         //Drop Shadow effect

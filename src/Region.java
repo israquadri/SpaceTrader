@@ -12,6 +12,7 @@ public class Region extends Node {
     private Image img1;
     private Image img2;
     private boolean visited = false;
+    private double tax;
 
     public Region() {
 
@@ -50,6 +51,10 @@ public class Region extends Node {
     }
     public Image getImg2() {
         return this.img2;
+    }
+
+    public double getTax() {
+        return tax;
     }
 
     public void setxCoord(int num) {

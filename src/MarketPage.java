@@ -72,8 +72,10 @@ public class MarketPage {
                 });
         top.getChildren().add(back);
 
+        Button buy = new Button("buy");
+        
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(top, mid);
+        root.getChildren().addAll(top, mid, buy);
 
         //Making scene show
         primaryStage.setScene(mktscene);

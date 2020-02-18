@@ -77,6 +77,8 @@ public class BeforeRegionPage {
         int randomNumber = r.nextInt(arr.length);
 
         //set the item descriptions and names for each region
+
+        //Region 1:
         region1.setItem1Name("Fuel");
         region1.setItem1Description("fuel your ship so you can go across the galaxies!");
         region1.setItem1Quantity(5);
@@ -84,6 +86,133 @@ public class BeforeRegionPage {
         region1.setItem2Name("Weaponry");
         region1.setItem2Description("Defend yourself from space pirates!");
         region1.setItem2Quantity(7);
+
+        region1.setItem3Name("Weaponry");
+        region1.setItem3Description("Defend yourself from space pirates!");
+        region1.setItem3Quantity(7);
+
+        // Region 2:
+        region2.setItem1Name("");
+        region2.setItem1Description("");
+        region2.setItem1Quantity(0);
+
+        region2.setItem2Name("");
+        region2.setItem2Description("");
+        region2.setItem2Quantity(0);
+
+        region2.setItem3Name("");
+        region2.setItem3Description("");
+        region2.setItem3Quantity(0);
+
+        // Region 3:
+        region3.setItem1Name("");
+        region3.setItem1Description("");
+        region3.setItem1Quantity(0);
+
+        region3.setItem2Name("");
+        region3.setItem2Description("");
+        region3.setItem2Quantity(0);
+
+        region3.setItem3Name("");
+        region3.setItem3Description("");
+        region3.setItem3Quantity(0);
+
+        // Region 4:
+        region4.setItem1Name("");
+        region4.setItem1Description("");
+        region4.setItem1Quantity(0);
+
+        region4.setItem2Name("");
+        region4.setItem2Description("");
+        region4.setItem2Quantity(0);
+
+        region4.setItem3Name("");
+        region4.setItem3Description("");
+        region4.setItem3Quantity(0);
+
+        //Region 5:
+        region5.setItem1Name("");
+        region5.setItem1Description("");
+        region5.setItem1Quantity(0);
+
+        region5.setItem2Name("");
+        region5.setItem2Description("");
+        region5.setItem2Quantity(0);
+
+        region5.setItem3Name("");
+        region5.setItem3Description("");
+        region5.setItem3Quantity(0);
+
+        // Region 6:
+
+        region6.setItem1Name("");
+        region6.setItem1Description("");
+        region6.setItem1Quantity(0);
+
+        region6.setItem2Name("");
+        region6.setItem2Description("");
+        region6.setItem2Quantity(0);
+
+        region6.setItem3Name("");
+        region6.setItem3Description("");
+        region6.setItem3Quantity(0);
+
+        //Region 7:
+        region7.setItem1Name("");
+        region7.setItem1Description("");
+        region7.setItem1Quantity(0);
+
+        region7.setItem2Name("");
+        region7.setItem2Description("");
+        region7.setItem2Quantity(0);
+
+        region7.setItem3Name("");
+        region7.setItem3Description("");
+        region7.setItem3Quantity(0);
+
+        // Region 8:
+
+        region8.setItem1Name("");
+        region8.setItem1Description("");
+        region8.setItem1Quantity(0);
+
+        region8.setItem2Name("");
+        region8.setItem2Description("");
+        region8.setItem2Quantity(0);
+
+        region8.setItem3Name("");
+        region8.setItem3Description("");
+        region8.setItem3Quantity(0);
+
+        //Region 9
+        region9.setItem1Name("");
+        region9.setItem1Description("");
+        region9.setItem1Quantity(0);
+
+        region9.setItem2Name("");
+        region9.setItem2Description("");
+        region9.setItem2Quantity(0);
+
+        region9.setItem3Name("");
+        region9.setItem3Description("");
+        region9.setItem3Quantity(0);
+
+        //Region 10:
+
+        region10.setItem1Name("");
+        region10.setItem1Description("");
+        region10.setItem1Quantity(0);
+
+        region2.setItem2Name("");
+        region2.setItem2Description("");
+        region2.setItem2Quantity(0);
+
+        region2.setItem3Name("");
+        region2.setItem3Description("");
+        region2.setItem3Quantity(0);
+
+
+
 
 
         //MUSIC :)

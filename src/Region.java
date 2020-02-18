@@ -145,9 +145,6 @@ public class Region extends Node {
         this.item2Quantity = item2Quantity;
     }
 
-    public void setItem3Quantity(int item3Quantity) {
-        this.item3Quantity = item3Quantity;
-    }
 
     public void setItem1Name(String item1Name) {
         this.item1Name = item1Name;
@@ -159,6 +156,10 @@ public class Region extends Node {
 
     public void setItem3Name(String item3Name) {
         this.item3Name = item3Name;
+    }
+
+    public void setItem3Quantity(int item3Quantity) {
+        this.item3Quantity = item3Quantity;
     }
 
     public int distanceBetween(Region r) {

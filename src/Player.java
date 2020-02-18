@@ -87,4 +87,22 @@ public class Player {
         return this.currentRegion;
     }
 
+    public void sellGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
+        spaceShip.getInventory().remove(item);
+        player.setCredits(player.getCredits() + (int)item.getSellPrice());
+        spaceShip.inventorySize--;
+    }
+
+    public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
+        if (spaceShip.getInventory().size() < spaceShip.getCargoCapacity()) {
+            if (item.getName().equals("fuel")) {
+                spaceShip.setFuel(spaceShip.getFuel() + 20);
+            } else {
+                spaceShip.getInventory().add(item);
+                player.setCredits(player.getCredits() - (int)item.getBuyPrice());
+                spaceShip.inventorySize++;
+            }
+        }
+    }
+
 }

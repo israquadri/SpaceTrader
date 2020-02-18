@@ -30,43 +30,43 @@ public class BeforeRegionPage {
         HashMap<Integer, Integer> xCoords = cg.getX();
         HashMap<Integer, Integer> yCoords = cg.getY();
 
-        Region region1 = new Region(xCoords.get(0), yCoords.get(0), 0,
+        Region region1 = new Region(xCoords.get(0), yCoords.get(0), 2,
                 "Farm", new javafx.scene.image.Image("farm.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p1.png", 100,
                 100, false, true));
-        Region region2 = new Region(xCoords.get(1), yCoords.get(1), 0,
+        Region region2 = new Region(xCoords.get(1), yCoords.get(1), 4,
                 "Safari",  new javafx.scene.image.Image("safari.png", 800,
                 800, false, true), new javafx.scene.image.Image("p2.png", 100,
                 100, false, true));
-        Region region3 = new Region(xCoords.get(2), yCoords.get(2), 0,
+        Region region3 = new Region(xCoords.get(2), yCoords.get(2), 6,
                 "2000s Boy Bands",  new javafx.scene.image.Image("bsb.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p3.png", 100,
                 100, false, true));
-        Region region4 = new Region(xCoords.get(3), yCoords.get(3), 0,
+        Region region4 = new Region(xCoords.get(3), yCoords.get(3), 5,
                 "Scandinavian",  new javafx.scene.image.Image("scandi.jpg", 800,
                 800, false, true),  new javafx.scene.image.Image("p4.png", 100,
                 100, false, true));
-        Region region5 = new Region(xCoords.get(4), yCoords.get(4), 0,
+        Region region5 = new Region(xCoords.get(4), yCoords.get(4), 6,
                 "Arctic",  new javafx.scene.image.Image("arctic.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p5.png", 100,
                 100, false, true));
-        Region region6 = new Region(xCoords.get(5), yCoords.get(5), 0,
+        Region region6 = new Region(xCoords.get(5), yCoords.get(5), 3,
                 "Desert",  new javafx.scene.image.Image("desert.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p6.png", 100,
                 100, false, true));
-        Region region7 = new Region(xCoords.get(6), yCoords.get(6), 0,
+        Region region7 = new Region(xCoords.get(6), yCoords.get(6), 1,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
                 800, false, true), new javafx.scene.image.Image("p7.png", 100,
                 100, false, true));
-        Region region8 = new Region(xCoords.get(7), yCoords.get(7), 0,
+        Region region8 = new Region(xCoords.get(7), yCoords.get(7), 2,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p8.png", 100,
                 100, false, true));
-        Region region9 = new Region(xCoords.get(8), yCoords.get(8), 0,
+        Region region9 = new Region(xCoords.get(8), yCoords.get(8), 7,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p9.png", 100,
                 100, false, true));
-        Region region10 = new Region(xCoords.get(9), yCoords.get(9), 0,
+        Region region10 = new Region(xCoords.get(9), yCoords.get(9), 8,
                 "Disco",  new javafx.scene.image.Image("disco.jpg", 800,
                 800, false, true), new Image("p10.png", 100,
                 100, false, true));

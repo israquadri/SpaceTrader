@@ -1,15 +1,20 @@
 package src;
 
+import java.util.Random;
+
 public class Item {
 	private double sellPrice;
 	private double buyPrice;
 	private String name;
 	private String description;
 	private int quantity;
+	private int basePrice = 10;
+	private Random varRand = new Random();
+	private double variance = varRand.nextDouble();
 
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {
-		sellPrice = (tax * merchantLevel);
-		buyPrice = (tax * merchantLevel) * (.75);
+		sellPrice = basePrice * (1 + tax) + technologyLevel + (merchantLevel * variance);
+		buyPrice = (sellPrice) * (.75);
 		this.name = name;
 		this.description = description;
 		this.quantity = quantity;

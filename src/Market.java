@@ -19,9 +19,11 @@ public class Market {
     }
 
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
-        spaceShip.getInventory().add(item);
-        player.setCredits(player.getCredits() - (int)item.getBuyPrice());
-        spaceShip.inventorySize++;
+        if (spaceShip.getInventory().size() < spaceShip.getCargoCapacity()) {
+            spaceShip.getInventory().add(item);
+            player.setCredits(player.getCredits() - (int)item.getBuyPrice());
+            spaceShip.inventorySize++;
+        }
     }
 
 }

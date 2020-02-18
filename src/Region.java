@@ -13,6 +13,12 @@ public class Region extends Node {
     private Image img2;
     private boolean visited = false;
     private double tax;
+    private String item1Name;
+    private String item1Description;
+    private String item2Name;
+    private String item2Description;
+    private String item3Name;
+    private String item3Description;
 
     public Region() {
 
@@ -57,6 +63,30 @@ public class Region extends Node {
         return tax;
     }
 
+    public String getItem1Description() {
+        return item1Description;
+    }
+
+    public String getItem2Description() {
+        return item2Description;
+    }
+
+    public String getItem3Description() {
+        return item3Description;
+    }
+
+    public String getItem1Name() {
+        return item1Name;
+    }
+
+    public String getItem2Name() {
+        return item2Name;
+    }
+
+    public String getItem3Name() {
+        return item3Name;
+    }
+
     public void setxCoord(int num) {
         this.xCoord = num;
     }
@@ -78,6 +108,30 @@ public class Region extends Node {
     }
     public void setImg2(Image img2) {
         this.img2 = img2;
+    }
+
+    public void setItem1Description(String item1Description) {
+        this.item1Description = item1Description;
+    }
+
+    public void setItem2Description(String item2Description) {
+        this.item2Description = item2Description;
+    }
+
+    public void setItem3Description(String item3Description) {
+        this.item3Description = item3Description;
+    }
+
+    public void setItem1Name(String item1Name) {
+        this.item1Name = item1Name;
+    }
+
+    public void setItem2Name(String item2Name) {
+        this.item2Name = item2Name;
+    }
+
+    public void setItem3Name(String item3Name) {
+        this.item3Name = item3Name;
     }
 
     public int distanceBetween(Region r) {

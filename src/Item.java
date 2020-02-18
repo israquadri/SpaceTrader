@@ -1,25 +1,25 @@
 package src;
 
 public class Item {
-	private int sellPrice;
-	private int buyPrice;
+	private double sellPrice;
+	private double buyPrice;
 	private String name;
 	private String description;
 	private int quantity;
 
-	public Item(int tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {
+	public Item(double tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {
 		sellPrice = (tax * merchantLevel);
-		buyPrice = (int)((tax * merchantLevel) * (.75));
+		buyPrice = (tax * merchantLevel) * (.75);
 		this.name = name;
 		this.description = description;
 		this.quantity = quantity;
 	}
 
-	public int getBuyPrice() {
+	public double getBuyPrice() {
 		return buyPrice;
 	}
 
-	public int getSellPrice() {
+	public double getSellPrice() {
 		return sellPrice;
 	}
 

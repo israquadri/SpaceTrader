@@ -11,5 +11,4 @@ public class Market {
         this.tax = tax;
     }
 
-
 }

@@ -30,6 +30,11 @@ public class MarketPage {
         welcome.setTextAlignment(TextAlignment.CENTER);
         mid.getChildren().add(welcome);
 
+        //Instantiating items
+        Item item1 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), 3);
+        Item item2 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem2Name(), region.getItem2Description(), 5);
+        Item item3 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem3Name(), region.getItem3Description(), 10);
+
 
         //HBox for the top of the screen
         HBox top = new HBox(40);

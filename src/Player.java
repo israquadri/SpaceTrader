@@ -100,7 +100,6 @@ public class Player {
     public void sellGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
         spaceShip.getInventory().remove(item);
         player.setCredits(player.getCredits() + (int)item.getSellPrice());
-        spaceShip.inventorySize--;
     }
 
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
@@ -110,7 +109,6 @@ public class Player {
             } else {
                 spaceShip.getInventory().add(item);
                 player.setCredits(player.getCredits() - (int)item.getBuyPrice());
-                spaceShip.inventorySize++;
             }
         }
     }

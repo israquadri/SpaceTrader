@@ -8,11 +8,12 @@ public class SpaceShip {
     String name;
     int cargoCapacity;
     int health;
-    int inventorySize = inventory.size();
+    Item holder = new Item(20.0, 2, 2, "", "", 1);
 
     public SpaceShip(int fuel, String name, int cargoCapacity, int health) {
         this.fuel = fuel;
         inventory = new ArrayList<Item>();
+        inventory.add(holder);
         this.name = name;
         this.cargoCapacity = cargoCapacity;
         this.health = health;
@@ -48,9 +49,5 @@ public class SpaceShip {
 
     public String getName() {
         return name;
-    }
-
-    public int getInventorySize() {
-        return inventorySize;
     }
 }

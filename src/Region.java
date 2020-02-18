@@ -94,6 +94,9 @@ public class Region extends Node {
         return this.visited;
     }
 
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
 
     @Override
     public Node getStyleableNode() {

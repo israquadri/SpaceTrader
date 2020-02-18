@@ -215,10 +215,10 @@ public class BeforeRegionPage {
 
 
 
-        //MUSIC :)
-        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
-        MediaPlayer mp = new MediaPlayer(music);
-        mp.play();
+//        //MUSIC :)
+//        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
+//        MediaPlayer mp = new MediaPlayer(music);
+//        mp.play();
 
         //STORY DETAILS FADE IN AND OUT
         StackPane root = new StackPane();
@@ -264,7 +264,7 @@ public class BeforeRegionPage {
                         t.setText(storyarr[ndx]);
                         ft0.play();
                     } else {
-                        mp.stop();
+                        //mp.stop();
                         Region currregion = arr[randomNumber];
                         currregion.setVisited();
                         p1.setCurrentRegion(currregion);
@@ -280,7 +280,7 @@ public class BeforeRegionPage {
                 Region currregion = arr[randomNumber];
                 currregion.setVisited();
                 p1.setCurrentRegion(currregion);
-                mp.stop();
+                //mp.stop();
                 RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
             }
 

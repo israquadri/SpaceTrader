@@ -430,7 +430,7 @@ public class ConfigPage {
             p1.setName(characterField.getText());
             if (!p1.getName().equals("") && p1.getSkillPoints() == 0
                     && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-                player.stop();
+                //player.stop();
                 CharacterPage characterPage = new CharacterPage(primaryStage, p1);
             } else {
                 Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish"

@@ -1,9 +1,11 @@
 package src;
 
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -73,9 +75,19 @@ public class MarketPage {
         top.getChildren().add(back);
 
         Button buy = new Button("buy");
-        
+        Button sell = new Button("sell");
+
+        buy.setOnMouseClicked(mouseEvent -> {
+            p1.buyGoods(region, item1, p1.getSpaceShip(), p1);
+        });
+
+        sell.setOnMouseClicked(mouseEvent -> {
+            p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
+        });
+
+
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(top, mid, buy);
+        root.getChildren().addAll(top, mid, buy, sell);
 
         //Making scene show
         primaryStage.setScene(mktscene);

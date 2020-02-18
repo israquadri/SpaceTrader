@@ -86,12 +86,6 @@ public class BeforeRegionPage {
         region1.setItem2Quantity(7);
 
 
-
-
-        //Spaceship
-        SpaceShip spaceShip = new SpaceShip(50, "John Antelope", 20, 9);
-
-
         //MUSIC :)
         Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
         MediaPlayer mp = new MediaPlayer(music);

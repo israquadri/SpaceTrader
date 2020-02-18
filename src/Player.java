@@ -10,9 +10,11 @@ public class Player {
     private int trait4val;
     private String difficulty;
     private Region currentRegion;
+    private SpaceShip spaceShip;
 
     //Getter and Setter-ville
     public Player() {
+        this.spaceShip = new SpaceShip(50, "John Antelope", 15, 5);
     }
 
     public String getName() {
@@ -57,6 +59,14 @@ public class Player {
 
     public int getTrait3Val() {
         return this.trait3val;
+    }
+
+    public SpaceShip getSpaceShip() {
+        return spaceShip;
+    }
+
+    public void setSpaceShip(SpaceShip spaceShip) {
+        this.spaceShip = spaceShip;
     }
 
     public void setTrait3Val(int trait3val) {

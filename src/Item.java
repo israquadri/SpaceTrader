@@ -15,7 +15,7 @@ public class Item {
 	private Image image;
 
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity) {
-		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (merchantLevel * variance));
+		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (variance / merchantLevel));
 		buyPrice = (int)((sellPrice) * (.75));
 		this.name = name;
 		this.quantity = quantity;

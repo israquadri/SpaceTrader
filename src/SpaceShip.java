@@ -19,16 +19,7 @@ public class SpaceShip {
         this.health = health;
     }
 
-<<<<<<< HEAD
-    public String listInventory() {
-        String string = "";
-        for (int i = 0; i < inventory.size(); i++) {
-            string += inventory.get(i).getName() + ", ";
-        }
-        return string;
-    }
-=======
->>>>>>> isra
+
     public void addToInventory(Item i) {
         cargoCapacity--;
         if (inventory.containsKey(i)) {

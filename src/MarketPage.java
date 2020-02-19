@@ -31,20 +31,6 @@ public class MarketPage {
         mid.setAlignment(Pos.TOP_CENTER);
         mid.setPrefHeight(400);
 
-<<<<<<< HEAD
-        //Welcome text for market
-        Text welcome = new Text("Welcome to the \n" + region.getDescription() + " market");
-        welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
-        welcome.setTextAlignment(TextAlignment.CENTER);
-        mid.getChildren().add(welcome);
-
-        //Instantiating items
-        Item item1 = new Item(region.getTax(), p1.getMerchantSkill(), region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), region.getItem1Quantity());
-        Item item2 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem2Name(), region.getItem2Description(), region.getItem2Quantity());
-        Item item3 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem3Name(), region.getItem3Description(), region.getItem3Quantity());
-
-=======
->>>>>>> isra
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
@@ -132,27 +118,8 @@ public class MarketPage {
                 });
         top.getChildren().add(back);
 
-<<<<<<< HEAD
-        Button buy = new Button("buy");
-        Button sell = new Button("sell");
-
-        buy.setOnMouseClicked(mouseEvent -> {
-            int index = item1.findInventoryIndex(p1);
-            p1.buyGoods(region, item1, p1.getSpaceShip(), p1);
-            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Current inventory:" + item1.getName() + "size: " + p1.getSpaceShip().getInventory().size());
-            root.getChildren().add(buyText);
-        });
-
-        sell.setOnMouseClicked(mouseEvent -> {
-            p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
-        });
-
-
-        //Adding different hboxes to root vbox node
-        root.getChildren().addAll(top, testing, itemForSale, mid, buy, sell);
-=======
         root.getChildren().addAll(top, mid);
->>>>>>> isra
+
 
         //Making scene show
         primaryStage.setScene(mktscene);

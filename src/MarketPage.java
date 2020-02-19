@@ -48,6 +48,12 @@ public class MarketPage {
         HBox marketitems = new HBox();
         for (Item i: region.getRegionItems()) {
             Button item = new Button(i.getName());
+
+            Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                    + "s left in stock: " + i.getQuantity());
+            preSale.setShowDelay(Duration.ZERO);
+            item.setTooltip(preSale);
+
             marketitems.getChildren().add(item);
             item.setOnMouseClicked(mouseEvent -> {
                 try {
@@ -66,10 +72,10 @@ public class MarketPage {
                     a.show();
                 }
 
-            Tooltip stock = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                     + "s left in stock: " + i.getQuantity());
-            stock.setShowDelay(Duration.ZERO);
-            item.setTooltip(stock);
+            postSale.setShowDelay(Duration.ZERO);
+            item.setTooltip(postSale);
 
             });
 //            sell.setOnMouseClicked(mouseEvent -> {

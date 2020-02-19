@@ -4,11 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,9 +44,11 @@ public class MarketPage {
         });
 
         HBox marketitems = new HBox();
+        marketitems.setSpacing(15.0);
         for (Item i: region.getRegionItems()) {
             Button item = new Button(i.getName());
-
+            item.setGraphic(new ImageView(i.getImage()));
+            item.setContentDisplay(ContentDisplay.TOP);
             Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                     + "s left in stock: " + i.getQuantity());
             preSale.setShowDelay(Duration.ZERO);

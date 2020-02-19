@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import java.util.Map;
+
 public class InventoryPage {
 
     public InventoryPage(Stage primaryStage, Player p1, Region region, Region[] array) {
@@ -32,6 +34,12 @@ public class InventoryPage {
         back.setOnMouseClicked((MouseEvent m) -> {
             SpaceshipInterior r = new SpaceshipInterior(primaryStage, p1, array);
         });
+
+        HBox myItems = new HBox();
+        for (Map.Entry<Item, Integer> i: p1.getSpaceShip().getInventory().entrySet()) {
+            Button item = new Button("" + i.getKey().getName() + ": " + i.getValue());
+            myItems.getChildren().add(item);
+        }
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
@@ -56,7 +64,7 @@ public class InventoryPage {
                 });
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(back, welcome);
+        root.getChildren().addAll(back, welcome, myItems);
 
         //Making scene show
         primaryStage.setScene(inventory);

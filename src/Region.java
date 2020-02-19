@@ -1,7 +1,9 @@
 package src;
 
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collection;

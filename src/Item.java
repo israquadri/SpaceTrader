@@ -18,7 +18,8 @@ public class Item {
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity) {
 		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (variance / merchantLevel));
 		buyPrice = (int)((sellPrice) * (.75));
-		this.name = name;
+		this.name = name.substring(0, name.indexOf("<"));
+		this.setImage((new Image(name.substring((name.indexOf("<") + 1), name.lastIndexOf(">")))));
 		this.quantity = quantity;
 	}
 
@@ -44,6 +45,10 @@ public class Item {
 
 	public double getVariance() {
 		return variance;
+	}
+
+	public void setName(String s) {
+
 	}
 
 	public Image getImage() {

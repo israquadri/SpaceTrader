@@ -1,8 +1,6 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
 
 public class SpaceShip {
@@ -34,6 +32,10 @@ public class SpaceShip {
         cargoCapacity++;
         int quantity = inventory.get(i);
         inventory.put(i, quantity - 1);
+    }
+
+    public HashMap<Item, Integer> getInventory() {
+        return this.inventory;
     }
 
     public int getFuel() {

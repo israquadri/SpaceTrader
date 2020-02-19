@@ -85,7 +85,7 @@ public class MarketPage {
         buy.setOnMouseClicked(mouseEvent -> {
             int index = item1.findInventoryIndex(p1);
             p1.buyGoods(region, item1, p1.getSpaceShip(), p1);
-            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Now your inventory is as follows:" + p1.getSpaceShip().getInventory().get(index).getName());
+            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Now your inventory is as follows:" + p1.getSpaceShip().listInventory());
             root.getChildren().add(buyText);
         });
 

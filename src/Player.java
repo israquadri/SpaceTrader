@@ -108,8 +108,8 @@ public class Player {
                 spaceShip.setFuel(spaceShip.getFuel() + 20);
             } else {
                 if (item.getQuantity() != 0) {
-                    player.getSpaceShip().getInventory().add(item);
-                    player.setCredits(player.getCredits() - (int) item.getBuyPrice());
+                    this.getSpaceShip().addToInventory(item);
+                    player.setCredits(player.getCredits() - item.getBuyPrice());
                     item.setQuantity(item.getQuantity() - 1);
                 } else if (item.getQuantity() == 0) {
                     //throw exception

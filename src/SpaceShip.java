@@ -19,6 +19,14 @@ public class SpaceShip {
         this.health = health;
 
     }
+
+    public String listInventory() {
+        String string = "";
+        for (int i = 0; i < inventory.size(); i++) {
+            string += inventory.get(i).getName() + ", ";
+        }
+        return string;
+    }
     public void addToInventory(Item i) {
         inventory.add(i);
     }
@@ -50,4 +58,5 @@ public class SpaceShip {
     public String getName() {
         return name;
     }
+
 }

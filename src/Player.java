@@ -103,7 +103,7 @@ public class Player {
     }
 
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) throws IllegalAccessException {
-        if (player.getSpaceShip().getInventoryCapacity() < player.getSpaceShip().getCargoCapacity()) {
+        if (player.getSpaceShip().getCargoCapacity() > 0) {
             if (item.getQuantity() > 0) {
                 item.setQuantity(item.getQuantity() - 1);
                 player.getSpaceShip().addToInventory(item);

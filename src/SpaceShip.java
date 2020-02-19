@@ -20,6 +20,7 @@ public class SpaceShip {
     }
 
     public void addToInventory(Item i) {
+        cargoCapacity--;
         if (inventory.containsKey(i)) {
             int quantity = inventory.get(i);
             inventory.put(i, quantity + 1);
@@ -29,6 +30,7 @@ public class SpaceShip {
     }
 
     public void removeFromInventory(Item i) {
+        cargoCapacity++;
         int quantity = inventory.get(i);
         inventory.put(i, quantity - 1);
     }

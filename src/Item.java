@@ -12,7 +12,7 @@ public class Item {
 	private int quantity;
 	private int basePrice = 10;
 	private Random varRand = new Random();
-	private double variance = varRand.nextDouble();
+	private float variance = varRand.nextFloat();
 	private Image image;
 
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {

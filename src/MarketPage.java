@@ -33,7 +33,7 @@ public class MarketPage {
         mid.getChildren().add(welcome);
 
         //Instantiating items
-        Item item1 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), region.getItem1Quantity());
+        Item item1 = new Item(region.getTax(), 5, region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), region.getItem1Quantity());
         Item item2 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem2Name(), region.getItem2Description(), region.getItem2Quantity());
         Item item3 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem3Name(), region.getItem3Description(), region.getItem3Quantity());
 
@@ -85,7 +85,7 @@ public class MarketPage {
         buy.setOnMouseClicked(mouseEvent -> {
             int index = item1.findInventoryIndex(p1);
             p1.buyGoods(region, item1, p1.getSpaceShip(), p1);
-            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Now your inventory is as follows:" + p1.getSpaceShip().listInventory());
+            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Current inventory:" + item1.getName() + "size: " + p1.getSpaceShip().getInventory().size());
             root.getChildren().add(buyText);
         });
 

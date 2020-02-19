@@ -69,7 +69,7 @@ public class MarketPage {
 //            sell.setOnMouseClicked(mouseEvent -> {
 //                p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
 //            });
-            Tooltip inStock = new Tooltip(i.getName() + "s left in stock: " + i.getQuantity());
+            Tooltip inStock = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
             inStock.setShowDelay(Duration.ZERO);
             item.setTooltip(inStock);
             marketitems.getChildren().add(item);

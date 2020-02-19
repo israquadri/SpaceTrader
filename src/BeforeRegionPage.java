@@ -80,7 +80,7 @@ public class BeforeRegionPage {
 
         //Region 1:
         region1.setItem1Name("Fuel");
-        region1.setItem1Description("fuel your ship so you can go across the galaxies!");
+        region1.setItem1Description("farming is fun");
         region1.setItem1Quantity(5);
 
         region1.setItem2Name("Weaponry");
@@ -93,73 +93,73 @@ public class BeforeRegionPage {
 
         // Region 2:
         region2.setItem1Name("");
-        region2.setItem1Description("");
+        region2.setItem1Description("safari time! Get yourself an animal to defend you!");
         region2.setItem1Quantity(0);
 
         region2.setItem2Name("");
-        region2.setItem2Description("");
+        region2.setItem2Description("fuel your ship so you can go across the galaxies!");
         region2.setItem2Quantity(0);
 
         region2.setItem3Name("");
-        region2.setItem3Description("");
+        region2.setItem3Description("fuel your ship so you can go across the galaxies!");
         region2.setItem3Quantity(0);
 
         // Region 3:
         region3.setItem1Name("");
-        region3.setItem1Description("");
+        region3.setItem1Description("buy our mix tape!");
         region3.setItem1Quantity(0);
 
         region3.setItem2Name("");
-        region3.setItem2Description("");
+        region3.setItem2Description("fuel your ship so you can go across the galaxies!");
         region3.setItem2Quantity(0);
 
         region3.setItem3Name("");
-        region3.setItem3Description("");
+        region3.setItem3Description("fuel your ship so you can go across the galaxies!");
         region3.setItem3Quantity(0);
 
         // Region 4:
         region4.setItem1Name("");
-        region4.setItem1Description("");
+        region4.setItem1Description("Get some fishing gear so you can catch some food while you are here!");
         region4.setItem1Quantity(0);
 
         region4.setItem2Name("");
-        region4.setItem2Description("");
+        region4.setItem2Description("fuel your ship so you can go across the galaxies!");
         region4.setItem2Quantity(0);
 
         region4.setItem3Name("");
-        region4.setItem3Description("");
+        region4.setItem3Description("fuel your ship so you can go across the galaxies!");
         region4.setItem3Quantity(0);
 
         //Region 5:
         region5.setItem1Name("");
-        region5.setItem1Description("");
+        region5.setItem1Description("Buy some air conditioning!");
         region5.setItem1Quantity(0);
 
         region5.setItem2Name("");
-        region5.setItem2Description("");
+        region5.setItem2Description("fuel your ship so you can go across the galaxies!");
         region5.setItem2Quantity(0);
 
         region5.setItem3Name("");
-        region5.setItem3Description("");
+        region5.setItem3Description("fuel your ship so you can go across the galaxies!");
         region5.setItem3Quantity(0);
 
         // Region 6:
 
         region6.setItem1Name("");
-        region6.setItem1Description("");
+        region6.setItem1Description("buy dessert in the desert");
         region6.setItem1Quantity(0);
 
         region6.setItem2Name("");
-        region6.setItem2Description("");
+        region6.setItem2Description("fuel your ship so you can go across the galaxies!");
         region6.setItem2Quantity(0);
 
         region6.setItem3Name("");
-        region6.setItem3Description("");
+        region6.setItem3Description("fuel your ship so you can go across the galaxies!");
         region6.setItem3Quantity(0);
 
         //Region 7:
         region7.setItem1Name("");
-        region7.setItem1Description("");
+        region7.setItem1Description("glitch");
         region7.setItem1Quantity(0);
 
         region7.setItem2Name("");
@@ -167,48 +167,48 @@ public class BeforeRegionPage {
         region7.setItem2Quantity(0);
 
         region7.setItem3Name("");
-        region7.setItem3Description("");
+        region7.setItem3Description("fuel your ship so you can go across the galaxies!");
         region7.setItem3Quantity(0);
 
         // Region 8:
 
         region8.setItem1Name("");
-        region8.setItem1Description("");
+        region8.setItem1Description("medieval");
         region8.setItem1Quantity(0);
 
         region8.setItem2Name("");
-        region8.setItem2Description("");
+        region8.setItem2Description("fuel your ship so you can go across the galaxies!");
         region8.setItem2Quantity(0);
 
         region8.setItem3Name("");
-        region8.setItem3Description("");
+        region8.setItem3Description("fuel your ship so you can go across the galaxies!");
         region8.setItem3Quantity(0);
 
         //Region 9
         region9.setItem1Name("");
-        region9.setItem1Description("");
+        region9.setItem1Description("wildin in the west");
         region9.setItem1Quantity(0);
 
         region9.setItem2Name("");
-        region9.setItem2Description("");
+        region9.setItem2Description("fuel your ship so you can go across the galaxies!");
         region9.setItem2Quantity(0);
 
         region9.setItem3Name("");
-        region9.setItem3Description("");
+        region9.setItem3Description("fuel your ship so you can go across the galaxies!");
         region9.setItem3Quantity(0);
 
         //Region 10:
 
         region10.setItem1Name("");
-        region10.setItem1Description("");
+        region10.setItem1Description("Buy some fashionable clothes so everyone knows you are high society and go to discos!!");
         region10.setItem1Quantity(0);
 
         region2.setItem2Name("");
-        region2.setItem2Description("");
+        region2.setItem2Description("fuel your ship so you can go across the galaxies!");
         region2.setItem2Quantity(0);
 
         region2.setItem3Name("");
-        region2.setItem3Description("");
+        region2.setItem3Description("fuel your ship so you can go across the galaxies!");
         region2.setItem3Quantity(0);
 
 

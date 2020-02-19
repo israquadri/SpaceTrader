@@ -51,6 +51,9 @@ public class MarketPage {
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
 
+        // testing backend
+        Text testing = new Text("Testing: " + p1.getSpaceShip().getName() + ", " + region.getItem1Description());
+
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -87,7 +90,7 @@ public class MarketPage {
 
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(top, mid, buy, sell);
+        root.getChildren().addAll(top, testing, mid, buy, sell);
 
         //Making scene show
         primaryStage.setScene(mktscene);

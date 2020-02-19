@@ -5,8 +5,8 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 public class Item {
-	private double sellPrice;
-	private double buyPrice;
+	private int sellPrice;
+	private int buyPrice;
 	private String name;
 	private String description;
 	private int quantity;
@@ -16,18 +16,30 @@ public class Item {
 	private Image image;
 
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {
-		sellPrice = basePrice * (1 + tax) + technologyLevel + (merchantLevel * variance);
-		buyPrice = (sellPrice) * (.75);
+		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (merchantLevel * variance));
+		buyPrice = (int)((sellPrice) * (.75));
 		this.name = name;
 		this.description = description;
 		this.quantity = quantity;
 	}
 
-	public double getBuyPrice() {
+	public int findInventoryIndex(Player player) {
+		int index = 0;
+		for (int i = 0; i < player.getSpaceShip().getInventory().size(); i++) {
+			if (player.getSpaceShip().getInventory().get(i).equals(this.getName())) {
+				index = i;
+			} else {
+				//throw exception because it isnt there
+			}
+		}
+		return index;
+	}
+
+	public int getBuyPrice() {
 		return buyPrice;
 	}
 
-	public double getSellPrice() {
+	public int getSellPrice() {
 		return sellPrice;
 	}
 
@@ -53,5 +65,9 @@ public class Item {
 
 	public void setImage(Image image) {
 		this.image = image;
+	}
+
+	public void setQuantity(int num) {
+		this.quantity = num;
 	}
 }

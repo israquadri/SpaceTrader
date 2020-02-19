@@ -103,12 +103,17 @@ public class Player {
     }
 
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
-        if (spaceShip.getInventory().size() < spaceShip.getCargoCapacity()) {
+        if (player.getSpaceShip().getInventory().size() < player.getSpaceShip().getCargoCapacity()) {
             if (item.getName().equals("fuel")) {
                 spaceShip.setFuel(spaceShip.getFuel() + 20);
             } else {
-                spaceShip.getInventory().add(item);
-                player.setCredits(player.getCredits() - (int)item.getBuyPrice());
+                if (item.getQuantity() != 0) {
+                    player.getSpaceShip().getInventory().add(item);
+                    player.setCredits(player.getCredits() - (int) item.getBuyPrice());
+                    item.setQuantity(item.getQuantity() - 1);
+                } else if (item.getQuantity() == 0) {
+                    //throw exception
+                }
             }
         }
     }

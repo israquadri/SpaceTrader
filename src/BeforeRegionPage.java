@@ -92,7 +92,7 @@ public class BeforeRegionPage {
         region1.setItem3Quantity(7);
 
         // Region 2:
-        region2.setItem1Name("");
+        region2.setItem1Name("Companion Capuchin Monkey");
         region2.setItem1Description("safari time! Get yourself an animal to defend you!");
         region2.setItem1Quantity(0);
 
@@ -105,7 +105,7 @@ public class BeforeRegionPage {
         region2.setItem3Quantity(0);
 
         // Region 3:
-        region3.setItem1Name("");
+        region3.setItem1Name("Justin Bieber: My World 2.0");
         region3.setItem1Description("buy our mix tape!");
         region3.setItem1Quantity(0);
 
@@ -118,7 +118,7 @@ public class BeforeRegionPage {
         region3.setItem3Quantity(0);
 
         // Region 4:
-        region4.setItem1Name("");
+        region4.setItem1Name("Rod and reel");
         region4.setItem1Description("Get some fishing gear so you can catch some food while you are here!");
         region4.setItem1Quantity(0);
 
@@ -131,7 +131,7 @@ public class BeforeRegionPage {
         region4.setItem3Quantity(0);
 
         //Region 5:
-        region5.setItem1Name("");
+        region5.setItem1Name("Ice");
         region5.setItem1Description("Buy some air conditioning!");
         region5.setItem1Quantity(0);
 
@@ -145,7 +145,7 @@ public class BeforeRegionPage {
 
         // Region 6:
 
-        region6.setItem1Name("");
+        region6.setItem1Name("croissants");
         region6.setItem1Description("buy dessert in the desert");
         region6.setItem1Quantity(0);
 
@@ -158,7 +158,7 @@ public class BeforeRegionPage {
         region6.setItem3Quantity(0);
 
         //Region 7:
-        region7.setItem1Name("");
+        region7.setItem1Name("GPS System");
         region7.setItem1Description("glitch");
         region7.setItem1Quantity(0);
 
@@ -172,7 +172,7 @@ public class BeforeRegionPage {
 
         // Region 8:
 
-        region8.setItem1Name("");
+        region8.setItem1Name("Sword");
         region8.setItem1Description("medieval");
         region8.setItem1Quantity(0);
 
@@ -185,7 +185,7 @@ public class BeforeRegionPage {
         region8.setItem3Quantity(0);
 
         //Region 9
-        region9.setItem1Name("");
+        region9.setItem1Name("Bison burger");
         region9.setItem1Description("wildin in the west");
         region9.setItem1Quantity(0);
 
@@ -199,7 +199,7 @@ public class BeforeRegionPage {
 
         //Region 10:
 
-        region10.setItem1Name("");
+        region10.setItem1Name("Disco pants");
         region10.setItem1Description("Buy some fashionable clothes so everyone knows you are high society and go to discos!!");
         region10.setItem1Quantity(0);
 

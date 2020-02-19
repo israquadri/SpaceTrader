@@ -13,18 +13,6 @@ public class Market {
         this.tax = tax;
     }
 
-    public int findInventoryIndex(SpaceShip spaceShip, Item item) {
-        int index = 0;
-        for (int i = 0; i < spaceShip.getInventory().size(); i++) {
-            if (spaceShip.getInventory().get(i).equals(item.getName())) {
-                index = i;
-            } else {
-                //throw exception because it isnt there
-            }
-        }
-        return index;
-    }
-
     public Item getItemWanted() {
         return itemWanted;
     }

@@ -51,8 +51,10 @@ public class MarketPage {
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
 
-        // testing backend
+        // testing backend, it works!!
         Text testing = new Text("Testing: " + p1.getSpaceShip().getName() + ", " + region.getItem1Description());
+        Text itemForSale = new Text("For sale: " + item1.getName() + ". The price is " + item1.getBuyPrice());
+
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
@@ -81,7 +83,10 @@ public class MarketPage {
         Button sell = new Button("sell");
 
         buy.setOnMouseClicked(mouseEvent -> {
+            int index = item1.findInventoryIndex(p1);
             p1.buyGoods(region, item1, p1.getSpaceShip(), p1);
+            Text buyText = new Text(p1.getName() + ", you just bought " + item1.getName() + " for " + item1.getBuyPrice() + ". Now your inventory is as follows:" + p1.getSpaceShip().getInventory().get(index).getName());
+            root.getChildren().add(buyText);
         });
 
         sell.setOnMouseClicked(mouseEvent -> {
@@ -90,7 +95,7 @@ public class MarketPage {
 
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(top, testing, mid, buy, sell);
+        root.getChildren().addAll(top, testing, itemForSale, mid, buy, sell);
 
         //Making scene show
         primaryStage.setScene(mktscene);

@@ -4,10 +4,10 @@ public class Player {
     private String name;
     private int skillPoints;
     private int credits;
-    private int trait1val;
-    private int trait2val;
-    private int trait3val;
-    private int trait4val;
+    private int pilotSkill;
+    private int fighterSkill;
+    private int merchantSkill;
+    private int engineerSkill;
     private String difficulty;
     private Region currentRegion;
     private SpaceShip spaceShip;
@@ -41,24 +41,20 @@ public class Player {
         this.credits = credits;
     }
 
-    public int getTrait1Val() {
-        return this.trait1val;
+    public int getPilotSkill() {
+        return pilotSkill;
     }
 
-    public void setTrait1Val(int trait1val) {
-        this.trait1val = trait1val;
+    public int getMerchantSkill() {
+        return merchantSkill;
     }
 
-    public int getTrait2Val() {
-        return this.trait2val;
+    public int getFighterSkill() {
+        return fighterSkill;
     }
 
-    public void setTrait2Val(int trait2val) {
-        this.trait2val = trait2val;
-    }
-
-    public int getTrait3Val() {
-        return this.trait3val;
+    public int getEngineerSkill() {
+        return engineerSkill;
     }
 
     public SpaceShip getSpaceShip() {
@@ -69,16 +65,20 @@ public class Player {
         this.spaceShip = spaceShip;
     }
 
-    public void setTrait3Val(int trait3val) {
-        this.trait3val = trait3val;
+    public void setPilotSkill(int pilotSkill) {
+        this.pilotSkill = pilotSkill;
     }
 
-    public int getTrait4Val() {
-        return this.trait4val;
+    public void setFighterSkill(int fighterSkill) {
+        this.fighterSkill = fighterSkill;
     }
 
-    public void setTrait4Val(int trait4val) {
-        this.trait4val = trait4val;
+    public void setMerchantSkill(int merchantSkill) {
+        this.merchantSkill = merchantSkill;
+    }
+
+    public void setEngineerSkill(int engineerSkill) {
+        this.engineerSkill = engineerSkill;
     }
 
     public void setDifficulty(String difficulty) {

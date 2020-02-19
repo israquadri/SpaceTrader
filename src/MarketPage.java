@@ -33,7 +33,7 @@ public class MarketPage {
         mid.getChildren().add(welcome);
 
         //Instantiating items
-        Item item1 = new Item(region.getTax(), region.getMerchantLevel(), region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), region.getItem1Quantity());
+        Item item1 = new Item(region.getTax(), p1.getMerchantSkill(), region.getTechnologyLevel(), region.getItem1Name(), region.getItem1Description(), region.getItem1Quantity());
         Item item2 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem2Name(), region.getItem2Description(), region.getItem2Quantity());
         Item item3 = new Item(region.getTax(), p1.getCredits(), region.getTechnologyLevel(), region.getItem3Name(), region.getItem3Description(), region.getItem3Quantity());
 

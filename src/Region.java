@@ -3,6 +3,11 @@ package src;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Random;
+
 public class Region extends Node {
 
     private int xCoord;
@@ -12,21 +17,31 @@ public class Region extends Node {
     private Image img1;
     private Image img2;
     private boolean visited = false;
+    private double tax;
+
+    private ArrayList<Item> regionItems = new ArrayList<Item>();
 
     public Region() {
 
     }
 
     public Region(int xCoord, int yCoord, int technologyLevel,
-                  String description, Image img1, Image img2) {
+                  String description, Image img1, Image img2, String[] items, Player p1) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.technologyLevel = technologyLevel;
         this.description = description;
         this.img1 = img1;
         this.img2 = img2;
+        Random rand = new Random();
+        for (String itemName: items) {
+            Item i = new Item(tax, p1.getCredits(), technologyLevel, itemName, rand.nextInt(10));
+            regionItems.add(i);
+        }
+    }
 
-
+    public ArrayList<Item> getRegionItems() {
+        return this.regionItems;
     }
 
     public int getxCoord() {
@@ -51,6 +66,8 @@ public class Region extends Node {
     public Image getImg2() {
         return this.img2;
     }
+
+
 
     public void setxCoord(int num) {
         this.xCoord = num;
@@ -89,6 +106,9 @@ public class Region extends Node {
         return this.visited;
     }
 
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
 
     @Override
     public Node getStyleableNode() {

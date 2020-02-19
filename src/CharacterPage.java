@@ -58,10 +58,10 @@ public class CharacterPage {
 
         HBox bt2 = new HBox();
 
-        //SOUND EFFECT
-        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        MediaPlayer mp = new MediaPlayer(effect);
-        mp.play();
+//        //SOUND EFFECT
+//        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+//        MediaPlayer mp = new MediaPlayer(effect);
+//        mp.play();
 
         // ADDING CHARACTER SHEET SCREEN TEXT NODES
         Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -74,10 +74,10 @@ public class CharacterPage {
         yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-        Text yourTraits = new Text("Your points for Pilot: " + p1.getTrait1Val()
-                + "\nYour points for Fighter: " + p1.getTrait2Val()
-                + "\nYour points for Merchant: " + p1.getTrait3Val()
-                + "\nYour points for Engineer: " + p1.getTrait4Val());
+        Text yourTraits = new Text("Your points for Pilot: " + p1.getPilotSkill()
+                + "\nYour points for Fighter: " + p1.getFighterSkill()
+                + "\nYour points for Merchant: " + p1.getMerchantSkill()
+                + "\nYour points for Engineer: " + p1.getEngineerSkill());
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
@@ -91,7 +91,7 @@ public class CharacterPage {
         toScene4.setAlignment(Pos.BASELINE_LEFT);
 
         toScene4.setOnMouseClicked(mouseEvent -> {
-            mp.stop();
+            //mp.stop();
             BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
         });
 

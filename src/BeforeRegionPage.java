@@ -30,46 +30,56 @@ public class BeforeRegionPage {
         HashMap<Integer, Integer> xCoords = cg.getX();
         HashMap<Integer, Integer> yCoords = cg.getY();
 
+        String[] region1items = {"Fuel", "Weaponry", "Seeds", "farmitem4", "farmitem5", "farmitem6"};
         Region region1 = new Region(xCoords.get(0), yCoords.get(0), 2,
                 "Farm", new javafx.scene.image.Image("farm.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p1.png", 100,
-                100, false, true));
+                100, false, true), region1items, p1);
+        String[] region2items = {"Companion Capuchin Monkey", "Fuel", "Diamond", "safari4", "safari5", "fuel"};
         Region region2 = new Region(xCoords.get(1), yCoords.get(1), 4,
                 "Safari",  new javafx.scene.image.Image("safari.png", 800,
                 800, false, true), new javafx.scene.image.Image("p2.png", 100,
-                100, false, true));
+                100, false, true), region2items, p1);
+        String[] region3items = {"Justin Bieber: My World 2.0", "boyband2", "Fuel", "boyband4", "boyband5", "fuel"};
         Region region3 = new Region(xCoords.get(2), yCoords.get(2), 6,
                 "2000s Boy Bands",  new javafx.scene.image.Image("bsb.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p3.png", 100,
-                100, false, true));
+                100, false, true), region3items, p1);
+        String[] region4items = {"Rod & Reel", "Fuel", "scandi3", "scandi4", "scandi5", "scandi6"};
         Region region4 = new Region(xCoords.get(3), yCoords.get(3), 5,
                 "Scandinavian",  new javafx.scene.image.Image("scandi.jpg", 800,
                 800, false, true),  new javafx.scene.image.Image("p4.png", 100,
-                100, false, true));
+                100, false, true), region4items, p1);
+        String[] region5items = {"Air Conditioning", "Ice", "Fuel", "arctic4", "arctic5", "arctic6"};
         Region region5 = new Region(xCoords.get(4), yCoords.get(4), 6,
                 "Arctic",  new javafx.scene.image.Image("arctic.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p5.png", 100,
-                100, false, true));
+                100, false, true), region5items, p1);
+        String[] region6items = {"Croissants", "Fuel", "desert3", "desert4", "desert5", "fuel"};
         Region region6 = new Region(xCoords.get(5), yCoords.get(5), 3,
                 "Desert",  new javafx.scene.image.Image("desert.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p6.png", 100,
-                100, false, true));
+                100, false, true), region6items, p1);
+        String[] region7items = {"glitch1", "GPS", "glitch3", "glitch4", "glitch5", "glitch6"};
         Region region7 = new Region(xCoords.get(6), yCoords.get(6), 1,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
                 800, false, true), new javafx.scene.image.Image("p7.png", 100,
-                100, false, true));
+                100, false, true), region7items, p1);
+        String[] region8items = {"Sword", "med2", "Bow and Arrow", "med4", "med5", "med6"};
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 2,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p8.png", 100,
-                100, false, true));
+                100, false, true), region8items, p1);
+        String[] region9items = {"Bison Burger", "wild2", "wild3", "Fuel", "wild5", "fuel"};
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 7,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p9.png", 100,
-                100, false, true));
+                100, false, true), region9items, p1);
+        String[] region10items = {"Disco Pant", "disco2", "disco3", "disco4", "disco5", "disco6"};
         Region region10 = new Region(xCoords.get(9), yCoords.get(9), 8,
                 "Disco",  new javafx.scene.image.Image("disco.jpg", 800,
                 800, false, true), new Image("p10.png", 100,
-                100, false, true));
+                100, false, true), region10items, p1);
 
         Region[] arr = {region1, region2, region3, region4, region5,
                         region6, region7, region8, region9, region10};
@@ -77,10 +87,10 @@ public class BeforeRegionPage {
         int randomNumber = r.nextInt(arr.length);
 
 
-        //MUSIC :)
-        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
-        MediaPlayer mp = new MediaPlayer(music);
-        mp.play();
+//        //MUSIC :)
+//        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
+//        MediaPlayer mp = new MediaPlayer(music);
+//        mp.play();
 
         //STORY DETAILS FADE IN AND OUT
         StackPane root = new StackPane();
@@ -126,7 +136,7 @@ public class BeforeRegionPage {
                         t.setText(storyarr[ndx]);
                         ft0.play();
                     } else {
-                        mp.stop();
+                        //mp.stop();
                         Region currregion = arr[randomNumber];
                         currregion.setVisited();
                         p1.setCurrentRegion(currregion);
@@ -142,7 +152,7 @@ public class BeforeRegionPage {
                 Region currregion = arr[randomNumber];
                 currregion.setVisited();
                 p1.setCurrentRegion(currregion);
-                mp.stop();
+                //mp.stop();
                 RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
             }
 

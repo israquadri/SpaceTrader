@@ -37,13 +37,13 @@ public class ConfigPage {
 
         //Make the progress bars and accompanying text here so can use them in difficulty buttons
         ProgressBar t1pb = new ProgressBar(0);
-        Text t1 = new Text("Pilot: " + p1.getTrait1Val());
+        Text t1 = new Text("Pilot: " + p1.getPilotSkill());
         ProgressBar t2pb = new ProgressBar(0);
-        Text t2 = new Text("Fighter: " + p1.getTrait2Val());
+        Text t2 = new Text("Fighter: " + p1.getFighterSkill());
         ProgressBar t3pb = new ProgressBar(0);
-        Text t3 = new Text("Merchant: " + p1.getTrait3Val());
+        Text t3 = new Text("Merchant: " + p1.getMerchantSkill());
         ProgressBar t4pb = new ProgressBar(0);
-        Text t4 = new Text("Engineer: " + p1.getTrait4Val());
+        Text t4 = new Text("Engineer: " + p1.getEngineerSkill());
 
 
         //Create a new vbox for left side of screen and add box
@@ -102,18 +102,18 @@ public class ConfigPage {
             p1.setCredits(1000);
             p1.setDifficulty("easy");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
-            p1.setTrait1Val(0);
-            p1.setTrait2Val(0);
-            p1.setTrait3Val(0);
-            p1.setTrait4Val(0);
-            t1.setText("Pilot: " + p1.getTrait1Val());
-            t2.setText("Fighter: " + p1.getTrait2Val());
-            t3.setText("Merchant: " + p1.getTrait3Val());
-            t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 8.0);
-            t2pb.setProgress(p1.getTrait2Val() / 8.0);
-            t3pb.setProgress(p1.getTrait3Val() / 8.0);
-            t4pb.setProgress(p1.getTrait4Val() / 8.0);
+            p1.setPilotSkill(0);
+            p1.setFighterSkill(0);
+            p1.setMerchantSkill(0);
+            p1.setEngineerSkill(0);
+            t1.setText("Pilot: " + p1.getPilotSkill());
+            t2.setText("Fighter: " + p1.getFighterSkill());
+            t3.setText("Merchant: " + p1.getMerchantSkill());
+            t4.setText("Engineer: " + p1.getEngineerSkill());
+            t1pb.setProgress(p1.getPilotSkill() / 8.0);
+            t2pb.setProgress(p1.getFighterSkill() / 8.0);
+            t3pb.setProgress(p1.getMerchantSkill() / 8.0);
+            t4pb.setProgress(p1.getEngineerSkill() / 8.0);
 
 
         });
@@ -123,18 +123,18 @@ public class ConfigPage {
             p1.setCredits(500);
             p1.setDifficulty("medium");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
-            p1.setTrait1Val(0);
-            p1.setTrait2Val(0);
-            p1.setTrait3Val(0);
-            p1.setTrait4Val(0);
-            t1.setText("Pilot: " + p1.getTrait1Val());
-            t2.setText("Fighter: " + p1.getTrait2Val());
-            t3.setText("Merchant: " + p1.getTrait3Val());
-            t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 8.0);
-            t2pb.setProgress(p1.getTrait2Val() / 8.0);
-            t3pb.setProgress(p1.getTrait3Val() / 8.0);
-            t4pb.setProgress(p1.getTrait4Val() / 8.0);
+            p1.setPilotSkill(0);
+            p1.setFighterSkill(0);
+            p1.setMerchantSkill(0);
+            p1.setEngineerSkill(0);
+            t1.setText("Pilot: " + p1.getPilotSkill());
+            t2.setText("Fighter: " + p1.getFighterSkill());
+            t3.setText("Merchant: " + p1.getMerchantSkill());
+            t4.setText("Engineer: " + p1.getEngineerSkill());
+            t1pb.setProgress(p1.getPilotSkill() / 8.0);
+            t2pb.setProgress(p1.getFighterSkill() / 8.0);
+            t3pb.setProgress(p1.getMerchantSkill() / 8.0);
+            t4pb.setProgress(p1.getEngineerSkill() / 8.0);
 
         });
         //event handler for hard button
@@ -143,18 +143,18 @@ public class ConfigPage {
             p1.setCredits(100);
             p1.setDifficulty("hard");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
-            p1.setTrait1Val(0);
-            p1.setTrait2Val(0);
-            p1.setTrait3Val(0);
-            p1.setTrait4Val(0);
-            t1.setText("Pilot: " + p1.getTrait1Val());
-            t2.setText("Fighter: " + p1.getTrait2Val());
-            t3.setText("Merchant: " + p1.getTrait3Val());
-            t4.setText("Engineer: " + p1.getTrait4Val());
-            t1pb.setProgress(p1.getTrait1Val() / 8.0);
-            t2pb.setProgress(p1.getTrait2Val() / 8.0);
-            t3pb.setProgress(p1.getTrait3Val() / 8.0);
-            t4pb.setProgress(p1.getTrait4Val() / 8.0);
+            p1.setPilotSkill(0);
+            p1.setFighterSkill(0);
+            p1.setMerchantSkill(0);
+            p1.setEngineerSkill(0);
+            t1.setText("Pilot: " + p1.getPilotSkill());
+            t2.setText("Fighter: " + p1.getFighterSkill());
+            t3.setText("Merchant: " + p1.getMerchantSkill());
+            t4.setText("Engineer: " + p1.getEngineerSkill());
+            t1pb.setProgress(p1.getPilotSkill() / 8.0);
+            t2pb.setProgress(p1.getFighterSkill() / 8.0);
+            t3pb.setProgress(p1.getMerchantSkill() / 8.0);
+            t4pb.setProgress(p1.getEngineerSkill() / 8.0);
 
         });
         //Adding radio buttons to vbox
@@ -207,29 +207,29 @@ public class ConfigPage {
         trait1.getChildren().add(t1inc);
         t1dec.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() + 1);
-            p1.setTrait1Val(p1.getTrait1Val() - 1);
-            if (p1.getTrait1Val() < 0) {
-                p1.setTrait1Val(0);
+            p1.setPilotSkill(p1.getPilotSkill() - 1);
+            if (p1.getPilotSkill() < 0) {
+                p1.setPilotSkill(0);
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
-            t1.setText("Pilot: " + p1.getTrait1Val());
-            t1pb.setProgress(p1.getTrait1Val() / 8.0);
+            t1.setText("Pilot: " + p1.getPilotSkill());
+            t1pb.setProgress(p1.getPilotSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
         t1inc.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() - 1);
-            p1.setTrait1Val(p1.getTrait1Val() + 1);
+            p1.setPilotSkill(p1.getPilotSkill() + 1);
             if (p1.getSkillPoints() < 0) {
                 p1.setSkillPoints(0);
-                p1.setTrait1Val(p1.getTrait1Val() - 1);
+                p1.setPilotSkill(p1.getPilotSkill() - 1);
             }
-            if (p1.getTrait1Val() > 8) {
-                p1.setTrait1Val(8);
+            if (p1.getPilotSkill() > 8) {
+                p1.setPilotSkill(8);
                 p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
-            t1.setText("Pilot: " + p1.getTrait1Val());
-            t1pb.setProgress(p1.getTrait1Val() / 8.0);
+            t1.setText("Pilot: " + p1.getPilotSkill());
+            t1pb.setProgress(p1.getPilotSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -245,29 +245,29 @@ public class ConfigPage {
         trait2.getChildren().add(t2inc);
         t2dec.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() + 1);
-            p1.setTrait2Val(p1.getTrait2Val() - 1);
-            if (p1.getTrait2Val() < 0) {
-                p1.setTrait2Val(0);
+            p1.setFighterSkill(p1.getFighterSkill() - 1);
+            if (p1.getFighterSkill() < 0) {
+                p1.setFighterSkill(0);
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
-            t2.setText("Fighter: " + p1.getTrait2Val());
-            t2pb.setProgress(p1.getTrait2Val() / 8.0);
+            t2.setText("Fighter: " + p1.getFighterSkill());
+            t2pb.setProgress(p1.getFighterSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
         t2inc.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() - 1);
-            p1.setTrait2Val(p1.getTrait2Val() + 1);
+            p1.setFighterSkill(p1.getFighterSkill() + 1);
             if (p1.getSkillPoints() < 0) {
                 p1.setSkillPoints(0);
-                p1.setTrait2Val(p1.getTrait2Val() - 1);
+                p1.setFighterSkill(p1.getFighterSkill() - 1);
             }
-            if (p1.getTrait2Val() > 8) {
-                p1.setTrait2Val(8);
+            if (p1.getFighterSkill() > 8) {
+                p1.setFighterSkill(8);
                 p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
-            t2.setText("Fighter: " + p1.getTrait2Val());
-            t2pb.setProgress(p1.getTrait2Val() / 8.0);
+            t2.setText("Fighter: " + p1.getFighterSkill());
+            t2pb.setProgress(p1.getFighterSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -283,29 +283,29 @@ public class ConfigPage {
         trait3.getChildren().add(t3inc);
         t3dec.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() + 1);
-            p1.setTrait3Val(p1.getTrait3Val() - 1);
-            if (p1.getTrait3Val() < 0) {
-                p1.setTrait3Val(0);
+            p1.setMerchantSkill(p1.getMerchantSkill() - 1);
+            if (p1.getMerchantSkill() < 0) {
+                p1.setMerchantSkill(0);
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
-            t3.setText("Merchant: " + p1.getTrait3Val());
-            t3pb.setProgress(p1.getTrait3Val() / 8.0);
+            t3.setText("Merchant: " + p1.getMerchantSkill());
+            t3pb.setProgress(p1.getMerchantSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
         t3inc.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() - 1);
-            p1.setTrait3Val(p1.getTrait3Val() + 1);
+            p1.setMerchantSkill(p1.getMerchantSkill() + 1);
             if (p1.getSkillPoints() < 0) {
                 p1.setSkillPoints(0);
-                p1.setTrait3Val(p1.getTrait3Val() - 1);
+                p1.setMerchantSkill(p1.getMerchantSkill() - 1);
             }
-            if (p1.getTrait3Val() > 8) {
-                p1.setTrait3Val(8);
+            if (p1.getMerchantSkill() > 8) {
+                p1.setMerchantSkill(8);
                 p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
-            t3.setText("Merchant: " + p1.getTrait3Val());
-            t3pb.setProgress(p1.getTrait3Val() / 8.0);
+            t3.setText("Merchant: " + p1.getMerchantSkill());
+            t3pb.setProgress(p1.getMerchantSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -320,29 +320,29 @@ public class ConfigPage {
         trait4.getChildren().add(t4inc);
         t4dec.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() + 1);
-            p1.setTrait4Val(p1.getTrait4Val() - 1);
-            if (p1.getTrait4Val() < 0) {
-                p1.setTrait4Val(0);
+            p1.setEngineerSkill(p1.getEngineerSkill() - 1);
+            if (p1.getEngineerSkill() < 0) {
+                p1.setEngineerSkill(0);
                 p1.setSkillPoints(p1.getSkillPoints() - 1);
             }
-            t4.setText("Engineer " + p1.getTrait4Val());
-            t4pb.setProgress(p1.getTrait4Val() / 8.0);
+            t4.setText("Engineer " + p1.getEngineerSkill());
+            t4pb.setProgress(p1.getEngineerSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
 
         });
         t4inc.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(p1.getSkillPoints() - 1);
-            p1.setTrait4Val(p1.getTrait4Val() + 1);
+            p1.setEngineerSkill(p1.getEngineerSkill() + 1);
             if (p1.getSkillPoints() < 0) {
                 p1.setSkillPoints(0);
-                p1.setTrait4Val(p1.getTrait4Val() - 1);
+                p1.setEngineerSkill(p1.getEngineerSkill() - 1);
             }
-            if (p1.getTrait4Val() > 8) {
-                p1.setTrait4Val(8);
+            if (p1.getEngineerSkill() > 8) {
+                p1.setEngineerSkill(8);
                 p1.setSkillPoints(p1.getSkillPoints() + 1);
             }
-            t4.setText("Engineer: " + p1.getTrait4Val());
-            t4pb.setProgress(p1.getTrait4Val() / 8.0);
+            t4.setText("Engineer: " + p1.getEngineerSkill());
+            t4pb.setProgress(p1.getEngineerSkill() / 8.0);
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
         });
 
@@ -430,7 +430,7 @@ public class ConfigPage {
             p1.setName(characterField.getText());
             if (!p1.getName().equals("") && p1.getSkillPoints() == 0
                     && (easy.isSelected() || medium.isSelected() || hard.isSelected())) {
-                player.stop();
+                //player.stop();
                 CharacterPage characterPage = new CharacterPage(primaryStage, p1);
             } else {
                 Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish"

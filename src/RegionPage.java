@@ -60,6 +60,14 @@ public class RegionPage {
             MarketPage mkt = new MarketPage(primaryStage, p1, region, array);
         });
 
+        Button toSpaceship = new Button("Spaceship");
+        toSpaceship.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 20px;");
+        toSpaceship.setTextFill(Color.WHITE);
+        toSpaceship.setOnMouseClicked((MouseEvent m) -> {
+            SpaceshipInterior interior = new SpaceshipInterior(primaryStage, p1, array);
+        });
+
         //Drop Shadow effect
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -71,6 +79,13 @@ public class RegionPage {
                         toMarket.setEffect(shadow);
                     }
                 });
+        toSpaceship.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        toSpaceship.setEffect(shadow);
+                    }
+                });
         //adding the shadow when the mouse cursor is on
         toMarket.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
@@ -79,11 +94,17 @@ public class RegionPage {
                         toMarket.setEffect(null);
                     }
                 });
+        toSpaceship.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        toSpaceship.setEffect(null);
+                    }
+                });
 
 
         BackgroundImage myBI = new BackgroundImage(region.getImg1(), BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
 
         vbox.setBackground(new Background(myBI));
 
@@ -115,7 +136,7 @@ public class RegionPage {
                 });
 
         hbox.getChildren().add(toMap);
-        vbox.getChildren().addAll(text1, text2, text3, toMarket, hbox);
+        vbox.getChildren().addAll(text1, text2, text3, toMarket, toSpaceship, hbox);
 
         primaryStage.setScene(regionRoot);
 

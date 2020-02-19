@@ -44,15 +44,15 @@ public class WelcomePage {
         startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-        //MUSIC
-        Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
-               + "IntroSong.m4a")).toURI().toString());
-        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
-        songplayer.play();
+//        //MUSIC
+//        Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
+//               + "IntroSong.m4a")).toURI().toString());
+//        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
+//        songplayer.play();
 
         //EVENT HANDLER TO SEND TO CONFIG PAGE
         startButton.setOnMouseClicked((mouseEvent -> {
-            ConfigPage configPage = new ConfigPage(primaryStage, p1, songplayer);
+            ConfigPage configPage = new ConfigPage(primaryStage, p1, null);
         }));
 
         // DROP SHADOW HOVER EFFECT ON START BUTTON

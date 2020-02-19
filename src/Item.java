@@ -8,31 +8,17 @@ public class Item {
 	private int sellPrice;
 	private int buyPrice;
 	private String name;
-	private String description;
 	private int quantity;
 	private int basePrice = 10;
 	private Random varRand = new Random();
 	private double variance = varRand.nextDouble();
 	private Image image;
 
-	public Item(double tax, int merchantLevel, int technologyLevel, String name, String description, int quantity) {
+	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity) {
 		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (merchantLevel * variance));
 		buyPrice = (int)((sellPrice) * (.75));
 		this.name = name;
-		this.description = description;
 		this.quantity = quantity;
-	}
-
-	public int findInventoryIndex(Player player) {
-		int index = 0;
-		for (int i = 0; i < player.getSpaceShip().getInventory().size(); i++) {
-			if (player.getSpaceShip().getInventory().get(i).equals(this.getName())) {
-				index = i;
-			} else {
-				//throw exception because it isnt there
-			}
-		}
-		return index;
 	}
 
 	public int getBuyPrice() {
@@ -47,13 +33,13 @@ public class Item {
 		return name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
 	public int getQuantity() {
 		return quantity;
 	}
+
+	public void decreaseQuantity() {
+	    this.quantity--;
+    }
 
 	public double getVariance() {
 		return variance;

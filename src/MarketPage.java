@@ -48,7 +48,7 @@ public class MarketPage {
         HBox marketitems = new HBox();
         for (Item i: region.getRegionItems()) {
             Button item = new Button(i.getName());
-
+            marketitems.getChildren().add(item);
             item.setOnMouseClicked(mouseEvent -> {
                 try {
                     p1.buyGoods(region, i, p1.getSpaceShip(), p1);
@@ -65,14 +65,16 @@ public class MarketPage {
                             "your stuff");
                     a.show();
                 }
+
+            Tooltip stock = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                    + "s left in stock: " + i.getQuantity());
+            stock.setShowDelay(Duration.ZERO);
+            item.setTooltip(stock);
+
             });
 //            sell.setOnMouseClicked(mouseEvent -> {
 //                p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
 //            });
-            Tooltip inStock = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
-            inStock.setShowDelay(Duration.ZERO);
-            item.setTooltip(inStock);
-            marketitems.getChildren().add(item);
         }
         marketitems.setAlignment(Pos.CENTER);
 

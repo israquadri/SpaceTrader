@@ -98,10 +98,11 @@ public class Player {
     }
 
     public void sellGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
-        spaceShip.getInventory().remove(item);
+        spaceShip.removeFromInventory(item);
         player.setCredits(player.getCredits() + (int)item.getSellPrice());
     }
 
+<<<<<<< HEAD
     public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
         if (player.getSpaceShip().getInventory().size() < player.getSpaceShip().getCargoCapacity()) {
             if (item.getName().equals("fuel")) {
@@ -114,7 +115,19 @@ public class Player {
                 } else if (item.getQuantity() == 0) {
                     //throw exception
                 }
+=======
+    public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) throws IllegalAccessException {
+        if (player.getSpaceShip().getCargoCapacity() > 0) {
+            if (item.getQuantity() > 0) {
+                item.setQuantity(item.getQuantity() - 1);
+                player.getSpaceShip().addToInventory(item);
+                player.setCredits(player.getCredits() - (int) item.getBuyPrice());
+            } else if (item.getQuantity() == 0) {
+                throw new IllegalAccessException("item is sold out");
+>>>>>>> isra
             }
+        } else {
+            throw new IllegalStateException("your cargo capacity is full");
         }
     }
 

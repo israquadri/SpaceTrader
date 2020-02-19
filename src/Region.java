@@ -8,6 +8,7 @@ public class Region extends Node {
     private int xCoord;
     private int yCoord;
     private int technologyLevel;
+    private int merchantLevel;
     private String description;
     private Image img1;
     private Image img2;
@@ -27,7 +28,7 @@ public class Region extends Node {
 
     }
 
-    public Region(int xCoord, int yCoord, int technologyLevel,
+    public Region(int xCoord, int yCoord, int merchantLevel, int technologyLevel,
                   String description, Image img1, Image img2) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
@@ -35,6 +36,7 @@ public class Region extends Node {
         this.description = description;
         this.img1 = img1;
         this.img2 = img2;
+        this.merchantLevel = merchantLevel;
 
 
     }
@@ -100,6 +102,10 @@ public class Region extends Node {
 
     public int getItem3Quantity() {
         return item3Quantity;
+    }
+
+    public int getMerchantLevel() {
+        return merchantLevel;
     }
 
     public void setxCoord(int num) {

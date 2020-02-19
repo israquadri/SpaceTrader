@@ -86,6 +86,7 @@ public class BeforeRegionPage {
         Random r = new Random();
         int randomNumber = r.nextInt(arr.length);
 
+
 //        //MUSIC :)
 //        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
 //        MediaPlayer mp = new MediaPlayer(music);

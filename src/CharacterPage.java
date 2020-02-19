@@ -74,10 +74,10 @@ public class CharacterPage {
         yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-        Text yourTraits = new Text("Your points for Pilot: " + p1.getTrait1Val()
-                + "\nYour points for Fighter: " + p1.getTrait2Val()
-                + "\nYour points for Merchant: " + p1.getTrait3Val()
-                + "\nYour points for Engineer: " + p1.getTrait4Val());
+        Text yourTraits = new Text("Your points for Pilot: " + p1.getPilotSkill()
+                + "\nYour points for Fighter: " + p1.getFighterSkill()
+                + "\nYour points for Merchant: " + p1.getMerchantSkill()
+                + "\nYour points for Engineer: " + p1.getEngineerSkill());
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");

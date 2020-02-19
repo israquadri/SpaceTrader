@@ -120,6 +120,7 @@ public class MarketPage {
 
         root.getChildren().addAll(top, mid);
 
+
         //Making scene show
         primaryStage.setScene(mktscene);
         primaryStage.show();

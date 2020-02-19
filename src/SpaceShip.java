@@ -19,6 +19,7 @@ public class SpaceShip {
         this.health = health;
     }
 
+
     public void addToInventory(Item i) {
         cargoCapacity--;
         if (inventory.containsKey(i)) {
@@ -62,4 +63,5 @@ public class SpaceShip {
     public String getName() {
         return name;
     }
+
 }

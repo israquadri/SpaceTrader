@@ -97,17 +97,18 @@ public class Player {
         return this.currentRegion;
     }
 
-    public void sellGoods(Region region, Item item, SpaceShip spaceShip, Player player) {
-        spaceShip.removeFromInventory(item);
-        player.setCredits(player.getCredits() + (int)item.getSellPrice());
+    public void sellGoods(Region region, Item item) {
+        this.spaceShip.removeFromInventory(item);
+        this.setCredits(this.getCredits() + (int)item.getSellPrice());
+        region.getMarket().addItem(item);
     }
 
-    public void buyGoods(Region region, Item item, SpaceShip spaceShip, Player player) throws IllegalAccessException {
-        if (player.getSpaceShip().getCargoCapacity() > 0) {
+    public void buyGoods(Region region, Item item) throws IllegalAccessException {
+        if (this.getSpaceShip().getCargoCapacity() > 0) {
             if (item.getQuantity() > 0) {
                 item.setQuantity(item.getQuantity() - 1);
-                player.getSpaceShip().addToInventory(item);
-                player.setCredits(player.getCredits() - (int) item.getBuyPrice());
+                this.getSpaceShip().addToInventory(item);
+                this.setCredits(this.getCredits() - (int) item.getBuyPrice());
             } else if (item.getQuantity() == 0) {
                 throw new IllegalAccessException("item is sold out");
             }

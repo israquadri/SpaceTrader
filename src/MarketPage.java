@@ -3,12 +3,15 @@ package src;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,6 +22,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Set;
 
 public class MarketPage {
@@ -28,7 +32,7 @@ public class MarketPage {
         Scene mktscene = new Scene(root, 800, 800);
 
         //HBox for middle of screen
-        VBox mid = new VBox(40);
+        VBox mid = new VBox();
         mid.setAlignment(Pos.TOP_CENTER);
         mid.setPrefHeight(400);
 
@@ -46,12 +50,14 @@ public class MarketPage {
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
 
-        HBox marketitems = new HBox();
+        VBox marketitems = new VBox();
+        marketitems.getChildren().add(new Text("BUY"));
         marketitems.setSpacing(15.0);
         for (Item i: region.getMarket().getItems()) {
             Button item = new Button(i.getName());
             item.setGraphic(new ImageView(i.getImage()));
             item.setContentDisplay(ContentDisplay.TOP);
+
             Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                     + "s left in stock: " + i.getQuantity());
             preSale.setShowDelay(Duration.ZERO);
@@ -60,7 +66,7 @@ public class MarketPage {
             marketitems.getChildren().add(item);
             item.setOnMouseClicked(mouseEvent -> {
                 try {
-                    p1.buyGoods(region, i, p1.getSpaceShip(), p1);
+                    p1.buyGoods(region, i);
                     Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just bought "
                             + i.getName() + " for " + i.getBuyPrice() + ". Now you have "
                             + p1.getSpaceShip().getQuantity(i) + " " + i.getName() + "s in your inventory!");
@@ -85,58 +91,58 @@ public class MarketPage {
 //                p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
 //            });
         }
-        marketitems.setAlignment(Pos.CENTER);
 
+        VBox inventoryItems = new VBox();
+        inventoryItems.getChildren().add(new Text("SELL"));
+        inventoryItems.setSpacing(15.0);
+        SpaceShip mySpaceship = p1.getSpaceShip();
+        for (Item i: p1.getSpaceShip().getInventory().keySet()) {
+            Button myItem = new Button("" + i.getName());
+            myItem.setGraphic(new ImageView(i.getImage()));
+            myItem.setContentDisplay(ContentDisplay.TOP);
+            Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                    + "s left in inventory: " + mySpaceship.getQuantity(i));
+            preSale.setShowDelay(Duration.ZERO);
+            myItem.setTooltip(preSale);
+
+            myItem.setOnMouseClicked(mouseEvent -> {
+                try {
+                    p1.sellGoods(p1.getCurrentRegion(), i);
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold "
+                            + i.getName() + " for " + i.getSellPrice() + ". Now you have "
+                            + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                    a.show();
+                } catch (NullPointerException n) {
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, p1.getName() + ", you don't have any more "
+                            + i.getName() + "s left in your inventory!");
+                    a.show();
+                }
+
+                Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                        + "s left in inventory: " + mySpaceship.getQuantity(i));
+                postSale.setShowDelay(Duration.ZERO);
+                myItem.setTooltip(postSale);
+
+            });
+
+            inventoryItems.getChildren().add(myItem);
+        }
+
+        Button refresh = new Button("Refresh");
+        refresh.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 10px;");
+        refresh.setTextFill(Color.WHITE);
+        refresh.setOnMouseClicked(mouseEvent -> {
+            MarketPage mkt = new MarketPage(primaryStage, p1, region, array);
+        });
+ 
         //Welcome text for market
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
-        ArrayList<Item> items = region.getMarket().getItems();
-        for (int p = 0; p < items.size(); p++) {
-            Item i = items.get(p);
-            System.out.println("Item " + p + ": " + i.getName());
-            System.out.println("Item " + p + " quantity: " + i.getQuantity());
-        }
+
+        mid.getChildren().addAll(welcome, refresh);
 
         welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
-
-
-        //Add buttons for buying or selling
-        //Hbox to hold these buttons
-        HBox toggletrade = new HBox();
-        toggletrade.setAlignment(Pos.CENTER);
-        Button buy = new Button("Buy");
-        buy.setOnAction((ActionEvent e) -> {
-            mid.getChildren().remove(2);
-            mid.getChildren().add(marketitems);
-        });
-        Button sell = new Button("Sell");
-        sell.setOnAction((ActionEvent e) -> {
-            HBox invenitems = new HBox();
-            invenitems.setAlignment(Pos.CENTER);
-            HashMap<Item, Integer> inventory = p1.getSpaceShip().getInventory();
-            for (Item i : inventory.keySet()) {
-                Button b = new Button(i.getName());
-                b.setOnAction((ActionEvent ae) -> {
-                    i.setQuantity(i.getQuantity() - 1);
-                    inventory.remove(i);
-                    invenitems.getChildren().remove(b);
-                    p1.setCredits(p1.getCredits() + i.getSellPrice());
-                });
-                invenitems.getChildren().add(b);
-            }
-            mid.getChildren().remove(2);
-            mid.getChildren().add(invenitems);
-        });
-
-        toggletrade.getChildren().addAll(buy, sell);
-
-
-
-        mid.getChildren().addAll(welcome, toggletrade, marketitems);
-
-//        // testing backend, it works!!
-//             Text testing = new Text("Testing: " + p1.getSpaceShip().getName() + ", " + region.getItem1Description());
-//        Text itemForSale = new Text("For sale: " + item1.getName() + ". The price is " + item1.getBuyPrice());
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
@@ -161,8 +167,14 @@ public class MarketPage {
                 });
         top.getChildren().add(back);
 
-        root.getChildren().addAll(top, mid);
+        BorderPane buyAndSell = new BorderPane();
+        buyAndSell.setPadding(new Insets(10, 10, 50, 50));
+        buyAndSell.setLeft(marketitems);
+        buyAndSell.setRight(inventoryItems);
 
+        mid.getChildren().add(buyAndSell);
+
+        root.getChildren().addAll(top, mid);
 
         //Making scene show
         primaryStage.setScene(mktscene);

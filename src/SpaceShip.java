@@ -29,9 +29,15 @@ public class SpaceShip {
     }
 
     public void removeFromInventory(Item i) {
-        cargoCapacity++;
-        int quantity = inventory.get(i);
-        inventory.put(i, quantity - 1);
+        if (i != null) {
+            cargoCapacity++;
+            int quantity = inventory.get(i);
+            if (quantity - 1 == 0) {
+                inventory.remove(i);
+            } else {
+                inventory.put(i, quantity - 1);
+            }
+        }
     }
 
     public HashMap<Item, Integer> getInventory() {
@@ -51,7 +57,9 @@ public class SpaceShip {
     }
 
     public int getQuantity(Item i) {
-        return inventory.get(i);
+        if (inventory.containsKey(i)) {
+            return inventory.get(i);
+        } return 0;
     }
 
     public int getInventoryCapacity() {

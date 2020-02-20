@@ -35,4 +35,13 @@ public class Market {
         this.itemWanted = itemWanted;
     }
 
+    public void addItem(Item i) {
+        if (items.contains(i)) {
+            i.setQuantity(i.getQuantity() + 1);
+        } else {
+            i.setQuantity(1);
+            this.items.add(i);
+        }
+    }
+
 }

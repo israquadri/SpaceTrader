@@ -36,15 +36,15 @@ public class RegionPage {
         text.setTextAlignment(TextAlignment.CENTER);
 
 
-        primaryStage.setTitle(region.getDescription());
+        primaryStage.setTitle(region.getName());
 
 
-        Text text1 = new Text("You've landed in \n the " + region.getDescription() + "\n Region!");
+        Text text1 = new Text("You've landed in \n the " + region.getName() + "\n Region!");
         text1.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
         text1.setTextAlignment(TextAlignment.CENTER);
         Text text2 = new Text("Coordinates: " + region.getxCoord() + ", " + region.getyCoord());
         text2.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
-        Text text3 = new Text("Technology Level: " + region.getTechnologyLevel());
+        Text text3 = new Text("Technology Level: " + region.getTechLevel());
         text3.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         text1.setFill(Color.WHITE);
         text2.setFill(Color.WHITE);

@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class MarketPage {
 
@@ -85,7 +86,14 @@ public class MarketPage {
         marketitems.setAlignment(Pos.CENTER);
 
         //Welcome text for market
-        Text welcome = new Text("Welcome to the \n" + region.getDescription() + " market");
+        Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
+        ArrayList<Item> items = region.getMarket().getItems();
+        for (int p = 0; p < items.size(); p++) {
+            Item i = items.get(p);
+            System.out.println("Item " + p + ": " + i.getName());
+            System.out.println("Item " + p + " quantity: " + i.getQuantity());
+        }
+
         welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 

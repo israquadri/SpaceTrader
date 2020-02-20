@@ -46,7 +46,7 @@ public class MarketPage {
 
         HBox marketitems = new HBox();
         marketitems.setSpacing(15.0);
-        for (Item i: region.getRegionItems()) {
+        for (Item i: region.getMarket().getItems()) {
             Button item = new Button(i.getName());
             item.setGraphic(new ImageView(i.getImage()));
             item.setContentDisplay(ContentDisplay.TOP);

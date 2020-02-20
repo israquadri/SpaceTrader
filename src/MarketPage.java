@@ -32,7 +32,7 @@ public class MarketPage {
         Scene mktscene = new Scene(root, 800, 800);
 
         //HBox for middle of screen
-        VBox mid = new VBox();
+        VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
         mid.setPrefHeight(400);
 

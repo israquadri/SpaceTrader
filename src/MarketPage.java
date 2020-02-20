@@ -1,6 +1,7 @@
 package src;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MarketPage {
 
@@ -97,7 +99,40 @@ public class MarketPage {
         welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 
-        mid.getChildren().addAll(welcome, marketitems);
+
+        //Add buttons for buying or selling
+        //Hbox to hold these buttons
+        HBox toggletrade = new HBox();
+        toggletrade.setAlignment(Pos.CENTER);
+        Button buy = new Button("Buy");
+        buy.setOnAction((ActionEvent e) -> {
+            mid.getChildren().remove(2);
+            mid.getChildren().add(marketitems);
+        });
+        Button sell = new Button("Sell");
+        sell.setOnAction((ActionEvent e) -> {
+            HBox invenitems = new HBox();
+            invenitems.setAlignment(Pos.CENTER);
+            HashMap<Item, Integer> inventory = p1.getSpaceShip().getInventory();
+            for (Item i : inventory.keySet()) {
+                Button b = new Button(i.getName());
+                b.setOnAction((ActionEvent ae) -> {
+                    i.setQuantity(i.getQuantity() - 1);
+                    inventory.remove(i);
+                    invenitems.getChildren().remove(b);
+                    p1.setCredits(p1.getCredits() + i.getSellPrice());
+                });
+                invenitems.getChildren().add(b);
+            }
+            mid.getChildren().remove(2);
+            mid.getChildren().add(invenitems);
+        });
+
+        toggletrade.getChildren().addAll(buy, sell);
+
+
+
+        mid.getChildren().addAll(welcome, toggletrade, marketitems);
 
 //        // testing backend, it works!!
 //             Text testing = new Text("Testing: " + p1.getSpaceShip().getName() + ", " + region.getItem1Description());

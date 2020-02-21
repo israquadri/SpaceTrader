@@ -44,4 +44,9 @@ public class Market {
         }
     }
 
+    public void removeItem(Item i) {
+        i.setQuantity(0);
+        this.items.remove(i);
+    }
+
 }

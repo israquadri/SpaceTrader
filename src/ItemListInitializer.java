@@ -1,5 +1,6 @@
 package src;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ItemListInitializer {
     /**
@@ -13,9 +14,9 @@ public class ItemListInitializer {
     public ArrayList<Item> createItemList(int techLevel, int merchantSkill, double tax, String[] itemNames) {
         ArrayList<Item> items = new ArrayList<>();
         //initialize quantity
-        int[] quantity = {1, 2, 3, 4, 5, 6};
+        Random randomQuantity = new Random();
         for (int i = 0; i < itemNames.length; i++) {
-            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i], quantity[i]);
+            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i], randomQuantity.nextInt(7) + 1);
             items.add(item);
         }
         return items;

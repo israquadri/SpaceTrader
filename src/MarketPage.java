@@ -48,6 +48,12 @@ public class MarketPage {
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
 
+        //Text to show amount of credits
+        Text creditsLeft = new Text("Credits: " + p1.getCredits());
+        creditsLeft.setTextAlignment(TextAlignment.CENTER);
+        creditsLeft.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 10px;");
+
         VBox marketitems = new VBox();
         marketitems.setAlignment(Pos.TOP_CENTER);
         marketitems.getChildren().add(new Text("BUY"));
@@ -68,8 +74,12 @@ public class MarketPage {
                 Alert a = p1.buyGoods(i);
                 a.show();
                 if (i.getQuantity() == 0) {
+                    region.getMarket().removeItem(i);
                     marketitems.getChildren().remove(item);
                 }
+
+                String creditUpdate = new String("Credits: " + p1.getCredits());
+                creditsLeft.setText(creditUpdate);
 
                 Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                         + "s left in stock: " + i.getQuantity());
@@ -99,6 +109,10 @@ public class MarketPage {
                 if (!p1.getSpaceShip().getInventory().containsKey(i)) {
                     inventoryItems.getChildren().remove(myItem);
                 }
+
+                String creditUpdate = new String("Credits: " + p1.getCredits());
+                creditsLeft.setText(creditUpdate);
+
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold "
                         + i.getName() + " for " + i.getSellPrice() + ". Now you have "
                         + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
@@ -153,12 +167,6 @@ public class MarketPage {
                 });
         top.getChildren().add(back);
 
-
-        //Text to show amount of credits
-        Text creditsLeft = new Text("Credits: " + p1.getCredits());
-        creditsLeft.setTextAlignment(TextAlignment.CENTER);
-        creditsLeft.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
 
         HBox bottom = new HBox();
         bottom.setSpacing(150);

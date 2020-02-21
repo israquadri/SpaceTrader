@@ -117,6 +117,7 @@ public class Player {
         }
         if (this.getCredits() - item.getBuyPrice() < 0) {
             Alert a = new Alert(Alert.AlertType.INFORMATION, "You do not have enough money to purchase this item");
+            return a;
         }
         item.setQuantity(item.getQuantity() - 1);
         this.getSpaceShip().addToInventory(item);

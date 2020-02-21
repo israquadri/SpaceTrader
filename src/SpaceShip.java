@@ -4,11 +4,11 @@ import java.util.*;
 import java.util.Map;
 
 public class SpaceShip {
-    int fuel;
-    String name;
-    int cargoCapacity;
-    int health;
-    HashMap<Item, Integer> inventory = new HashMap<>();
+    private int fuel;
+    private String name;
+    private int cargoCapacity;
+    private int health;
+    private HashMap<Item, Integer> inventory = new HashMap<>();
 
     public SpaceShip(int fuel, String name, int cargoCapacity, int health) {
         this.fuel = fuel;
@@ -29,14 +29,12 @@ public class SpaceShip {
     }
 
     public void removeFromInventory(Item i) {
-        if (i != null) {
-            cargoCapacity++;
-            int quantity = inventory.get(i);
-            if (quantity - 1 == 0) {
-                inventory.remove(i);
-            } else {
-                inventory.put(i, quantity - 1);
-            }
+        cargoCapacity++;
+        int quantity = inventory.get(i);
+        if (quantity - 1 == 0) {
+            inventory.remove(i);
+        } else {
+            inventory.put(i, quantity - 1);
         }
     }
 

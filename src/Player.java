@@ -1,5 +1,7 @@
 package src;
 
+import javafx.scene.control.Alert;
+
 public class Player {
     private String name;
     private int skillPoints;
@@ -99,22 +101,32 @@ public class Player {
 
     public void sellGoods(Region region, Item item) {
         this.spaceShip.removeFromInventory(item);
-        this.setCredits(this.getCredits() + (int)item.getSellPrice());
+        this.setCredits(this.getCredits() + item.getSellPrice());
         region.getMarket().addItem(item);
     }
 
-    public void buyGoods(Region region, Item item) throws IllegalAccessException {
-        if (this.getSpaceShip().getCargoCapacity() > 0) {
-            if (item.getQuantity() > 0) {
-                item.setQuantity(item.getQuantity() - 1);
-                this.getSpaceShip().addToInventory(item);
-                this.setCredits(this.getCredits() - (int) item.getBuyPrice());
-            } else if (item.getQuantity() == 0) {
-                throw new IllegalAccessException("item is sold out");
-            }
-        } else {
-            throw new IllegalStateException("your cargo capacity is full");
+    public Alert buyGoods(Item item) {
+        if (this.getSpaceShip().getCargoCapacity() == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "your cargo capacity is full. time to sell " +
+                    "your stuff");
+            return a;
         }
+        if (item.getQuantity() == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "There are no items remaining");
+            return a;
+        }
+        if (this.getCredits() - item.getBuyPrice() < 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "You do not have enough money to purchase this item");
+        }
+        item.setQuantity(item.getQuantity() - 1);
+        this.getSpaceShip().addToInventory(item);
+        this.setCredits(this.getCredits() - (int) item.getBuyPrice());
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
+                + item.getName() + " for " + item.getBuyPrice() + ". Now you have "
+                + this.getSpaceShip().getQuantity(item) + " " + item.getName() + "s in your inventory!");
+        return a;
+
+
     }
 
 }

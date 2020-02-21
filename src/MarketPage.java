@@ -34,12 +34,10 @@ public class MarketPage {
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
-        mid.setPrefHeight(400);
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
-        top.setPrefHeight(400);
 
         //Back to Region Page button
         Button back = new Button("Back to Orbit");
@@ -51,8 +49,10 @@ public class MarketPage {
         });
 
         VBox marketitems = new VBox();
+        marketitems.setAlignment(Pos.TOP_CENTER);
         marketitems.getChildren().add(new Text("BUY"));
         marketitems.setSpacing(15.0);
+        marketitems.setPrefHeight(400);
         for (Item i: region.getMarket().getItems()) {
             Button item = new Button(i.getName());
             item.setGraphic(new ImageView(i.getImage()));
@@ -65,36 +65,25 @@ public class MarketPage {
 
             marketitems.getChildren().add(item);
             item.setOnMouseClicked(mouseEvent -> {
-                try {
-                    p1.buyGoods(region, i);
-                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just bought "
-                            + i.getName() + " for " + i.getBuyPrice() + ". Now you have "
-                            + p1.getSpaceShip().getQuantity(i) + " " + i.getName() + "s in your inventory!");
-                    a.show();
-                } catch (IllegalAccessException s) {
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "This item is all sold out! Come back " +
-                            "another time.");
-                    a.show();
-                } catch (IllegalStateException s) {
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "your cargo capacity is full. time to sell " +
-                            "your stuff");
-                    a.show();
+                Alert a = p1.buyGoods(i);
+                a.show();
+                if (i.getQuantity() == 0) {
+                    marketitems.getChildren().remove(item);
                 }
 
-            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                    + "s left in stock: " + i.getQuantity());
-            postSale.setShowDelay(Duration.ZERO);
-            item.setTooltip(postSale);
+                Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                        + "s left in stock: " + i.getQuantity());
+                postSale.setShowDelay(Duration.ZERO);
+                item.setTooltip(postSale);
 
             });
-//            sell.setOnMouseClicked(mouseEvent -> {
-//                p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
-//            });
         }
 
         VBox inventoryItems = new VBox();
+        inventoryItems.setAlignment(Pos.TOP_CENTER);
         inventoryItems.getChildren().add(new Text("SELL"));
         inventoryItems.setSpacing(15.0);
+        inventoryItems.setPrefHeight(400);
         SpaceShip mySpaceship = p1.getSpaceShip();
         for (Item i: p1.getSpaceShip().getInventory().keySet()) {
             Button myItem = new Button("" + i.getName());
@@ -106,17 +95,14 @@ public class MarketPage {
             myItem.setTooltip(preSale);
 
             myItem.setOnMouseClicked(mouseEvent -> {
-                try {
-                    p1.sellGoods(p1.getCurrentRegion(), i);
-                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold "
-                            + i.getName() + " for " + i.getSellPrice() + ". Now you have "
-                            + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
-                    a.show();
-                } catch (NullPointerException n) {
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, p1.getName() + ", you don't have any more "
-                            + i.getName() + "s left in your inventory!");
-                    a.show();
+                p1.sellGoods(p1.getCurrentRegion(), i);
+                if (!p1.getSpaceShip().getInventory().containsKey(i)) {
+                    inventoryItems.getChildren().remove(myItem);
                 }
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold "
+                        + i.getName() + " for " + i.getSellPrice() + ". Now you have "
+                        + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                a.show();
 
                 Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
                         + "s left in inventory: " + mySpaceship.getQuantity(i));
@@ -167,14 +153,20 @@ public class MarketPage {
                 });
         top.getChildren().add(back);
 
-        BorderPane buyAndSell = new BorderPane();
-        buyAndSell.setPadding(new Insets(10, 10, 50, 50));
-        buyAndSell.setLeft(marketitems);
-        buyAndSell.setRight(inventoryItems);
 
-        mid.getChildren().add(buyAndSell);
+        //Text to show amount of credits
+        Text creditsLeft = new Text("Credits: " + p1.getCredits());
+        creditsLeft.setTextAlignment(TextAlignment.CENTER);
+        creditsLeft.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 10px;");
 
-        root.getChildren().addAll(top, mid);
+        HBox bottom = new HBox();
+        bottom.setSpacing(150);
+        bottom.setPrefHeight(400);
+        bottom.setAlignment(Pos.TOP_CENTER);
+        bottom.getChildren().addAll(marketitems, creditsLeft, inventoryItems);
+
+        root.getChildren().addAll(top, mid, bottom);
 
         //Making scene show
         primaryStage.setScene(mktscene);

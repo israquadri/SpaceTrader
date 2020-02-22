@@ -16,7 +16,9 @@ public class Item {
 	private Image image;
 
 	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity) {
-		sellPrice = (int)(basePrice * (1 + tax) + technologyLevel + (variance / (merchantLevel + 1)/*quick fix for now*/));
+		sellPrice = (int)(basePrice * (1 + tax + .01 * technologyLevel));
+		sellPrice = (int) (varRand.nextInt(sellPrice) + .5 * sellPrice);
+		sellPrice = (int)(sellPrice - (.02 * merchantLevel * sellPrice));
 		buyPrice = (int)((sellPrice) * (.75));
 		this.name = name.substring(0, name.indexOf("<"));
 		this.setImage((new Image(name.substring((name.indexOf("<") + 1), name.lastIndexOf(">")))));

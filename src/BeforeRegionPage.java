@@ -120,9 +120,9 @@ public class BeforeRegionPage {
 
 
 //        //MUSIC :)
-//        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
-//        MediaPlayer mp = new MediaPlayer(music);
-//        mp.play();
+        //Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
+        //MediaPlayer mp = new MediaPlayer(music);
+        //mp.play();
 
         //STORY DETAILS FADE IN AND OUT
         StackPane root = new StackPane();

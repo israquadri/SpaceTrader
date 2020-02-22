@@ -106,6 +106,7 @@ public class MarketPage {
 
             myItem.setOnMouseClicked(mouseEvent -> {
                 p1.sellGoods(p1.getCurrentRegion(), i);
+                //Removing if quantity is 0
                 if (!p1.getSpaceShip().getInventory().containsKey(i)) {
                     inventoryItems.getChildren().remove(myItem);
                 }
@@ -135,7 +136,7 @@ public class MarketPage {
         refresh.setOnMouseClicked(mouseEvent -> {
             MarketPage mkt = new MarketPage(primaryStage, p1, region, array);
         });
- 
+
         //Welcome text for market
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
 

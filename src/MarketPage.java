@@ -53,9 +53,10 @@ public class MarketPage {
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
+        creditsLeft.setUnderline(true);
+        creditsLeft.setFill(Color.WHITE);
+        creditsLeft.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         creditsLeft.setTextAlignment(TextAlignment.CENTER);
-        creditsLeft.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
 
         VBox marketitems = new VBox();
         marketitems.setAlignment(Pos.TOP_CENTER);

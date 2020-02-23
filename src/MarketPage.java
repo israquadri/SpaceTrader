@@ -10,10 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -30,14 +27,17 @@ public class MarketPage {
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         VBox root = new VBox(40);
         Scene mktscene = new Scene(root, 800, 800);
+        root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
+        mid.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
+        top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //Back to Region Page button
         Button back = new Button("Back to Orbit");

@@ -32,7 +32,10 @@ public class MarketPage {
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
-        mid.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setBackground(new Background(new BackgroundFill(Color.MIDNIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setPadding(new Insets(20, 20, 20, 20));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        mid.setBorder(border);
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
@@ -56,7 +59,11 @@ public class MarketPage {
 
         VBox marketitems = new VBox();
         marketitems.setAlignment(Pos.TOP_CENTER);
-        marketitems.getChildren().add(new Text("BUY"));
+        Text buy = new Text("BUY");
+        buy.setUnderline(true);
+        buy.setFill(Color.WHITE);
+        buy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        marketitems.getChildren().add(buy);
         marketitems.setSpacing(15.0);
         marketitems.setPrefHeight(400);
         for (Item i: region.getMarket().getItems()) {
@@ -91,7 +98,11 @@ public class MarketPage {
 
         VBox inventoryItems = new VBox();
         inventoryItems.setAlignment(Pos.TOP_CENTER);
-        inventoryItems.getChildren().add(new Text("SELL"));
+        Text sell = new Text("SELL");
+        sell.setUnderline(true);
+        sell.setFill(Color.WHITE);
+        sell.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        inventoryItems.getChildren().add(sell);
         inventoryItems.setSpacing(15.0);
         inventoryItems.setPrefHeight(400);
         SpaceShip mySpaceship = p1.getSpaceShip();
@@ -144,10 +155,12 @@ public class MarketPage {
 
         //Welcome text for market
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
+        welcome.setFill(Color.WHITE);
+        welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
 
         mid.getChildren().addAll(welcome, refresh);
 
-        welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+       // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 
         //Drop shadow effect

@@ -48,9 +48,9 @@ public class InventoryPage {
 
 
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(25,25,25,25));
-        grid.setHgap(10);
-        grid.setVgap(10);
+        grid.setPadding(new Insets(100,100,100,100));
+        grid.setHgap(100);
+        grid.setVgap(100);
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("grid");
         //grid.setStyle(" -fx-background-radius: 25;");
@@ -63,9 +63,10 @@ public class InventoryPage {
             Tooltip preSale = new Tooltip("Sell Price: " + i.getSellPrice() + "\n"
                     + " Quantity:" + mySpaceship.getQuantity(i));
             preSale.setShowDelay(Duration.ZERO);
+            myItem.setAlignment(Pos.CENTER);
             myItem.setTooltip(preSale);
             myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
-                    + "-fx-background-color: rgb(128,128,128); -fx-font-size: 10px;");
+                    + "-fx-background-color: rgb(128,128,128); -fx-font-size: 10px; -fx-text-align: center;");
 
                 grid.add(myItem,colCnt,rowCnt);
                 colCnt++;
@@ -93,6 +94,7 @@ public class InventoryPage {
         //adding the shadow when the mouse cursor is on
         back.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
+
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         back.setEffect(null);

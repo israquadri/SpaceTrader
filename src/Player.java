@@ -1,6 +1,7 @@
 package src;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
 
 public class Player {
     private String name;
@@ -123,8 +124,12 @@ public class Player {
         this.getSpaceShip().addToInventory(item);
         this.setCredits(this.getCredits() - (int) item.getBuyPrice());
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
-                + item.getName() + " for " + item.getBuyPrice() + ". Now you have "
+                + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
                 + this.getSpaceShip().getQuantity(item) + " " + item.getName() + "s in your inventory!");
+        DialogPane dialogPane = a.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("myDialogs.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
         return a;
 
 

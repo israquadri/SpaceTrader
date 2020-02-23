@@ -114,10 +114,15 @@ public class MarketPage {
                 String creditUpdate = new String("Credits: " + p1.getCredits());
                 creditsLeft.setText(creditUpdate);
 
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold "
-                        + i.getName() + " for " + i.getSellPrice() + ". Now you have "
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold a "
+                        + i.getName() + " for " + i.getSellPrice() + ". \nNow you have "
                         + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
+                //a.getDialogPane().setStyle("-fx-background-color: black; -fx-text-fill: white;");
 
                 Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
                         + "s left in inventory: " + mySpaceship.getQuantity(i));

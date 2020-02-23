@@ -10,10 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -30,14 +27,20 @@ public class MarketPage {
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         VBox root = new VBox(40);
         Scene mktscene = new Scene(root, 800, 800);
+        root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
+        mid.setBackground(new Background(new BackgroundFill(Color.MIDNIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setPadding(new Insets(20, 20, 20, 20));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        mid.setBorder(border);
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
+        top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //Back to Region Page button
         Button back = new Button("Back to Orbit");
@@ -50,13 +53,18 @@ public class MarketPage {
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
+        creditsLeft.setUnderline(true);
+        creditsLeft.setFill(Color.WHITE);
+        creditsLeft.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         creditsLeft.setTextAlignment(TextAlignment.CENTER);
-        creditsLeft.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
 
         VBox marketitems = new VBox();
         marketitems.setAlignment(Pos.TOP_CENTER);
-        marketitems.getChildren().add(new Text("BUY"));
+        Text buy = new Text("BUY");
+        buy.setUnderline(true);
+        buy.setFill(Color.WHITE);
+        buy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        marketitems.getChildren().add(buy);
         marketitems.setSpacing(15.0);
         marketitems.setPrefHeight(400);
         for (Item i: region.getMarket().getItems()) {
@@ -91,7 +99,11 @@ public class MarketPage {
 
         VBox inventoryItems = new VBox();
         inventoryItems.setAlignment(Pos.TOP_CENTER);
-        inventoryItems.getChildren().add(new Text("SELL"));
+        Text sell = new Text("SELL");
+        sell.setUnderline(true);
+        sell.setFill(Color.WHITE);
+        sell.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+        inventoryItems.getChildren().add(sell);
         inventoryItems.setSpacing(15.0);
         inventoryItems.setPrefHeight(400);
         SpaceShip mySpaceship = p1.getSpaceShip();
@@ -144,10 +156,12 @@ public class MarketPage {
 
         //Welcome text for market
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
+        welcome.setFill(Color.WHITE);
+        welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
 
         mid.getChildren().addAll(welcome, refresh);
 
-        welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+       // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 
         //Drop shadow effect

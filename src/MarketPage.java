@@ -216,6 +216,7 @@ public class MarketPage {
         top.getChildren().add(back);
 
         root.getChildren().addAll(top, mid, bottom);
+        buybutton.fire();
 
         //Making scene show
         primaryStage.setScene(mktscene);

@@ -42,6 +42,12 @@ public class MarketPage {
         top.setAlignment(Pos.TOP_LEFT);
         top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
+        //HBOX for bottom of the screen where items are
+        VBox bottom = new VBox();
+        bottom.setSpacing(20);
+        bottom.setPrefHeight(400);
+        bottom.setAlignment(Pos.TOP_CENTER);
+
         //Back to Region Page button
         Button back = new Button("Back to Orbit");
         back.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
@@ -58,108 +64,130 @@ public class MarketPage {
         creditsLeft.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
         creditsLeft.setTextAlignment(TextAlignment.CENTER);
 
-        VBox marketitems = new VBox();
-        marketitems.setAlignment(Pos.TOP_CENTER);
-        Text buy = new Text("BUY");
-        buy.setUnderline(true);
-        buy.setFill(Color.WHITE);
-        buy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
-        marketitems.getChildren().add(buy);
-        marketitems.setSpacing(15.0);
-        marketitems.setPrefHeight(400);
-        for (Item i: region.getMarket().getItems()) {
-            Button item = new Button(i.getName());
-            item.setGraphic(new ImageView(i.getImage()));
-            item.setContentDisplay(ContentDisplay.TOP);
-
-            Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                    + "s left in stock: " + i.getQuantity());
-            preSale.setShowDelay(Duration.ZERO);
-            item.setTooltip(preSale);
-
-            marketitems.getChildren().add(item);
-            item.setOnMouseClicked(mouseEvent -> {
-                Alert a = p1.buyGoods(i);
-                a.show();
-                if (i.getQuantity() == 0) {
-                    region.getMarket().removeItem(i);
-                    marketitems.getChildren().remove(item);
-                }
-
-                String creditUpdate = new String("Credits: " + p1.getCredits());
-                creditsLeft.setText(creditUpdate);
-
-                Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                        + "s left in stock: " + i.getQuantity());
-                postSale.setShowDelay(Duration.ZERO);
-                item.setTooltip(postSale);
-
-            });
-        }
-
-        VBox inventoryItems = new VBox();
-        inventoryItems.setAlignment(Pos.TOP_CENTER);
-        Text sell = new Text("SELL");
-        sell.setUnderline(true);
-        sell.setFill(Color.WHITE);
-        sell.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
-        inventoryItems.getChildren().add(sell);
-        inventoryItems.setSpacing(15.0);
-        inventoryItems.setPrefHeight(400);
-        SpaceShip mySpaceship = p1.getSpaceShip();
-        for (Item i: p1.getSpaceShip().getInventory().keySet()) {
-            Button myItem = new Button("" + i.getName());
-            myItem.setGraphic(new ImageView(i.getImage()));
-            myItem.setContentDisplay(ContentDisplay.TOP);
-            Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
-                    + "s left in inventory: " + mySpaceship.getQuantity(i));
-            preSale.setShowDelay(Duration.ZERO);
-            myItem.setTooltip(preSale);
-
-            myItem.setOnMouseClicked(mouseEvent -> {
-                p1.sellGoods(p1.getCurrentRegion(), i);
-                //Removing if quantity is 0
-                if (!p1.getSpaceShip().getInventory().containsKey(i)) {
-                    inventoryItems.getChildren().remove(myItem);
-                }
-
-                String creditUpdate = new String("Credits: " + p1.getCredits());
-                creditsLeft.setText(creditUpdate);
-
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold a "
-                        + i.getName() + " for " + i.getSellPrice() + ". \nNow you have "
-                        + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
-                DialogPane dialogPane = a.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                a.show();
-                //a.getDialogPane().setStyle("-fx-background-color: black; -fx-text-fill: white;");
-
-                Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
-                        + "s left in inventory: " + mySpaceship.getQuantity(i));
-                postSale.setShowDelay(Duration.ZERO);
-                myItem.setTooltip(postSale);
-
-            });
-
-            inventoryItems.getChildren().add(myItem);
-        }
-
-        Button refresh = new Button("Refresh");
-        refresh.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
-        refresh.setTextFill(Color.WHITE);
-        refresh.setOnMouseClicked(mouseEvent -> {
-            MarketPage mkt = new MarketPage(primaryStage, p1, region, array);
-        });
-
         //Welcome text for market
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
         welcome.setFill(Color.WHITE);
         welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
 
-        mid.getChildren().addAll(welcome, refresh);
+        //Button for buying
+        Button buybutton = new Button("Buy");
+        buybutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 10px;");
+        buybutton.setTextFill(Color.WHITE);
+        buybutton.setOnAction((ActionEvent e) -> {
+            bottom.getChildren().clear();
+            GridPane marketitems = new GridPane();
+            marketitems.setAlignment(Pos.TOP_CENTER);
+            Text buy = new Text("BUY");
+            buy.setUnderline(true);
+            buy.setFill(Color.WHITE);
+            buy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+            bottom.getChildren().add(buy);
+            int row1 = 0;
+            int col1 = 0;
+            for (Item i: region.getMarket().getItems()) {
+                Button item = new Button(i.getName());
+                item.setGraphic(new ImageView(i.getImage()));
+                item.setContentDisplay(ContentDisplay.TOP);
+
+                Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                        + "s left in stock: " + i.getQuantity());
+                preSale.setShowDelay(Duration.ZERO);
+                item.setTooltip(preSale);
+
+                marketitems.add(item, col1 % 4, row1);
+                item.setOnMouseClicked(mouseEvent -> {
+                    Alert a = p1.buyGoods(i);
+                    a.show();
+                    if (i.getQuantity() == 0) {
+                        region.getMarket().removeItem(i);
+                        marketitems.getChildren().remove(item);
+                    }
+
+                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    creditsLeft.setText(creditUpdate);
+
+                    Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                            + "s left in stock: " + i.getQuantity());
+                    postSale.setShowDelay(Duration.ZERO);
+                    item.setTooltip(postSale);
+
+                });
+                col1++;
+                row1 = col1 / 4;
+            }
+            bottom.getChildren().add(marketitems);
+
+        });
+
+        //Button for selling
+        Button sellbutton = new Button("Sell");
+        sellbutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 10px;");
+        sellbutton.setTextFill(Color.WHITE);
+        sellbutton.setOnAction((ActionEvent m) -> {
+            bottom.getChildren().clear();
+            GridPane inventoryItems = new GridPane();
+            inventoryItems.setAlignment(Pos.TOP_CENTER);
+            Text sell = new Text("SELL");
+            sell.setUnderline(true);
+            sell.setFill(Color.WHITE);
+            sell.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+            bottom.getChildren().add(sell);
+            inventoryItems.setPrefHeight(400);
+            SpaceShip mySpaceship = p1.getSpaceShip();
+            int row2 = 0;
+            int col2 = 0;
+            for (Item i: p1.getSpaceShip().getInventory().keySet()) {
+                Button myItem = new Button("" + i.getName());
+                myItem.setGraphic(new ImageView(i.getImage()));
+                myItem.setContentDisplay(ContentDisplay.TOP);
+                Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                        + "s left in inventory: " + mySpaceship.getQuantity(i));
+                preSale.setShowDelay(Duration.ZERO);
+                myItem.setTooltip(preSale);
+
+                myItem.setOnMouseClicked(mouseEvent -> {
+                    p1.sellGoods(p1.getCurrentRegion(), i);
+                    //Removing if quantity is 0
+                    if (!p1.getSpaceShip().getInventory().containsKey(i)) {
+                        inventoryItems.getChildren().remove(myItem);
+                    }
+
+                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    creditsLeft.setText(creditUpdate);
+
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold a "
+                            + i.getName() + " for " + i.getSellPrice() + ". \nNow you have "
+                            + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                    DialogPane dialogPane = a.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a.show();
+                    //a.getDialogPane().setStyle("-fx-background-color: black; -fx-text-fill: white;");
+
+                    Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                            + "s left in inventory: " + mySpaceship.getQuantity(i));
+                    postSale.setShowDelay(Duration.ZERO);
+                    myItem.setTooltip(postSale);
+
+                });
+
+                inventoryItems.add(myItem, col2 % 4, row2);
+                col2++;
+                row2 = col2 / 4;
+            }
+            bottom.getChildren().add(inventoryItems);
+        });
+
+        //HBox for buy and sell button
+        HBox buysell = new HBox(10);
+        buysell.setAlignment(Pos.CENTER);
+        buysell.getChildren().addAll(buybutton, sellbutton);
+
+        //Adding welcome text and buy and sell buttons to mid vbox
+        mid.getChildren().addAll(welcome,creditsLeft, buysell);
 
        // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
@@ -186,13 +214,6 @@ public class MarketPage {
                     }
                 });
         top.getChildren().add(back);
-
-
-        HBox bottom = new HBox();
-        bottom.setSpacing(150);
-        bottom.setPrefHeight(400);
-        bottom.setAlignment(Pos.TOP_CENTER);
-        bottom.getChildren().addAll(marketitems, creditsLeft, inventoryItems);
 
         root.getChildren().addAll(top, mid, bottom);
 

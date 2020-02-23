@@ -30,7 +30,6 @@ public class MarketPage {
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         //Root node for rest of scene
         VBox root = new VBox(40);
-        Scene mktscene = new Scene(root, 800, 800);
         root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //Music which i will promptly comment out
@@ -271,6 +270,12 @@ public class MarketPage {
 
         //Fire off buybutton at start so that buy gridpane automatically appears at start
         buybutton.fire();
+
+        //creating scrollpane with root inside of scroll pane
+        ScrollPane scrollpane = new ScrollPane(root);
+        scrollpane.setFitToHeight(true);
+        scrollpane.setFitToWidth(true);
+        Scene mktscene = new Scene(scrollpane, 800, 800);
 
         //Making scene show
         primaryStage.setScene(mktscene);

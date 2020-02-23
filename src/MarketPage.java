@@ -11,12 +11,15 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Map;
@@ -25,9 +28,15 @@ import java.util.Set;
 public class MarketPage {
 
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
+        //Root node for rest of scene
         VBox root = new VBox(40);
         Scene mktscene = new Scene(root, 800, 800);
         root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        //Music which i will promptly comment out
+        //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
+        //MediaPlayer music = new MediaPlayer(tradingsong);
+        //music.play();
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
@@ -36,6 +45,11 @@ public class MarketPage {
         mid.setPadding(new Insets(20, 20, 20, 20));
         Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         mid.setBorder(border);
+
+        //Drop shadow effect
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.CORAL);
+        shadow.setWidth(1.5);
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
@@ -51,11 +65,28 @@ public class MarketPage {
         //Back to Region Page button
         Button back = new Button("Back to Orbit");
         back.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 20px;");
+                + " -fx-background-color: black; -fx-font-size: 15px;");
         back.setTextFill(Color.WHITE);
+        //Drop shadow effect
+        back.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        back.setEffect(shadow);
+                    }
+                });
+        back.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        back.setEffect(null);
+                    }
+                });
         back.setOnMouseClicked((MouseEvent m) -> {
+            //music.stop();
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
+        top.getChildren().add(back);
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
@@ -69,11 +100,30 @@ public class MarketPage {
         welcome.setFill(Color.WHITE);
         welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
 
+
+
+        //BUY AREA BEGINS//
         //Button for buying
         Button buybutton = new Button("Buy");
         buybutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
+                + " -fx-background-color: black; -fx-font-size: 15px;");
         buybutton.setTextFill(Color.WHITE);
+        //drop shadow effect fo buybutton
+        buybutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        buybutton.setEffect(shadow);
+                    }
+                });
+        //drop shadow effect for buybutton
+        buybutton.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        buybutton.setEffect(null);
+                    }
+                });
         buybutton.setOnAction((ActionEvent e) -> {
             bottom.getChildren().clear();
             GridPane marketitems = new GridPane();
@@ -81,7 +131,7 @@ public class MarketPage {
             Text buy = new Text("BUY");
             buy.setUnderline(true);
             buy.setFill(Color.WHITE);
-            buy.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+            buy.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
             bottom.getChildren().add(buy);
             int row1 = 0;
             int col1 = 0;
@@ -119,12 +169,33 @@ public class MarketPage {
             bottom.getChildren().add(marketitems);
 
         });
+        //BUY AREA ENDS//
 
+
+        
+
+        //SELL AREA BEGINS//
         //Button for selling
         Button sellbutton = new Button("Sell");
         sellbutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 10px;");
+                + " -fx-background-color: black; -fx-font-size: 15px;");
         sellbutton.setTextFill(Color.WHITE);
+        //Drop shadow effect being applied to sellbutton
+        sellbutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        sellbutton.setEffect(shadow);
+                    }
+                });
+        //drop shadow effect for sellbutton
+        sellbutton.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        sellbutton.setEffect(null);
+                    }
+                });
         sellbutton.setOnAction((ActionEvent m) -> {
             bottom.getChildren().clear();
             GridPane inventoryItems = new GridPane();
@@ -132,7 +203,7 @@ public class MarketPage {
             Text sell = new Text("SELL");
             sell.setUnderline(true);
             sell.setFill(Color.WHITE);
-            sell.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P', cursive;");
+            sell.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
             bottom.getChildren().add(sell);
             inventoryItems.setPrefHeight(400);
             SpaceShip mySpaceship = p1.getSpaceShip();
@@ -180,6 +251,9 @@ public class MarketPage {
             }
             bottom.getChildren().add(inventoryItems);
         });
+        //SELL AREA ENDS//
+
+
 
         //HBox for buy and sell button
         HBox buysell = new HBox(10);
@@ -187,35 +261,15 @@ public class MarketPage {
         buysell.getChildren().addAll(buybutton, sellbutton);
 
         //Adding welcome text and buy and sell buttons to mid vbox
-        mid.getChildren().addAll(welcome,creditsLeft, buysell);
+        mid.getChildren().addAll(welcome,creditsLeft,buysell);
 
        // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 
-        //Drop shadow effect
-        DropShadow shadow = new DropShadow();
-        shadow.setColor(Color.CORAL);
-        shadow.setWidth(1.5);
-
-        //Drop shadow effect being applied to back button
-        back.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        back.setEffect(shadow);
-                    }
-                });
-        //adding the shadow when the mouse cursor is on
-        back.addEventHandler(MouseEvent.MOUSE_EXITED,
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        back.setEffect(null);
-                    }
-                });
-        top.getChildren().add(back);
-
+        //Adding the three different parts of UI to root
         root.getChildren().addAll(top, mid, bottom);
+
+        //Fire off buybutton at start so that buy gridpane automatically appears at start
         buybutton.fire();
 
         //Making scene show

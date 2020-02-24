@@ -30,7 +30,7 @@ public class MarketPage {
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         //Root node for rest of scene
         VBox root = new VBox(40);
-        Scene mktscene = new Scene(root, 800, 800);
+        Scene mktscene = new Scene(root, 1500, 800);
         root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //Music which i will promptly comment out

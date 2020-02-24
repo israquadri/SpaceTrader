@@ -25,7 +25,7 @@ public class InventoryPage {
 
     public InventoryPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         VBox root = new VBox(10);
-        Scene inventory = new Scene(root, 800, 800);
+        Scene inventory = new Scene(root, 1500, 800);
         inventory.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
         BackgroundImage myBI = new BackgroundImage(new Image("inventoryPIC.jpeg", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
@@ -54,12 +54,15 @@ public class InventoryPage {
         });
 
 
+        VBox gridBox = new VBox();
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10,10,10,20));
         grid.setHgap(50);
         grid.setVgap(50);
         grid.setAlignment(Pos.CENTER);
         grid.getStyleClass().add("grid");
+        gridBox.getChildren().add(grid);
+        gridBox.setVgrow(grid, Priority.ALWAYS);
         //grid.setStyle(" -fx-background-radius: 25;");
         SpaceShip mySpaceship = p1.getSpaceShip();
         int cols=3, colCnt = 0, rowCnt = 0;
@@ -109,7 +112,7 @@ public class InventoryPage {
                 });
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(back, vBox, grid);
+        root.getChildren().addAll(back, vBox, gridBox);
 
         //Making scene show
         primaryStage.setScene(inventory);

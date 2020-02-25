@@ -1,5 +1,7 @@
 package src;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,16 +10,19 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.control.ToggleButton;
 
 import java.io.File;
 import java.util.HashMap;
@@ -30,7 +35,14 @@ public class MarketPage {
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         //Root node for rest of scene
         VBox root = new VBox(40);
-        root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Scene mktscene = new Scene(root, 800, 800);
+        BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
+                800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        root.setBackground(new Background(myBI));
+        //root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         //Music which i will promptly comment out
         //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
@@ -40,7 +52,7 @@ public class MarketPage {
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
-        mid.setBackground(new Background(new BackgroundFill(Color.MIDNIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
         mid.setPadding(new Insets(20, 20, 20, 20));
         Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         mid.setBorder(border);
@@ -53,7 +65,7 @@ public class MarketPage {
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
-        top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        //top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HBOX for bottom of the screen where items are
         VBox bottom = new VBox();
@@ -102,10 +114,13 @@ public class MarketPage {
 
 
         //BUY AREA BEGINS//
+        //button group for toggle
+        final ToggleGroup group = new ToggleGroup();
         //Button for buying
-        Button buybutton = new Button("Buy");
+        ToggleButton buybutton = new ToggleButton("Buy");
+        buybutton.setToggleGroup(group);
         buybutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 15px;");
+                + " -fx-background-color: gray; -fx-font-size: 25px;");
         buybutton.setTextFill(Color.WHITE);
         //drop shadow effect fo buybutton
         buybutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -126,6 +141,9 @@ public class MarketPage {
         buybutton.setOnAction((ActionEvent e) -> {
             bottom.getChildren().clear();
             GridPane marketitems = new GridPane();
+            marketitems.setPadding(new Insets(10,10,10,20));
+            marketitems.setHgap(50);
+            marketitems.setVgap(50);
             marketitems.setAlignment(Pos.TOP_CENTER);
             Text buy = new Text("BUY");
             buy.setUnderline(true);
@@ -135,8 +153,13 @@ public class MarketPage {
             int row1 = 0;
             int col1 = 0;
             for (Item i: region.getMarket().getItems()) {
+                ImageView iv = new ImageView(i.getImage());
+                iv.setFitWidth(100);
+                iv.setPreserveRatio(true);
+                iv.setSmooth(true);
+                iv.setCache(true);
                 Button item = new Button(i.getName());
-                item.setGraphic(new ImageView(i.getImage()));
+                item.setGraphic(iv);
                 item.setContentDisplay(ContentDisplay.TOP);
 
                 Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
@@ -175,9 +198,10 @@ public class MarketPage {
 
         //SELL AREA BEGINS//
         //Button for selling
-        Button sellbutton = new Button("Sell");
+        ToggleButton sellbutton = new ToggleButton("Sell");
+        sellbutton.setToggleGroup(group);
         sellbutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 15px;");
+                + " -fx-base: gray; -fx-font-size: 25px; -fx-margin: 20px;");
         sellbutton.setTextFill(Color.WHITE);
         //Drop shadow effect being applied to sellbutton
         sellbutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -210,7 +234,12 @@ public class MarketPage {
             int col2 = 0;
             for (Item i: p1.getSpaceShip().getInventory().keySet()) {
                 Button myItem = new Button("" + i.getName());
-                myItem.setGraphic(new ImageView(i.getImage()));
+                ImageView iv = new ImageView(i.getImage());
+                iv.setFitWidth(100);
+                iv.setPreserveRatio(true);
+                iv.setSmooth(true);
+                iv.setCache(true);
+                myItem.setGraphic(iv);
                 myItem.setContentDisplay(ContentDisplay.TOP);
                 Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
                         + "s left in inventory: " + mySpaceship.getQuantity(i));
@@ -255,7 +284,7 @@ public class MarketPage {
 
 
         //HBox for buy and sell button
-        HBox buysell = new HBox(10);
+        HBox buysell = new HBox(15);
         buysell.setAlignment(Pos.CENTER);
         buysell.getChildren().addAll(buybutton, sellbutton);
 
@@ -271,11 +300,11 @@ public class MarketPage {
         //Fire off buybutton at start so that buy gridpane automatically appears at start
         buybutton.fire();
 
-        //creating scrollpane with root inside of scroll pane
-        ScrollPane scrollpane = new ScrollPane(root);
-        scrollpane.setFitToHeight(true);
-        scrollpane.setFitToWidth(true);
-        Scene mktscene = new Scene(scrollpane, 800, 800);
+//        //creating scrollpane with root inside of scroll pane
+//        ScrollPane scrollpane = new ScrollPane(root);
+//        scrollpane.setFitToHeight(true);
+//        scrollpane.setFitToWidth(true);
+//        Scene mktscene = new Scene(scrollpane, 800, 800);
 
         //Making scene show
         primaryStage.setScene(mktscene);

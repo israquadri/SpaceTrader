@@ -25,7 +25,7 @@ public class InventoryPage {
 
     public InventoryPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         VBox root = new VBox(10);
-        Scene inventory = new Scene(root, 1500, 800);
+        Scene inventory = new Scene(root, 800, 800);
         inventory.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
         BackgroundImage myBI = new BackgroundImage(new Image("inventoryPIC.jpeg", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
@@ -67,8 +67,14 @@ public class InventoryPage {
         SpaceShip mySpaceship = p1.getSpaceShip();
         int cols=3, colCnt = 0, rowCnt = 0;
         for (Item i: p1.getSpaceShip().getInventory().keySet()) {
+            ImageView iv = new ImageView(i.getImage());
+            iv.setFitWidth(50);
+            iv.setPreserveRatio(true);
+            iv.setSmooth(true);
+            iv.setCache(true);
             Button myItem = new Button("" + i.getName());
-            myItem.setGraphic(new ImageView(i.getImage()));
+            //Button item = new Button(i.getName());
+            myItem.setGraphic(iv);
             myItem.setContentDisplay(ContentDisplay.TOP);
             Tooltip preSale = new Tooltip("Sell Price: " + i.getSellPrice() + "\n"
                     + " Quantity:" + mySpaceship.getQuantity(i));

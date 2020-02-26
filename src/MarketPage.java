@@ -243,6 +243,13 @@ public class MarketPage {
             bottom.getChildren().clear();
             GridPane inventoryItems = new GridPane();
             inventoryItems.setAlignment(Pos.TOP_CENTER);
+            inventoryItems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+            //Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+            inventoryItems.setBorder(border);
+            inventoryItems.setPadding(new Insets(10,10,10,20));
+            inventoryItems.setHgap(50);
+            inventoryItems.setVgap(50);
+
             Text sell = new Text("SELL");
             sell.setUnderline(true);
             sell.setFill(Color.WHITE);
@@ -298,7 +305,12 @@ public class MarketPage {
                 col2++;
                 row2 = col2 / 4;
             }
-            bottom.getChildren().add(inventoryItems);
+
+            ScrollPane scrollpane = new ScrollPane(inventoryItems);
+            scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+            scrollpane.setFitToHeight(true);
+            scrollpane.setFitToWidth(true);
+            bottom.getChildren().add(scrollpane);
         });
         //SELL AREA ENDS//
 
@@ -321,8 +333,8 @@ public class MarketPage {
         //Fire off buybutton at start so that buy gridpane automatically appears at start
         buybutton.fire();
 
-//        //creating scrollpane with root inside of scroll pane
-//        ScrollPane scrollpane = new ScrollPane(root);
+        //creating scrollpane with root inside of scroll pane
+//        ScrollPane scrollpane = new ScrollPane(inventoryItems);
 //        scrollpane.setFitToHeight(true);
 //        scrollpane.setFitToWidth(true);
 //        Scene mktscene = new Scene(scrollpane, 800, 800);

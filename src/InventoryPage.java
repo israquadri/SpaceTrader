@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -60,6 +61,9 @@ public class InventoryPage {
         grid.setHgap(50);
         grid.setVgap(50);
         grid.setAlignment(Pos.CENTER);
+        gridBox.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        gridBox.setBorder(border);
         grid.getStyleClass().add("grid");
         gridBox.getChildren().add(grid);
         gridBox.setVgrow(grid, Priority.ALWAYS);
@@ -119,7 +123,11 @@ public class InventoryPage {
                 });
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(back, vBox, gridBox);
+        ScrollPane scrollpane = new ScrollPane(gridBox);
+        scrollpane.setFitToHeight(true);
+        scrollpane.setFitToWidth(true);
+        scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        root.getChildren().addAll(back, vBox, scrollpane);
 
         //Making scene show
         primaryStage.setScene(inventory);

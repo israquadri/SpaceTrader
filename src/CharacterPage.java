@@ -13,6 +13,7 @@ import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
 
 import java.io.File;
 
@@ -30,7 +31,11 @@ public class CharacterPage {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         vb3.setBackground(new Background(myBI));
 
+        HBox nextBtn = new HBox();
         Button toScene4 = new Button("Enter the Universe!");
+        nextBtn.getChildren().add(toScene4);
+        nextBtn.setPadding(new Insets(40, 0,0,0));
+        nextBtn.setAlignment(Pos.BASELINE_CENTER);
         toScene4.setTextFill(Color.WHITE);
 
         toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
@@ -87,8 +92,8 @@ public class CharacterPage {
         yourDiff.setFill(Color.WHITE);
         yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-        vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
-        toScene4.setAlignment(Pos.BASELINE_LEFT);
+        vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, nextBtn);
+//        toScene4.setAlignment(Pos.BASELINE_RIGHT);
 
         toScene4.setOnMouseClicked(mouseEvent -> {
             //mp.stop();
@@ -96,12 +101,16 @@ public class CharacterPage {
         });
 
         //BACK TO SCENE 2 BUTTON
-        Button backToScene2 = new Button("Back to Character\nConfiguration");
+        HBox backBtn = new HBox();
+        Button backToScene2 = new Button("Back");
+        backBtn.getChildren().add(backToScene2);
+        backBtn.setPadding(new Insets(250, 0,0,10));
+        vb3.getChildren().add(backBtn);
         backToScene2.setTextFill(Color.WHITE);
         backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-        bt2.getChildren().add(backToScene2);
-        backToScene2.setAlignment(Pos.BASELINE_LEFT);
+//        bt2.getChildren().add(backToScene2);
+//        backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
         //DROP SHADOW EFFECT
         backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,

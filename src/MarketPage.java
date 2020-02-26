@@ -155,6 +155,7 @@ public class MarketPage {
             for (Item i: region.getMarket().getItems()) {
                 ImageView iv = new ImageView(i.getImage());
                 iv.setFitWidth(100);
+                iv.setFitHeight(100);
                 iv.setPreserveRatio(true);
                 iv.setSmooth(true);
                 iv.setCache(true);
@@ -236,6 +237,7 @@ public class MarketPage {
                 Button myItem = new Button("" + i.getName());
                 ImageView iv = new ImageView(i.getImage());
                 iv.setFitWidth(100);
+                iv.setFitHeight(100);
                 iv.setPreserveRatio(true);
                 iv.setSmooth(true);
                 iv.setCache(true);

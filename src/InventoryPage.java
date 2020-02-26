@@ -37,8 +37,8 @@ public class InventoryPage {
         Text welcome = new Text(p1.getName() + "'s Inventory");
         welcome.setStyle("-fx-font-size: 40px; -fx-font-family: 'Krona One'; -fx-text-align: center;");
         welcome.setTextAlignment(TextAlignment.CENTER);
-        welcome.setFill(Color.INDIANRED);
-        Background background = new Background(new BackgroundFill(Color.MIDNIGHTBLUE, CornerRadii.EMPTY, Insets.EMPTY));
+        welcome.setFill(Color.WHITESMOKE);
+        Background background = new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY));
         vBox.setPadding(new Insets(40));
         vBox.setBackground(background);
         vBox.getChildren().add(welcome);
@@ -69,6 +69,7 @@ public class InventoryPage {
         for (Item i: p1.getSpaceShip().getInventory().keySet()) {
             ImageView iv = new ImageView(i.getImage());
             iv.setFitWidth(50);
+            iv.setFitHeight(50);
             iv.setPreserveRatio(true);
             iv.setSmooth(true);
             iv.setCache(true);

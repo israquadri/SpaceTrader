@@ -108,6 +108,7 @@ public class Map {
         });
 
         //fuel display
+        HBox topBar = new HBox(300);
         HBox fuelBox = new HBox();
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
@@ -117,6 +118,7 @@ public class Map {
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
         fuelBox.setPadding(new Insets(5,5,5,5));
+        topBar.getChildren().addAll(backToOrbit, fuelBox);
 
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -138,7 +140,7 @@ public class Map {
                     }
                 });
 
-        mapDetails.getChildren().addAll(coordinates, currentRegion, backToOrbit, fuelBox);
+        mapDetails.getChildren().addAll(coordinates, currentRegion, topBar);
         mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {

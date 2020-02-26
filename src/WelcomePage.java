@@ -94,7 +94,7 @@ public class WelcomePage {
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
         // ROCKET IMAGE
-        Image image = new Image("rocket.jpg");
+        Image image = new Image("rocket.png");
         ImageView iv = new ImageView();
         iv.setImage(image);
         iv.setFitHeight(350);

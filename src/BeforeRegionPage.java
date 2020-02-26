@@ -27,7 +27,7 @@ public class BeforeRegionPage {
     public BeforeRegionPage(Stage primaryStage, Player p1) {
         //INSTANTIATING REGIONS
         //initiating regions
-        CoordGenerator cg = new CoordGenerator(700);
+        CoordGenerator cg = new CoordGenerator(700, 600);
         HashMap<Integer, Integer> xCoords = cg.getX();
         HashMap<Integer, Integer> yCoords = cg.getY();
 
@@ -82,7 +82,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region6.getMarket().setItems(itemInit.createItemList(region6.getTechLevel(), mSkill, region6.getTax(), desertItems));
 
-        String[] glitchItems = {"Panic<placeholder.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>", "Rage<placeholder.png>", "Super Strength<arm.png>"};
+        String[] glitchItems = {"Panic<placeholder.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>", "Rage<placeholder.png>", "Fuel<fuel.png>"};
         Region region7 = new Region(xCoords.get(6), yCoords.get(6), 1,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
                 800, false, true), new javafx.scene.image.Image("p7.png", 100,
@@ -90,7 +90,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region7.getMarket().setItems(itemInit.createItemList(region7.getTechLevel(), mSkill, region7.getTax(), glitchItems));
 
-        String[] medievalItems = {"Sword<placeholder.png>", "med2<placeholder.png>", "Bow and Arrow<b&w.png>", "med4<placeholder.png>", "med5<placeholder.png>", "med6<placeholder.png>"};
+        String[] medievalItems = {"Sword<placeholder.png>", "Fuel<fuel.png>", "Bow and Arrow<b&w.png>", "med4<placeholder.png>", "med5<placeholder.png>", "med6<placeholder.png>"};
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 2,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p8.png", 100,
@@ -98,7 +98,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region8.getMarket().setItems(itemInit.createItemList(region8.getTechLevel(), mSkill, region8.getTax(), medievalItems));
 
-        String[] wildWestItems = {"Bison Burger<placeholder.png>", "Ax<ax.png>", "wild3<placeholder.png>", "Fuel<fuel.png>", "wild5<placeholder.png>", "Fuel<fuel.png>"};
+        String[] wildWestItems = {"Bison Burger<placeholder.png>", "Ax<ax.png>", "wild3<placeholder.png>", "Fuel<fuel.png>", "wild5<placeholder.png>", "Revolver<placeholder.png>"};
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 7,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p9.png", 100,

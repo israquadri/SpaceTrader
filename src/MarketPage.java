@@ -101,6 +101,9 @@ public class MarketPage {
 
         //fuel display
         HBox fuelBox = new HBox();
+        top.getChildren().add(fuelBox);
+        top.setHgrow(fuelBox, Priority.ALWAYS);
+        fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
         fuelTank.setLayoutX(150);
@@ -109,8 +112,7 @@ public class MarketPage {
         fuelText.setFill(Color.WHITE);
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
-        fuelBox.setLayoutX(150);
-        top.getChildren().add(fuelBox);
+        fuelBox.setPadding(new Insets(5, 5, 5, 5));
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());

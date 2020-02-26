@@ -58,10 +58,10 @@ public class CharacterPage {
 
         HBox bt2 = new HBox();
 
-//        //SOUND EFFECT
-//        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-//        MediaPlayer mp = new MediaPlayer(effect);
-//        mp.play();
+        //SOUND EFFECT
+        //Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+        //MediaPlayer mp = new MediaPlayer(effect);
+        //mp.play();
 
         // ADDING CHARACTER SHEET SCREEN TEXT NODES
         Text yourCharacter = new Text("WELCOME,\n" + p1.getName());

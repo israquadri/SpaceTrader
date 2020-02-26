@@ -1,7 +1,9 @@
 package src;
 
 import javafx.scene.Node;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,12 +14,13 @@ public class Region extends Node {
 
     private int xCoord;
     private int yCoord;
-    private int technologyLevel;
-    private String description;
+    private int techLevel;
+    private String name;
     private Image img1;
     private Image img2;
     private boolean visited = false;
     private double tax;
+    private Market market;
 
     private ArrayList<Item> regionItems = new ArrayList<Item>();
 
@@ -26,18 +29,20 @@ public class Region extends Node {
     }
 
     public Region(int xCoord, int yCoord, int technologyLevel,
-                  String description, Image img1, Image img2, String[] items, Player p1) {
+                  String name, Image img1, Image img2) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
-        this.technologyLevel = technologyLevel;
-        this.description = description;
+        this.techLevel = technologyLevel;
+        this.name = name;
         this.img1 = img1;
         this.img2 = img2;
-        Random rand = new Random();
-        for (String itemName: items) {
+        this.market = new Market(name, technologyLevel);
+//        Random rand = new Random();
+/*        for (String itemName: items) {
             Item i = new Item(tax, p1.getCredits(), technologyLevel, itemName, rand.nextInt(10));
             regionItems.add(i);
         }
+ */
     }
 
     public ArrayList<Item> getRegionItems() {
@@ -52,12 +57,12 @@ public class Region extends Node {
         return this.yCoord;
     }
 
-    public int getTechnologyLevel() {
-        return this.technologyLevel;
+    public int getTechLevel() {
+        return this.techLevel;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getName() {
+        return this.name;
     }
 
     public Image getImg1() {
@@ -77,12 +82,12 @@ public class Region extends Node {
         this.yCoord = num;
     }
 
-    public void setTechnologyLevel(int num) {
-        this.technologyLevel = num;
+    public void setTechLevel(int num) {
+        this.techLevel = num;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String description) {
+        this.name = description;
     }
 
     public void setImg1(Image img1) {
@@ -113,5 +118,29 @@ public class Region extends Node {
     @Override
     public Node getStyleableNode() {
         return null;
+    }
+
+    /**
+     * Gets market.
+     * @return Value of market.
+     */
+    public Market getMarket() {
+        return market;
+    }
+
+    /**
+     * Gets tax.
+     * @return Value of tax.
+     */
+    public double getTax() {
+        return tax;
+    }
+
+    /**
+     * Sets new market.
+     * @param market New value of market.
+     */
+    public void setMarket(Market market) {
+        this.market = market;
     }
 }

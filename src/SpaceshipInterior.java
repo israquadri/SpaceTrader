@@ -1,5 +1,7 @@
 package src;
 
+
+import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +13,10 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import javax.security.auth.login.AppConfigurationEntry;
+
 public class SpaceshipInterior {
+
 
     public SpaceshipInterior(Stage primaryStage, Player p1, Region[] array) {
 

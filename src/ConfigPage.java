@@ -405,7 +405,7 @@ public class ConfigPage {
 
         //CONTINUE TO SCENE 3 BUTTON
         Button next = new Button("CONTINUE");
-        next.setAlignment(Pos.CENTER_RIGHT);
+//        next.setAlignment(Pos.CENTER_RIGHT);
         next.setTextFill(Color.WHITESMOKE);
         next.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
@@ -440,7 +440,11 @@ public class ConfigPage {
         });
 
         //CHARACTER CONFIGURATION
-        vb2.getChildren().addAll(charConfig, backToHome, nameBox, back, next);
+        HBox bottomBtn = new HBox(300);
+        bottomBtn.getChildren().addAll(backToHome, next);
+
+
+        vb2.getChildren().addAll(charConfig, nameBox, back, bottomBtn);
         vb2.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
         vb2.setBackground(new Background(myBI));
         scene2 = new Scene(vb2, 800, 800);

@@ -1,28 +1,48 @@
 package src;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.scene.layout.Background;
+import javafx.util.Duration;
+
+import java.util.Map;
 
 public class InventoryPage {
 
     public InventoryPage(Stage primaryStage, Player p1, Region region, Region[] array) {
-        VBox root = new VBox(40);
+        VBox root = new VBox(10);
         Scene inventory = new Scene(root, 800, 800);
+        inventory.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+        BackgroundImage myBI = new BackgroundImage(new Image("inventoryPIC.jpeg", 800,
+                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        root.setBackground(new Background(myBI));
 
         //Welcome text for market
+        VBox vBox = new VBox(10);
         Text welcome = new Text(p1.getName() + "'s Inventory");
-        welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+        welcome.setStyle("-fx-font-size: 40px; -fx-font-family: 'Krona One'; -fx-text-align: center;");
         welcome.setTextAlignment(TextAlignment.CENTER);
+        welcome.setFill(Color.WHITESMOKE);
+        Background background = new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY));
+        vBox.setPadding(new Insets(40));
+        vBox.setBackground(background);
+        vBox.getChildren().add(welcome);
+
 
         //Back to Region Page button
         Button back = new Button("Back to Spaceship");
@@ -32,6 +52,48 @@ public class InventoryPage {
         back.setOnMouseClicked((MouseEvent m) -> {
             SpaceshipInterior r = new SpaceshipInterior(primaryStage, p1, array);
         });
+
+
+        VBox gridBox = new VBox();
+        GridPane grid = new GridPane();
+        grid.setPadding(new Insets(10,10,10,20));
+        grid.setHgap(50);
+        grid.setVgap(50);
+        grid.setAlignment(Pos.CENTER);
+        grid.getStyleClass().add("grid");
+        gridBox.getChildren().add(grid);
+        gridBox.setVgrow(grid, Priority.ALWAYS);
+        //grid.setStyle(" -fx-background-radius: 25;");
+        SpaceShip mySpaceship = p1.getSpaceShip();
+        int cols=3, colCnt = 0, rowCnt = 0;
+        for (Item i: p1.getSpaceShip().getInventory().keySet()) {
+            ImageView iv = new ImageView(i.getImage());
+            iv.setFitWidth(50);
+            iv.setFitHeight(50);
+            iv.setPreserveRatio(true);
+            iv.setSmooth(true);
+            iv.setCache(true);
+            Button myItem = new Button("" + i.getName());
+            //Button item = new Button(i.getName());
+            myItem.setGraphic(iv);
+            myItem.setContentDisplay(ContentDisplay.TOP);
+            Tooltip preSale = new Tooltip("Sell Price: " + i.getSellPrice() + "\n"
+                    + " Quantity:" + mySpaceship.getQuantity(i));
+            preSale.setShowDelay(Duration.ZERO);
+            myItem.setAlignment(Pos.CENTER);
+            myItem.setTooltip(preSale);
+            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
+                    + "-fx-background-color: rgb(128,128,128); -fx-font-size: 10px; -fx-text-align: center;");
+
+                grid.add(myItem,colCnt,rowCnt);
+                colCnt++;
+
+                if (colCnt>cols) {
+                    rowCnt++;
+                    colCnt=0;
+                }
+            }
+
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
@@ -49,6 +111,7 @@ public class InventoryPage {
         //adding the shadow when the mouse cursor is on
         back.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
+
                     @Override
                     public void handle(MouseEvent mouseEvent) {
                         back.setEffect(null);
@@ -56,10 +119,11 @@ public class InventoryPage {
                 });
 
         //Adding different hboxes to root vbox node
-        root.getChildren().addAll(back, welcome);
+        root.getChildren().addAll(back, vBox, gridBox);
 
         //Making scene show
         primaryStage.setScene(inventory);
+        primaryStage.setTitle("Your inventory");
         primaryStage.show();
     }
 }

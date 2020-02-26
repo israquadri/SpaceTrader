@@ -34,7 +34,7 @@ public class Map {
             if (!r.isVisited()) {
                 planet.setText("Unknown");
             } else {
-                planet.setText(r.getDescription());
+                planet.setText(r.getName());
             }
             planet.setGraphic(new ImageView(image));
             planet.setContentDisplay(ContentDisplay.TOP);
@@ -87,7 +87,7 @@ public class Map {
         coordinates.setTextFill(Color.WHITE);
         coordinates.setAlignment(Pos.BOTTOM_RIGHT);
 
-        Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getDescription());
+        Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getName());
         currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         currentRegion.setFill(Color.WHITE);
 

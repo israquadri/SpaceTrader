@@ -31,6 +31,8 @@ public class WelcomePage {
         BorderPane root = new BorderPane();
         scene1 = new Scene(root, 800, 800);
         scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+        scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+        scene1.getStylesheets().add("https://fonts.googleapis.com/css?family=Krona+One&display=swap");
 
         //Space trader drop shadow
         DropShadow ds = new DropShadow();
@@ -45,10 +47,10 @@ public class WelcomePage {
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
 //        //MUSIC
-//        Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
-//               + "IntroSong.m4a")).toURI().toString());
-//        MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
-//        songplayer.play();
+        //Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
+          //     + "IntroSong.m4a")).toURI().toString());
+        //MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
+        //songplayer.play();
 
         //EVENT HANDLER TO SEND TO CONFIG PAGE
         startButton.setOnMouseClicked((mouseEvent -> {

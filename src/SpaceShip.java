@@ -1,16 +1,14 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
 
 public class SpaceShip {
-    int fuel;
-    String name;
-    int cargoCapacity;
-    int health;
-    HashMap<Item, Integer> inventory = new HashMap<>();
+    private int fuel;
+    private String name;
+    private int cargoCapacity;
+    private int health;
+    private HashMap<Item, Integer> inventory = new HashMap<>();
 
     public SpaceShip(int fuel, String name, int cargoCapacity, int health) {
         this.fuel = fuel;
@@ -33,7 +31,15 @@ public class SpaceShip {
     public void removeFromInventory(Item i) {
         cargoCapacity++;
         int quantity = inventory.get(i);
-        inventory.put(i, quantity - 1);
+        if (quantity - 1 == 0) {
+            inventory.remove(i);
+        } else {
+            inventory.put(i, quantity - 1);
+        }
+    }
+
+    public HashMap<Item, Integer> getInventory() {
+        return this.inventory;
     }
 
     public int getFuel() {
@@ -49,7 +55,9 @@ public class SpaceShip {
     }
 
     public int getQuantity(Item i) {
-        return inventory.get(i);
+        if (inventory.containsKey(i)) {
+            return inventory.get(i);
+        } return 0;
     }
 
     public int getInventoryCapacity() {

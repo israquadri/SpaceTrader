@@ -1,106 +1,84 @@
 package src;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.control.ToggleButton;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 public class MarketPage {
 
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
+        //Root node for rest of scene
         VBox root = new VBox(40);
+
         Scene mktscene = new Scene(root, 800, 800);
+        BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
+                800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        root.setBackground(new Background(myBI));
+        //root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+
+        //Music which i will promptly comment out
+        //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
+        //MediaPlayer music = new MediaPlayer(tradingsong);
+        //music.play();
 
         //HBox for middle of screen
-        VBox mid = new VBox(40);
+        VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
-        mid.setPrefHeight(400);
-
-        //HBox for the top of the screen
-        HBox top = new HBox(40);
-        top.setAlignment(Pos.TOP_LEFT);
-        top.setPrefHeight(400);
-
-        //Back to Region Page button
-        Button back = new Button("Back to Orbit");
-        back.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 20px;");
-        back.setTextFill(Color.WHITE);
-        back.setOnMouseClicked((MouseEvent m) -> {
-            RegionPage r = new RegionPage(primaryStage, p1, region, array);
-        });
-
-        HBox marketitems = new HBox();
-        for (Item i: region.getRegionItems()) {
-            Button item = new Button(i.getName());
-
-            Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                    + "s left in stock: " + i.getQuantity());
-            preSale.setShowDelay(Duration.ZERO);
-            item.setTooltip(preSale);
-
-            marketitems.getChildren().add(item);
-            item.setOnMouseClicked(mouseEvent -> {
-                try {
-                    p1.buyGoods(region, i, p1.getSpaceShip(), p1);
-                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just bought "
-                            + i.getName() + " for " + i.getBuyPrice() + ". Now you have "
-                            + p1.getSpaceShip().getQuantity(i) + " " + i.getName() + "s in your inventory!");
-                    a.show();
-                } catch (IllegalAccessException s) {
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "This item is all sold out! Come back " +
-                            "another time.");
-                    a.show();
-                } catch (IllegalStateException s) {
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "your cargo capacity is full. time to sell " +
-                            "your stuff");
-                    a.show();
-                }
-
-            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                    + "s left in stock: " + i.getQuantity());
-            postSale.setShowDelay(Duration.ZERO);
-            item.setTooltip(postSale);
-
-            });
-//            sell.setOnMouseClicked(mouseEvent -> {
-//                p1.sellGoods(region, item1, p1.getSpaceShip(), p1);
-//            });
-        }
-        marketitems.setAlignment(Pos.CENTER);
-
-        //Welcome text for market
-        Text welcome = new Text("Welcome to the \n" + region.getDescription() + " market");
-        welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
-        welcome.setTextAlignment(TextAlignment.CENTER);
-
-        mid.getChildren().addAll(welcome, marketitems);
-
-//        // testing backend, it works!!
-//             Text testing = new Text("Testing: " + p1.getSpaceShip().getName() + ", " + region.getItem1Description());
-//        Text itemForSale = new Text("For sale: " + item1.getName() + ". The price is " + item1.getBuyPrice());
+        mid.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setPadding(new Insets(20, 20, 20, 20));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        mid.setBorder(border);
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
         shadow.setWidth(1.5);
 
-        //Drop shadow effect being applied to back button
+        //HBox for the top of the screen
+        HBox top = new HBox(40);
+        top.setAlignment(Pos.TOP_LEFT);
+        //top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+
+        //HBOX for bottom of the screen where items are
+        VBox bottom = new VBox();
+        bottom.setSpacing(20);
+        bottom.setPrefHeight(400);
+        bottom.setAlignment(Pos.TOP_CENTER);
+
+        //Back to Region Page button
+        Button back = new Button("Back to Orbit");
+        back.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 15px;");
+        back.setTextFill(Color.WHITE);
+        //Drop shadow effect
         back.addEventHandler(MouseEvent.MOUSE_ENTERED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -108,7 +86,6 @@ public class MarketPage {
                         back.setEffect(shadow);
                     }
                 });
-        //adding the shadow when the mouse cursor is on
         back.addEventHandler(MouseEvent.MOUSE_EXITED,
                 new EventHandler<MouseEvent>() {
                     @Override
@@ -116,10 +93,220 @@ public class MarketPage {
                         back.setEffect(null);
                     }
                 });
+        back.setOnMouseClicked((MouseEvent m) -> {
+            //music.stop();
+            RegionPage r = new RegionPage(primaryStage, p1, region, array);
+        });
         top.getChildren().add(back);
 
-        root.getChildren().addAll(top, mid);
+        //Text to show amount of credits
+        Text creditsLeft = new Text("Credits: " + p1.getCredits());
+        creditsLeft.setUnderline(true);
+        creditsLeft.setFill(Color.WHITE);
+        creditsLeft.setStyle("-fx-font-size: 10px; -fx-font-family: 'Press Start 2P', cursive;");
+        creditsLeft.setTextAlignment(TextAlignment.CENTER);
 
+        //Welcome text for market
+        Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
+        welcome.setFill(Color.WHITE);
+        welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
+
+
+
+        //BUY AREA BEGINS//
+        //button group for toggle
+        final ToggleGroup group = new ToggleGroup();
+        //Button for buying
+        ToggleButton buybutton = new ToggleButton("Buy");
+        buybutton.setToggleGroup(group);
+        buybutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: gray; -fx-font-size: 25px;");
+        buybutton.setTextFill(Color.WHITE);
+        //drop shadow effect fo buybutton
+        buybutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        buybutton.setEffect(shadow);
+                    }
+                });
+        //drop shadow effect for buybutton
+        buybutton.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        buybutton.setEffect(null);
+                    }
+                });
+        buybutton.setOnAction((ActionEvent e) -> {
+            bottom.getChildren().clear();
+            GridPane marketitems = new GridPane();
+            marketitems.setPadding(new Insets(10,10,10,20));
+            marketitems.setHgap(50);
+            marketitems.setVgap(50);
+            marketitems.setAlignment(Pos.TOP_CENTER);
+            Text buy = new Text("BUY");
+            buy.setUnderline(true);
+            buy.setFill(Color.WHITE);
+            buy.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+            bottom.getChildren().add(buy);
+            int row1 = 0;
+            int col1 = 0;
+            for (Item i: region.getMarket().getItems()) {
+                ImageView iv = new ImageView(i.getImage());
+                iv.setFitWidth(100);
+                iv.setFitHeight(100);
+                iv.setPreserveRatio(true);
+                iv.setSmooth(true);
+                iv.setCache(true);
+                Button item = new Button(i.getName());
+                item.setGraphic(iv);
+                item.setContentDisplay(ContentDisplay.TOP);
+
+                Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                        + "s left in stock: " + i.getQuantity());
+                preSale.setShowDelay(Duration.ZERO);
+                item.setTooltip(preSale);
+
+                marketitems.add(item, col1 % 4, row1);
+                item.setOnMouseClicked(mouseEvent -> {
+                    Alert a = p1.buyGoods(i);
+                    a.show();
+                    if (i.getQuantity() == 0) {
+                        region.getMarket().removeItem(i);
+                        marketitems.getChildren().remove(item);
+                    }
+
+                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    creditsLeft.setText(creditUpdate);
+
+                    Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                            + "s left in stock: " + i.getQuantity());
+                    postSale.setShowDelay(Duration.ZERO);
+                    item.setTooltip(postSale);
+
+                });
+                col1++;
+                row1 = col1 / 4;
+            }
+            bottom.getChildren().add(marketitems);
+
+        });
+        //BUY AREA ENDS//
+
+
+        
+
+        //SELL AREA BEGINS//
+        //Button for selling
+        ToggleButton sellbutton = new ToggleButton("Sell");
+        sellbutton.setToggleGroup(group);
+        sellbutton.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-base: gray; -fx-font-size: 25px; -fx-margin: 20px;");
+        sellbutton.setTextFill(Color.WHITE);
+        //Drop shadow effect being applied to sellbutton
+        sellbutton.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        sellbutton.setEffect(shadow);
+                    }
+                });
+        //drop shadow effect for sellbutton
+        sellbutton.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        sellbutton.setEffect(null);
+                    }
+                });
+        sellbutton.setOnAction((ActionEvent m) -> {
+            bottom.getChildren().clear();
+            GridPane inventoryItems = new GridPane();
+            inventoryItems.setAlignment(Pos.TOP_CENTER);
+            Text sell = new Text("SELL");
+            sell.setUnderline(true);
+            sell.setFill(Color.WHITE);
+            sell.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+            bottom.getChildren().add(sell);
+            inventoryItems.setPrefHeight(400);
+            SpaceShip mySpaceship = p1.getSpaceShip();
+            int row2 = 0;
+            int col2 = 0;
+            for (Item i: p1.getSpaceShip().getInventory().keySet()) {
+                Button myItem = new Button("" + i.getName());
+                ImageView iv = new ImageView(i.getImage());
+                iv.setFitWidth(100);
+                iv.setFitHeight(100);
+                iv.setPreserveRatio(true);
+                iv.setSmooth(true);
+                iv.setCache(true);
+                myItem.setGraphic(iv);
+                myItem.setContentDisplay(ContentDisplay.TOP);
+                Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                        + "s left in inventory: " + mySpaceship.getQuantity(i));
+                preSale.setShowDelay(Duration.ZERO);
+                myItem.setTooltip(preSale);
+
+                myItem.setOnMouseClicked(mouseEvent -> {
+                    p1.sellGoods(p1.getCurrentRegion(), i);
+                    //Removing if quantity is 0
+                    if (!p1.getSpaceShip().getInventory().containsKey(i)) {
+                        inventoryItems.getChildren().remove(myItem);
+                    }
+
+                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    creditsLeft.setText(creditUpdate);
+
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold a "
+                            + i.getName() + " for " + i.getSellPrice() + ". \nNow you have "
+                            + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                    DialogPane dialogPane = a.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a.show();
+                    //a.getDialogPane().setStyle("-fx-background-color: black; -fx-text-fill: white;");
+
+                    Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
+                            + "s left in inventory: " + mySpaceship.getQuantity(i));
+                    postSale.setShowDelay(Duration.ZERO);
+                    myItem.setTooltip(postSale);
+
+                });
+
+                inventoryItems.add(myItem, col2 % 4, row2);
+                col2++;
+                row2 = col2 / 4;
+            }
+            bottom.getChildren().add(inventoryItems);
+        });
+        //SELL AREA ENDS//
+
+
+
+        //HBox for buy and sell button
+        HBox buysell = new HBox(15);
+        buysell.setAlignment(Pos.CENTER);
+        buysell.getChildren().addAll(buybutton, sellbutton);
+
+        //Adding welcome text and buy and sell buttons to mid vbox
+        mid.getChildren().addAll(welcome,creditsLeft,buysell);
+
+       // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+        welcome.setTextAlignment(TextAlignment.CENTER);
+
+        //Adding the three different parts of UI to root
+        root.getChildren().addAll(top, mid, bottom);
+
+        //Fire off buybutton at start so that buy gridpane automatically appears at start
+        buybutton.fire();
+
+//        //creating scrollpane with root inside of scroll pane
+//        ScrollPane scrollpane = new ScrollPane(root);
+//        scrollpane.setFitToHeight(true);
+//        scrollpane.setFitToWidth(true);
+//        Scene mktscene = new Scene(scrollpane, 800, 800);
 
         //Making scene show
         primaryStage.setScene(mktscene);

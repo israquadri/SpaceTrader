@@ -1,17 +1,23 @@
 package src;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogPane;
+
 public class Player {
     private String name;
     private int skillPoints;
     private int credits;
-    private int trait1val;
-    private int trait2val;
-    private int trait3val;
-    private int trait4val;
+    private int pilotSkill;
+    private int fighterSkill;
+    private int merchantSkill;
+    private int engineerSkill;
     private String difficulty;
+    private Region currentRegion;
+    private SpaceShip spaceShip;
 
     //Getter and Setter-ville
     public Player() {
+        this.spaceShip = new SpaceShip(50, "John Antelope", 15, 5);
     }
 
     public String getName() {
@@ -38,36 +44,44 @@ public class Player {
         this.credits = credits;
     }
 
-    public int getTrait1Val() {
-        return this.trait1val;
+    public int getPilotSkill() {
+        return pilotSkill;
     }
 
-    public void setTrait1Val(int trait1val) {
-        this.trait1val = trait1val;
+    public int getMerchantSkill() {
+        return merchantSkill;
     }
 
-    public int getTrait2Val() {
-        return this.trait2val;
+    public int getFighterSkill() {
+        return fighterSkill;
     }
 
-    public void setTrait2Val(int trait2val) {
-        this.trait2val = trait2val;
+    public int getEngineerSkill() {
+        return engineerSkill;
     }
 
-    public int getTrait3Val() {
-        return this.trait3val;
+    public SpaceShip getSpaceShip() {
+        return spaceShip;
     }
 
-    public void setTrait3Val(int trait3val) {
-        this.trait3val = trait3val;
+    public void setSpaceShip(SpaceShip spaceShip) {
+        this.spaceShip = spaceShip;
     }
 
-    public int getTrait4Val() {
-        return this.trait4val;
+    public void setPilotSkill(int pilotSkill) {
+        this.pilotSkill = pilotSkill;
     }
 
-    public void setTrait4Val(int trait4val) {
-        this.trait4val = trait4val;
+    public void setFighterSkill(int fighterSkill) {
+        this.fighterSkill = fighterSkill;
+    }
+
+    public void setMerchantSkill(int merchantSkill) {
+        this.merchantSkill = merchantSkill;
+    }
+
+    public void setEngineerSkill(int engineerSkill) {
+        this.engineerSkill = engineerSkill;
     }
 
     public void setDifficulty(String difficulty) {
@@ -76,6 +90,49 @@ public class Player {
 
     public String getDifficulty() {
         return this.difficulty;
+    }
+
+    public void setCurrentRegion(Region r) {
+        this.currentRegion = r;
+    }
+
+    public Region getCurrentRegion() {
+        return this.currentRegion;
+    }
+
+    public void sellGoods(Region region, Item item) {
+        this.spaceShip.removeFromInventory(item);
+        this.setCredits(this.getCredits() + item.getSellPrice());
+        region.getMarket().addItem(item);
+    }
+
+    public Alert buyGoods(Item item) {
+        if (this.getSpaceShip().getCargoCapacity() == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "your cargo capacity is full. time to sell " +
+                    "your stuff");
+            return a;
+        }
+        if (item.getQuantity() == 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "There are no items remaining");
+            return a;
+        }
+        if (this.getCredits() - item.getBuyPrice() < 0) {
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "You do not have enough money to purchase this item");
+            return a;
+        }
+        item.setQuantity(item.getQuantity() - 1);
+        this.getSpaceShip().addToInventory(item);
+        this.setCredits(this.getCredits() - (int) item.getBuyPrice());
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
+                + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
+                + this.getSpaceShip().getQuantity(item) + " " + item.getName() + "s in your inventory!");
+        DialogPane dialogPane = a.getDialogPane();
+        dialogPane.getStylesheets().add(
+                getClass().getResource("myDialogs.css").toExternalForm());
+        dialogPane.getStyleClass().add("myDialog");
+        return a;
+
+
     }
 
 }

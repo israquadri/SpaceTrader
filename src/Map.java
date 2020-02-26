@@ -52,7 +52,7 @@ public class Map {
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
-                if (p1.getSpaceShip().getFuel() < 20) {
+                if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running low on fuel. In order to "
                             + "avoid getting stranded, go to your inventory to refuel or purchase replacement fuel " +
                             "at the " + p1.getCurrentRegion().getName() + " market.");

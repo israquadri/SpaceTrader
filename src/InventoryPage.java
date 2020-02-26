@@ -32,6 +32,7 @@ public class InventoryPage {
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
+        root.setAlignment(Pos.CENTER);
 
         //Welcome text for market
         VBox vBox = new VBox(10);
@@ -128,6 +129,14 @@ public class InventoryPage {
         scrollpane.setFitToWidth(true);
         scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().addAll(back, vBox, scrollpane);
+
+        //Adding picture of character and text showing his name
+        ImageView charpic = new ImageView(new Image("CharacterPicture.png"));
+        root.getChildren().add(charpic);
+        Text chartext = new Text("Thanos");
+        chartext.setStyle("-fx-font-size: 40px; -fx-font-family: 'Krona One'; -fx-text-align: center;");
+        root.getChildren().add(chartext);
+
 
         //Making scene show
         primaryStage.setScene(inventory);

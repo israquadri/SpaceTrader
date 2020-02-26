@@ -66,7 +66,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region4.getMarket().setItems(itemInit.createItemList(region4.getTechLevel(), mSkill, region4.getTax(), scandinavianItems));
 
-        String[] arcticItems = {"Air Conditioning<ac.png>", "Ice<placeholder.png>", "Fuel<fuel.png>", "Ax<ax.png>", "Fur Coat<fur.png>"};
+        String[] arcticItems = {"Air Conditioning<ac.png>", "Ice<ice.png>", "Fuel<fuel.png>", "Ax<ax.png>", "Fur Coat<fur.png>"};
         Region region5 = new Region(xCoords.get(4), yCoords.get(4), 6,
                 "Arctic",  new javafx.scene.image.Image("arctic.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p5.png", 100,
@@ -82,7 +82,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region6.getMarket().setItems(itemInit.createItemList(region6.getTechLevel(), mSkill, region6.getTax(), desertItems));
 
-        String[] glitchItems = {"Panic<placeholder.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>", "Rage<placeholder.png>", "Fuel<fuel.png>"};
+        String[] glitchItems = {"Panic<panic.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>", "Rage<rage.png>", "Fuel<fuel.png>"};
         Region region7 = new Region(xCoords.get(6), yCoords.get(6), 1,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
                 800, false, true), new javafx.scene.image.Image("p7.png", 100,
@@ -90,7 +90,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region7.getMarket().setItems(itemInit.createItemList(region7.getTechLevel(), mSkill, region7.getTax(), glitchItems));
 
-        String[] medievalItems = {"Sword<placeholder.png>", "Fuel<fuel.png>", "Bow and Arrow<b&w.png>", "med4<placeholder.png>", "med5<placeholder.png>", "med6<placeholder.png>"};
+        String[] medievalItems = {"Sword<sword.png>", "Fuel<fuel.png>", "Bow and Arrow<b&w.png>", "Stick of Fire<fire.png>", "Suit of Armor<suitofarmor.png>"};
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 2,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p8.png", 100,
@@ -98,7 +98,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region8.getMarket().setItems(itemInit.createItemList(region8.getTechLevel(), mSkill, region8.getTax(), medievalItems));
 
-        String[] wildWestItems = {"Bison Burger<placeholder.png>", "Ax<ax.png>", "wild3<placeholder.png>", "Fuel<fuel.png>", "wild5<placeholder.png>", "Revolver<placeholder.png>"};
+        String[] wildWestItems = {"Bison Burger<burger.png>", "Ax<ax.png>", "Fuel<fuel.png>", "Lasso<lasso.png>", "Revolver<placeholder.png>"};
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 7,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p9.png", 100,
@@ -106,7 +106,7 @@ public class BeforeRegionPage {
         //set market's items attribute
         region9.getMarket().setItems(itemInit.createItemList(region9.getTechLevel(), mSkill, region9.getTax(), wildWestItems));
 
-        String[] discoItems = {"Disco Pant<placeholder.png>", "Fuel<fuel.png>", "disco3<placeholder.png>", "disco4<placeholder.png>", "disco5<placeholder.png>", "disco6<placeholder.png>"};
+        String[] discoItems = {"Disco Pant<discopant.png>", "Fuel<fuel.png>", "Disco Ball<discoball.png>", "Gogo Boots<boots.png>", "X-ray Sunglasses <sunglasses.png>"};
         Region region10 = new Region(xCoords.get(9), yCoords.get(9), 8,
                 "Disco",  new javafx.scene.image.Image("disco.jpg", 800,
                 800, false, true), new Image("p10.png", 100,

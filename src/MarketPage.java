@@ -54,7 +54,7 @@ public class MarketPage {
         mid.setAlignment(Pos.TOP_CENTER);
         mid.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
         mid.setPadding(new Insets(20, 20, 20, 20));
-        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.DASHED, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         mid.setBorder(border);
 
         //Drop shadow effect
@@ -99,6 +99,19 @@ public class MarketPage {
         });
         top.getChildren().add(back);
 
+        //fuel display
+        HBox fuelBox = new HBox();
+        ProgressBar fuelTank = new ProgressBar(50);
+        fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+        fuelTank.setLayoutX(150);
+        Text fuelText = new Text("Fuel");
+        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        fuelText.setFill(Color.WHITE);
+        fuelBox.getChildren().addAll(fuelText, fuelTank);
+        fuelBox.setSpacing(10);
+        fuelBox.setLayoutX(150);
+        top.getChildren().add(fuelBox);
+
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
         creditsLeft.setUnderline(true);
@@ -110,7 +123,6 @@ public class MarketPage {
         Text welcome = new Text("Welcome to the \n" + region.getName() + " market");
         welcome.setFill(Color.WHITE);
         welcome.setStyle("-fx-font-size: 30px; -fx-font-family: 'Krona One';");
-
 
 
         //BUY AREA BEGINS//
@@ -170,32 +182,39 @@ public class MarketPage {
 
                 marketitems.add(item, col1 % 4, row1);
                 item.setOnMouseClicked(mouseEvent -> {
-                    Alert a = p1.buyGoods(i);
-                    a.show();
-                    if (i.getQuantity() == 0) {
-                        region.getMarket().removeItem(i);
-                        marketitems.getChildren().remove(item);
+                    if (i.getName().equals("Fuel") && !p1.getSpaceShip().isTankFull()) {
+                        p1.setCredits(p1.getCredits() - i.getBuyPrice());
+                        p1.getSpaceShip().reFuel(i.getBuyPrice());
+                        fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+                        String creditUpdate = new String("Credits: " + p1.getCredits());
+                        creditsLeft.setText(creditUpdate);
+                        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added approximately "
+                                + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice())) + " gallons to your fuel tank.");
+                        a.show();
+                    } else {
+                        Alert a = p1.buyGoods(i);
+                        a.show();
+                        if (i.getQuantity() == 0) {
+                            region.getMarket().removeItem(i);
+                            marketitems.getChildren().remove(item);
+                        }
+
+                        String creditUpdate = new String("Credits: " + p1.getCredits());
+                        creditsLeft.setText(creditUpdate);
+
+                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
+                                + "s left in stock: " + i.getQuantity());
+                        postSale.setShowDelay(Duration.ZERO);
+                        item.setTooltip(postSale);
                     }
-
-                    String creditUpdate = new String("Credits: " + p1.getCredits());
-                    creditsLeft.setText(creditUpdate);
-
-                    Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                            + "s left in stock: " + i.getQuantity());
-                    postSale.setShowDelay(Duration.ZERO);
-                    item.setTooltip(postSale);
-
                 });
                 col1++;
                 row1 = col1 / 4;
             }
             bottom.getChildren().add(marketitems);
-
         });
         //BUY AREA ENDS//
 
-
-        
 
         //SELL AREA BEGINS//
         //Button for selling

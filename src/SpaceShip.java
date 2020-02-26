@@ -72,4 +72,22 @@ public class SpaceShip {
         return name;
     }
 
+    public double reFuel(int buyPrice) {
+        if ((this.fuel + (buyPrice / 2.0)) > 50.0) {
+            this.fuel += (50.0 - this.fuel);
+        } else {
+            this.fuel += (buyPrice / 2.0);
+        }
+        return (buyPrice / 2.0);
+    }
+
+    public boolean isTankFull() {
+        if (this.fuel == 50.0) {
+            return true;
+        } return false;
+    }
+
+    public void setFuelAfterTravel(int distanceBetween) {
+        this.fuel -= (distanceBetween / 45.0);
+    }
 }

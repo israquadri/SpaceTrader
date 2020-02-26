@@ -134,7 +134,7 @@ public class InventoryPage {
         ImageView charpic = new ImageView(new Image("CharacterPicture.png"));
         root.getChildren().add(charpic);
         Text chartext = new Text("Thanos");
-        chartext.setStyle("-fx-font-size: 40px; -fx-font-family: 'Krona One'; -fx-text-align: center;");
+        chartext.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P'; -fx-text-align: center;");
         root.getChildren().add(chartext);
 
 

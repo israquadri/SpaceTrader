@@ -20,8 +20,6 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Background;
 import javafx.util.Duration;
 
-import java.util.Map;
-
 public class InventoryPage {
 
     public InventoryPage(Stage primaryStage, Player p1, Region region, Region[] array) {
@@ -37,10 +35,12 @@ public class InventoryPage {
         //Welcome text for market
         VBox vBox = new VBox(10);
         Text welcome = new Text(p1.getName() + "'s Inventory");
-        welcome.setStyle("-fx-font-size: 40px; -fx-font-family: 'Krona One'; -fx-text-align: center;");
+        welcome.setStyle("-fx-font-size: 40px; -fx-font-family:"
+                + " 'Krona One'; -fx-text-align: center;");
         welcome.setTextAlignment(TextAlignment.CENTER);
         welcome.setFill(Color.WHITESMOKE);
-        Background background = new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY));
+        Background background = new Background(new BackgroundFill(Color.rgb(0,
+                22, 43), CornerRadii.EMPTY, Insets.EMPTY));
         vBox.setPadding(new Insets(40));
         vBox.setBackground(background);
         vBox.getChildren().add(welcome);
@@ -58,19 +58,23 @@ public class InventoryPage {
 
         VBox gridBox = new VBox();
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10,10,10,20));
+        grid.setPadding(new Insets(10, 10, 10, 20));
         grid.setHgap(50);
         grid.setVgap(50);
         grid.setAlignment(Pos.CENTER);
-        gridBox.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
-        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        gridBox.setBackground(new Background(new BackgroundFill(Color.rgb(0,
+                22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        Border border = new Border(new BorderStroke(Color.WHITE,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         gridBox.setBorder(border);
         grid.getStyleClass().add("grid");
         gridBox.getChildren().add(grid);
         gridBox.setVgrow(grid, Priority.ALWAYS);
         //grid.setStyle(" -fx-background-radius: 25;");
         SpaceShip mySpaceship = p1.getSpaceShip();
-        int cols=3, colCnt = 0, rowCnt = 0;
+        int cols = 3;
+        int colCnt = 0;
+        int rowCnt = 0;
         for (Item i: p1.getSpaceShip().getInventory().keySet()) {
             ImageView iv = new ImageView(i.getImage());
             iv.setFitWidth(50);
@@ -88,17 +92,17 @@ public class InventoryPage {
             preSale.setShowDelay(Duration.ZERO);
             myItem.setAlignment(Pos.CENTER);
             myItem.setTooltip(preSale);
-            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;" +
-                    " -fx-font-size: 10px; -fx-text-align: center;");
+            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
+                    + " -fx-font-size: 10px; -fx-text-align: center;");
 
-                grid.add(myItem,colCnt,rowCnt);
-                colCnt++;
+            grid.add(myItem, colCnt, rowCnt);
+            colCnt++;
 
-                if (colCnt>cols) {
-                    rowCnt++;
-                    colCnt=0;
-                }
+            if (colCnt > cols) {
+                rowCnt++;
+                colCnt = 0;
             }
+        }
 
 
         //Drop shadow effect
@@ -128,14 +132,16 @@ public class InventoryPage {
         ScrollPane scrollpane = new ScrollPane(gridBox);
         scrollpane.setFitToHeight(true);
         scrollpane.setFitToWidth(true);
-        scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
+                CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().addAll(back, vBox, scrollpane);
 
         //Adding picture of character and text showing his name
         ImageView charpic = new ImageView(new Image("CharacterPicture.png"));
         root.getChildren().add(charpic);
         Text chartext = new Text("Thanos");
-        chartext.setStyle("-fx-font-size: 20px; -fx-font-family: 'Press Start 2P'; -fx-text-align: center;");
+        chartext.setStyle("-fx-font-size: 20px; -fx-font-family:"
+                + " 'Press Start 2P'; -fx-text-align: center;");
         root.getChildren().add(chartext);
 
 

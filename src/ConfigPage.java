@@ -405,10 +405,12 @@ public class ConfigPage {
 
         //CONTINUE TO SCENE 3 BUTTON
         Button next = new Button("CONTINUE");
-//        next.setAlignment(Pos.CENTER_RIGHT);
+        //next.setAlignment(Pos.CENTER_RIGHT);
         next.setTextFill(Color.WHITESMOKE);
         next.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
+        next.setAlignment(Pos.BASELINE_RIGHT);
+
 
         //HOVER EFFECT FOR 'CONTINUE' BUTTON
         next.addEventHandler(MouseEvent.MOUSE_ENTERED,
@@ -442,9 +444,10 @@ public class ConfigPage {
         //CHARACTER CONFIGURATION
         HBox bottomBtn = new HBox(300);
         bottomBtn.getChildren().addAll(backToHome, next);
-
+        bottomBtn.setAlignment(Pos.BOTTOM_CENTER);
 
         vb2.getChildren().addAll(charConfig, nameBox, back, bottomBtn);
+        vb2.setVgrow(bottomBtn, Priority.ALWAYS);
         vb2.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
         vb2.setBackground(new Background(myBI));
         scene2 = new Scene(vb2, 800, 800);

@@ -46,9 +46,9 @@ public class WelcomePage {
         startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-//        //MUSIC
+        //MUSIC
         //Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
-          //     + "IntroSong.m4a")).toURI().toString());
+        //     + "IntroSong.m4a")).toURI().toString());
         //MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
         //songplayer.play();
 

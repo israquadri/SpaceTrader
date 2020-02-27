@@ -1,8 +1,5 @@
 package src;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,21 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 public class MarketPage {
 
@@ -41,7 +29,8 @@ public class MarketPage {
                 800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
-        //root.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        //root.setBackground(new Background(new BackgroundFill(Color.INDIANRED,
+        // CornerRadii.EMPTY, Insets.EMPTY)));
 
 
         //Music which i will promptly comment out
@@ -52,9 +41,11 @@ public class MarketPage {
         //HBox for middle of screen
         VBox mid = new VBox(20);
         mid.setAlignment(Pos.TOP_CENTER);
-        mid.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        mid.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
+                CornerRadii.EMPTY, Insets.EMPTY)));
         mid.setPadding(new Insets(20, 20, 20, 20));
-        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+        Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
+                CornerRadii.EMPTY, BorderWidths.DEFAULT));
         mid.setBorder(border);
 
         //Drop shadow effect
@@ -65,7 +56,8 @@ public class MarketPage {
         //HBox for the top of the screen
         HBox top = new HBox(40);
         top.setAlignment(Pos.TOP_LEFT);
-        //top.setBackground(new Background(new BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
+        //top.setBackground(new Background(new
+        // BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
         //HBOX for bottom of the screen where items are
         VBox bottom = new VBox();
@@ -155,11 +147,12 @@ public class MarketPage {
         buybutton.setOnAction((ActionEvent e) -> {
             bottom.getChildren().clear();
             GridPane marketitems = new GridPane();
-            marketitems.setPadding(new Insets(10,10,10,20));
+            marketitems.setPadding(new Insets(10, 10, 10, 20));
             marketitems.setHgap(50);
             marketitems.setVgap(50);
             marketitems.setPrefHeight(400);
-            marketitems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+            marketitems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
+                    CornerRadii.EMPTY, Insets.EMPTY)));
             marketitems.setAlignment(Pos.TOP_CENTER);
             marketitems.setBorder(border);
             Text buy = new Text("BUY");
@@ -210,7 +203,8 @@ public class MarketPage {
                 item.setOnMouseClicked(mouseEvent -> {
                     if (i.getName().equals("Fuel") && !p1.getSpaceShip().isTankFull()) {
                         if (i.getBuyPrice() > p1.getCredits()) {
-                            Alert a = new Alert(Alert.AlertType.ERROR, "You don't have enough credits to refuel.");
+                            Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
+                                    + " enough credits to refuel.");
                             a.show();
                         } else {
                             p1.setCredits(p1.getCredits() - i.getBuyPrice());
@@ -218,8 +212,10 @@ public class MarketPage {
                             fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
                             String creditUpdate = new String("Credits: " + p1.getCredits());
                             creditsLeft.setText(creditUpdate);
-                            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added approximately "
-                                    + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice())) + " gallons to your fuel tank.");
+                            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added"
+                                    + " approximately "
+                                    + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice()))
+                                    + " gallons to your fuel tank.");
                             a.show();
                         }
                     } else {
@@ -233,8 +229,8 @@ public class MarketPage {
                         String creditUpdate = new String("Credits: " + p1.getCredits());
                         creditsLeft.setText(creditUpdate);
 
-                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
-                                + "s left in stock: " + i.getQuantity());
+                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
                         postSale.setShowDelay(Duration.ZERO);
                         item.setTooltip(postSale);
                     }
@@ -274,10 +270,13 @@ public class MarketPage {
             bottom.getChildren().clear();
             GridPane inventoryItems = new GridPane();
             inventoryItems.setAlignment(Pos.TOP_CENTER);
-            inventoryItems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
-            //Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+            inventoryItems.setBackground(new Background(new
+                    BackgroundFill(Color.rgb(0, 22, 43),
+                    CornerRadii.EMPTY, Insets.EMPTY)));
+            //Border border = new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
+            // CornerRadii.EMPTY, BorderWidths.DEFAULT));
             inventoryItems.setBorder(border);
-            inventoryItems.setPadding(new Insets(10,10,10,20));
+            inventoryItems.setPadding(new Insets(10, 10, 10, 20));
             inventoryItems.setHgap(50);
             inventoryItems.setVgap(50);
 
@@ -337,18 +336,21 @@ public class MarketPage {
                     String creditUpdate = new String("Credits: " + p1.getCredits());
                     creditsLeft.setText(creditUpdate);
 
-                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName() + ", you just sold a "
-                            + i.getName() + " for " + i.getSellPrice() + ". \nNow you have "
-                            + mySpaceship.getQuantity(i) + " " + i.getName() + "s in your inventory!");
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName()
+                            + ", you just sold a " + i.getName() + " for " + i.getSellPrice()
+                            + ". \nNow you have " + mySpaceship.getQuantity(i) + " "
+                            + i.getName() + "s in your inventory!");
                     DialogPane dialogPane = a.getDialogPane();
                     dialogPane.getStylesheets().add(
                             getClass().getResource("myDialogs.css").toExternalForm());
                     dialogPane.getStyleClass().add("myDialog");
                     a.show();
-                    //a.getDialogPane().setStyle("-fx-background-color: black; -fx-text-fill: white;");
+                    //a.getDialogPane().setStyle("-fx-background-color:
+                    // black; -fx-text-fill: white;");
 
-                    Tooltip postSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
-                            + "s left in inventory: " + mySpaceship.getQuantity(i));
+                    Tooltip postSale = new Tooltip("Price: " + i.getSellPrice()
+                            + "\n" + i.getName() + "s left in inventory: "
+                            + mySpaceship.getQuantity(i));
                     postSale.setShowDelay(Duration.ZERO);
                     myItem.setTooltip(postSale);
 
@@ -360,7 +362,8 @@ public class MarketPage {
             }
 
             ScrollPane scrollpane = new ScrollPane(inventoryItems);
-            scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+            scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
+                    CornerRadii.EMPTY, Insets.EMPTY)));
             scrollpane.setFitToHeight(true);
             scrollpane.setFitToWidth(true);
             bottom.getChildren().add(scrollpane);
@@ -375,9 +378,9 @@ public class MarketPage {
         buysell.getChildren().addAll(buybutton, sellbutton);
 
         //Adding welcome text and buy and sell buttons to mid vbox
-        mid.getChildren().addAll(welcome,creditsLeft,buysell);
+        mid.getChildren().addAll(welcome, creditsLeft, buysell);
 
-       // welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+        //welcome.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         welcome.setTextAlignment(TextAlignment.CENTER);
 
         //Adding the three different parts of UI to root
@@ -387,10 +390,10 @@ public class MarketPage {
         buybutton.fire();
 
         //creating scrollpane with root inside of scroll pane
-//        ScrollPane scrollpane = new ScrollPane(inventoryItems);
-//        scrollpane.setFitToHeight(true);
-//        scrollpane.setFitToWidth(true);
-//        Scene mktscene = new Scene(scrollpane, 800, 800);
+        //ScrollPane scrollpane = new ScrollPane(inventoryItems);
+        //scrollpane.setFitToHeight(true);
+        //scrollpane.setFitToWidth(true);
+        //Scene mktscene = new Scene(scrollpane, 800, 800);
 
         //Making scene show
         primaryStage.setScene(mktscene);

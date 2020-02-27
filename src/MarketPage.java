@@ -182,6 +182,12 @@ public class MarketPage {
                 preSale.setShowDelay(Duration.ZERO);
                 item.setTooltip(preSale);
 
+                marketitems.setBorder(border);
+                marketitems.setPadding(new Insets(10,10,10,20));
+                marketitems.setHgap(50);
+                marketitems.setVgap(50);
+                marketitems.setPrefHeight(400);
+                marketitems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
                 marketitems.add(item, col1 % 4, row1);
                 item.setOnMouseClicked(mouseEvent -> {
                     if (i.getName().equals("Fuel") && !p1.getSpaceShip().isTankFull()) {

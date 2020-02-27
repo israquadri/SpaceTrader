@@ -11,13 +11,13 @@ public class Item {
 	private int buyPrice;
 	private String name;
 	private int quantity;
-	private int basePrice = 10;
+	//private int basePrice = 10;
 	private Random varRand = new Random();
 	private int variance = varRand.nextInt(8);
 	private Image image;
 	private ImageView imageView;
 
-	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity) {
+	public Item(double tax, int merchantLevel, int technologyLevel, String name, int quantity, int basePrice) {
 		sellPrice = (int)(basePrice * (1 + tax + .01 * technologyLevel));
 		sellPrice = (int) (varRand.nextInt(sellPrice) + .5 * sellPrice);
 		sellPrice = (int)(sellPrice - (.02 * merchantLevel * sellPrice));

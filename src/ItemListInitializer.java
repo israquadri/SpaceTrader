@@ -16,7 +16,9 @@ public class ItemListInitializer {
         //initialize quantity
         Random randomQuantity = new Random();
         for (int i = 0; i < itemNames.length; i++) {
-            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i], randomQuantity.nextInt(7) + 1);
+            Random basePriceDeterminator = new Random();
+            int basePrice = basePriceDeterminator.nextInt(11) + 30;
+            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i], randomQuantity.nextInt(7) + 1, basePrice);
             items.add(item);
         }
         return items;

@@ -209,14 +209,19 @@ public class MarketPage {
                 marketitems.add(item, col1 % 4, row1);
                 item.setOnMouseClicked(mouseEvent -> {
                     if (i.getName().equals("Fuel") && !p1.getSpaceShip().isTankFull()) {
-                        p1.setCredits(p1.getCredits() - i.getBuyPrice());
-                        p1.getSpaceShip().reFuel(i.getBuyPrice());
-                        fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
-                        String creditUpdate = new String("Credits: " + p1.getCredits());
-                        creditsLeft.setText(creditUpdate);
-                        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added approximately "
-                                + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice())) + " gallons to your fuel tank.");
-                        a.show();
+                        if (i.getBuyPrice() > p1.getCredits()) {
+                            Alert a = new Alert(Alert.AlertType.ERROR, "You don't have enough credits to refuel.");
+                            a.show();
+                        } else {
+                            p1.setCredits(p1.getCredits() - i.getBuyPrice());
+                            p1.getSpaceShip().reFuel(i.getBuyPrice());
+                            fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+                            String creditUpdate = new String("Credits: " + p1.getCredits());
+                            creditsLeft.setText(creditUpdate);
+                            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added approximately "
+                                    + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice())) + " gallons to your fuel tank.");
+                            a.show();
+                        }
                     } else {
                         Alert a = p1.buyGoods(i);
                         a.show();

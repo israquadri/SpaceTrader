@@ -78,17 +78,18 @@ public class InventoryPage {
             iv.setPreserveRatio(true);
             iv.setSmooth(true);
             iv.setCache(true);
-            Button myItem = new Button("" + i.getName());
-            //Button item = new Button(i.getName());
+            Button myItem = new Button(i.getName());
+            myItem.setTextAlignment(TextAlignment.CENTER);
             myItem.setGraphic(iv);
             myItem.setContentDisplay(ContentDisplay.TOP);
+            myItem.setBackground(Background.EMPTY);
             Tooltip preSale = new Tooltip("Sell Price: " + i.getSellPrice() + "\n"
                     + " Quantity:" + mySpaceship.getQuantity(i));
             preSale.setShowDelay(Duration.ZERO);
             myItem.setAlignment(Pos.CENTER);
             myItem.setTooltip(preSale);
-            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
-                    + "-fx-background-color: rgb(128,128,128); -fx-font-size: 10px; -fx-text-align: center;");
+            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;" +
+                    " -fx-font-size: 10px; -fx-text-align: center;");
 
                 grid.add(myItem,colCnt,rowCnt);
                 colCnt++;

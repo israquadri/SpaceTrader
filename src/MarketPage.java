@@ -60,7 +60,7 @@ public class MarketPage {
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
-        shadow.setWidth(1.5);
+        shadow.setWidth(0.3);
 
         //HBox for the top of the screen
         HBox top = new HBox(40);
@@ -158,7 +158,10 @@ public class MarketPage {
             marketitems.setPadding(new Insets(10,10,10,20));
             marketitems.setHgap(50);
             marketitems.setVgap(50);
+            marketitems.setPrefHeight(400);
+            marketitems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
             marketitems.setAlignment(Pos.TOP_CENTER);
+            marketitems.setBorder(border);
             Text buy = new Text("BUY");
             buy.setUnderline(true);
             buy.setFill(Color.WHITE);
@@ -175,19 +178,34 @@ public class MarketPage {
                 iv.setCache(true);
                 Button item = new Button(i.getName());
                 item.setGraphic(iv);
+                item.setBackground(Background.EMPTY);
                 item.setContentDisplay(ContentDisplay.TOP);
+                item.setTextAlignment(TextAlignment.CENTER);
+                item.setStyle("-fx-font-size: 0.9em; -fx-graphic-text-gap: 10px; -fx-font-family:"
+                        + " 'Press Start 2P', cursive;");
+                item.setTextFill(Color.WHITESMOKE);
+
+                //DROP SHADOW EFFECT
+                item.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                item.setEffect(shadow);
+                            }
+                        });
+                item.addEventHandler(MouseEvent.MOUSE_EXITED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                item.setEffect(null);
+                            }
+                        });
 
                 Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                         + "s left in stock: " + i.getQuantity());
                 preSale.setShowDelay(Duration.ZERO);
                 item.setTooltip(preSale);
 
-                marketitems.setBorder(border);
-                marketitems.setPadding(new Insets(10,10,10,20));
-                marketitems.setHgap(50);
-                marketitems.setVgap(50);
-                marketitems.setPrefHeight(400);
-                marketitems.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
                 marketitems.add(item, col1 % 4, row1);
                 item.setOnMouseClicked(mouseEvent -> {
                     if (i.getName().equals("Fuel") && !p1.getSpaceShip().isTankFull()) {
@@ -268,7 +286,7 @@ public class MarketPage {
             int row2 = 0;
             int col2 = 0;
             for (Item i: p1.getSpaceShip().getInventory().keySet()) {
-                Button myItem = new Button("" + i.getName());
+                Button myItem = new Button(i.getName());
                 ImageView iv = new ImageView(i.getImage());
                 iv.setFitWidth(100);
                 iv.setFitHeight(100);
@@ -276,7 +294,29 @@ public class MarketPage {
                 iv.setSmooth(true);
                 iv.setCache(true);
                 myItem.setGraphic(iv);
+                myItem.setBackground(Background.EMPTY);
                 myItem.setContentDisplay(ContentDisplay.TOP);
+                myItem.setStyle("-fx-font-size: 0.9em; -fx-font-family:"
+                        + " 'Press Start 2P', cursive;");
+                myItem.setTextAlignment(TextAlignment.CENTER);
+                myItem.setTextFill(Color.WHITESMOKE);
+
+                //DROP SHADOW EFFECT
+                myItem.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                myItem.setEffect(shadow);
+                            }
+                        });
+                myItem.addEventHandler(MouseEvent.MOUSE_EXITED,
+                        new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent mouseEvent) {
+                                myItem.setEffect(null);
+                            }
+                        });
+
                 Tooltip preSale = new Tooltip("Price: " + i.getSellPrice() + "\n" + i.getName()
                         + "s left in inventory: " + mySpaceship.getQuantity(i));
                 preSale.setShowDelay(Duration.ZERO);

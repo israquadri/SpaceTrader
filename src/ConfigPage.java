@@ -404,8 +404,7 @@ public class ConfigPage {
 
 
         //CONTINUE TO SCENE 3 BUTTON
-        Button next = new Button("CONTINUE");
-        //next.setAlignment(Pos.CENTER_RIGHT);
+        Button next = new Button("Continue");
         next.setTextFill(Color.WHITESMOKE);
         next.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");

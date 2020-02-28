@@ -1,13 +1,11 @@
 package src;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,9 +28,10 @@ public class InventoryPage {
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
-        root.setAlignment(Pos.CENTER);
+        root.setAlignment(Pos.TOP_CENTER);
+        root.setPadding(new Insets(20));
 
-        //Welcome text for market
+        //Welcome text for inventory
         VBox vBox = new VBox(10);
         Text welcome = new Text(p1.getName() + "'s Inventory");
         welcome.setStyle("-fx-font-size: 40px; -fx-font-family:"
@@ -41,9 +40,19 @@ public class InventoryPage {
         welcome.setFill(Color.WHITESMOKE);
         Background background = new Background(new BackgroundFill(Color.rgb(0,
                 22, 43), CornerRadii.EMPTY, Insets.EMPTY));
-        vBox.setPadding(new Insets(40));
+        vBox.setPadding(new Insets(30, 10, 30, 10));
         vBox.setBackground(background);
         vBox.getChildren().add(welcome);
+        vBox.setAlignment(Pos.TOP_CENTER);
+
+        //HBox fo hold inventory, character and upgrades
+        HBox mid = new HBox();
+
+        //VBox or inventory
+        VBox left = new VBox();
+        left.setPrefWidth(267);
+        left.setPrefHeight(400);
+        left.setAlignment(Pos.CENTER);
 
 
         //Back to Region Page button
@@ -64,12 +73,15 @@ public class InventoryPage {
         grid.setAlignment(Pos.CENTER);
         gridBox.setBackground(new Background(new BackgroundFill(Color.rgb(0,
                 22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+        gridBox.setAlignment(Pos.CENTER);
         Border border = new Border(new BorderStroke(Color.WHITE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
         gridBox.setBorder(border);
         grid.getStyleClass().add("grid");
-        gridBox.getChildren().add(grid);
+        //gridBox.getChildren().add(grid);
         gridBox.setVgrow(grid, Priority.ALWAYS);
+        gridBox.setPrefWidth(240);
+        gridBox.setPrefHeight(400);
         //grid.setStyle(" -fx-background-radius: 25;");
         SpaceShip mySpaceship = p1.getSpaceShip();
         int cols = 3;
@@ -95,7 +107,8 @@ public class InventoryPage {
             myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
                     + " -fx-font-size: 10px; -fx-text-align: center;");
 
-            grid.add(myItem, colCnt, rowCnt);
+            //grid.add(myItem, colCnt, rowCnt);
+            gridBox.getChildren().add(myItem);
             colCnt++;
 
             if (colCnt > cols) {
@@ -103,7 +116,6 @@ public class InventoryPage {
                 colCnt = 0;
             }
         }
-
 
         //Drop shadow effect
         DropShadow shadow = new DropShadow();
@@ -134,16 +146,61 @@ public class InventoryPage {
         scrollpane.setFitToWidth(true);
         scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
                 CornerRadii.EMPTY, Insets.EMPTY)));
-        root.getChildren().addAll(back, vBox, scrollpane);
+        root.getChildren().addAll(back, vBox, mid);
 
         //Adding picture of character and text showing his name
         ImageView charpic = new ImageView(new Image("CharacterPicture.png"));
-        root.getChildren().add(charpic);
         Text chartext = new Text("Thanos");
         chartext.setStyle("-fx-font-size: 20px; -fx-font-family:"
                 + " 'Press Start 2P'; -fx-text-align: center;");
-        root.getChildren().add(chartext);
 
+        //Making a right vbox for the character upgrades
+        VBox right = new VBox();
+        right.setSpacing(10);
+        right.setAlignment(Pos.TOP_CENTER);
+        right.setPrefWidth(240);
+        right.setBackground(new Background(new BackgroundFill(Color.rgb(0,
+                22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        Text upgrade = new Text("Character Upgrades:");
+        upgrade.setStyle("-fx-font-size: 10px; -fx-font-family:"
+                + " 'Press Start 2P'; -fx-text-align: center;");
+        upgrade.setFill(Color.WHITE);
+
+
+        Text gauntlet = new Text("Explorer: \nUnlock all planet names\n (50 Credits)");
+        gauntlet.setStyle("-fx-font-size: 10px; -fx-font-family:"
+                + " 'Press Start 2P'");
+        gauntlet.setTextAlignment(TextAlignment.CENTER);
+        gauntlet.setFill(Color.WHITE);
+        Button upgrade1btn = new Button("Activate");
+        upgrade1btn.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: gray; -fx-font-size: 10px;");
+        upgrade1btn.setOnAction((ActionEvent e) -> {
+            if (p1.getCredits() < 50) {
+                Alert a = new Alert(Alert.AlertType.ERROR,
+                        "You do not have enough credits to purchase this upgrade");
+            }
+            p1.setCredits(p1.getCredits() - 50);
+            for (Region r : array) {
+                r.setVisited();
+            }
+            right.getChildren().removeAll(gauntlet, upgrade1btn);
+        });
+
+        right.getChildren().addAll(upgrade, gauntlet, upgrade1btn);
+
+
+
+
+        //Adding everything to mid hbox
+        VBox midmid = new VBox();
+        midmid.setAlignment(Pos.CENTER);
+        midmid.setPrefWidth(265);
+        midmid.getChildren().addAll(chartext, charpic);
+
+
+        mid.getChildren().addAll(scrollpane, midmid, right);
 
         //Making scene show
         primaryStage.setScene(inventory);

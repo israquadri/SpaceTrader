@@ -1,14 +1,9 @@
 package src;
 
 import javafx.scene.Node;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Random;
 
 public class Region extends Node {
 
@@ -37,12 +32,12 @@ public class Region extends Node {
         this.img1 = img1;
         this.img2 = img2;
         this.market = new Market(name, technologyLevel);
-//        Random rand = new Random();
-/*        for (String itemName: items) {
+        //        Random rand = new Random();
+        /*        for (String itemName: items) {
             Item i = new Item(tax, p1.getCredits(), technologyLevel, itemName, rand.nextInt(10));
             regionItems.add(i);
         }
- */
+        */
     }
 
     public ArrayList<Item> getRegionItems() {

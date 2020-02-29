@@ -108,16 +108,18 @@ public class Player {
 
     public Alert buyGoods(Item item) {
         if (this.getSpaceShip().getCargoCapacity() == 0) {
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "your cargo capacity is full. time to sell " +
-                    "your stuff");
+            Alert a = new Alert(Alert.AlertType.INFORMATION,
+                    "Your cargo capacity is full! Trade out items to make"
+                            + " space in your inventory.");
             return a;
         }
         if (item.getQuantity() == 0) {
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "There are no items remaining");
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "There are no items remaining!");
             return a;
         }
         if (this.getCredits() - item.getBuyPrice() < 0) {
-            Alert a = new Alert(Alert.AlertType.INFORMATION, "You do not have enough money to purchase this item");
+            Alert a = new Alert(Alert.AlertType.INFORMATION, "You do not have"
+                    + " enough money to purchase this item!");
             return a;
         }
         item.setQuantity(item.getQuantity() - 1);
@@ -125,7 +127,8 @@ public class Player {
         this.setCredits(this.getCredits() - (int) item.getBuyPrice());
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
                 + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
-                + this.getSpaceShip().getQuantity(item) + " " + item.getName() + "s in your inventory!");
+                + this.getSpaceShip().getQuantity(item) + " " + item.getName()
+                + "s in your inventory!");
         DialogPane dialogPane = a.getDialogPane();
         dialogPane.getStylesheets().add(
                 getClass().getResource("myDialogs.css").toExternalForm());

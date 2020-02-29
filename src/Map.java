@@ -53,9 +53,10 @@ public class Map {
 
             planet.setOnMouseClicked(mouseEvent -> {
                 if (p1.getSpaceShip().getFuel() < 10) {
-                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running low on fuel. In order to "
-                            + "avoid getting stranded, go to your inventory to refuel or purchase replacement fuel " +
-                            "at the " + p1.getCurrentRegion().getName() + " market.");
+                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
+                            + " low on fuel. In order to avoid getting stranded,"
+                            + " go to your inventory to refuel or purchase fuel"
+                            + " at the " + p1.getCurrentRegion().getName() + " market.");
                     a.show();
                 } else {
                     r.setVisited();
@@ -108,6 +109,7 @@ public class Map {
         });
 
         //fuel display
+        HBox topBar = new HBox(300);
         HBox fuelBox = new HBox();
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
@@ -116,7 +118,8 @@ public class Map {
         fuelText.setFill(Color.WHITE);
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
-        fuelBox.setPadding(new Insets(5,5,5,5));
+        fuelBox.setPadding(new Insets(5, 5, 5, 5));
+        topBar.getChildren().addAll(backToOrbit, fuelBox);
 
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -138,7 +141,7 @@ public class Map {
                     }
                 });
 
-        mapDetails.getChildren().addAll(coordinates, currentRegion, backToOrbit, fuelBox);
+        mapDetails.getChildren().addAll(coordinates, currentRegion, topBar);
         mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {

@@ -46,9 +46,9 @@ public class WelcomePage {
         startButton.setStyle("-fx-background-color: black; -fx-font-size: 40px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-//        //MUSIC
+        //MUSIC
         //Media spaceTraderIntroSong = new Media((new File("SpaceTrader"
-          //     + "IntroSong.m4a")).toURI().toString());
+        //     + "IntroSong.m4a")).toURI().toString());
         //MediaPlayer songplayer = new MediaPlayer(spaceTraderIntroSong);
         //songplayer.play();
 
@@ -94,7 +94,7 @@ public class WelcomePage {
         spaceTrader.setStyle("-fx-font-size: 60px; -fx-font-family: 'Press Start 2P', cursive;");
 
         // ROCKET IMAGE
-        Image image = new Image("rocket.jpg");
+        Image image = new Image("rocket.png");
         ImageView iv = new ImageView();
         iv.setImage(image);
         iv.setFitHeight(350);

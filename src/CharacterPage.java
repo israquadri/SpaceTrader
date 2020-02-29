@@ -19,6 +19,8 @@ import java.io.File;
 
 public class CharacterPage {
 
+    private MediaPlayer mp;
+
     public CharacterPage(Stage primaryStage, Player p1) {
 
         // SCENE 3 BACKING STRUCTURE SET UP
@@ -65,9 +67,9 @@ public class CharacterPage {
         HBox bt2 = new HBox();
 
         //SOUND EFFECT
-        //Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        //MediaPlayer mp = new MediaPlayer(effect);
-        //mp.play();
+        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+        mp = new MediaPlayer(effect);
+        mp.play();
 
         // ADDING CHARACTER SHEET SCREEN TEXT NODES
         Text yourCharacter = new Text("WELCOME,\n" + p1.getName());

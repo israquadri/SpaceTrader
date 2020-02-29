@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -18,7 +20,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.io.File;
+
 public class MarketPage {
+
+    private MediaPlayer music;
 
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
         //Root node for rest of scene
@@ -34,9 +40,9 @@ public class MarketPage {
 
 
         //Music which i will promptly comment out
-        //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
-        //MediaPlayer music = new MediaPlayer(tradingsong);
-        //music.play();
+        Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
+        music = new MediaPlayer(tradingsong);
+        music.play();
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
@@ -86,7 +92,7 @@ public class MarketPage {
                     }
                 });
         back.setOnMouseClicked((MouseEvent m) -> {
-            //music.stop();
+            music.stop();
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
         top.getChildren().add(back);
@@ -370,8 +376,6 @@ public class MarketPage {
         });
         //SELL AREA ENDS//
 
-
-
         //HBox for buy and sell button
         HBox buysell = new HBox(15);
         buysell.setAlignment(Pos.CENTER);
@@ -388,12 +392,6 @@ public class MarketPage {
 
         //Fire off buybutton at start so that buy gridpane automatically appears at start
         buybutton.fire();
-
-        //creating scrollpane with root inside of scroll pane
-        //ScrollPane scrollpane = new ScrollPane(inventoryItems);
-        //scrollpane.setFitToHeight(true);
-        //scrollpane.setFitToWidth(true);
-        //Scene mktscene = new Scene(scrollpane, 800, 800);
 
         //Making scene show
         primaryStage.setScene(mktscene);

@@ -1,7 +1,5 @@
 package src;
 
-
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,8 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import javax.security.auth.login.AppConfigurationEntry;
 
 public class SpaceshipInterior {
 
@@ -56,7 +52,8 @@ public class SpaceshipInterior {
         viewInventory.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: black; -fx-font-size: 20px;");
         viewInventory.setOnMouseClicked(mouseEvent -> {
-            InventoryPage inventory = new InventoryPage(primaryStage, p1, p1.getCurrentRegion(), array);
+            InventoryPage inventory = new
+                    InventoryPage(primaryStage, p1, p1.getCurrentRegion(), array);
         });
 
         controls.getChildren().addAll(viewInventory, toMap, toRegion);

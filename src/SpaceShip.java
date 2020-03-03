@@ -1,7 +1,6 @@
 package src;
 
 import java.util.*;
-import java.util.Map;
 
 public class SpaceShip {
     private int fuel;
@@ -57,7 +56,8 @@ public class SpaceShip {
     public int getQuantity(Item i) {
         if (inventory.containsKey(i)) {
             return inventory.get(i);
-        } return 0;
+        }
+        return 0;
     }
 
     public int getInventoryCapacity() {
@@ -84,7 +84,8 @@ public class SpaceShip {
     public boolean isTankFull() {
         if (this.fuel == 50.0) {
             return true;
-        } return false;
+        }
+        return false;
     }
 
     public void setFuelAfterTravel(int distanceBetween) {

@@ -30,11 +30,12 @@ public class CharacterPage {
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         vb3.setBackground(new Background(myBI));
+        vb3.setPadding(new Insets(10, 5, 2, 5));
 
         HBox nextBtn = new HBox();
         Button toScene4 = new Button("Enter the Universe!");
         nextBtn.getChildren().add(toScene4);
-        nextBtn.setPadding(new Insets(40, 0,0,0));
+        nextBtn.setPadding(new Insets(40, 0, 0, 0));
         nextBtn.setAlignment(Pos.BASELINE_CENTER);
         toScene4.setTextFill(Color.WHITE);
 
@@ -93,7 +94,7 @@ public class CharacterPage {
         yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
         vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, nextBtn);
-//        toScene4.setAlignment(Pos.BASELINE_RIGHT);
+        //        toScene4.setAlignment(Pos.BASELINE_RIGHT);
 
         toScene4.setOnMouseClicked(mouseEvent -> {
             //mp.stop();
@@ -104,13 +105,13 @@ public class CharacterPage {
         HBox backBtn = new HBox();
         Button backToScene2 = new Button("Back");
         backBtn.getChildren().add(backToScene2);
-        backBtn.setPadding(new Insets(250, 0,0,10));
+        backBtn.setPadding(new Insets(250, 0, 0, 10));
         vb3.getChildren().add(backBtn);
         backToScene2.setTextFill(Color.WHITE);
         backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-//        bt2.getChildren().add(backToScene2);
-//        backToScene2.setAlignment(Pos.BASELINE_LEFT);
+        //        bt2.getChildren().add(backToScene2);
+        //        backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
         //DROP SHADOW EFFECT
         backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,

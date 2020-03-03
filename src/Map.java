@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.image.ImageView;
 
+import java.util.Random;
+
 public class Map {
 
     public Map(Stage primaryStage, Region[] regions, Player p1) {
@@ -52,12 +54,15 @@ public class Map {
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
+                Random rand = new Random();
                 if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
                             + " low on fuel. In order to avoid getting stranded,"
                             + " go to your inventory to refuel or purchase fuel"
                             + " at the " + p1.getCurrentRegion().getName() + " market.");
                     a.show();
+                } else if (rand.nextInt(10) == 0) {
+                    BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1);
                 } else {
                     r.setVisited();
                     p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));

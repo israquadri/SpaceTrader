@@ -11,12 +11,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
+import java.io.File;
 
 public class MarketPage {
 
@@ -37,6 +40,7 @@ public class MarketPage {
         //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
         //MediaPlayer music = new MediaPlayer(tradingsong);
         //music.play();
+        //music.setCycleCount(100);
 
         //HBox for middle of screen
         VBox mid = new VBox(20);

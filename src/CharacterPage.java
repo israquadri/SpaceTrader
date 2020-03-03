@@ -13,6 +13,7 @@ import javafx.scene.media.Media;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
 
 import java.io.File;
 
@@ -29,8 +30,13 @@ public class CharacterPage {
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         vb3.setBackground(new Background(myBI));
+        vb3.setPadding(new Insets(10, 5, 2, 5));
 
+        HBox nextBtn = new HBox();
         Button toScene4 = new Button("Enter the Universe!");
+        nextBtn.getChildren().add(toScene4);
+        nextBtn.setPadding(new Insets(40, 0, 0, 0));
+        nextBtn.setAlignment(Pos.BASELINE_CENTER);
         toScene4.setTextFill(Color.WHITE);
 
         toScene4.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
@@ -59,9 +65,9 @@ public class CharacterPage {
         HBox bt2 = new HBox();
 
         //SOUND EFFECT
-        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        MediaPlayer mp = new MediaPlayer(effect);
-        mp.play();
+        //Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+        //MediaPlayer mp = new MediaPlayer(effect);
+        //mp.play();
 
         // ADDING CHARACTER SHEET SCREEN TEXT NODES
         Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -74,10 +80,10 @@ public class CharacterPage {
         yourNameIs.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
 
-        Text yourTraits = new Text("Your points for Pilot: " + p1.getTrait1Val()
-                + "\nYour points for Fighter: " + p1.getTrait2Val()
-                + "\nYour points for Merchant: " + p1.getTrait3Val()
-                + "\nYour points for Engineer: " + p1.getTrait4Val());
+        Text yourTraits = new Text("Your points for Pilot: " + p1.getPilotSkill()
+                + "\nYour points for Fighter: " + p1.getFighterSkill()
+                + "\nYour points for Merchant: " + p1.getMerchantSkill()
+                + "\nYour points for Engineer: " + p1.getEngineerSkill());
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
@@ -87,21 +93,25 @@ public class CharacterPage {
         yourDiff.setFill(Color.WHITE);
         yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-        vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, toScene4);
-        toScene4.setAlignment(Pos.BASELINE_LEFT);
+        vb3.getChildren().addAll(yourCharacter, bt2, yourNameIs, yourTraits, yourDiff, nextBtn);
+        //        toScene4.setAlignment(Pos.BASELINE_RIGHT);
 
         toScene4.setOnMouseClicked(mouseEvent -> {
-            mp.stop();
+            //mp.stop();
             BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
         });
 
         //BACK TO SCENE 2 BUTTON
-        Button backToScene2 = new Button("Back to Character\nConfiguration");
+        HBox backBtn = new HBox();
+        Button backToScene2 = new Button("Back");
+        backBtn.getChildren().add(backToScene2);
+        backBtn.setPadding(new Insets(250, 0, 0, 10));
+        vb3.getChildren().add(backBtn);
         backToScene2.setTextFill(Color.WHITE);
         backToScene2.setStyle("-fx-background-color: black; -fx-font-size: 20px;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
-        bt2.getChildren().add(backToScene2);
-        backToScene2.setAlignment(Pos.BASELINE_LEFT);
+        //        bt2.getChildren().add(backToScene2);
+        //        backToScene2.setAlignment(Pos.BASELINE_LEFT);
 
         //DROP SHADOW EFFECT
         backToScene2.addEventHandler(MouseEvent.MOUSE_ENTERED,

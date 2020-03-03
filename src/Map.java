@@ -34,7 +34,7 @@ public class Map {
             if (!r.isVisited()) {
                 planet.setText("Unknown");
             } else {
-                planet.setText(r.getDescription());
+                planet.setText(r.getName());
             }
             planet.setGraphic(new ImageView(image));
             planet.setContentDisplay(ContentDisplay.TOP);
@@ -52,9 +52,18 @@ public class Map {
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
-                r.setVisited();
-                p1.setCurrentRegion(r);
-                RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+                if (p1.getSpaceShip().getFuel() < 10) {
+                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
+                            + " low on fuel. In order to avoid getting stranded,"
+                            + " go to your inventory to refuel or purchase fuel"
+                            + " at the " + p1.getCurrentRegion().getName() + " market.");
+                    a.show();
+                } else {
+                    r.setVisited();
+                    p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
+                    p1.setCurrentRegion(r);
+                    RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+                }
             });
 
             // DROP SHADOW HOVER EFFECT ON START BUTTON
@@ -87,7 +96,7 @@ public class Map {
         coordinates.setTextFill(Color.WHITE);
         coordinates.setAlignment(Pos.BOTTOM_RIGHT);
 
-        Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getDescription());
+        Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getName());
         currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         currentRegion.setFill(Color.WHITE);
 
@@ -98,6 +107,19 @@ public class Map {
         backToOrbit.setOnMouseClicked((MouseEvent m) -> {
             RegionPage r = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
         });
+
+        //fuel display
+        HBox topBar = new HBox(300);
+        HBox fuelBox = new HBox();
+        ProgressBar fuelTank = new ProgressBar(50);
+        fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+        Text fuelText = new Text("Fuel");
+        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        fuelText.setFill(Color.WHITE);
+        fuelBox.getChildren().addAll(fuelText, fuelTank);
+        fuelBox.setSpacing(10);
+        fuelBox.setPadding(new Insets(5, 5, 5, 5));
+        topBar.getChildren().addAll(backToOrbit, fuelBox);
 
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -119,7 +141,7 @@ public class Map {
                     }
                 });
 
-        mapDetails.getChildren().addAll(coordinates, currentRegion, backToOrbit);
+        mapDetails.getChildren().addAll(coordinates, currentRegion, topBar);
         mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {

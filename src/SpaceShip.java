@@ -53,6 +53,10 @@ public class SpaceShip {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getQuantity(Item i) {
         if (inventory.containsKey(i)) {
             return inventory.get(i);

@@ -6,11 +6,24 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Random;
+import java.util.Set;
+
 public class PolicePulloverPage {
 
-	public PolicePulloverPage(Stage primaryStage, Region region, Region[] regions, Player p1, Police police) {
+	public PolicePulloverPage(Stage primaryStage, Region[] regions, Player p1, Police police) {
 		VBox root = new VBox();
 		Scene scene = new Scene(root, 800, 800);
+
+		// making the player's inventory into an array so that the police can request a certain item as stolen
+		Set<Item> set = p1.getSpaceShip().getInventory().keySet();
+		Object[] inventoryArray = set.toArray();
+
+		Random random = new Random();
+		int index = random.nextInt(p1.getSpaceShip().getInventory().size());
+
+		Item itemWanted = (Item)inventoryArray[index];
+		police.setItemWanted(itemWanted);
 
 		// 3 options that are buttons presented to the user
 
@@ -26,7 +39,9 @@ public class PolicePulloverPage {
 		option1.setOnMouseClicked(mouseEvent ->  {
 			police.addToPoliceInventory(police.getItemWanted());
 			p1.getSpaceShip().getInventory().remove(police.getItemWanted());
-			Map map = new Map(primaryStage, regions, p1);
+			Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You complied, gave the police your " + police.getItemWanted().toString() + ", and get to continue to the next region.");
+			a1.show();
+			RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 		});
 
 		/*
@@ -40,20 +55,23 @@ public class PolicePulloverPage {
 
 		option2.setOnMouseClicked(mouseEvent -> {
 			if (p1.getPilotSkill() > 2) {
-				//lose the fuel
-				//check if they have enough fuel
+				if (p1.getSpaceShip().getFuel() > (p1.getCurrentRegion().distanceBetween(regions[3]))) {
+					Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police and are about to go to your destination!");
+					alert.show();
+					RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+				} else {
+					Alert a1 = new Alert(Alert.AlertType.ERROR, "You do not have enough fuel to go to your destination.");
+					a1.show();
+					RegionPage rp = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+				}
 
-				//take note of what the region was that they clicked on before they encountered the police
-
-				Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police!");
-				alert.show();
-				RegionPage rp = new RegionPage(primaryStage, p1, region, regions);
 			} else {
 				p1.getSpaceShip().getInventory().remove(police.getItemWanted());
 				p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
 				p1.setCredits(p1.getCredits() - police.getFineDemanded());
-				Alert a = new Alert(Alert.AlertType.INFORMATION, "The police have decreased your ship health, confiscated the stolen items, and charged you a fine of " + police.getFineDemanded() + " credits.");
-				RegionPage prev = new RegionPage(primaryStage, p1, region, regions);
+				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police have decreased your ship health, confiscated the stolen items, and charged you a fine of " + police.getFineDemanded() + " credits.");
+				a2.show();
+				RegionPage prev = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
 			}
 		});
 
@@ -68,7 +86,13 @@ public class PolicePulloverPage {
 		option3.setOnMouseClicked(mouseEvent -> {
 			if (p1.getFighterSkill() > 2) {
 				// They get to go to the desired region
-				RegionPage rp = new RegionPage(null, null, null, null);
+				Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You fought them off successfully and get to continue!");
+				a1.show();
+				RegionPage rp1 = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+			} else {
+				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "You did not fight them off, so you went back to your last region.");
+				a2.show();
+				RegionPage rp2 = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
 			}
 		});
 
@@ -80,8 +104,8 @@ public class PolicePulloverPage {
 		primaryStage.show();
 	}
 
-
-
-
-
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

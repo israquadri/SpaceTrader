@@ -54,6 +54,7 @@ public class Map {
             planet.setTooltip(distanceTip);
 
             planet.setOnMouseClicked(mouseEvent -> {
+                p1.setDestination(r);
                 Random rand = new Random();
                 if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
@@ -61,8 +62,10 @@ public class Map {
                             + " go to your inventory to refuel or purchase fuel"
                             + " at the " + p1.getCurrentRegion().getName() + " market.");
                     a.show();
-                } else if (rand.nextInt(10) == 0) {
-                    BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1);
+                } else if (rand.nextInt(3) == 0) {
+                   BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
+                } else if (rand.nextInt(3) == 1) {
+                    PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
                 } else {
                     r.setVisited();
                     p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));

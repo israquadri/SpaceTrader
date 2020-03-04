@@ -16,6 +16,7 @@ public class Item {
     private int variance = varRand.nextInt(8);
     private Image image;
     private ImageView imageView;
+    private boolean isStolen;
 
     public Item(double tax, int merchantLevel, int technologyLevel, String name,
                 int quantity, int basePrice) {
@@ -26,6 +27,7 @@ public class Item {
         this.name = name.substring(0, name.indexOf("<"));
         this.image = new Image(name.substring((name.indexOf("<") + 1), name.lastIndexOf(">")));
         this.quantity = quantity;
+        this.isStolen = false;
     }
 
     public int getBuyPrice() {
@@ -74,5 +76,17 @@ public class Item {
 
     public void setQuantity(int num) {
         this.quantity = num;
+    }
+
+    public void setStolen(boolean stolen) {
+        isStolen = stolen;
+    }
+
+    public boolean isStolen() {
+        return isStolen;
+    }
+
+    public String toString() {
+        return this.getName();
     }
 }

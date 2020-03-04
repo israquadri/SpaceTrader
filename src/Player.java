@@ -3,6 +3,8 @@ package src;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
+import java.util.Random;
+
 public class Player {
     private String name;
     private int skillPoints;
@@ -14,6 +16,7 @@ public class Player {
     private String difficulty;
     private Region currentRegion;
     private SpaceShip spaceShip;
+    private Region destination;
 
     //Getter and Setter-ville
     public Player() {
@@ -100,6 +103,14 @@ public class Player {
         return this.currentRegion;
     }
 
+    public Region getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Region destination) {
+        this.destination = destination;
+    }
+
     public void sellGoods(Region region, Item item) {
         this.spaceShip.removeFromInventory(item);
         this.setCredits(this.getCredits() + item.getSellPrice());
@@ -107,6 +118,9 @@ public class Player {
     }
 
     public Alert buyGoods(Item item) {
+        if (this.getCredits() <= 0) {
+            this.setCredits(0);
+        }
         if (this.getSpaceShip().getCargoCapacity() == 0) {
             Alert a = new Alert(Alert.AlertType.INFORMATION,
                     "Your cargo capacity is full! Trade out items to make"

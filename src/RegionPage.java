@@ -25,6 +25,7 @@ public class RegionPage {
         vbox.setAlignment(Pos.CENTER);
         Scene regionRoot = new Scene(vbox, 800, 800);
 
+        p1.setCurrentRegion(region);
 
         regionRoot.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
         primaryStage.setTitle("Into the Universe!");

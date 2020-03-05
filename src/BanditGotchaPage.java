@@ -3,7 +3,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -15,6 +16,10 @@ public class BanditGotchaPage {
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
         VBox root = new VBox();
         Scene s = new Scene(root, 800, 800);
+        BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
+                800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        root.setBackground(new Background(myBI));
         root.getChildren().add(new Text("Beep"));
 
         // 3 buttons and the 3 different scenarios happen based on which button the user selects

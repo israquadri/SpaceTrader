@@ -3,7 +3,9 @@ package src;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.util.Random;
@@ -14,13 +16,16 @@ public class PolicePulloverPage {
 	public PolicePulloverPage(Stage primaryStage, Region[] regions, Player p1, Police police) {
 		VBox root = new VBox();
 		Scene scene = new Scene(root, 800, 800);
-
+		BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
+				800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+		root.setBackground(new Background(myBI));
 		// making the player's inventory into an array so that the police can request a certain item as stolen
 		Set<Item> set = p1.getSpaceShip().getInventory().keySet();
 		Object[] inventoryArray = set.toArray();
 
-		Random random = new Random();
-		int index = random.nextInt(p1.getSpaceShip().getInventory().size());
+		//Random random = new Random();
+		int index = new Random().nextInt(p1.getSpaceShip().getInventory().size());
 
 		Item itemWanted = (Item)inventoryArray[index];
 		police.setItemWanted(itemWanted);
@@ -96,8 +101,8 @@ public class PolicePulloverPage {
 			}
 		});
 
-
-		root.getChildren().addAll(option1, option2, option3);
+		ImageView policePic = new ImageView(new Image("spacePolice.png"));
+		root.getChildren().addAll(option1, option2, option3,policePic);
 
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("The police have pulled you over");

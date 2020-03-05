@@ -24,7 +24,7 @@ public class BeforeRegionPage {
 
     public BeforeRegionPage(Stage primaryStage, Player p1) {
         //INSTANTIATING REGIONS
-        CoordGenerator cg = new CoordGenerator(700, 600);
+        CoordGenerator cg = new CoordGenerator(700, 550);
         HashMap<Integer, Integer> xCoords = cg.getX();
         HashMap<Integer, Integer> yCoords = cg.getY();
 

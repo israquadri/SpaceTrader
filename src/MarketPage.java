@@ -222,6 +222,9 @@ public class MarketPage {
                                     + " gallons to your fuel tank.");
                             a.show();
                         }
+                    } else if (i.getName().equals("Fuel") && p1.getSpaceShip().isTankFull()) {
+                        Alert a = new Alert(Alert.AlertType.ERROR, "Your tank is already full.");
+                        a.show();
                     } else {
                         Alert a = p1.buyGoods(i);
                         a.show();

@@ -39,6 +39,10 @@ public class BanditGotchaPage {
             if (p1.getCredits() >= bandit.getDemands()) {
                 bandit.setCredits(bandit.getCredits() + bandit.getDemands());
                 p1.setCredits(p1.getCredits() - bandit.getDemands());
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the bandit and were able to escape!");
+                a.show();
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             } else {
                 if (p1.getSpaceShip().getInventory().size() > 0) {
                     // this might be our loophole.. add the items to the bandit inventory and have the cops ask for the bandit's items
@@ -50,13 +54,16 @@ public class BanditGotchaPage {
                     p1.getSpaceShip().getInventory().clear();
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your entire inventory.");
                     alert2.show();
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 } else {
                     p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit decreased your ship health.");
                     alert1.show();
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 }
             }
-            RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
         });
 
         // Option 2:
@@ -85,7 +92,6 @@ public class BanditGotchaPage {
                     bandit.setCredits(p1.getCredits());
                     p1.setCredits(0);
                     p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
-                    RegionPage rp2 = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
                 }
             } else {
                 bandit.setCredits(p1.getCredits());
@@ -93,7 +99,8 @@ public class BanditGotchaPage {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
                 alert1.show();
-                RegionPage rp3 = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             }
         });
 
@@ -117,14 +124,16 @@ public class BanditGotchaPage {
                 p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - (p1.getCurrentRegion().distanceBetween(p1.getDestination()))); // minus how much it took to get there
                 Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");
                 a1.show();
-                RegionPage rp1 = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             } else {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
                 alert1.show();
-                RegionPage rp2 = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             }
         });
 

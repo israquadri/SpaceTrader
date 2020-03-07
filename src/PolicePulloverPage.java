@@ -61,9 +61,10 @@ public class PolicePulloverPage {
 		option2.setOnMouseClicked(mouseEvent -> {
 			if (police.determineSuccess(p1.getPilotSkill())) {
 				if (p1.getSpaceShip().getFuel() > (p1.getCurrentRegion().distanceBetween(regions[3]))) {
-					Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police and are about to go to your destination!");
+					Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police!");
 					alert.show();
-					RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+					p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+					RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 				} else {
 					Alert a1 = new Alert(Alert.AlertType.ERROR, "You do not have enough fuel to go to your destination.");
 					a1.show();
@@ -76,7 +77,8 @@ public class PolicePulloverPage {
 				p1.setCredits(p1.getCredits() - police.getFineDemanded());
 				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police have decreased your ship health, confiscated the stolen items, and charged you a fine of " + police.getFineDemanded() + " credits.");
 				a2.show();
-				RegionPage prev = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+				p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+				RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 			}
 		});
 
@@ -93,7 +95,8 @@ public class PolicePulloverPage {
 				// They get to go to the desired region
 				Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You fought them off successfully and get to continue!");
 				a1.show();
-				RegionPage rp1 = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+				p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+				RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 			} else {
 				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "You did not fight them off, so you went back to your last region.");
 				a2.show();

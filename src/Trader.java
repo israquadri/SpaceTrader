@@ -7,6 +7,7 @@ public class Trader {
     private ArrayList<Item> inventory;
     private Player player;
     private Item itemToSell;
+    private boolean alreadyNegotiated = false;
 
     public Trader(String[] itemNames, Player p1) {
         this.player = p1;
@@ -34,6 +35,14 @@ public class Trader {
     public void increasePrice() {
         //price doubled
         itemToSell.setBuyPrice(itemToSell.getBuyPrice() * 2);
+    }
+
+    public boolean getNegotiationStatus() {
+        return this.alreadyNegotiated;
+    }
+
+    public void makeNegotiationComplete() {
+        this.alreadyNegotiated = true;
     }
 
     /**

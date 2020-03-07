@@ -59,21 +59,21 @@ public class Map {
                 if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
                             + " low on fuel. In order to avoid getting stranded,"
-                            + " go to your inventory to refuel or purchase fuel"
-                            + " at the " + p1.getCurrentRegion().getName() + " market.");
+                            + " refuel at the " + p1.getCurrentRegion().getName() + " market.");
                     a.show();
                 }
                 else {
                     int randNum = new Random().nextInt(4);
+                    System.out.println(p1.getSpaceShip().getInventoryCapacity());
 //                  use randNum below to force encounters for demo
 //                  int randNum = 1;
 
                     //for testing
-                    System.out.println(randNum);
-                    System.out.println("player's fighter skill: " + p1.getFighterSkill());
-                    System.out.println("player's merchant skill: " + p1.getMerchantSkill());
-                    System.out.println("player's pilot skill: " + p1.getPilotSkill());
-                    System.out.println("fuel: " + p1.getSpaceShip().getFuel());
+//                    System.out.println(randNum);
+//                    System.out.println("player's fighter skill: " + p1.getFighterSkill());
+//                    System.out.println("player's merchant skill: " + p1.getMerchantSkill());
+//                    System.out.println("player's pilot skill: " + p1.getPilotSkill());
+//                    System.out.println("fuel: " + p1.getSpaceShip().getFuel());
 
                     if (randNum == 0) {
                         BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
@@ -84,8 +84,7 @@ public class Map {
                             p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
                             p1.setCurrentRegion(r);
                             RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
-                        }
-                        else {
+                        } else {
                             PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
                         }
                     } else if (randNum == 2) {

@@ -191,6 +191,9 @@ public class BeforeRegionPage {
                         ft0.play();
                     } else {
                         //mp.stop();
+                        ft0.stop();
+                        ft1.stop();
+                        ft2.stop();
                         Region currregion = arr[randomNumber];
                         currregion.setVisited();
                         p1.setCurrentRegion(currregion);
@@ -203,6 +206,7 @@ public class BeforeRegionPage {
         //Button to skip story details "c"
         backstory.setOnKeyPressed((KeyEvent w) -> {
             if (w.getText().equals("c")) {
+                ft0.stop();
                 Region currregion = arr[randomNumber];
                 currregion.setVisited();
                 p1.setCurrentRegion(currregion);

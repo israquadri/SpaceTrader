@@ -29,9 +29,23 @@ public class Item {
         this.quantity = quantity;
         this.isStolen = false;
     }
+    //constructor for items without image
+    public Item(double tax, int merchantLevel, int technologyLevel, String name,
+                int quantity, int basePrice, boolean trader) {
+        sellPrice = (int) (basePrice * (1 + tax + .01 * technologyLevel));
+        sellPrice = (int) (varRand.nextInt(sellPrice) + .5 * sellPrice);
+        sellPrice = (int) (sellPrice - (.02 * merchantLevel * sellPrice));
+        buyPrice = (int) ((sellPrice) * (.75));
+        this.name = name;
+        this.quantity = quantity;
+    }
 
     public int getBuyPrice() {
         return buyPrice;
+    }
+
+    public void setBuyPrice(int newPrice) {
+        buyPrice = newPrice;
     }
 
     public int getSellPrice() {

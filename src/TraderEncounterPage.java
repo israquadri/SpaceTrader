@@ -39,23 +39,6 @@ public class TraderEncounterPage {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
 
-        Button option1 = new Button("Buy Trader's Item");
-        option1.setOnMouseClicked(mouseEvent -> {
-            if (p1.getCredits() >= trader.getItemToSell().getBuyPrice()) {
-                p1.setCredits(p1.getCredits() - trader.getItemToSell().getBuyPrice());
-                p1.getSpaceShip().addToInventory(trader.getItemToSell());
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You brought one " + trader.getItemToSell().getName() + " from the trader.");
-                a.show();
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-            } else {
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough credits to purchase one "
-                        + trader.getItemToSell().getName() + " . Try negotiating for a lower price.");
-                a.show();
-            }
-        });
-
-
         Button option2 = new Button("Proceed to \n" + p1.getDestination().getName());
         option2.setOnMouseClicked(mouseEvent -> {
             p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
@@ -86,6 +69,21 @@ public class TraderEncounterPage {
             }
         });
 
+        Button option1 = new Button("Buy Trader's Item");
+        option1.setOnMouseClicked(mouseEvent -> {
+            if (p1.getCredits() >= trader.getItemToSell().getBuyPrice()) {
+                p1.setCredits(p1.getCredits() - trader.getItemToSell().getBuyPrice());
+                p1.getSpaceShip().addToInventory(trader.getItemToSell());
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You brought one " + trader.getItemToSell().getName() + " from the trader.");
+                a.show();
+                root.getChildren().removeAll(option3);
+            } else {
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough credits to purchase one "
+                        + trader.getItemToSell().getName() + " . Try negotiating for a lower price.");
+                a.show();
+            }
+        });
+
         Button option4 = new Button("Rob Trader");
         option4.setOnMouseClicked(mouseEvent -> {
             boolean success = trader.determineSuccess(p1.getFighterSkill());
@@ -97,8 +95,7 @@ public class TraderEncounterPage {
                 }
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader!");
                 a.show();
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                root.getChildren().removeAll(option3, option4, option1);
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob the trader. Your ship's health has decreased.");

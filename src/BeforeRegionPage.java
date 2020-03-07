@@ -172,13 +172,29 @@ public class BeforeRegionPage {
         ft0.setToValue(1.0);
         ft0.setNode(t);
         ft0.play();
+
+        //Button to skip story details "c"
+        backstory.setOnKeyPressed((KeyEvent w) -> {
+            if (w.getText().equals("c")) {
+                ft0.stop();
+                Region currregion = arr[randomNumber];
+                currregion.setVisited();
+                p1.setCurrentRegion(currregion);
+                //mp.stop();
+                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
+            }
+
+        });
+
         ft0.setOnFinished((ActionEvent e) -> {
+            ft0.stop();
             FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
             ft1.setFromValue(1.0);
             ft1.setToValue(1.0);
             ft1.setNode(t);
             ft1.play();
             ft1.setOnFinished((ActionEvent k) -> {
+                ft1.stop();
                 FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
                 ft2.setFromValue(1.0);
                 ft2.setToValue(0);
@@ -202,20 +218,6 @@ public class BeforeRegionPage {
                 });
             });
         });
-
-        //Button to skip story details "c"
-        backstory.setOnKeyPressed((KeyEvent w) -> {
-            if (w.getText().equals("c")) {
-                ft0.stop();
-                Region currregion = arr[randomNumber];
-                currregion.setVisited();
-                p1.setCurrentRegion(currregion);
-                //mp.stop();
-                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
-            }
-
-        });
-
 
         primaryStage.setTitle("Back Story");
         primaryStage.setScene(backstory);

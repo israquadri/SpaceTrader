@@ -8,8 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class PolicePulloverPage {
 
@@ -20,15 +19,16 @@ public class PolicePulloverPage {
 				800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		root.setBackground(new Background(myBI));
-		// making the player's inventory into an array so that the police can request a certain item as stolen
-		Set<Item> set = p1.getSpaceShip().getInventory().keySet();
-		Object[] inventoryArray = set.toArray();
 
-		//Random random = new Random();
+		//itemWanted.quantity is incorrect
+		ArrayList<Item> itemsCopy = new ArrayList<>(p1.getSpaceShip().getInventory().keySet());
+		//for testing
+		for(Item i : itemsCopy) {
+			System.out.println("item: " + i.getName());
+		}
 		int index = new Random().nextInt(p1.getSpaceShip().getInventory().size());
-
-		Item itemWanted = (Item)inventoryArray[index];
-		police.setItemWanted(itemWanted);
+		police.setItemWanted(itemsCopy.get(index));
+		System.out.println("item wanted: " + police.getItemWanted());
 
 		// 3 options that are buttons presented to the user
 
@@ -59,7 +59,7 @@ public class PolicePulloverPage {
 		 */
 
 		option2.setOnMouseClicked(mouseEvent -> {
-			if (p1.getPilotSkill() > 2) {
+			if (police.determineSuccess(p1.getPilotSkill())) {
 				if (p1.getSpaceShip().getFuel() > (p1.getCurrentRegion().distanceBetween(regions[3]))) {
 					Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police and are about to go to your destination!");
 					alert.show();
@@ -89,7 +89,7 @@ public class PolicePulloverPage {
 		 */
 
 		option3.setOnMouseClicked(mouseEvent -> {
-			if (p1.getFighterSkill() > 2) {
+			if (police.determineSuccess(p1.getFighterSkill())) {
 				// They get to go to the desired region
 				Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You fought them off successfully and get to continue!");
 				a1.show();

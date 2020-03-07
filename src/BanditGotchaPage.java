@@ -71,7 +71,8 @@ public class BanditGotchaPage {
         Button option2 = new Button("Try to flee");
 
         option2.setOnMouseClicked(mouseEvent -> {
-            if (p1.getPilotSkill() > 3) {
+            boolean success = bandit.determineSuccess(p1.getPilotSkill());
+            if (success) {
                 Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your Pilot skill is " + p1.getPilotSkill() + ", you could flee back to the last planet you were on!");
                 alert2.show();
                 if (p1.getSpaceShip().getFuel() >= p1.getCurrentRegion().distanceBetween(p1.getDestination())) { // if it is greater than the fuel it takes to get there
@@ -110,7 +111,8 @@ public class BanditGotchaPage {
         Button option3 = new Button("Attempt to fight");
 
         option3.setOnMouseClicked(mouseEvent -> {
-            if (p1.getFighterSkill() > 2) {
+            boolean success = bandit.determineSuccess(p1.getFighterSkill());
+            if (success) {
                 p1.setCredits(p1.getCredits() + ((int)(bandit.getCredits() * .2)));
                 p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - (p1.getCurrentRegion().distanceBetween(p1.getDestination()))); // minus how much it took to get there
                 Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");

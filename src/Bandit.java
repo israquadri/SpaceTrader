@@ -52,4 +52,9 @@ public class Bandit {
 	public ArrayList<Item> getInventory() {
 		return inventory;
 	}
+	
+	public boolean determineSuccess(int skillLevel) {
+		if (skillLevel == 0) {return false;}
+		return (new Random().nextInt(8) + 1 <=  skillLevel);
+	}
 }

@@ -15,12 +15,23 @@ public class ItemListInitializer {
                                           int merchantSkill, double tax, String[] itemNames) {
         ArrayList<Item> items = new ArrayList<>();
         //initialize quantity
-        Random randomQuantity = new Random();
         for (int i = 0; i < itemNames.length; i++) {
-            Random basePriceDeterminator = new Random();
-            int basePrice = basePriceDeterminator.nextInt(11) + 30;
+            int basePrice = new Random().nextInt(11) + 30;
             Item item = new Item(tax, merchantSkill, techLevel, itemNames[i],
-                    randomQuantity.nextInt(7) + 1, basePrice);
+                    new Random().nextInt(7) + 1, basePrice);
+            items.add(item);
+        }
+        return items;
+    }
+    //quantity range is reduced [1,4] per item
+    public ArrayList<Item> createTraderItemList(int techLevel,
+                                          int merchantSkill, double tax, String[] itemNames) {
+        ArrayList<Item> items = new ArrayList<>();
+        //initialize quantity
+        for (int i = 0; i < itemNames.length; i++) {
+            int basePrice = new Random().nextInt(11) + 30;
+            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i],
+                    new Random().nextInt(3) + 1, basePrice ,true);
             items.add(item);
         }
         return items;

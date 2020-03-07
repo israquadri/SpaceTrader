@@ -62,16 +62,44 @@ public class Map {
                             + " go to your inventory to refuel or purchase fuel"
                             + " at the " + p1.getCurrentRegion().getName() + " market.");
                     a.show();
-                } else if (rand.nextInt(3) == 0) {
-                   BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
-                } else if (rand.nextInt(3) == 1) {
-                    PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
-                } else {
-                    r.setVisited();
-                    p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
-                    p1.setCurrentRegion(r);
-                    RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
                 }
+                else {
+                    int randNum = new Random().nextInt(4);
+//                  use randNum below to force encounters for demo
+//                  int randNum = 1;
+
+                    //for testing
+                    System.out.println(randNum);
+                    System.out.println("player's fighter skill: " + p1.getFighterSkill());
+                    System.out.println("player's merchant skill: " + p1.getMerchantSkill());
+                    System.out.println("player's pilot skill: " + p1.getPilotSkill());
+                    System.out.println("fuel: " + p1.getSpaceShip().getFuel());
+
+                    if (randNum == 0) {
+                        BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
+                    } else if (randNum == 1) {
+                        //check player's inventory size
+                        if (p1.getSpaceShip().getInventory().size() == 0) {
+                            r.setVisited();
+                            p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
+                            p1.setCurrentRegion(r);
+                            RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+                        }
+                        else {
+                            PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
+                        }
+                    } else if (randNum == 2) {
+                        //initialize trader's inventory here
+                        String[] traderItemNames = new String[] {"item0", "item1", "item2", "item3", "item4", "item5"};
+                        TraderEncounterPage t = new TraderEncounterPage(primaryStage, regions, p1, new Trader(traderItemNames, p1));
+                    } else {
+                        r.setVisited();
+                        p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
+                        p1.setCurrentRegion(r);
+                        RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+                    }
+                }
+
             });
 
             // DROP SHADOW HOVER EFFECT ON START BUTTON

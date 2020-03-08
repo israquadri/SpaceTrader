@@ -205,6 +205,18 @@ public class BeforeRegionPage {
                         ndx++;
                         t.setText(storyarr[ndx]);
                         ft0.play();
+                        backstory.setOnKeyPressed((KeyEvent z) -> {
+                            if (z.getText().equals("c")) {
+                                ft0.stop();
+                                ft1.stop();
+                                ft2.stop();
+                                Region currregion = arr[randomNumber];
+                                currregion.setVisited();
+                                p1.setCurrentRegion(currregion);
+                                //mp.stop();
+                                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
+                            }
+                        });
                     } else {
                         //mp.stop();
                         ft0.stop();

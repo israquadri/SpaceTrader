@@ -1,5 +1,8 @@
 package src;
 
+import javafx.animation.Animation;
+import javafx.animation.PathTransition;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +15,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.*;
 
@@ -35,6 +49,45 @@ public class PolicePulloverPage {
 		police.setItemWanted(itemsCopy.get(index));
 		System.out.println("item wanted: " + police.getItemWanted());
 
+		//System.out.println("item wanted: " + police.getItemWanted());
+
+
+		ImageView policeShip = new ImageView(new Image("police.png"));
+		policeShip.setFitHeight(300);
+		policeShip.setFitWidth(300);
+//		ImageView policeShip2 = new ImageView(new Image("police.png"));
+//		policeShip.setFitHeight(200);
+//		policeShip.setFitWidth(200);
+
+		Path path = new Path();
+		path.getElements().add (new MoveTo(800, 50));
+		path.getElements().add (new HLineTo(-20));
+		path.getElements().add (new MoveTo(800, 700));
+		path.getElements().add (new HLineTo(-40));
+
+//		Path path2 = new Path();
+//		path2.getElements().add (new MoveTo(-40, 700));
+//		path2.getElements().add (new HLineTo(800));
+//		path2.getElements().add (new MoveTo(800, 700));
+//		path2.getElements().add (new HLineTo(-40));
+
+		PathTransition pathTransition = new PathTransition();
+		pathTransition.setDuration(Duration.seconds(8));
+		pathTransition.setNode(policeShip);
+		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+		pathTransition.setPath(path);
+		pathTransition.setCycleCount(Animation.INDEFINITE);
+
+//		PathTransition pathTransition2 = new PathTransition();
+//		pathTransition2.setDuration(Duration.seconds(8));
+//		pathTransition2.setNode(policeShip2);
+//		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+//		pathTransition2.setPath(path2);
+//		pathTransition2.setCycleCount(Animation.INDEFINITE);
+
+		pathTransition.play();
+//		pathTransition2.play();
+
 		// 3 options that are buttons presented to the user
 
 		VBox optionBox = new VBox();
@@ -57,7 +110,8 @@ public class PolicePulloverPage {
 		option1.setAlignment(Pos.CENTER);
 		option1.setTextFill(Color.WHITE);
 		option1.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-				+ " -fx-background-color: black; -fx-font-size: 20px;");
+				+ " -fx-background-color: black; -fx-font-size: 17px;");
+
 
 		/*
 		 Try to flee back to the previous region. The success of fleeing is dependent on the
@@ -88,7 +142,7 @@ public class PolicePulloverPage {
 		option2.setAlignment(Pos.CENTER);
 		option2.setTextFill(Color.WHITE);
 		option2.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-				+ " -fx-background-color: black; -fx-font-size: 20px;");
+				+ " -fx-background-color: black; -fx-font-size: 17px;");
 
 
 		// Option 3:
@@ -116,14 +170,61 @@ public class PolicePulloverPage {
 		option3.setAlignment(Pos.CENTER);
 		option3.setTextFill(Color.WHITE);
 		option3.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-				+ " -fx-background-color: black; -fx-font-size: 20px;");
+				+ " -fx-background-color: black; -fx-font-size: 17px;");
+
+		//Drop Shadow effect
+		DropShadow shadow = new DropShadow();
+		shadow.setColor(Color.CORAL);
+		shadow.setWidth(1.5);
+		option1.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option1.setEffect(shadow);
+					}
+				});
+		option2.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option2.setEffect(shadow);
+					}
+				});
+		option3.addEventHandler(MouseEvent.MOUSE_ENTERED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option3.setEffect(shadow);
+					}
+				});
+		//adding the shadow when the mouse cursor is on
+		option1.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option1.setEffect(null);
+					}
+				});
+		option2.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option2.setEffect(null);
+					}
+				});
+		option3.addEventHandler(MouseEvent.MOUSE_EXITED,
+				new EventHandler<MouseEvent>() {
+					@Override
+					public void handle(MouseEvent mouseEvent) {
+						option3.setEffect(null);
+					}
+				});
 
 		optionBox.getChildren().addAll(option1, option2, option3);
+		optionBox.setAlignment(Pos.CENTER);
+		optionBox.setPadding(new Insets(40, 5, 0, 0));
 
-		ImageView policePic = new ImageView(new Image("spacePolice.png"));
-
-		HBox box2 = new HBox(policePic, optionBox);
-		box2.setPadding(new Insets(10, 10, 10, 10));
+		//ImageView policePic = new ImageView(new Image("spacePolice.png"));
 
 		Text policeText = new Text("You've been pulled\nover by the \nspace police!");
 		policeText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
@@ -132,7 +233,13 @@ public class PolicePulloverPage {
 		policeText.setTextAlignment(TextAlignment.CENTER);
 
 
-		root.getChildren().addAll(policeText, box2);
+		VBox box2 = new VBox();
+		//box2.setPadding(new Insets(10, 10, 10, 10));
+		box2.setAlignment(Pos.CENTER);
+		box2.getChildren().addAll(policeText, optionBox);
+
+
+		root.getChildren().addAll(policeShip, box2);
 		root.setPadding(new Insets(15, 15, 15, 15));
 
 		primaryStage.setScene(scene);

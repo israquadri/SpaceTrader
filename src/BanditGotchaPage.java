@@ -6,23 +6,65 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.animation.Animation;
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.Collection;
 import java.util.Set;
+import javafx.scene.shape.*;
+import javafx.animation.PathTransition;
+import javafx.util.Duration;
 
 public class BanditGotchaPage {
 
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
         VBox root = new VBox();
         Scene s = new Scene(root, 800, 800);
-        BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
-                800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+        BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
+                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
-        root.getChildren().add(new Text("Beep"));
+
+
+        ImageView banditShip = new ImageView(new Image("bandits.png"));
+        banditShip.setFitHeight(250);
+        banditShip.setFitWidth(250);
+
+        Path path = new Path();
+        path.getElements().add (new MoveTo(800, 80));
+        path.getElements().add (new HLineTo(-20));
+        path.getElements().add (new MoveTo(700, 600));
+        path.getElements().add (new HLineTo(-40));
+
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(10));
+        pathTransition.setNode(banditShip);
+        //pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition.setPath(path);
+        pathTransition.setCycleCount(Animation.INDEFINITE);
+
+        pathTransition.play();
 
         // 3 buttons and the 3 different scenarios happen based on which button the user selects
+
+        VBox optionBox = new VBox();
+        optionBox.setPadding(new Insets(10, 10, 10, 10));
+        optionBox.setSpacing(20.0);
 
         // Option 1:
         /*
@@ -31,7 +73,12 @@ public class BanditGotchaPage {
             inventory. If the player has no items, the bandit will damage the ship's health. Then the
             player continues to the target destination.
          */
-        Button option1 = new Button("Pay bandit and \n continue");
+
+        Button option1 = new Button("Pay bandit and continue");
+        option1.setAlignment(Pos.CENTER);
+        option1.setTextFill(Color.WHITE);
+        option1.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 17px;");
 
         // backend of what happens when the player picks this option
 
@@ -76,6 +123,11 @@ public class BanditGotchaPage {
                  */
 
         Button option2 = new Button("Try to flee");
+        option2.setAlignment(Pos.CENTER);
+        option2.setTextFill(Color.WHITE);
+        option2.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 17px;");
+
 
         option2.setOnMouseClicked(mouseEvent -> {
             boolean success = bandit.determineSuccess(p1.getPilotSkill());
@@ -106,6 +158,10 @@ public class BanditGotchaPage {
          */
 
         Button option3 = new Button("Attempt to fight");
+        option3.setAlignment(Pos.CENTER);
+        option3.setTextFill(Color.WHITE);
+        option3.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 17px;");
 
         option3.setOnMouseClicked(mouseEvent -> {
             boolean success = bandit.determineSuccess(p1.getFighterSkill());
@@ -126,7 +182,72 @@ public class BanditGotchaPage {
             }
         });
 
-        root.getChildren().addAll(option1, option2, option3);
+        //Drop Shadow effect
+        DropShadow shadow = new DropShadow();
+        shadow.setColor(Color.CORAL);
+        shadow.setWidth(1.5);
+        option1.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option1.setEffect(shadow);
+                    }
+                });
+        option2.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option2.setEffect(shadow);
+                    }
+                });
+        option3.addEventHandler(MouseEvent.MOUSE_ENTERED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option3.setEffect(shadow);
+                    }
+                });
+        //adding the shadow when the mouse cursor is on
+        option1.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option1.setEffect(null);
+                    }
+                });
+        option2.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option2.setEffect(null);
+                    }
+                });
+        option3.addEventHandler(MouseEvent.MOUSE_EXITED,
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        option3.setEffect(null);
+                    }
+                });
+
+        optionBox.getChildren().addAll(option1, option2, option3);
+        optionBox.setAlignment(Pos.CENTER);
+        optionBox.setPadding(new Insets(40, 5, 0, 0));
+
+        Text banditText = new Text("Oh no!\nBandits have\nstopped your ship!");
+        banditText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
+        banditText.setTextAlignment(TextAlignment.CENTER);
+        banditText.setFill(Color.WHITE);
+        banditText.setTextAlignment(TextAlignment.CENTER);
+
+        VBox box2 = new VBox();
+        //box2.setPadding(new Insets(10, 10, 10, 10));
+        box2.setAlignment(Pos.CENTER);
+        box2.getChildren().addAll(banditText, optionBox);
+
+        root.getChildren().addAll(banditShip, box2);
+        root.setPadding(new Insets(15, 15, 15, 15));
+
 
         primaryStage.setTitle("Oh no! Bandits have stopped your ship!");
         primaryStage.setScene(s);

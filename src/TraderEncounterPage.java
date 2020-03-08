@@ -93,15 +93,16 @@ public class TraderEncounterPage {
                         p1.getSpaceShip().addToInventory(trader.getInventory().get(i));
                     }
                 }
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader!");
-                a.show();
-                root.getChildren().removeAll(option3, option4, option1);
-            } else {
-                p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob the trader. Your ship's health has decreased.");
-                a.show();
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader!");
+                a.show();
+            } else {
+                p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob the trader. Your ship's health has decreased.");
+                a.show();
             }
         });
 

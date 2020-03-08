@@ -39,10 +39,10 @@ public class BanditGotchaPage {
             if (p1.getCredits() >= bandit.getDemands()) {
                 bandit.setCredits(bandit.getCredits() + bandit.getDemands());
                 p1.setCredits(p1.getCredits() - bandit.getDemands());
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the bandit and were able to escape!");
-                a.show();
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the bandit and were able to escape!");
+                a.show();
             } else {
                 if (p1.getSpaceShip().getInventory().size() > 0) {
                     // this might be our loophole.. add the items to the bandit inventory and have the cops ask for the bandit's items
@@ -52,16 +52,16 @@ public class BanditGotchaPage {
 //                        bandit.addToInventory((Item)itemArr[i]);
 //                    }
                     p1.getSpaceShip().getInventory().clear();
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your entire inventory.");
                     alert2.show();
-                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 } else {
                     p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit decreased your ship health.");
-                    alert1.show();
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                     RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit decreased your ship health.");
+                    alert1.show();
                 }
             }
         });
@@ -80,27 +80,17 @@ public class BanditGotchaPage {
         option2.setOnMouseClicked(mouseEvent -> {
             boolean success = bandit.determineSuccess(p1.getPilotSkill());
             if (success) {
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination())); // subtract fuel it took
+                RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your Pilot skill is " + p1.getPilotSkill() + ", you could flee back to the last planet you were on!");
                 alert2.show();
-                if (p1.getSpaceShip().getFuel() >= p1.getCurrentRegion().distanceBetween(p1.getDestination())) { // if it is greater than the fuel it takes to get there
-                    p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - p1.getCurrentRegion().distanceBetween(p1.getDestination())); // subtract fuel it took
-                    RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "You don't have enough fuel to continue, so you have been forced to stay where you were.");
-                    alert.show();
-                    // alert them that they do not have enough fuel to go back and so the bandit will take all of their credits and damage the health value of the ship
-                    bandit.setCredits(p1.getCredits());
-                    p1.setCredits(0);
-                    p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
-                }
             } else {
                 bandit.setCredits(p1.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
+                RegionPage rp = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "You weren't able to flee from the bandits! They damaged your ship and stole your credits!");
                 alert1.show();
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             }
         });
 
@@ -121,19 +111,18 @@ public class BanditGotchaPage {
             boolean success = bandit.determineSuccess(p1.getFighterSkill());
             if (success) {
                 p1.setCredits(p1.getCredits() + ((int)(bandit.getCredits() * .2)));
-                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - (p1.getCurrentRegion().distanceBetween(p1.getDestination()))); // minus how much it took to get there
-                Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");
-                a1.show();
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");
+                a1.show();
             } else {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
-                alert1.show();
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
+                alert1.show();
             }
         });
 

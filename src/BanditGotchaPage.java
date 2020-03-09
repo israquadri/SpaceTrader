@@ -232,18 +232,23 @@ public class BanditGotchaPage {
 
         optionBox.getChildren().addAll(option1, option2, option3);
         optionBox.setAlignment(Pos.CENTER);
-        optionBox.setPadding(new Insets(40, 5, 0, 0));
+        optionBox.setPadding(new Insets(15, 5, 0, 0));
 
         Text banditText = new Text("Oh no!\nBandits have\nstopped your ship!");
         banditText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
-        banditText.setTextAlignment(TextAlignment.CENTER);
         banditText.setFill(Color.WHITE);
         banditText.setTextAlignment(TextAlignment.CENTER);
 
+        Text banditDemands = new Text("They're demanding a \npayment of \n" + bandit.getDemands() + " credits!");
+        banditDemands.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
+        banditDemands.setTextAlignment(TextAlignment.CENTER);
+        banditDemands.setFill(Color.WHITE);
+
         VBox box2 = new VBox();
+        box2.setSpacing(15);
         //box2.setPadding(new Insets(10, 10, 10, 10));
         box2.setAlignment(Pos.CENTER);
-        box2.getChildren().addAll(banditText, optionBox);
+        box2.getChildren().addAll(banditText, banditDemands, optionBox);
 
         root.getChildren().addAll(banditShip, box2);
         root.setPadding(new Insets(15, 15, 15, 15));

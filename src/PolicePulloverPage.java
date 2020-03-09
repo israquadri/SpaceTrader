@@ -49,15 +49,10 @@ public class PolicePulloverPage {
 		police.setItemWanted(itemsCopy.get(index));
 		System.out.println("item wanted: " + police.getItemWanted());
 
-		//System.out.println("item wanted: " + police.getItemWanted());
-
 
 		ImageView policeShip = new ImageView(new Image("police.png"));
 		policeShip.setFitHeight(300);
 		policeShip.setFitWidth(300);
-//		ImageView policeShip2 = new ImageView(new Image("police.png"));
-//		policeShip.setFitHeight(200);
-//		policeShip.setFitWidth(200);
 
 		Path path = new Path();
 		path.getElements().add (new MoveTo(800, 50));
@@ -65,11 +60,6 @@ public class PolicePulloverPage {
 		path.getElements().add (new MoveTo(800, 700));
 		path.getElements().add (new HLineTo(-40));
 
-//		Path path2 = new Path();
-//		path2.getElements().add (new MoveTo(-40, 700));
-//		path2.getElements().add (new HLineTo(800));
-//		path2.getElements().add (new MoveTo(800, 700));
-//		path2.getElements().add (new HLineTo(-40));
 
 		PathTransition pathTransition = new PathTransition();
 		pathTransition.setDuration(Duration.seconds(8));
@@ -78,12 +68,6 @@ public class PolicePulloverPage {
 		pathTransition.setPath(path);
 		pathTransition.setCycleCount(Animation.INDEFINITE);
 
-//		PathTransition pathTransition2 = new PathTransition();
-//		pathTransition2.setDuration(Duration.seconds(8));
-//		pathTransition2.setNode(policeShip2);
-//		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-//		pathTransition2.setPath(path2);
-//		pathTransition2.setCycleCount(Animation.INDEFINITE);
 
 		pathTransition.play();
 //		pathTransition2.play();
@@ -222,7 +206,7 @@ public class PolicePulloverPage {
 
 		optionBox.getChildren().addAll(option1, option2, option3);
 		optionBox.setAlignment(Pos.CENTER);
-		optionBox.setPadding(new Insets(40, 5, 0, 0));
+		optionBox.setPadding(new Insets(15, 5, 0, 0));
 
 		//ImageView policePic = new ImageView(new Image("spacePolice.png"));
 
@@ -232,11 +216,16 @@ public class PolicePulloverPage {
 		policeText.setFill(Color.WHITE);
 		policeText.setTextAlignment(TextAlignment.CENTER);
 
+		Text policeDemands = new Text("They're accusing you\nof stealing a " + police.getItemWanted().getName() + "!");
+		policeDemands.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
+		policeDemands.setTextAlignment(TextAlignment.CENTER);
+		policeDemands.setFill(Color.WHITE);
 
 		VBox box2 = new VBox();
 		//box2.setPadding(new Insets(10, 10, 10, 10));
+		box2.setSpacing(15);
 		box2.setAlignment(Pos.CENTER);
-		box2.getChildren().addAll(policeText, optionBox);
+		box2.getChildren().addAll(policeText, policeDemands, optionBox);
 
 
 		root.getChildren().addAll(policeShip, box2);

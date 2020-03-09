@@ -236,18 +236,23 @@ public class TraderEncounterPage {
 
         optionBox.getChildren().addAll(option1, option2, option3, option4);
         optionBox.setAlignment(Pos.CENTER);
-        optionBox.setPadding(new Insets(40, 5, 0, 0));
+        optionBox.setPadding(new Insets(15, 5, 0, 0));
 
         Text traderText = new Text("You've encountered\na fellow trader!");
         traderText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
         traderText.setTextAlignment(TextAlignment.CENTER);
         traderText.setFill(Color.WHITE);
-        traderText.setTextAlignment(TextAlignment.CENTER);
+
+        Text traderOffer = new Text("Trader: I can sell you an item\nfrom my inventory.");
+        traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
+        traderOffer.setTextAlignment(TextAlignment.CENTER);
+        traderOffer.setFill(Color.WHITE);
 
         VBox box2 = new VBox();
         //box2.setPadding(new Insets(10, 10, 10, 10));
+        box2.setSpacing(15);
         box2.setAlignment(Pos.CENTER);
-        box2.getChildren().addAll(traderText, optionBox);
+        box2.getChildren().addAll(traderText, traderOffer, optionBox);
 
         root.getChildren().addAll(traderShip, box2);
 

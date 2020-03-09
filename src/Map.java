@@ -64,7 +64,7 @@ public class Map {
                 }
                 else {
                     int randNum = new Random().nextInt(4);
-                    System.out.println(p1.getSpaceShip().getInventoryCapacity());
+//                  System.out.println(p1.getSpaceShip().getInventoryCapacity());
 //                  use randNum below to force encounters for demo
 //                  int randNum = 1;
 

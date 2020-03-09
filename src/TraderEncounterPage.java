@@ -109,12 +109,13 @@ public class TraderEncounterPage {
                     a.show();
                 } else {
                     trader.increasePrice();
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader" +
-                            "has increased the price from " + previousPrice
-                            + " to " + trader.getItemToSell().getBuyPrice());
+                    Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
+                            + " has increased the price from " + previousPrice
+                            + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
                     a.show();
                 }
                 trader.makeNegotiationComplete();
+                optionBox.getChildren().remove(option3);
             } else {
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "You only had one chance to negotiate with the trader.");
                 a.show();
@@ -134,7 +135,6 @@ public class TraderEncounterPage {
                 p1.getSpaceShip().addToInventory(trader.getItemToSell());
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You brought one " + trader.getItemToSell().getName() + " from the trader.");
                 a.show();
-                root.getChildren().removeAll(option3);
             } else {
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough credits to purchase one "
                         + trader.getItemToSell().getName() + " . Try negotiating for a lower price.");
@@ -243,7 +243,7 @@ public class TraderEncounterPage {
         traderText.setTextAlignment(TextAlignment.CENTER);
         traderText.setFill(Color.WHITE);
 
-        Text traderOffer = new Text("Trader: I can sell you an item\nfrom my inventory.");
+        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
         traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         traderOffer.setTextAlignment(TextAlignment.CENTER);
         traderOffer.setFill(Color.WHITE);

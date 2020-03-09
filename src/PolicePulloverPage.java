@@ -229,7 +229,6 @@ public class PolicePulloverPage {
 
 
 		root.getChildren().addAll(policeShip, box2);
-		root.setPadding(new Insets(15, 15, 15, 15));
 
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("The police have pulled you over");

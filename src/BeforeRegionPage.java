@@ -172,11 +172,16 @@ public class BeforeRegionPage {
         ft0.setToValue(1.0);
         ft0.setNode(t);
         ft0.play();
+        FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
+        FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
 
         //Button to skip story details "c"
         backstory.setOnKeyPressed((KeyEvent w) -> {
             if (w.getText().equals("c")) {
+                //stops the animation
                 ft0.stop();
+                ft1.stop();
+                ft2.stop();
                 Region currregion = arr[randomNumber];
                 currregion.setVisited();
                 p1.setCurrentRegion(currregion);
@@ -187,15 +192,11 @@ public class BeforeRegionPage {
         });
 
         ft0.setOnFinished((ActionEvent e) -> {
-            ft0.stop();
-            FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
             ft1.setFromValue(1.0);
             ft1.setToValue(1.0);
             ft1.setNode(t);
             ft1.play();
             ft1.setOnFinished((ActionEvent k) -> {
-                ft1.stop();
-                FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
                 ft2.setFromValue(1.0);
                 ft2.setToValue(0);
                 ft2.setNode(t);
@@ -205,23 +206,8 @@ public class BeforeRegionPage {
                         ndx++;
                         t.setText(storyarr[ndx]);
                         ft0.play();
-                        backstory.setOnKeyPressed((KeyEvent z) -> {
-                            if (z.getText().equals("c")) {
-                                ft0.stop();
-                                ft1.stop();
-                                ft2.stop();
-                                Region currregion = arr[randomNumber];
-                                currregion.setVisited();
-                                p1.setCurrentRegion(currregion);
-                                //mp.stop();
-                                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
-                            }
-                        });
                     } else {
                         //mp.stop();
-                        ft0.stop();
-                        ft1.stop();
-                        ft2.stop();
                         Region currregion = arr[randomNumber];
                         currregion.setVisited();
                         p1.setCurrentRegion(currregion);

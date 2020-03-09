@@ -32,7 +32,7 @@ import java.util.*;
 public class PolicePulloverPage {
 
 	public PolicePulloverPage(Stage primaryStage, Region[] regions, Player p1, Police police) {
-		VBox root = new VBox();
+		StackPane root = new StackPane();
 		Scene scene = new Scene(root, 800, 800);
 		BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
 				800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
@@ -51,22 +51,23 @@ public class PolicePulloverPage {
 
 
 		ImageView policeShip = new ImageView(new Image("police.png"));
-		policeShip.setFitHeight(300);
-		policeShip.setFitWidth(300);
+		policeShip.setFitHeight(600);
+		policeShip.setFitWidth(600);
 
 		Path path = new Path();
-		path.getElements().add (new MoveTo(800, 50));
+		path.getElements().add (new MoveTo(800, 300));
 		path.getElements().add (new HLineTo(-20));
-		path.getElements().add (new MoveTo(800, 700));
-		path.getElements().add (new HLineTo(-40));
+//		path.getElements().add (new MoveTo(800, 700));
+//		path.getElements().add (new HLineTo(-40));
 
 
 		PathTransition pathTransition = new PathTransition();
-		pathTransition.setDuration(Duration.seconds(8));
+		pathTransition.setDuration(Duration.seconds(15));
 		pathTransition.setNode(policeShip);
 		//pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
 		pathTransition.setPath(path);
 		pathTransition.setCycleCount(Animation.INDEFINITE);
+		pathTransition.setAutoReverse(true);
 
 
 		pathTransition.play();

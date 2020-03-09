@@ -33,7 +33,7 @@ import javafx.util.Duration;
 public class BanditGotchaPage {
 
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
-        VBox root = new VBox();
+        StackPane root = new StackPane();
         Scene s = new Scene(root, 800, 800);
         BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
@@ -42,21 +42,22 @@ public class BanditGotchaPage {
 
 
         ImageView banditShip = new ImageView(new Image("bandits.png"));
-        banditShip.setFitHeight(250);
-        banditShip.setFitWidth(250);
+        banditShip.setFitHeight(900);
+        banditShip.setFitWidth(700);
 
         Path path = new Path();
-        path.getElements().add (new MoveTo(800, 80));
+        path.getElements().add (new MoveTo(800, 400));
         path.getElements().add (new HLineTo(-20));
-        path.getElements().add (new MoveTo(700, 600));
-        path.getElements().add (new HLineTo(-40));
+//        path.getElements().add (new MoveTo(700, 600));
+//        path.getElements().add (new HLineTo(-40));
 
         PathTransition pathTransition = new PathTransition();
-        pathTransition.setDuration(Duration.seconds(10));
+        pathTransition.setDuration(Duration.seconds(15));
         pathTransition.setNode(banditShip);
         //pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathTransition.setPath(path);
         pathTransition.setCycleCount(Animation.INDEFINITE);
+        pathTransition.setAutoReverse(true);
 
         pathTransition.play();
 

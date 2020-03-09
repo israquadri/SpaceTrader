@@ -35,8 +35,8 @@ public class BanditGotchaPage {
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
         StackPane root = new StackPane();
         Scene s = new Scene(root, 800, 800);
-        BackgroundImage myBI = new BackgroundImage(new Image("galaxy.jpg", 800,
-                800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
+        BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,
+                800, true, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
 

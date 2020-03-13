@@ -11,15 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
-import java.io.File;
 
 public class MarketPage {
 
@@ -98,7 +95,7 @@ public class MarketPage {
         //fuel display
         HBox fuelBox = new HBox();
         top.getChildren().add(fuelBox);
-        top.setHgrow(fuelBox, Priority.ALWAYS);
+        HBox.setHgrow(fuelBox, Priority.ALWAYS);
         fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
@@ -218,7 +215,7 @@ public class MarketPage {
                             p1.setCredits(p1.getCredits() - i.getBuyPrice());
                             p1.getSpaceShip().reFuel(i.getBuyPrice());
                             fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
-                            String creditUpdate = new String("Credits: " + p1.getCredits());
+                            String creditUpdate = "Credits: " + p1.getCredits();
                             creditsLeft.setText(creditUpdate);
                             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added"
                                     + " approximately "
@@ -249,7 +246,7 @@ public class MarketPage {
                             marketitems.getChildren().remove(item);
                         }
 
-                        String creditUpdate = new String("Credits: " + p1.getCredits());
+                        String creditUpdate = "Credits: " + p1.getCredits();
                         creditsLeft.setText(creditUpdate);
 
                         Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
@@ -356,7 +353,7 @@ public class MarketPage {
                         inventoryItems.getChildren().remove(myItem);
                     }
 
-                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    String creditUpdate = "Credits: " + p1.getCredits();
                     creditsLeft.setText(creditUpdate);
 
                     Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName()

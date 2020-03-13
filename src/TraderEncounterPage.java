@@ -11,21 +11,16 @@ import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -36,24 +31,29 @@ public class TraderEncounterPage {
     *   - itemSold = trader.getItemToSell()
     *   * check if the player has enough credit to purchase item(s)
     *   - push (itemSold, itemSold.getQuantity()) to player's inventory
-    *   * I don't think the trader's inventory needs to be updated since it doesn't affect anything
+    *   * I don't think the trader's inventory needs to be updated
+    *      since it doesn't affect anything
     *
     * Option 2 - Ignore Trader:
     *   - continue to intended destination
     *
     * Option 3 - Rob trader:
-    *   1. Determine the player's success by doing trader.determineSuccess(player.getFighterSkill)
+    *   1. Determine the player's success by doing
+    *  trader.determineSuccess(player.getFighterSkill)
     *       - if (success) -> player robs itemToSell
-    *         * the rubric only says "some of trader's items are added to player inventory" so I guess it doesn't really
+    *         * the rubric only says "some of trader's items are
+    *  added to player inventory" so I guess it doesn't really
     *            matter which item/how many of them is stolen?
     *       - else -> player's ship health lowered, continues to intended destination
     * Option 4 - Negotiate price
     *   1. trader.determineSuccess(player.getMerchantSkill)
     *       - if (success) -> trader.decreasePrice()
     *       - else -> trader.increasePrice()
-    *  2. get rid of option 4 since the player can negotiate for price only once
+    *  2. get rid of option 4 since the player can negotiate
+    *  for price only once
     *  */
-    public TraderEncounterPage(Stage primaryStage, Region[] regions, Player p1, Trader trader) {
+    public TraderEncounterPage(Stage primaryStage, Region[] regions,
+                               Player p1, Trader trader) {
         VBox root = new VBox();
         Scene s = new Scene(root, 800, 800);
 
@@ -67,10 +67,10 @@ public class TraderEncounterPage {
         traderShip.setFitWidth(250);
 
         Path path = new Path();
-        path.getElements().add (new MoveTo(800, 90));
-        path.getElements().add (new HLineTo(-20));
-        path.getElements().add (new MoveTo(800, 700));
-        path.getElements().add (new HLineTo(-40));
+        path.getElements().add(new MoveTo(800, 90));
+        path.getElements().add(new HLineTo(-20));
+        path.getElements().add(new MoveTo(800, 700));
+        path.getElements().add(new HLineTo(-40));
 
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(10));
@@ -86,10 +86,13 @@ public class TraderEncounterPage {
         optionBox.setSpacing(20.0);
 
 
-        Button option2 = new Button("Proceed to \n" + p1.getDestination().getName());
+        Button option2 = new Button("Proceed to \n"
+                + p1.getDestination().getName());
         option2.setOnMouseClicked(mouseEvent -> {
-            p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-            RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+            p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                    distanceBetween(p1.getDestination()));
+            RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
+                    p1.getDestination(), regions);
         });
         option2.setAlignment(Pos.CENTER);
         option2.setTextFill(Color.WHITE);
@@ -98,7 +101,10 @@ public class TraderEncounterPage {
         option2.setTextAlignment(TextAlignment.CENTER);
 
 
-        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
+
+        Text traderOffer = new Text("Trader: I can sell you a \n"
+                + trader.getItemToSell() +  " for "
+                + trader.getItemToSell().getBuyPrice() + " credits.");
         traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         traderOffer.setTextAlignment(TextAlignment.CENTER);
         traderOffer.setFill(Color.WHITE);
@@ -109,9 +115,12 @@ public class TraderEncounterPage {
             boolean success = trader.determineSuccess(p1.getFighterSkill());
             if (success) {
                 trader.decreasePrice();
-                traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has decreased the price from "
-                        + previousPrice + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
+                traderOffer.setText("Trader: I can sell you a \n"
+                        + trader.getItemToSell().getName() +  " for "
+                        + trader.getItemToSell().getBuyPrice() + " credits.");
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has "
+                        + "decreased the price from " + previousPrice + " to "
+                        + trader.getItemToSell().getBuyPrice() + " credits.");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -119,10 +128,13 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 trader.increasePrice();
-                traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
-                        + " has increased the price from " + previousPrice
-                        + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
+                traderOffer.setText("Trader: I can sell you a \n"
+                        + trader.getItemToSell().getName() +  " for "
+                        + trader.getItemToSell().getBuyPrice() + " credits.");
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed"
+                        + " to negotiate for a lower price. The trader has increased"
+                        + " the price from " + previousPrice + " to "
+                        + trader.getItemToSell().getBuyPrice() + " credits.");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -138,24 +150,26 @@ public class TraderEncounterPage {
         option3.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: black; -fx-font-size: 17px;");
 
-
         Button option1 = new Button("Buy Trader's Item");
         option1.setOnMouseClicked(mouseEvent -> {
             if (p1.getCredits() >= trader.getItemToSell().getBuyPrice()) {
                 p1.setCredits(p1.getCredits() - trader.getItemToSell().getBuyPrice());
                 p1.getSpaceShip().addToInventory(trader.getItemToSell());
 
-                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
+                RegionPage proceed = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
 
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You bought one " + trader.getItemToSell().getName() + " from the trader.");
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You bought one "
+                        + trader.getItemToSell().getName() + " from the trader.");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
                 dialogPane.getStyleClass().add("myDialog");
                 a.show();
             } else {
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough credits to purchase one "
-                        + trader.getItemToSell().getName() + " . Try negotiating for a lower price.");
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough"
+                        + " credits to purchase one " + trader.getItemToSell().getName()
+                        + " . Try negotiating for a lower price.");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -179,9 +193,12 @@ public class TraderEncounterPage {
                         stolenItems.add(trader.getInventory().get(i).getName());
                     }
                 }
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader! Stolen items: " + stolenItems.toString());
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination()));
+                RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed"
+                        + " the trader! " + "Stolen items: " + stolenItems.toString());
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -189,9 +206,12 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob the trader. Your ship's health has decreased.");
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination()));
+                RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob "
+                        + "the trader. Your ship's health has decreased.");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());

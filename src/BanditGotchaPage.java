@@ -1,30 +1,22 @@
 package src;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.animation.Animation;
-import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.Collection;
-import java.util.Set;
 import javafx.scene.shape.*;
 import javafx.animation.PathTransition;
 import javafx.util.Duration;
@@ -45,15 +37,12 @@ public class BanditGotchaPage {
         banditShip.setFitWidth(700);
 
         Path path = new Path();
-        path.getElements().add (new MoveTo(800, 400));
-        path.getElements().add (new HLineTo(-20));
-//        path.getElements().add (new MoveTo(700, 600));
-//        path.getElements().add (new HLineTo(-40));
+        path.getElements().add(new MoveTo(800, 400));
+        path.getElements().add(new HLineTo(-20));
 
         PathTransition pathTransition = new PathTransition();
         pathTransition.setDuration(Duration.seconds(15));
         pathTransition.setNode(banditShip);
-        //pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
         pathTransition.setPath(path);
         pathTransition.setCycleCount(Animation.INDEFINITE);
         pathTransition.setAutoReverse(true);
@@ -68,11 +57,11 @@ public class BanditGotchaPage {
 
         // Option 1:
         /*
-            Pay the bandit's demand and continue to the desired destination. If the player cannot
-            afford the bandit's demands, then the player must give the bandit all the items in their
-            inventory. If the player has no items, the bandit will damage the ship's health. Then the
-            player continues to the target destination.
-         */
+        Pay the bandit's demand and continue to the desired destination. If the player cannot
+        afford the bandit's demands, then the player must give the bandit all the items in their
+        inventory. If the player has no items, the bandit will damage the ship's health. Then the
+        player continues to the target destination.
+        */
 
         Button option1 = new Button("Pay bandit and continue");
         option1.setAlignment(Pos.CENTER);
@@ -86,9 +75,12 @@ public class BanditGotchaPage {
             if (p1.getCredits() >= bandit.getDemands()) {
                 bandit.setCredits(bandit.getCredits() + bandit.getDemands());
                 p1.setCredits(p1.getCredits() - bandit.getDemands());
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the bandit and were able to escape!");
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the"
+                        + " bandit and were able to escape!");
                 DialogPane dialogPane = a.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -96,16 +88,20 @@ public class BanditGotchaPage {
                 a.show();
             } else {
                 if (p1.getSpaceShip().getInventory().size() > 0) {
-                    // this might be our loophole.. add the items to the bandit inventory and have the cops ask for the bandit's items
-//                    Set<Item> keySet = p1.getSpaceShip().getInventory().keySet();
-//                    Object[] itemArr = keySet.toArray();
-//                    for (int i = 0; i < itemArr.length; i++) {
-//                        bandit.addToInventory((Item)itemArr[i]);
-//                    }
+                    // this might be our loophole.. add the items to the bandit
+                    // inventory and have the cops ask for the bandit's items
+                    //Set<Item> keySet = p1.getSpaceShip().getInventory().keySet();
+                    //Object[] itemArr = keySet.toArray();
+                    //for (int i = 0; i < itemArr.length; i++) {
+                    //bandit.addToInventory((Item)itemArr[i]);
+                    //}
                     p1.getSpaceShip().getInventory().clear();
-                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your entire inventory.");
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION,
+                            "The bandit stole your entire inventory.");
                     DialogPane dialogPane = alert2.getDialogPane();
                     dialogPane.getStylesheets().add(
                             getClass().getResource("myDialogs.css").toExternalForm());
@@ -113,9 +109,12 @@ public class BanditGotchaPage {
                     alert2.show();
                 } else {
                     p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                    RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit decreased your ship health.");
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit"
+                            + " decreased your ship health.");
                     DialogPane dialogPane = alert1.getDialogPane();
                     dialogPane.getStylesheets().add(
                             getClass().getResource("myDialogs.css").toExternalForm());
@@ -128,11 +127,12 @@ public class BanditGotchaPage {
         // Option 2:
         /*
         Try to flee back to the previous region. The success of fleeing is dependent on the
-        player’s Pilot skill (higher Pilot level, higher chance of escape). If the player successfully
-        flees back to the original region, they should still lose the fuel required to travel initially,
-        but they keep all their credits & items and they are safe. If the player fails to flee, the
-        bandit will take all their credits and damage the health value of the player's ship.
-                 */
+        player’s Pilot skill (higher Pilot level, higher chance of escape). If the player
+        successfully flees back to the original region, they should still lose the fuel
+        required to travel initially, but they keep all their credits & items and they
+        are safe. If the player fails to flee, the bandit will take all their credits and
+        damage the health value of the player's ship.
+        */
 
         Button option2 = new Button("Try to flee");
         option2.setAlignment(Pos.CENTER);
@@ -144,23 +144,27 @@ public class BanditGotchaPage {
         option2.setOnMouseClicked(mouseEvent -> {
             boolean success = bandit.determineSuccess(p1.getPilotSkill());
             if (success) {
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination())); // subtract fuel it took
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination())); // subtract fuel it took
                 RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your Pilot skill is " + p1.getPilotSkill() + ", you could flee back to the last planet you were on!");
+                Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your"
+                        + " Pilot skill is " + p1.getPilotSkill() + ", you could flee back"
+                        + " to the last planet you were on!");
                 alert2.show();
             } else {
                 bandit.setCredits(p1.getCredits());
                 p1.setCredits(0);
-                p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() -1);
+                p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 RegionPage rp = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "You weren't able to flee from the bandits! They damaged your ship and stole your credits!");
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "You weren't able to "
+                        + "flee from the bandits! They damaged your ship and stole your credits!");
                 alert1.show();
             }
         });
 
         // Option 3:
         /*
-              Try to fight off the bandit. The success of defeating the bandit is dependent on the
+        Try to fight off the bandit. The success of defeating the bandit is dependent on the
         player’s fighter skill (higher fighter level, higher chance of winning). Successfully
         fighting off the bandit will allow the player to travel as intended to the desired
         destination without any new consequences. Additionally, success will grant the player
@@ -178,10 +182,13 @@ public class BanditGotchaPage {
         option3.setOnMouseClicked(mouseEvent -> {
             boolean success = bandit.determineSuccess(p1.getFighterSkill());
             if (success) {
-                p1.setCredits(p1.getCredits() + ((int)(bandit.getCredits() * .2)));
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");
+                p1.setCredits(p1.getCredits() + ((int) (bandit.getCredits() * .2)));
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
+                Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully"
+                        + " fought off the bandits");
                 DialogPane dialogPane = a1.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -191,9 +198,12 @@ public class BanditGotchaPage {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
+                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                        distanceBetween(p1.getDestination()));
+                RegionPage proceed = new RegionPage(primaryStage, p1,
+                        p1.getDestination(), regions);
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole "
+                        + "your credits and decreased your ship health.");
                 DialogPane dialogPane = alert1.getDialogPane();
                 dialogPane.getStylesheets().add(
                         getClass().getResource("myDialogs.css").toExternalForm());
@@ -259,7 +269,8 @@ public class BanditGotchaPage {
         banditText.setFill(Color.WHITE);
         banditText.setTextAlignment(TextAlignment.CENTER);
 
-        Text banditDemands = new Text("They're demanding a \npayment of " + bandit.getDemands() + " credits!");
+        Text banditDemands = new Text("They're demanding a \npayment of "
+                + bandit.getDemands() + " credits!");
         banditDemands.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         banditDemands.setTextAlignment(TextAlignment.CENTER);
         banditDemands.setFill(Color.WHITE);

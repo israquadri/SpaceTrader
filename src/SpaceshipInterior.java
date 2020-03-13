@@ -1,6 +1,7 @@
 package src;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,27 +17,28 @@ public class SpaceshipInterior {
 
     public SpaceshipInterior(Stage primaryStage, Player p1, Region[] array) {
 
-        Pane map = new Pane();
-        // SCENE 3 BACKING STRUCTURE SET UP
-        Scene scene3 = new Scene(map, 800, 800);
+
+        VBox root = new VBox();
+        Scene scene3 = new Scene(root, 800, 800);
         scene3.getStylesheets().add("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
         BackgroundImage myBI = new BackgroundImage(new Image("interior.png", 800,
                 800, false, true), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        map.setBackground(new Background(myBI));
+        root.setBackground(new Background(myBI));
 
         VBox controls = new VBox();
-        controls.setLayoutX(250);
-        controls.setLayoutY(200);
+        controls.setPadding(new Insets(10, 10, 10, 10));
+        controls.setSpacing(20.0);
+
 
         Button toMap = new Button("go to map");
-        toMap.setTextFill(Color.WHITE);
-        toMap.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-background-color: black; -fx-font-size: 20px;");
-        toMap.setMinSize(10, 10);
         toMap.setOnMouseClicked(mouseEvent -> {
             Map mapPage = new Map(primaryStage, array, p1);
         });
+        toMap.setAlignment(Pos.CENTER);
+        toMap.setTextFill(Color.WHITE);
+        toMap.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-background-color: black; -fx-font-size: 20px;");
 
         Button toRegion = new Button("back to region");
         toRegion.setAlignment(Pos.CENTER);
@@ -48,6 +50,7 @@ public class SpaceshipInterior {
         });
 
         Button viewInventory = new Button("view inventory");
+        viewInventory.setAlignment(Pos.CENTER);
         viewInventory.setTextFill(Color.WHITE);
         viewInventory.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: black; -fx-font-size: 20px;");
@@ -56,7 +59,8 @@ public class SpaceshipInterior {
                     InventoryPage(primaryStage, p1, p1.getCurrentRegion(), array);
         });
 
-        controls.getChildren().addAll(viewInventory, toMap, toRegion);
+
+
 
         //Drop Shadow effect
         DropShadow shadow = new DropShadow();
@@ -106,7 +110,14 @@ public class SpaceshipInterior {
                     }
                 });
 
-        map.getChildren().add(controls);
+        controls.getChildren().addAll(viewInventory, toMap, toRegion);
+        controls.setAlignment(Pos.CENTER);
+        controls.setPadding(new Insets(130, 0, 0, 0));
+
+
+
+        root.setAlignment(Pos.TOP_CENTER);
+        root.getChildren().add(controls);
 
         primaryStage.setTitle("Your spaceship");
         primaryStage.setScene(scene3);

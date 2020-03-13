@@ -35,14 +35,18 @@ public class InventoryPage {
         VBox vBox = new VBox(10);
         Text welcome = new Text(p1.getName() + "'s Inventory");
         welcome.setStyle("-fx-font-size: 40px; -fx-font-family:"
-                + " 'Krona One'; -fx-text-align: center;");
+                + " 'Press Start 2P'; -fx-text-align: center;");
         welcome.setTextAlignment(TextAlignment.CENTER);
+        Text credits = new Text("Credits: " + p1.getCredits());
+        credits.setStyle("-fx-font-size: 15px; -fx-font-family:"
+                + " 'Press Start 2P'; -fx-text-align: center;");
+        credits.setFill(Color.WHITE);
         welcome.setFill(Color.WHITESMOKE);
         Background background = new Background(new BackgroundFill(Color.rgb(0,
                 22, 43), CornerRadii.EMPTY, Insets.EMPTY));
         vBox.setPadding(new Insets(30, 10, 30, 10));
         vBox.setBackground(background);
-        vBox.getChildren().add(welcome);
+        vBox.getChildren().addAll(welcome, credits);
         vBox.setAlignment(Pos.TOP_CENTER);
 
         //HBox fo hold inventory, character and upgrades
@@ -53,6 +57,11 @@ public class InventoryPage {
         left.setPrefWidth(267);
         left.setPrefHeight(400);
         left.setAlignment(Pos.CENTER);
+        Text inventorytext = new Text("Inventory");
+        inventorytext.setStyle("-fx-font-size: 15px; -fx-font-family:"
+                + " 'Press Start 2P'; -fx-text-align: center;");
+        inventorytext.setFill(Color.WHITE);
+        left.getChildren().add(inventorytext);
 
 
         //Back to Region Page button
@@ -149,14 +158,17 @@ public class InventoryPage {
         root.getChildren().addAll(back, vBox, mid);
 
         //Adding picture of character and text showing his name
-        ImageView charpic = new ImageView(new Image("CharacterPicture.png"));
         Text chartext = new Text("Thanos");
         chartext.setStyle("-fx-font-size: 20px; -fx-font-family:"
                 + " 'Press Start 2P'; -fx-text-align: center;");
+        chartext.setFill(Color.WHITE);
 
         //Making a right vbox for the character upgrades
         VBox right = new VBox();
         right.setSpacing(10);
+        right.setPadding(new Insets(10,0,0,10));
+        right.setBorder(new Border(new BorderStroke(Color.WHITE,
+                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         right.setAlignment(Pos.TOP_CENTER);
         right.setPrefWidth(240);
         right.setBackground(new Background(new BackgroundFill(Color.rgb(0,
@@ -191,21 +203,26 @@ public class InventoryPage {
                 r.setVisited();
             }
             right.getChildren().removeAll(gauntlet, upgrade1btn);
+            p1.setUpgrade1(true);
         });
 
-        right.getChildren().addAll(upgrade, gauntlet, upgrade1btn);
+        right.getChildren().addAll(upgrade);
+        if (!p1.isUpgrade1()) {
+            right.getChildren().addAll(gauntlet, upgrade1btn);
+        }
 
 
 
 
         //Adding everything to mid hbox
         VBox midmid = new VBox();
-        midmid.setAlignment(Pos.CENTER);
+        midmid.setAlignment(Pos.BOTTOM_CENTER);
         midmid.setPrefWidth(265);
-        midmid.getChildren().addAll(chartext, charpic);
+        midmid.getChildren().addAll(chartext);
+        left.getChildren().add(scrollpane);
 
 
-        mid.getChildren().addAll(scrollpane, midmid, right);
+        mid.getChildren().addAll(left, midmid, right);
 
         //Making scene show
         primaryStage.setScene(inventory);

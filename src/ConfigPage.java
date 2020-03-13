@@ -197,9 +197,11 @@ public class ConfigPage {
 
         //progress bar 1 with buttons to move
         Button t1dec = new Button("<");
-        t1dec.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t1dec.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         Button t1inc = new Button(">");
-        t1inc.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t1inc.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         t1dec.setTextFill(Color.WHITE);
         t1inc.setTextFill(Color.WHITE);
         trait1.getChildren().add(t1dec);
@@ -235,9 +237,11 @@ public class ConfigPage {
 
         //Progress bar 2
         Button t2dec = new Button("<");
-        t2dec.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t2dec.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         Button t2inc = new Button(">");
-        t2inc.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t2inc.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         t2dec.setTextFill(Color.WHITE);
         t2inc.setTextFill(Color.WHITE);
         trait2.getChildren().add(t2dec);
@@ -273,9 +277,12 @@ public class ConfigPage {
 
         //Progress Bar 3
         Button t3dec = new Button("<");
-        t3dec.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t3dec.setStyle("-fx-font-family: 'Press Start 2P'");
+        t3dec.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         Button t3inc = new Button(">");
-        t3inc.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t3inc.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         t3dec.setTextFill(Color.WHITE);
         t3inc.setTextFill(Color.WHITE);
         trait3.getChildren().add(t3dec);
@@ -310,9 +317,11 @@ public class ConfigPage {
         });
 
         Button t4dec = new Button("<");
-        t4dec.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t4dec.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         Button t4inc = new Button(">");
-        t4inc.setStyle("-fx-background-color: black; -fx-border-color: white");
+        t4inc.setStyle("-fx-background-color: black;" +
+                " -fx-border-color: white; -fx-font-family: 'Press Start 2P'; -fx-font-size: 10px");
         t4dec.setTextFill(Color.WHITE);
         t4inc.setTextFill(Color.WHITE);
         trait4.getChildren().add(t4dec);

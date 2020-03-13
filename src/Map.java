@@ -190,12 +190,12 @@ public class Map {
         currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
         currentRegion.setFill(Color.WHITE);
 
-        Button backToOrbit = new Button("Back to Orbit");
+        Button backToOrbit = new Button("Back to Ship");
         backToOrbit.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: black; -fx-font-size: 20px;");
         backToOrbit.setTextFill(Color.WHITE);
         backToOrbit.setOnMouseClicked((MouseEvent m) -> {
-            RegionPage r = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+            SpaceshipInterior s = new SpaceshipInterior(primaryStage, p1, regions);
         });
 
         //fuel display

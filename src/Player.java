@@ -17,6 +17,7 @@ public class Player {
     private Region currentRegion;
     private SpaceShip spaceShip;
     private Region destination;
+    private boolean upgrade1 = false;
 
     //Getter and Setter-ville
     public Player() {
@@ -105,6 +106,14 @@ public class Player {
 
     public Region getDestination() {
         return destination;
+    }
+
+    public boolean isUpgrade1() {
+        return upgrade1;
+    }
+
+    public void setUpgrade1(boolean upgrade1) {
+        this.upgrade1 = upgrade1;
     }
 
     public void setDestination(Region destination) {

@@ -98,7 +98,7 @@ public class TraderEncounterPage {
         option2.setTextAlignment(TextAlignment.CENTER);
 
 
-        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
+        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
         traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         traderOffer.setTextAlignment(TextAlignment.CENTER);
         traderOffer.setFill(Color.WHITE);

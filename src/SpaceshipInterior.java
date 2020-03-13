@@ -60,8 +60,6 @@ public class SpaceshipInterior {
         });
 
 
-
-
         //Drop Shadow effect
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);

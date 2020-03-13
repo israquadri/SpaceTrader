@@ -47,7 +47,7 @@ public class PolicePulloverPage {
 //		}
 		int index = new Random().nextInt(p1.getSpaceShip().getInventory().size());
 		police.setItemWanted(itemsCopy.get(index));
-		System.out.println("item wanted: " + police.getItemWanted());
+		//System.out.println("item wanted: " + police.getItemWanted());
 
 
 		ImageView policeShip = new ImageView(new Image("police.png"));

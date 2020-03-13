@@ -124,7 +124,7 @@ public class Map {
                     //int randNum = 2;
 
                     //for testing
-                    System.out.println(randNum);
+                    //System.out.println(randNum);
 //                    System.out.println("player's fighter skill: " + p1.getFighterSkill());
 //                    System.out.println("player's merchant skill: " + p1.getMerchantSkill());
 //                    System.out.println("player's pilot skill: " + p1.getPilotSkill());

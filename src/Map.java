@@ -118,10 +118,10 @@ public class Map {
                     a.show();
                 }
                 else {
-                    //int randNum = new Random().nextInt(4);
+                    int randNum = new Random().nextInt(4);
 //                  System.out.println(p1.getSpaceShip().getInventoryCapacity());
 //                  use randNum below to force encounters for demo
-                    int randNum = 2;
+                    //int randNum = 2;
 
                     //for testing
                     System.out.println(randNum);

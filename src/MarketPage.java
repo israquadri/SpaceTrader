@@ -209,6 +209,10 @@ public class MarketPage {
                         if (i.getBuyPrice() > p1.getCredits()) {
                             Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
                                     + " enough credits to refuel.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         } else {
                             p1.setCredits(p1.getCredits() - i.getBuyPrice());
@@ -220,13 +224,25 @@ public class MarketPage {
                                     + " approximately "
                                     + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice()))
                                     + " gallons to your fuel tank.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         }
                     } else if (i.getName().equals("Fuel") && p1.getSpaceShip().isTankFull()) {
                         Alert a = new Alert(Alert.AlertType.ERROR, "Your tank is already full.");
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
                         a.show();
                     } else {
                         Alert a = p1.buyGoods(i);
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
                         a.show();
                         if (i.getQuantity() == 0) {
                             region.getMarket().removeItem(i);

@@ -436,6 +436,10 @@ public class ConfigPage {
             } else {
                 Alert a = new Alert(Alert.AlertType.ERROR, "You didn't finish"
                         + " making your character!");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             }
         });

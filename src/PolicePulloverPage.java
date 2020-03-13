@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -90,6 +91,10 @@ public class PolicePulloverPage {
 			p1.getSpaceShip().getInventory().remove(police.getItemWanted());
 			RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 			Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You complied, gave the police your " + police.getItemWanted().toString() + ", and get to continue to the next region.");
+			DialogPane dialogPane = a1.getDialogPane();
+			dialogPane.getStylesheets().add(
+					getClass().getResource("myDialogs.css").toExternalForm());
+			dialogPane.getStyleClass().add("myDialog");
 			a1.show();
 		});
 		option1.setAlignment(Pos.CENTER);
@@ -113,6 +118,10 @@ public class PolicePulloverPage {
 				p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
 				RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 				Alert alert = new Alert(Alert.AlertType.INFORMATION, "You have successfully fled from the police!");
+				DialogPane dialogPane = alert.getDialogPane();
+				dialogPane.getStylesheets().add(
+						getClass().getResource("myDialogs.css").toExternalForm());
+				dialogPane.getStyleClass().add("myDialog");
 				alert.show();
 			} else {
 				p1.getSpaceShip().getInventory().remove(police.getItemWanted());
@@ -121,6 +130,10 @@ public class PolicePulloverPage {
 				p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
 				RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police have decreased your ship health, confiscated the stolen items, and charged you a fine of " + police.getFineDemanded() + " credits.");
+				DialogPane dialogPane = a2.getDialogPane();
+				dialogPane.getStylesheets().add(
+						getClass().getResource("myDialogs.css").toExternalForm());
+				dialogPane.getStyleClass().add("myDialog");
 				a2.show();
 			}
 		});
@@ -145,10 +158,18 @@ public class PolicePulloverPage {
 				p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
 				RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
 				Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You fought them off successfully!");
+				DialogPane dialogPane = a1.getDialogPane();
+				dialogPane.getStylesheets().add(
+						getClass().getResource("myDialogs.css").toExternalForm());
+				dialogPane.getStyleClass().add("myDialog");
 				a1.show();
 			} else {
 				RegionPage rp2 = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
 				Alert a2 = new Alert(Alert.AlertType.INFORMATION, "You did not fight them off, so you ended up at your last region.");
+				DialogPane dialogPane = a2.getDialogPane();
+				dialogPane.getStylesheets().add(
+						getClass().getResource("myDialogs.css").toExternalForm());
+				dialogPane.getStyleClass().add("myDialog");
 				a2.show();
 			}
 		});

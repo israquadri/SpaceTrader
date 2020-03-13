@@ -1,8 +1,7 @@
 package src;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -90,6 +89,10 @@ public class BanditGotchaPage {
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You paid the bandit and were able to escape!");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             } else {
                 if (p1.getSpaceShip().getInventory().size() > 0) {
@@ -103,12 +106,20 @@ public class BanditGotchaPage {
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                     RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your entire inventory.");
+                    DialogPane dialogPane = alert2.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
                     alert2.show();
                 } else {
                     p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                     RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit decreased your ship health.");
+                    DialogPane dialogPane = alert1.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
                     alert1.show();
                 }
             }
@@ -171,6 +182,10 @@ public class BanditGotchaPage {
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert a1 = new Alert(Alert.AlertType.INFORMATION, "You successfully fought off the bandits");
+                DialogPane dialogPane = a1.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a1.show();
             } else {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
@@ -179,6 +194,10 @@ public class BanditGotchaPage {
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole your credits and decreased your ship health.");
+                DialogPane dialogPane = alert1.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 alert1.show();
             }
         });

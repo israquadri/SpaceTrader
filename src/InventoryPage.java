@@ -180,6 +180,11 @@ public class InventoryPage {
             if (p1.getCredits() < 50) {
                 Alert a = new Alert(Alert.AlertType.ERROR,
                         "You do not have enough credits to purchase this upgrade");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
+                a.show();
             }
             p1.setCredits(p1.getCredits() - 50);
             for (Region r : array) {

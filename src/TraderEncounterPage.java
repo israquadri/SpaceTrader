@@ -1,8 +1,7 @@
 package src;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -113,6 +112,10 @@ public class TraderEncounterPage {
                 traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has decreased the price from "
                         + previousPrice + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             } else {
                 trader.increasePrice();
@@ -120,6 +123,10 @@ public class TraderEncounterPage {
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
                         + " has increased the price from " + previousPrice
                         + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             }
             trader.makeNegotiationComplete();
@@ -137,11 +144,19 @@ public class TraderEncounterPage {
             if (p1.getCredits() >= trader.getItemToSell().getBuyPrice()) {
                 p1.setCredits(p1.getCredits() - trader.getItemToSell().getBuyPrice());
                 p1.getSpaceShip().addToInventory(trader.getItemToSell());
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You brought one " + trader.getItemToSell().getName() + " from the trader.");
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You bought one " + trader.getItemToSell().getName() + " from the trader.");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             } else {
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough credits to purchase one "
                         + trader.getItemToSell().getName() + " . Try negotiating for a lower price.");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             }
         });
@@ -164,12 +179,20 @@ public class TraderEncounterPage {
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader! Stolen items: " + stolenItems.toString());
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob the trader. Your ship's health has decreased.");
+                DialogPane dialogPane = a.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 a.show();
             }
         });

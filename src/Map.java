@@ -53,9 +53,74 @@ public class Map {
             distanceTip.setShowDelay(Duration.ZERO);
             planet.setTooltip(distanceTip);
 
+            // THIS CHUNK OF CODE IS FOR THE "difficulty level determines npc encounter frequency" FUNCTIONALITY
+
+//            Random npcEncounter = new Random();
+//            int banditAndPoliceEncounter;
+//            if (p1.getDifficulty().equals("Easy")) {
+//                banditAndPoliceEncounter = npcEncounter.nextInt(30); // 5/30 = 1/6 chance of bandit OR police encounter
+//            } else if (p1.getDifficulty().equals("Medium")) {
+//                banditAndPoliceEncounter = npcEncounter.nextInt(20); // 5/20 = 1/4 chance of bandit OR police encounter
+//            } else {
+//                banditAndPoliceEncounter = npcEncounter.nextInt(10); // 5/10 = 1/2 chance of bandit OR police encounter
+//            }
+//
+//            planet.setOnMouseClicked(mouseEvent -> {
+//                p1.setDestination(r);
+//                if (p1.getSpaceShip().getFuel() < 10) {
+//                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
+//                            + " low on fuel. In order to avoid getting stranded,"
+//                            + " refuel at the " + p1.getCurrentRegion().getName() + " market.");
+//                    a.show();
+//                }
+//                else {
+//                    if (banditAndPoliceEncounter <= 5) {
+//                        int randNum = new Random().nextInt(4); // now there's 1/2 chance player will encounter bandit, and 1/2 chance player will encounter police
+//                        if (randNum < 2) {
+//                            BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
+//                        } else {
+//                            //check player's inventory size
+//                            if (p1.getSpaceShip().getInventory().size() == 0) {
+//                                r.setVisited();
+//                                p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
+//                                p1.setCurrentRegion(r);
+//                                RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+//                            } else {
+//                                PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
+//                            }
+//                        }
+//                    } else {
+//                        int randNum = new Random().nextInt(10); //  0 1 2 3 4 5 6 7 8 9
+//                        if (randNum < 3) { // player has 3/10 chances of encountering trader
+//                            //initialize trader's inventory here
+//                            String[] traderItemNames = new String[] {"item0", "item1", "item2", "item3", "item4", "item5"};
+//                            TraderEncounterPage t = new TraderEncounterPage(primaryStage, regions, p1, new Trader(traderItemNames, p1));
+//                        } else {
+//                            r.setVisited();
+//                            p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
+//                            p1.setCurrentRegion(r);
+//                            RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+//                        }
+//                    }
+//                }
+//
+//            });
+
+
+            // THIS CHUNK OF CODE IS FOR THE FORCED NPC ENCOUNTERS DURING THE DEMO
+
+            Random r2 = new Random();
+            int banditAndPoliceEncounter;
+            if (p1.getDifficulty().equals("Easy")) {
+                banditAndPoliceEncounter = r2.nextInt(30);
+            } else if (p1.getDifficulty().equals("Medium")) {
+                banditAndPoliceEncounter = r2.nextInt(20);
+            } else {
+                banditAndPoliceEncounter = r2.nextInt(10);
+            }
+
             planet.setOnMouseClicked(mouseEvent -> {
                 p1.setDestination(r);
-                Random rand = new Random();
                 if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
                             + " low on fuel. In order to avoid getting stranded,"
@@ -107,7 +172,7 @@ public class Map {
             shadow.setWidth(1.5);
             //adding the shadow when the mouse cursor is on
             planet.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                    new javafx.event.EventHandler<MouseEvent>() {
+                    new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             planet.setEffect(shadow);

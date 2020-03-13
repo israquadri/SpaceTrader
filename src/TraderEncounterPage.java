@@ -29,6 +29,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+
 public class TraderEncounterPage {
     /*
     * Option 1 - Buy Item:
@@ -97,6 +99,11 @@ public class TraderEncounterPage {
         option2.setTextAlignment(TextAlignment.CENTER);
 
 
+        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
+        traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
+        traderOffer.setTextAlignment(TextAlignment.CENTER);
+        traderOffer.setFill(Color.WHITE);
+
         Button option3 = new Button("Negotiate with Trader");
         option3.setOnMouseClicked(mouseEvent -> {
             if (!trader.getNegotiationStatus()) {
@@ -104,11 +111,13 @@ public class TraderEncounterPage {
                 boolean success = trader.determineSuccess(p1.getFighterSkill());
                 if (success) {
                     trader.decreasePrice();
+                    traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
                     Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has decreased the price from "
-                            + previousPrice + " to " + trader.getItemToSell().getBuyPrice());
+                            + previousPrice + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
                     a.show();
                 } else {
                     trader.increasePrice();
+                    traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
                     Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
                             + " has increased the price from " + previousPrice
                             + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
@@ -150,14 +159,16 @@ public class TraderEncounterPage {
         option4.setOnMouseClicked(mouseEvent -> {
             boolean success = trader.determineSuccess(p1.getFighterSkill());
             if (success) {
+                ArrayList<String> stolenItems = new ArrayList<>();
                 for (int i = 0; i < trader.getInventory().size(); i++) {
                     if ((i % 2) == 0) {
                         p1.getSpaceShip().addToInventory(trader.getInventory().get(i));
+                        stolenItems.add(trader.getInventory().get(i).getName());
                     }
                 }
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().distanceBetween(p1.getDestination()));
                 RegionPage ignoreTrader = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader!");
+                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You robbed the trader! Stolen items: " + stolenItems.toString());
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
@@ -242,11 +253,6 @@ public class TraderEncounterPage {
         traderText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
         traderText.setTextAlignment(TextAlignment.CENTER);
         traderText.setFill(Color.WHITE);
-
-        Text traderOffer = new Text("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
-        traderOffer.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
-        traderOffer.setTextAlignment(TextAlignment.CENTER);
-        traderOffer.setFill(Color.WHITE);
 
         VBox box2 = new VBox();
         //box2.setPadding(new Insets(10, 10, 10, 10));

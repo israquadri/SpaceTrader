@@ -240,7 +240,7 @@ public class BanditGotchaPage {
         banditText.setFill(Color.WHITE);
         banditText.setTextAlignment(TextAlignment.CENTER);
 
-        Text banditDemands = new Text("They're demanding a \npayment of \n" + bandit.getDemands() + " credits!");
+        Text banditDemands = new Text("They're demanding a \npayment of " + bandit.getDemands() + " credits!");
         banditDemands.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         banditDemands.setTextAlignment(TextAlignment.CENTER);
         banditDemands.setFill(Color.WHITE);

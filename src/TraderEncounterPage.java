@@ -137,6 +137,7 @@ public class TraderEncounterPage {
             if (p1.getCredits() >= trader.getItemToSell().getBuyPrice()) {
                 p1.setCredits(p1.getCredits() - trader.getItemToSell().getBuyPrice());
                 p1.getSpaceShip().addToInventory(trader.getItemToSell());
+                RegionPage proceed = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
                 Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You brought one " + trader.getItemToSell().getName() + " from the trader.");
                 a.show();
             } else {

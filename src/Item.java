@@ -36,7 +36,8 @@ public class Item {
         sellPrice = (int) (varRand.nextInt(sellPrice) + .5 * sellPrice);
         sellPrice = (int) (sellPrice - (.02 * merchantLevel * sellPrice));
         buyPrice = (int) ((sellPrice) * (.75));
-        this.name = name;
+        this.name = name.substring(0, name.indexOf("<"));
+        this.image = new Image(name.substring((name.indexOf("<") + 1), name.lastIndexOf(">")));
         this.quantity = quantity;
     }
 

@@ -16,7 +16,9 @@ public class Trader {
         double tax = new Random().nextDouble();
         ItemListInitializer itemInit = new ItemListInitializer();
         inventory = itemInit.createTraderItemList(randomTechLevel, merchantSkill, tax, itemNames);
-        itemToSell = inventory.get(new Random().nextInt(inventory.size()));
+        //itemToSell = inventory.get(new Random().nextInt(inventory.size()));
+        itemToSell = inventory.get(1);
+
     }
 
     public boolean determineSuccess(int skillLevel) {

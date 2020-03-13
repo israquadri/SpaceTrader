@@ -118,13 +118,13 @@ public class Map {
                     a.show();
                 }
                 else {
-                    int randNum = new Random().nextInt(4);
+                    //int randNum = new Random().nextInt(4);
 //                  System.out.println(p1.getSpaceShip().getInventoryCapacity());
 //                  use randNum below to force encounters for demo
-//                  int randNum = 1;
+                    int randNum = 2;
 
                     //for testing
-//                    System.out.println(randNum);
+                    System.out.println(randNum);
 //                    System.out.println("player's fighter skill: " + p1.getFighterSkill());
 //                    System.out.println("player's merchant skill: " + p1.getMerchantSkill());
 //                    System.out.println("player's pilot skill: " + p1.getPilotSkill());
@@ -144,7 +144,7 @@ public class Map {
                         }
                     } else if (randNum == 2) {
                         //initialize trader's inventory here
-                        String[] traderItemNames = new String[] {"item0", "item1", "item2", "item3", "item4", "item5"};
+                        String[] traderItemNames = new String[] {"Coke<coke.png>", "Dasani<dasani.png>", "Groot<groot.png>", "Binocular<binocular.png>", "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
                         TraderEncounterPage t = new TraderEncounterPage(primaryStage, regions, p1, new Trader(traderItemNames, p1));
                     } else {
                         r.setVisited();

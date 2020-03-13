@@ -106,29 +106,24 @@ public class TraderEncounterPage {
 
         Button option3 = new Button("Negotiate with Trader");
         option3.setOnMouseClicked(mouseEvent -> {
-            if (!trader.getNegotiationStatus()) {
-                double previousPrice = trader.getItemToSell().getBuyPrice();
-                boolean success = trader.determineSuccess(p1.getFighterSkill());
-                if (success) {
-                    trader.decreasePrice();
-                    traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has decreased the price from "
-                            + previousPrice + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
-                    a.show();
-                } else {
-                    trader.increasePrice();
-                    traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
-                    Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
-                            + " has increased the price from " + previousPrice
-                            + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
-                    a.show();
-                }
-                trader.makeNegotiationComplete();
-                optionBox.getChildren().remove(option3);
+            double previousPrice = trader.getItemToSell().getBuyPrice();
+            boolean success = trader.determineSuccess(p1.getFighterSkill());
+            if (success) {
+                trader.decreasePrice();
+                traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "The trader has decreased the price from "
+                        + previousPrice + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
+                a.show();
             } else {
-                Alert a = new Alert(Alert.AlertType.INFORMATION, "You only had one chance to negotiate with the trader.");
+                trader.increasePrice();
+                traderOffer.setText("Trader: I can sell you a " + trader.getItemToSell().getName() +  " for " + trader.getItemToSell().getBuyPrice() + " credits.");
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "You failed to negotiate for a lower price. The trader"
+                        + " has increased the price from " + previousPrice
+                        + " to " + trader.getItemToSell().getBuyPrice() + " credits.");
                 a.show();
             }
+            trader.makeNegotiationComplete();
+            optionBox.getChildren().remove(option3);
         });
 
         option3.setAlignment(Pos.CENTER);

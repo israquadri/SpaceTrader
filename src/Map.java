@@ -109,16 +109,6 @@ public class Map {
 
             // THIS CHUNK OF CODE IS FOR THE FORCED NPC ENCOUNTERS DURING THE DEMO
 
-            Random r2 = new Random();
-            int banditAndPoliceEncounter;
-            if (p1.getDifficulty().equals("Easy")) {
-                banditAndPoliceEncounter = r2.nextInt(30);
-            } else if (p1.getDifficulty().equals("Medium")) {
-                banditAndPoliceEncounter = r2.nextInt(20);
-            } else {
-                banditAndPoliceEncounter = r2.nextInt(10);
-            }
-
             planet.setOnMouseClicked(mouseEvent -> {
                 p1.setDestination(r);
                 if (p1.getSpaceShip().getFuel() < 10) {

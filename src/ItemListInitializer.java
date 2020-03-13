@@ -31,7 +31,7 @@ public class ItemListInitializer {
         for (int i = 0; i < itemNames.length; i++) {
             int basePrice = new Random().nextInt(11) + 30;
             Item item = new Item(tax, merchantSkill, techLevel, itemNames[i],
-                    new Random().nextInt(3) + 1, basePrice ,true);
+                    new Random().nextInt(3) + 1, basePrice, true);
             items.add(item);
         }
         return items;

@@ -3,7 +3,6 @@ package src;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
-import java.util.Random;
 
 public class Player {
     private String name;
@@ -138,7 +137,7 @@ public class Player {
         }
         item.setQuantity(item.getQuantity() - 1);
         this.getSpaceShip().addToInventory(item);
-        this.setCredits(this.getCredits() - (int) item.getBuyPrice());
+        this.setCredits(this.getCredits() - item.getBuyPrice());
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
                 + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
                 + this.getSpaceShip().getQuantity(item) + " " + item.getName()

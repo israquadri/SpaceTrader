@@ -450,7 +450,7 @@ public class ConfigPage {
         bottomBtn.setAlignment(Pos.BOTTOM_CENTER);
 
         vb2.getChildren().addAll(charConfig, nameBox, back, bottomBtn);
-        vb2.setVgrow(bottomBtn, Priority.ALWAYS);
+        VBox.setVgrow(bottomBtn, Priority.ALWAYS);
         vb2.setStyle("-fx-border-color: lightcoral; -fx-border-width: 10px");
         vb2.setBackground(new Background(myBI));
         scene2 = new Scene(vb2, 800, 800);

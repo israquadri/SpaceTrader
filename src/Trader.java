@@ -1,5 +1,4 @@
 package src;
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,7 +20,9 @@ public class Trader {
     }
 
     public boolean determineSuccess(int skillLevel) {
-        if (skillLevel == 0) {return false;}
+        if (skillLevel == 0) {
+            return false;
+        }
         return (new Random().nextInt(8) + 1 <=  skillLevel);
     }
 

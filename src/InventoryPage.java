@@ -79,7 +79,7 @@ public class InventoryPage {
         gridBox.setBorder(border);
         grid.getStyleClass().add("grid");
         //gridBox.getChildren().add(grid);
-        gridBox.setVgrow(grid, Priority.ALWAYS);
+        VBox.setVgrow(grid, Priority.ALWAYS);
         gridBox.setPrefWidth(240);
         gridBox.setPrefHeight(400);
         //grid.setStyle(" -fx-background-radius: 25;");

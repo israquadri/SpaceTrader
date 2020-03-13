@@ -86,10 +86,7 @@ public class SpaceShip {
     }
 
     public boolean isTankFull() {
-        if (this.fuel == 50.0) {
-            return true;
-        }
-        return false;
+        return this.fuel == 50.0;
     }
 
     public void setFuelAfterTravel(int distanceBetween) {

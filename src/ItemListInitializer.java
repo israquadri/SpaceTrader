@@ -16,7 +16,13 @@ public class ItemListInitializer {
         ArrayList<Item> items = new ArrayList<>();
         //initialize quantity
         for (int i = 0; i < itemNames.length; i++) {
+//            int basePrice = 0;
+//            if (itemNames[i].equals("Ship Health")) {
+//                // here is where the ship health price is set based on engineer skills
+//                basePrice = new Random().nextInt(11) + 30;
+            //} else {
             int basePrice = new Random().nextInt(11) + 30;
+            //}
             Item item = new Item(tax, merchantSkill, techLevel, itemNames[i],
                     new Random().nextInt(7) + 1, basePrice);
             items.add(item);

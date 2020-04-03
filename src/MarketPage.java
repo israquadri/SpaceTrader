@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.util.Random;
+
 public class MarketPage {
 
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
@@ -195,7 +197,13 @@ public class MarketPage {
                                 item.setEffect(null);
                             }
                         });
-
+                // here we are setting the health price based on the engineer skill
+                if (i.getName().equals("Ship Health")) {
+                    i.setBuyPrice(new Random().nextInt(20) + 30 - (p1.getEngineerSkill() * 4));
+                    if (i.getBuyPrice() <= 0) {
+                        i.setBuyPrice(10);
+                    }
+                }
                 Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                         + "s left in stock: " + i.getQuantity());
                 preSale.setShowDelay(Duration.ZERO);

@@ -3,6 +3,7 @@ package src;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
+
 public class Player {
     private String name;
     private int skillPoints;
@@ -14,6 +15,8 @@ public class Player {
     private String difficulty;
     private Region currentRegion;
     private SpaceShip spaceShip;
+    private Region destination;
+    private boolean upgrade1 = false;
 
     //Getter and Setter-ville
     public Player() {
@@ -100,6 +103,22 @@ public class Player {
         return this.currentRegion;
     }
 
+    public Region getDestination() {
+        return destination;
+    }
+
+    public boolean isUpgrade1() {
+        return upgrade1;
+    }
+
+    public void setUpgrade1(boolean upgrade1) {
+        this.upgrade1 = upgrade1;
+    }
+
+    public void setDestination(Region destination) {
+        this.destination = destination;
+    }
+
     public void sellGoods(Region region, Item item) {
         this.spaceShip.removeFromInventory(item);
         this.setCredits(this.getCredits() + item.getSellPrice());
@@ -107,6 +126,9 @@ public class Player {
     }
 
     public Alert buyGoods(Item item) {
+        if (this.getCredits() <= 0) {
+            this.setCredits(0);
+        }
         if (this.getSpaceShip().getCargoCapacity() == 0) {
             Alert a = new Alert(Alert.AlertType.INFORMATION,
                     "Your cargo capacity is full! Trade out items to make"
@@ -124,7 +146,7 @@ public class Player {
         }
         item.setQuantity(item.getQuantity() - 1);
         this.getSpaceShip().addToInventory(item);
-        this.setCredits(this.getCredits() - (int) item.getBuyPrice());
+        this.setCredits(this.getCredits() - item.getBuyPrice());
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
                 + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
                 + this.getSpaceShip().getQuantity(item) + " " + item.getName()

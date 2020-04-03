@@ -22,14 +22,14 @@ public class CoordGenerator {
         int count = 0;
         for (int i = 0; i < 10; i++) {
             int xCoord = rd.nextInt(rangeX);
-            int yCoord = rd.nextInt(rangeY);
+            int yCoord = rd.nextInt(rangeY) + 150;
             while (x.containsValue(xCoord) || x.containsValue(xCoord + 15)
                     || x.containsValue(xCoord - 15)) {
                 xCoord = rd.nextInt(rangeX);
             }
             while (y.containsValue(yCoord) || y.containsValue(yCoord + 15)
                     || y.containsValue(yCoord - 15)) {
-                yCoord = rd.nextInt(rangeY) + 100;
+                yCoord = rd.nextInt(rangeY) + 150;
             }
             x.put(count, xCoord);
             y.put(count, yCoord);

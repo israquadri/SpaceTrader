@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.util.Random;
+
 public class MarketPage {
 
     public MarketPage(Stage primaryStage, Player p1, Region region, Region[] array) {
@@ -37,6 +39,7 @@ public class MarketPage {
         //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
         //MediaPlayer music = new MediaPlayer(tradingsong);
         //music.play();
+        //music.setCycleCount(100);
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
@@ -59,7 +62,8 @@ public class MarketPage {
         //top.setBackground(new Background(new
         // BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        //HBOX for bottom of the screen where items are
+        //HBOX for bottom of the screen where item
+        // s are
         VBox bottom = new VBox();
         bottom.setSpacing(20);
         bottom.setPrefHeight(400);
@@ -94,7 +98,7 @@ public class MarketPage {
         //fuel display
         HBox fuelBox = new HBox();
         top.getChildren().add(fuelBox);
-        top.setHgrow(fuelBox, Priority.ALWAYS);
+        HBox.setHgrow(fuelBox, Priority.ALWAYS);
         fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
@@ -193,7 +197,13 @@ public class MarketPage {
                                 item.setEffect(null);
                             }
                         });
-
+                // here we are setting the health price based on the engineer skill
+                if (i.getName().equals("Ship Health")) {
+                    i.setBuyPrice(new Random().nextInt(20) + 30 - (p1.getEngineerSkill() * 4));
+                    if (i.getBuyPrice() <= 0) {
+                        i.setBuyPrice(10);
+                    }
+                }
                 Tooltip preSale = new Tooltip("Price: " + i.getBuyPrice() + "\n" + i.getName()
                         + "s left in stock: " + i.getQuantity());
                 preSale.setShowDelay(Duration.ZERO);
@@ -205,28 +215,67 @@ public class MarketPage {
                         if (i.getBuyPrice() > p1.getCredits()) {
                             Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
                                     + " enough credits to refuel.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         } else {
                             p1.setCredits(p1.getCredits() - i.getBuyPrice());
                             p1.getSpaceShip().reFuel(i.getBuyPrice());
                             fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
-                            String creditUpdate = new String("Credits: " + p1.getCredits());
+                            String creditUpdate = "Credits: " + p1.getCredits();
                             creditsLeft.setText(creditUpdate);
                             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added"
                                     + " approximately "
                                     + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice()))
                                     + " gallons to your fuel tank.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         }
+                    } else if (i.getName().equals("Fuel") && p1.getSpaceShip().isTankFull()) {
+                        Alert a = new Alert(Alert.AlertType.ERROR, "Your tank is already full.");
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        a.show();
+                    } else if (i.getName().equals("Ship Health")) {
+                        p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
+                        Alert al = p1.buyGoods(i);
+                        DialogPane dialogPane = al.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        al.show();
+                        if (i.getQuantity() == 0) {
+                            region.getMarket().removeItem(i);
+                            marketitems.getChildren().remove(item);
+                        }
+
+                        String creditUpdate = "Credits: " + p1.getCredits();
+                        creditsLeft.setText(creditUpdate);
+
+                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                        postSale.setShowDelay(Duration.ZERO);
+                        item.setTooltip(postSale);
                     } else {
                         Alert a = p1.buyGoods(i);
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
                         a.show();
                         if (i.getQuantity() == 0) {
                             region.getMarket().removeItem(i);
                             marketitems.getChildren().remove(item);
                         }
 
-                        String creditUpdate = new String("Credits: " + p1.getCredits());
+                        String creditUpdate = "Credits: " + p1.getCredits();
                         creditsLeft.setText(creditUpdate);
 
                         Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
@@ -333,7 +382,7 @@ public class MarketPage {
                         inventoryItems.getChildren().remove(myItem);
                     }
 
-                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    String creditUpdate = "Credits: " + p1.getCredits();
                     creditsLeft.setText(creditUpdate);
 
                     Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName()

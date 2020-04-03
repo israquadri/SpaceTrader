@@ -235,6 +235,26 @@ public class MarketPage {
                                 getClass().getResource("myDialogs.css").toExternalForm());
                         dialogPane.getStyleClass().add("myDialog");
                         a.show();
+                    } else if (i.getName().equals("Ship Health")) {
+                        p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
+                        Alert al = p1.buyGoods(i);
+                        DialogPane dialogPane = al.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        al.show();
+                        if (i.getQuantity() == 0) {
+                            region.getMarket().removeItem(i);
+                            marketitems.getChildren().remove(item);
+                        }
+
+                        String creditUpdate = "Credits: " + p1.getCredits();
+                        creditsLeft.setText(creditUpdate);
+
+                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                        postSale.setShowDelay(Duration.ZERO);
+                        item.setTooltip(postSale);
                     } else {
                         Alert a = p1.buyGoods(i);
                         DialogPane dialogPane = a.getDialogPane();

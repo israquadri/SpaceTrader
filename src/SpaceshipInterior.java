@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.text.Text;
 
 public class SpaceshipInterior {
 
@@ -29,6 +30,13 @@ public class SpaceshipInterior {
         VBox controls = new VBox();
         controls.setPadding(new Insets(10, 10, 10, 10));
         controls.setSpacing(20.0);
+
+        // this will display the ship's health
+        Text shipHealth = new Text("Ship Health: " + p1.getSpaceShip().getHealth());
+        shipHealth.setFill(Color.WHITE);
+        shipHealth.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
+                + " -fx-font-size: 40px;");
+
 
 
         Button toMap = new Button("go to map");
@@ -108,7 +116,7 @@ public class SpaceshipInterior {
                     }
                 });
 
-        controls.getChildren().addAll(viewInventory, toMap, toRegion);
+        controls.getChildren().addAll(shipHealth, viewInventory, toMap, toRegion);
         controls.setAlignment(Pos.CENTER);
         controls.setPadding(new Insets(130, 0, 0, 0));
 

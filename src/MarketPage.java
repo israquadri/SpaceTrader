@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.lang.reflect.GenericArrayType;
 import java.util.Random;
 
 public class MarketPage {

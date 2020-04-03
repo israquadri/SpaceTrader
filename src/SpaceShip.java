@@ -37,6 +37,14 @@ public class SpaceShip {
         }
     }
 
+    public boolean checkIfGameOver() {
+        if (this.getHealth() <= 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public HashMap<Item, Integer> getInventory() {
         return this.inventory;
     }

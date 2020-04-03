@@ -126,6 +126,7 @@ public class Map {
 
             // THIS CHUNK OF CODE IS FOR THE FORCED NPC ENCOUNTERS DURING THE DEMO
 
+
             planet.setOnMouseClicked(mouseEvent -> {
                 p1.setDestination(r);
                 if (p1.getSpaceShip().getFuel() < 10) {

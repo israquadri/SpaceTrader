@@ -12,10 +12,10 @@ public class ItemListInitializer {
      * @return list of items
      */
     public ArrayList<Item> createItemList(int techLevel,
-                                          int merchantSkill, double tax, String[] itemNames) {
+                                          int merchantSkill, double tax, ArrayList<String> itemNames) {
         ArrayList<Item> items = new ArrayList<>();
         //initialize quantity
-        for (int i = 0; i < itemNames.length; i++) {
+        for (int i = 0; i < itemNames.size(); i++) {
 //            int basePrice = 0;
 //            if (itemNames[i].equals("Ship Health")) {
 //                // here is where the ship health price is set based on engineer skills
@@ -23,7 +23,7 @@ public class ItemListInitializer {
             //} else {
             int basePrice = new Random().nextInt(11) + 30;
             //}
-            Item item = new Item(tax, merchantSkill, techLevel, itemNames[i],
+            Item item = new Item(tax, merchantSkill, techLevel, itemNames.get(i),
                     new Random().nextInt(7) + 1, basePrice);
             items.add(item);
         }

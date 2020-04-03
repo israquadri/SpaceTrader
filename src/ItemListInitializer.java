@@ -8,7 +8,7 @@ public class ItemListInitializer {
      * @param techLevel region tech level
      * @param merchantSkill merchant skill
      * @param tax region tax
-     * @param itemNames region item names
+     * @param itemNames region item namesx
      * @return list of items
      */
     public ArrayList<Item> createItemList(int techLevel,

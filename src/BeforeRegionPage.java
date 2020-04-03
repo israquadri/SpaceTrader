@@ -31,7 +31,7 @@ public class BeforeRegionPage {
 
         String[] farmItems = {"Fuel<fuel.png>", "Weaponry<ax.png>",
             "Seeds<seed.png>", "Corn<corn.png>",
-            "Milk<milk.png>", "Shovel<shovel.png>"};
+            "Milk<milk.png>", "Shovel<shovel.png>", "Ship Health<wrench.png>"};
         Region region1 = new Region(xCoords.get(0), yCoords.get(0), 2,
                 "Farm", new javafx.scene.image.Image("farm.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p1.png", 100,
@@ -42,7 +42,7 @@ public class BeforeRegionPage {
 
         String[] safariItems = {"Capuchin\nMonkey<monkey.png>",
             "Fuel<fuel.png>", "Diamond<diamond.png>",
-            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>"};
+            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>", "Ship Health<wrench.png>"};
         Region region2 = new Region(xCoords.get(1), yCoords.get(1), 4,
                 "Safari",  new javafx.scene.image.Image("safari.png", 800,
                 800, false, true), new javafx.scene.image.Image("p2.png", 100,
@@ -53,7 +53,7 @@ public class BeforeRegionPage {
 
         String[] boyBandItems = {"Justin Bieber:\nMy World 2.0<jb.png>",
             "Gold Chain<chain.png>", "Fuel<fuel.png>", "Ripped Denim<rippedjeans.png>",
-            "Jonas Brothers\nAlbum<year3000.png>"};
+            "Jonas Brothers\nAlbum<year3000.png>", "Ship Health<wrench.png>"};
         Region region3 = new Region(xCoords.get(2), yCoords.get(2), 6,
                 "2000s Boy Bands",  new javafx.scene.image.Image("bsb.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p3.png", 100,
@@ -63,7 +63,7 @@ public class BeforeRegionPage {
                 region3.getTax(), boyBandItems));
 
         String[] scandinavianItems = {"Rod & Reel<r&r.png>", "Fuel<fuel.png>", "Knife<knife.png>",
-            "Hiking Pack<pack.png>", "Fish<fish.png>"};
+            "Hiking Pack<pack.png>", "Fish<fish.png>", "Ship Health<wrench.png>"};
         Region region4 = new Region(xCoords.get(3), yCoords.get(3), 5,
                 "Scandinavian",  new javafx.scene.image.Image("scandi.jpg", 800,
                 800, false, true),  new javafx.scene.image.Image("p4.png", 100,
@@ -73,7 +73,7 @@ public class BeforeRegionPage {
                 region4.getTax(), scandinavianItems));
 
         String[] arcticItems = {"Air\nConditioning<ac.png>", "Ice<ice.png>", "Fuel<fuel.png>",
-            "Ax<ax.png>", "Fur Coat<fur.png>"};
+            "Ax<ax.png>", "Fur Coat<fur.png>", "Ship Health<wrench.png>"};
         Region region5 = new Region(xCoords.get(4), yCoords.get(4), 6,
                 "Arctic",  new javafx.scene.image.Image("arctic.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p5.png", 100,
@@ -83,7 +83,7 @@ public class BeforeRegionPage {
                 region5.getTax(), arcticItems));
 
         String[] desertItems = {"Cactus<cactus.png>", "Fuel<fuel.png>", "Sand<sand.png>",
-            "Sunscreen<sunscreen.png>", "Water<water.png>"};
+            "Sunscreen<sunscreen.png>", "Water<water.png>", "Ship Health<wrench.png>"};
         Region region6 = new Region(xCoords.get(5), yCoords.get(5), 3,
                     "Desert",  new javafx.scene.image.Image("desert.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p6.png", 100,
@@ -93,7 +93,7 @@ public class BeforeRegionPage {
                 region6.getTax(), desertItems));
 
         String[] glitchItems = {"Panic<panic.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>",
-            "Rage<rage.png>", "Fuel<fuel.png>"};
+            "Rage<rage.png>", "Fuel<fuel.png>", "Ship Health<wrench.png>"};
         Region region7 = new Region(xCoords.get(6), yCoords.get(6), 1,
                 "The Glitch",  new javafx.scene.image.Image("TheGlitch.png", 800,
                 800, false, true), new javafx.scene.image.Image("p7.png", 100,
@@ -103,7 +103,7 @@ public class BeforeRegionPage {
                 region7.getTax(), glitchItems));
 
         String[] medievalItems = {"Sword<sword.png>", "Fuel<fuel.png>", "Bow and\nArrow<b&w.png>",
-            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>"};
+            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>", "Ship Health<wrench.png>"};
         Region region8 = new Region(xCoords.get(7), yCoords.get(7), 2,
                 "Medieval",  new javafx.scene.image.Image("medi.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p8.png", 100,
@@ -113,7 +113,7 @@ public class BeforeRegionPage {
                 region8.getTax(), medievalItems));
 
         String[] wildWestItems = {"Bison Burger<burger.png>", "Ax<ax.png>", "Fuel<fuel.png>",
-            "Lasso<lasso.png>", "Revolver<revolver.png>"};
+            "Lasso<lasso.png>", "Revolver<revolver.png>", "Ship Health<wrench.png>"};
         Region region9 = new Region(xCoords.get(8), yCoords.get(8), 7,
                 "Wild West",  new javafx.scene.image.Image("wildwest.jpg", 800,
                 800, false, true), new javafx.scene.image.Image("p9.png", 100,
@@ -124,7 +124,7 @@ public class BeforeRegionPage {
 
         String[] discoItems = {"Disco Pant<discopant.png>", "Fuel<fuel.png>",
             "Disco Ball<discoball.png>", "Gogo Boots<boots.png>",
-            "X-ray\nSunglasses <sunglasses.png>"};
+            "X-ray\nSunglasses <sunglasses.png>", "Ship Health<wrench.png>"};
         Region region10 = new Region(xCoords.get(9), yCoords.get(9), 8,
                 "Disco",  new javafx.scene.image.Image("disco.jpg", 800,
                 800, false, true), new Image("p10.png", 100,

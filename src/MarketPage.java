@@ -60,7 +60,8 @@ public class MarketPage {
         //top.setBackground(new Background(new
         // BackgroundFill(Color.INDIANRED, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        //HBOX for bottom of the screen where items are
+        //HBOX for bottom of the screen where item
+        // s are
         VBox bottom = new VBox();
         bottom.setSpacing(20);
         bottom.setPrefHeight(400);

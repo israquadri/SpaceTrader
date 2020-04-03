@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.layout.Background;
 
+import java.util.Random;
+
 public class RegionPage {
 
     public RegionPage(Stage primaryStage, Player p1, Region region, Region[] array) {
@@ -34,6 +36,16 @@ public class RegionPage {
         text.setStyle("-fx-font-size: 50px; -fx-font-family: 'Press Start 2P', cursive;");
         text.setFill(Color.WHITE);
         text.setTextAlignment(TextAlignment.CENTER);
+
+        //Everytime you enter a region, check to see if you have reached credits threshhold, if you have,
+        //add infinity gauntlet to a randomly selected market
+        if (p1.getCredits() > 10 && !p1.isInfinitygauntletspawned()) {
+            Random randal = new Random();
+            int randy = randal.nextInt(array.length);
+            array[randy].getMarket().getItems().add(new Item(array[randy].getTax(), p1.getMerchantSkill(),
+                    array[randy].getTechLevel(), "Infinity Gauntlet<infinitygauntlet.png>", 1, 100));
+            p1.setInfinitygauntletspawned(true);
+        }
 
 
         primaryStage.setTitle(region.getName());

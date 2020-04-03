@@ -18,6 +18,16 @@ public class Player {
     private Region destination;
     private boolean upgrade1 = false;
 
+    public void setInfinitygauntletspawned(boolean infinitygauntletspawned) {
+        this.infinitygauntletspawned = infinitygauntletspawned;
+    }
+
+    private boolean infinitygauntletspawned = false;
+
+    public boolean isInfinitygauntletspawned() {
+        return infinitygauntletspawned;
+    }
+
     //Getter and Setter-ville
     public Player() {
         this.spaceShip = new SpaceShip(50, "John Antelope", 15, 5);

@@ -417,6 +417,14 @@ public class MarketPage {
             scrollpane.setFitToHeight(true);
             scrollpane.setFitToWidth(true);
             bottom.getChildren().add(scrollpane);
+
+            //Checking to see if player has reached credit threshold, if has, add infinity gaunlet to a random market
+            if (p1.getCredits() > 1500) {
+                Random randal = new Random();
+                int randy = randal.nextInt(array.length);
+                array[randy].getMarket().getItems().add(new Item(array[randy].getTax(), p1.getMerchantSkill(),
+                        array[randy].getTechLevel(), "Infinity Gauntlet", 1, 100));
+            }
         });
         //SELL AREA ENDS//
 

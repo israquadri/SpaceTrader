@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -24,7 +22,7 @@ public class BeforeRegionPage {
 
     public BeforeRegionPage(Stage primaryStage, Player p1) {
         //INSTANTIATING REGIONS
-        CoordGenerator cg = new CoordGenerator(700, 600);
+        CoordGenerator cg = new CoordGenerator(700, 550);
         HashMap<Integer, Integer> xCoords = cg.getX();
         HashMap<Integer, Integer> yCoords = cg.getY();
 
@@ -172,14 +170,31 @@ public class BeforeRegionPage {
         ft0.setToValue(1.0);
         ft0.setNode(t);
         ft0.play();
+        FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
+        FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
+
+        //Button to skip story details "c"
+        backstory.setOnKeyPressed((KeyEvent w) -> {
+            if (w.getText().equals("c")) {
+                //stops the animation
+                ft0.stop();
+                ft1.stop();
+                ft2.stop();
+                Region currregion = arr[randomNumber];
+                currregion.setVisited();
+                p1.setCurrentRegion(currregion);
+                //mp.stop();
+                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
+            }
+
+        });
+
         ft0.setOnFinished((ActionEvent e) -> {
-            FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
             ft1.setFromValue(1.0);
             ft1.setToValue(1.0);
             ft1.setNode(t);
             ft1.play();
             ft1.setOnFinished((ActionEvent k) -> {
-                FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
                 ft2.setFromValue(1.0);
                 ft2.setToValue(0);
                 ft2.setNode(t);
@@ -199,19 +214,6 @@ public class BeforeRegionPage {
                 });
             });
         });
-
-        //Button to skip story details "c"
-        backstory.setOnKeyPressed((KeyEvent w) -> {
-            if (w.getText().equals("c")) {
-                Region currregion = arr[randomNumber];
-                currregion.setVisited();
-                p1.setCurrentRegion(currregion);
-                //mp.stop();
-                RegionPage rp = new RegionPage(primaryStage, p1, currregion, arr);
-            }
-
-        });
-
 
         primaryStage.setTitle("Back Story");
         primaryStage.setScene(backstory);

@@ -3,7 +3,6 @@ package src;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
-import java.util.Random;
 
 public class Player {
     private String name;
@@ -17,6 +16,7 @@ public class Player {
     private Region currentRegion;
     private SpaceShip spaceShip;
     private Region destination;
+    private boolean upgrade1 = false;
 
     //Getter and Setter-ville
     public Player() {
@@ -107,6 +107,14 @@ public class Player {
         return destination;
     }
 
+    public boolean isUpgrade1() {
+        return upgrade1;
+    }
+
+    public void setUpgrade1(boolean upgrade1) {
+        this.upgrade1 = upgrade1;
+    }
+
     public void setDestination(Region destination) {
         this.destination = destination;
     }
@@ -138,7 +146,7 @@ public class Player {
         }
         item.setQuantity(item.getQuantity() - 1);
         this.getSpaceShip().addToInventory(item);
-        this.setCredits(this.getCredits() - (int) item.getBuyPrice());
+        this.setCredits(this.getCredits() - item.getBuyPrice());
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, this.getName() + ", you just bought "
                 + item.getName() + " for " + item.getBuyPrice() + ".\nNow you have "
                 + this.getSpaceShip().getQuantity(item) + " " + item.getName()

@@ -11,15 +11,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
-import java.io.File;
 
 public class MarketPage {
 
@@ -98,7 +95,7 @@ public class MarketPage {
         //fuel display
         HBox fuelBox = new HBox();
         top.getChildren().add(fuelBox);
-        top.setHgrow(fuelBox, Priority.ALWAYS);
+        HBox.setHgrow(fuelBox, Priority.ALWAYS);
         fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
@@ -209,28 +206,47 @@ public class MarketPage {
                         if (i.getBuyPrice() > p1.getCredits()) {
                             Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
                                     + " enough credits to refuel.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         } else {
                             p1.setCredits(p1.getCredits() - i.getBuyPrice());
                             p1.getSpaceShip().reFuel(i.getBuyPrice());
                             fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
-                            String creditUpdate = new String("Credits: " + p1.getCredits());
+                            String creditUpdate = "Credits: " + p1.getCredits();
                             creditsLeft.setText(creditUpdate);
                             Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You added"
                                     + " approximately "
                                     + Math.round(p1.getSpaceShip().reFuel(i.getBuyPrice()))
                                     + " gallons to your fuel tank.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         }
+                    } else if (i.getName().equals("Fuel") && p1.getSpaceShip().isTankFull()) {
+                        Alert a = new Alert(Alert.AlertType.ERROR, "Your tank is already full.");
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        a.show();
                     } else {
                         Alert a = p1.buyGoods(i);
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
                         a.show();
                         if (i.getQuantity() == 0) {
                             region.getMarket().removeItem(i);
                             marketitems.getChildren().remove(item);
                         }
 
-                        String creditUpdate = new String("Credits: " + p1.getCredits());
+                        String creditUpdate = "Credits: " + p1.getCredits();
                         creditsLeft.setText(creditUpdate);
 
                         Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
@@ -337,7 +353,7 @@ public class MarketPage {
                         inventoryItems.getChildren().remove(myItem);
                     }
 
-                    String creditUpdate = new String("Credits: " + p1.getCredits());
+                    String creditUpdate = "Credits: " + p1.getCredits();
                     creditsLeft.setText(creditUpdate);
 
                     Alert a = new Alert(Alert.AlertType.CONFIRMATION, p1.getName()

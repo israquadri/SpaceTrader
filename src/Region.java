@@ -95,7 +95,7 @@ public class Region extends Node {
     public int distanceBetween(Region r) {
         double xDiffSquared = Math.pow((this.getxCoord() - r.getxCoord()), 2);
         double yDiffSquared = Math.pow((this.getyCoord() - r.getyCoord()), 2);
-        return (int) Math.sqrt(xDiffSquared + yDiffSquared);
+        return (int) Math.abs(Math.sqrt(xDiffSquared + yDiffSquared));
     }
 
     public void setVisited() {

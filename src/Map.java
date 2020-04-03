@@ -53,25 +53,128 @@ public class Map {
             distanceTip.setShowDelay(Duration.ZERO);
             planet.setTooltip(distanceTip);
 
+            // THIS CHUNK OF CODE IS FOR THE "difficulty level determines
+            // npc encounter frequency" FUNCTIONALITY
+
+            Random npcEncounter = new Random();
+            int banditAndPoliceEncounter;
+            if (p1.getDifficulty().equals("Easy")) {
+                banditAndPoliceEncounter = npcEncounter.nextInt(30); // 5/30 = 1/6
+                //chance of bandit OR police encounter
+            } else if (p1.getDifficulty().equals("Medium")) {
+                banditAndPoliceEncounter = npcEncounter.nextInt(20); // 5/20 = 1/4
+                //chance of bandit OR police encounter
+            } else {
+                banditAndPoliceEncounter = npcEncounter.nextInt(10); // 5/10 = 1/2
+                //chance of bandit OR police encounter
+            }
+
+            //CHUNK OF CODE FOR DIFFICULTY DETERMINES NPC ENCOUNTER FREQUENCY
+
+            //        planet.setOnMouseClicked(mouseEvent -> {
+            //            p1.setDestination(r);
+            //            if (p1.getSpaceShip().getFuel() < 10) {
+            //                Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
+            //                        + " low on fuel. In order to avoid getting stranded,"
+            //                        + " refuel at the " + p1.getCurrentRegion().getName()
+            //                        + " market.");
+            //                a.show();
+            //            }
+            //            else {
+            //                if (banditAndPoliceEncounter <= 5) {
+            //                    int randNum = new Random().nextInt(4); // now there's 1/2
+            //                    //chance player will encounter bandit, and 1/2 chance player will
+            //                    //encounter police
+            //                    if (randNum < 2) {
+            //                        BanditGotchaPage b = new BanditGotchaPage(primaryStage,
+            //                        regions, p1, new Bandit(25));
+            //                    } else {
+            //                        //check player's inventory size
+            //                        if (p1.getSpaceShip().getInventory().size() == 0) {
+            //                            r.setVisited();
+            //                            p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.
+            //                            getCurrentRegion()));
+            //                            p1.setCurrentRegion(r);
+            //                            RegionPage regionPage = new RegionPage(primaryStage, p1,
+            //                            r, regions);
+            //                        } else {
+            //                            PolicePulloverPage p = new
+            //                              PolicePulloverPage(primaryStage,
+            //                            regions, p1, new Police(null, 30));
+            //                        }
+            //                    }
+            //                } else {
+            //                    int randNum = new Random().nextInt(10);
+            //                    if (randNum < 3) { // 3/10 chances of encountering trader
+            //                        //initialize trader's inventory here
+            //                        String[] traderItemNames = new String[] {"item0", "item1",
+            //                        "item2", "item3", "item4", "item5"};
+            //                        TraderEncounterPage t = new TraderEncounterPage(primaryStage,
+            //                        regions, p1, new Trader(traderItemNames, p1));
+            //                    } else {
+            //                        r.setVisited();
+            //                        p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.
+            //                        getCurrentRegion()));
+            //                        p1.setCurrentRegion(r);
+            //                        RegionPage regionPage = new RegionPage(primaryStage, p1,
+            //                        r, regions);
+            //                    }
+            //                }
+            //            }
+            //        });
+
+
+            // THIS CHUNK OF CODE IS FOR THE FORCED NPC ENCOUNTERS DURING THE DEMO
+
             planet.setOnMouseClicked(mouseEvent -> {
                 p1.setDestination(r);
-                Random rand = new Random();
                 if (p1.getSpaceShip().getFuel() < 10) {
                     Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
                             + " low on fuel. In order to avoid getting stranded,"
-                            + " go to your inventory to refuel or purchase fuel"
-                            + " at the " + p1.getCurrentRegion().getName() + " market.");
+                            + " refuel at the " + p1.getCurrentRegion().getName()
+                            + " market.");
                     a.show();
-                } else if (rand.nextInt(3) == 0) {
-                   BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1, new Bandit(25));
-                } else if (rand.nextInt(3) == 1) {
-                    PolicePulloverPage p = new PolicePulloverPage(primaryStage, regions, p1, new Police(null, 30));
                 } else {
-                    r.setVisited();
-                    p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.getCurrentRegion()));
-                    p1.setCurrentRegion(r);
-                    RegionPage regionPage = new RegionPage(primaryStage, p1, r, regions);
+                    int randNum = new Random().nextInt(4);
+
+                    //use randNum below to force encounters for demo
+                    // int randNum = 2;
+
+                    if (randNum == 0) {
+                        BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1,
+                                new Bandit(25));
+                    } else if (randNum == 1) {
+                        //check player's inventory size
+                        if (p1.getSpaceShip().getInventory().size() == 0) {
+                            r.setVisited();
+                            p1.getSpaceShip().setFuelAfterTravel(r.
+                                    distanceBetween(p1.getCurrentRegion()));
+                            p1.setCurrentRegion(r);
+                            RegionPage regionPage = new RegionPage(primaryStage, p1,
+                                    r, regions);
+                        } else {
+                            PolicePulloverPage p = new PolicePulloverPage(primaryStage,
+                                    regions, p1,
+                                    new Police(null, 30));
+                        }
+                    } else if (randNum == 2) {
+                        //initialize trader's inventory here
+                        String[] traderItemNames = new String[] {"Coke<coke.png>",
+                            "Dasani<dasani.png>", "Groot<groot.png>",
+                            "Binocular<binocular.png>",
+                            "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
+                        TraderEncounterPage t = new TraderEncounterPage(primaryStage,
+                                regions, p1, new Trader(traderItemNames, p1));
+                    } else {
+                        r.setVisited();
+                        p1.getSpaceShip().setFuelAfterTravel(r.
+                                distanceBetween(p1.getCurrentRegion()));
+                        p1.setCurrentRegion(r);
+                        RegionPage regionPage = new RegionPage(primaryStage, p1,
+                                r, regions);
+                    }
                 }
+
             });
 
             // DROP SHADOW HOVER EFFECT ON START BUTTON
@@ -80,7 +183,7 @@ public class Map {
             shadow.setWidth(1.5);
             //adding the shadow when the mouse cursor is on
             planet.addEventHandler(MouseEvent.MOUSE_ENTERED,
-                    new javafx.event.EventHandler<MouseEvent>() {
+                    new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             planet.setEffect(shadow);
@@ -100,20 +203,23 @@ public class Map {
         VBox mapDetails = new VBox(10);
 
         Label coordinates = new Label("-------");
-        coordinates.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+        coordinates.setStyle("-fx-font-size: 15px; -fx-font-family: "
+                + "'Press Start 2P', cursive;");
         coordinates.setTextFill(Color.WHITE);
         coordinates.setAlignment(Pos.BOTTOM_RIGHT);
 
-        Text currentRegion = new Text("Current Region: " + p1.getCurrentRegion().getName());
-        currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: 'Press Start 2P', cursive;");
+        Text currentRegion = new Text("Current Region: "
+                + p1.getCurrentRegion().getName());
+        currentRegion.setStyle("-fx-font-size: 15px; -fx-font-family: "
+                + "'Press Start 2P', cursive;");
         currentRegion.setFill(Color.WHITE);
 
-        Button backToOrbit = new Button("Back to Orbit");
+        Button backToOrbit = new Button("Back to Ship");
         backToOrbit.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: black; -fx-font-size: 20px;");
         backToOrbit.setTextFill(Color.WHITE);
         backToOrbit.setOnMouseClicked((MouseEvent m) -> {
-            RegionPage r = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
+            SpaceshipInterior s = new SpaceshipInterior(primaryStage, p1, regions);
         });
 
         //fuel display
@@ -122,7 +228,8 @@ public class Map {
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
         Text fuelText = new Text("Fuel");
-        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family:"
+                + " 'Press Start 2P', cursive;");
         fuelText.setFill(Color.WHITE);
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
@@ -153,7 +260,7 @@ public class Map {
         mapDetails.setPadding(new Insets(5, 5, 5, 5));
         map.getChildren().add(mapDetails);
         map.setOnMouseMoved(e -> {
-            String s = new String("(" + ((int) e.getX()) + "," + ((int) e.getY()) + ")");
+            String s = "(" + ((int) e.getX()) + "," + ((int) e.getY()) + ")";
             coordinates.setText(s);
         });
 

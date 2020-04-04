@@ -265,6 +265,9 @@ public class MarketPage {
                         postSale.setShowDelay(Duration.ZERO);
                         item.setTooltip(postSale);
                     } else {
+                        if (i.getName().equals("Infinity Gauntlet")) {
+                            WinGamePage winGamePage = new WinGamePage(primaryStage, p1);
+                        }
                         Alert a = p1.buyGoods(i);
                         DialogPane dialogPane = a.getDialogPane();
                         dialogPane.getStylesheets().add(

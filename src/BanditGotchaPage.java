@@ -199,7 +199,7 @@ public class BanditGotchaPage {
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 //System.out.println("health: " + p1.getSpaceShip().getHealth());
-                if (p1.getSpaceShip().getHealth() <= 0) {
+                if (p1.getSpaceShip().getHealth() <= 5) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
                 } else {
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().

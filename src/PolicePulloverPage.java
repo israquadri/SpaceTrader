@@ -123,7 +123,7 @@ public class PolicePulloverPage {
             } else {
                 p1.getSpaceShip().getInventory().remove(police.getItemWanted());
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                if (p1.getSpaceShip().getHealth() <= 0) {
+                if (p1.getSpaceShip().getHealth() <= 5) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
                 }
                 p1.setCredits(p1.getCredits() - police.getFineDemanded());

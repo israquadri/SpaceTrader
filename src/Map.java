@@ -139,7 +139,7 @@ public class Map {
                     int randNum = new Random().nextInt(4);
 
                     //use randNum below to force encounters for demo
-                    // int randNum = 2;
+                    // int randNum = 0;
 
                     if (randNum == 0) {
                         BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1,

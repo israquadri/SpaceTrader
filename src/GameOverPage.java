@@ -1,6 +1,8 @@
 package src;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -13,6 +15,14 @@ public class GameOverPage {
 
 
 
+		Button playAgain = new Button("End Credits");
+		playAgain.setOnMouseClicked((MouseEvent m) -> {
+			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage);
+		});
+
+
+		root.getChildren().addAll(playAgain);
+		primaryStage.show();
 
 
 		primaryStage.setTitle("Game over!");

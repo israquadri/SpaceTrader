@@ -123,23 +123,28 @@ public class PolicePulloverPage {
             } else {
                 p1.getSpaceShip().getInventory().remove(police.getItemWanted());
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
+                if (p1.getSpaceShip().getHealth() <= 0) {
+                    GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                }
                 p1.setCredits(p1.getCredits() - police.getFineDemanded());
                 p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
                         distanceBetween(p1.getDestination()));
                 if (p1.getSpaceShip().checkIfGameOver()) {
                     GameOverPage gop = new GameOverPage(primaryStage, p1);
                 }
-                RegionPage proceed = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police"
-                        + " have decreased your ship health, confiscated the"
-                        + " stolen items, and charged you a fine of "
-                        + police.getFineDemanded() + " credits.");
-                DialogPane dialogPane = a2.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                a2.show();
+                else {
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police"
+                            + " have decreased your ship health, confiscated the"
+                            + " stolen items, and charged you a fine of "
+                            + police.getFineDemanded() + " credits.");
+                    DialogPane dialogPane = a2.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a2.show();
+                }
             }
         });
         option2.setAlignment(Pos.CENTER);

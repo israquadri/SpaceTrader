@@ -22,24 +22,20 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.layout.Background;
 
-import java.awt.*;
+public class EndCreditsPage {
+    public EndCreditsPage(Stage primaryStage) {
+        VBox root = new VBox();
+        Scene scene = new Scene(root, 800, 800);
 
-public class WinGamePage {
-
-	public WinGamePage(Stage primaryStage, Player p1) {
-		VBox root = new VBox();
-		Scene scene = new Scene(root, 800, 800);
-
-		Button playAgain = new Button("End Credits");
-		playAgain.setOnMouseClicked((MouseEvent m) -> {
-			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage);
-		});
+        Button playAgain = new Button("Start Game Over");
+        playAgain.setOnMouseClicked((MouseEvent m) -> {
+            WelcomePage welcomePage = new WelcomePage(primaryStage);
+        });
 
 
-		root.getChildren().addAll(playAgain);
-		primaryStage.setTitle("You Win the Game!");
-		primaryStage.setScene(scene);
-		primaryStage.show();
-
-	}
+        root.getChildren().addAll(playAgain);
+        primaryStage.setTitle("End Credits");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

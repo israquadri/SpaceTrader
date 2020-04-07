@@ -198,17 +198,23 @@ public class BanditGotchaPage {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
-                        distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole "
-                        + "your credits and decreased your ship health.");
-                DialogPane dialogPane = alert1.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                alert1.show();
+                //System.out.println("health: " + p1.getSpaceShip().getHealth());
+                if (p1.getSpaceShip().getHealth() <= 0) {
+                    GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                } else {
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole "
+                            + "your credits and decreased your ship health.");
+                    DialogPane dialogPane = alert1.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    alert1.show();
+                }
+
             }
         });
 

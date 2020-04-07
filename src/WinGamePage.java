@@ -70,7 +70,7 @@ public class WinGamePage {
 
 		Button playAgain = new Button("End Credits");
 		playAgain.setOnMouseClicked((MouseEvent m) -> {
-			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage);
+			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage,p1);
 		});
 		playAgain.setAlignment(Pos.BASELINE_CENTER);
 		playAgain.setTextFill(Color.WHITE);

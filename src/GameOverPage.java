@@ -59,8 +59,9 @@ public class GameOverPage {
 
 		Button playAgain = new Button("End Credits");
 		playAgain.setOnMouseClicked((MouseEvent m) -> {
-			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage);
+			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage,p1);
 		});
+
 		playAgain.setAlignment(Pos.BASELINE_CENTER);
 		playAgain.setTextFill(Color.WHITE);
 		playAgain.setStyle("-fx-background-color: black; -fx-font-size: 25px;"

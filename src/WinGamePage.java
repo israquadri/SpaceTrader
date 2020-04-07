@@ -92,7 +92,7 @@ public class WinGamePage {
 		primaryStage.show();
 
 
-		primaryStage.setTitle("Game over!");
+		primaryStage.setTitle("You Win!");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

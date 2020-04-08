@@ -38,7 +38,7 @@ public class SpaceShip {
     }
 
     public boolean checkIfGameOver() {
-        if (this.getHealth() <= 4) {
+        if (this.getHealth() <= 0) {
             return true;
         } else {
             return false;

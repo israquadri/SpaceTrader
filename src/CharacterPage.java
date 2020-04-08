@@ -87,6 +87,7 @@ public class CharacterPage {
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
+        yourTraits.setLineSpacing(5);
 
         Text yourDiff = new Text("Based on your difficulty level, you\nhave "
                 + p1.getCredits() + " credits");

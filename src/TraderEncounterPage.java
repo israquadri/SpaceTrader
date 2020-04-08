@@ -206,7 +206,7 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                if (p1.getSpaceShip().getHealth() <= 5) {
+                if (p1.getSpaceShip().getHealth() <= 0) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
                 } else {
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().

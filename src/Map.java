@@ -201,8 +201,6 @@ public class Map {
 
         }
 
-        VBox mapDetails = new VBox(10);
-
         Label coordinates = new Label("-------");
         coordinates.setStyle("-fx-font-size: 15px; -fx-font-family: "
                 + "'Press Start 2P', cursive;");
@@ -224,18 +222,46 @@ public class Map {
         });
 
         //fuel display
-        HBox topBar = new HBox(300);
         HBox fuelBox = new HBox();
+        //top.getChildren().add(fuelBox);
+        HBox.setHgrow(fuelBox, Priority.ALWAYS);
+        fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
         fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+        //fuelTank.setLayoutX(100);
         Text fuelText = new Text("Fuel");
-        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family:"
-                + " 'Press Start 2P', cursive;");
+        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
         fuelText.setFill(Color.WHITE);
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
         fuelBox.setPadding(new Insets(5, 5, 5, 5));
-        topBar.getChildren().addAll(backToOrbit, fuelBox);
+
+        //ship health display
+        HBox shipHealth = new HBox();
+        HBox.setHgrow(shipHealth, Priority.ALWAYS);
+        shipHealth.setAlignment(Pos.BASELINE_RIGHT);
+        ProgressBar healthBar = new ProgressBar(5);
+        healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+        Text healthText = new Text("Ship Health");
+        healthText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        healthText.setFill(Color.WHITE);
+        shipHealth.getChildren().addAll(healthText, healthBar);
+        shipHealth.setSpacing(10);
+        shipHealth.setPadding(new Insets(5, 5, 5, 5));
+
+        VBox mapDetails = new VBox(15);
+        mapDetails.getChildren().addAll(backToOrbit, currentRegion, coordinates);
+        mapDetails.setPadding(new Insets(5, 5, 5, 5));
+
+
+        VBox shipStats = new VBox();
+        shipStats.getChildren().addAll(shipHealth, fuelBox);
+        shipStats.setAlignment(Pos.TOP_RIGHT);
+        HBox.setHgrow(shipStats, Priority.ALWAYS);
+
+        HBox top = new HBox();
+        top.setPrefWidth(800);
+        top.getChildren().addAll(mapDetails, shipStats);
 
         DropShadow shadow = new DropShadow();
         shadow.setColor(Color.CORAL);
@@ -257,9 +283,7 @@ public class Map {
                     }
                 });
 
-        mapDetails.getChildren().addAll(coordinates, currentRegion, topBar);
-        mapDetails.setPadding(new Insets(5, 5, 5, 5));
-        map.getChildren().add(mapDetails);
+        map.getChildren().add(top);
         map.setOnMouseMoved(e -> {
             String s = "(" + ((int) e.getX()) + "," + ((int) e.getY()) + ")";
             coordinates.setText(s);

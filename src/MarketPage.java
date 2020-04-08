@@ -98,7 +98,7 @@ public class MarketPage {
 
         //fuel display
         HBox fuelBox = new HBox();
-        top.getChildren().add(fuelBox);
+        //top.getChildren().add(fuelBox);
         HBox.setHgrow(fuelBox, Priority.ALWAYS);
         fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
@@ -110,6 +110,26 @@ public class MarketPage {
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
         fuelBox.setPadding(new Insets(5, 5, 5, 5));
+
+        //ship health display
+        HBox shipHealth = new HBox();
+        //top.getChildren().add(shipHealth);
+        HBox.setHgrow(shipHealth, Priority.ALWAYS);
+        shipHealth.setAlignment(Pos.BASELINE_RIGHT);
+        ProgressBar healthBar = new ProgressBar(5);
+        healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+        healthBar.setLayoutX(150);
+        Text healthText = new Text("Ship Health");
+        healthText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        healthText.setFill(Color.WHITE);
+        shipHealth.getChildren().addAll(healthText, healthBar);
+        shipHealth.setSpacing(10);
+        shipHealth.setPadding(new Insets(5, 5, 5, 5));
+
+        VBox shipStats = new VBox();
+        shipStats.getChildren().addAll(shipHealth, fuelBox);
+        top.getChildren().add(shipStats);
+        HBox.setHgrow(shipStats, Priority.ALWAYS);
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
@@ -244,26 +264,41 @@ public class MarketPage {
                                 getClass().getResource("myDialogs.css").toExternalForm());
                         dialogPane.getStyleClass().add("myDialog");
                         a.show();
-                    } else if (i.getName().equals("Ship Health")) {
-                        p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
-                        Alert al = p1.buyGoods(i);
-                        DialogPane dialogPane = al.getDialogPane();
-                        dialogPane.getStylesheets().add(
-                                getClass().getResource("myDialogs.css").toExternalForm());
-                        dialogPane.getStyleClass().add("myDialog");
-                        al.show();
-                        if (i.getQuantity() == 0) {
-                            region.getMarket().removeItem(i);
-                            marketitems.getChildren().remove(item);
+                    } else if (i.getName().equals("Repair Ship")) {
+                        if (i.getBuyPrice() > p1.getCredits()) {
+                            Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
+                                    + " enough credits to repair your ship.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                        } else if (p1.getSpaceShip().getHealth() == 5) {
+                            Alert a = new Alert(Alert.AlertType.ERROR, "Your ship is already at maximum health.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                        } else {
+                            p1.setCredits(p1.getCredits() - i.getBuyPrice());
+                            p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
+                            healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+                            String creditUpdate = "Credits: " + p1.getCredits();
+                            creditsLeft.setText(creditUpdate);
+                            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Your ship health "
+                                    + "is now " + p1.getSpaceShip().getHealth() + ".");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+
+                            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                    + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                            postSale.setShowDelay(Duration.ZERO);
+                            item.setTooltip(postSale);
                         }
-
-                        String creditUpdate = "Credits: " + p1.getCredits();
-                        creditsLeft.setText(creditUpdate);
-
-                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
-                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
-                        postSale.setShowDelay(Duration.ZERO);
-                        item.setTooltip(postSale);
                     } else {
                         if (i.getName().equals("Infinity Gauntlet")) {
                             WinGamePage winGamePage = new WinGamePage(primaryStage, p1);

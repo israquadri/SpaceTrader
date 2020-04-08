@@ -33,7 +33,7 @@ public class BeforeRegionPage {
 
         String[] farmItems = {"Fuel<fuel.png>", "Weaponry<ax.png>",
             "Seeds<seed.png>", "Corn<corn.png>",
-            "Milk<milk.png>", "Shovel<shovel.png>", "Ship Health<wrench.png>"};
+            "Milk<milk.png>", "Shovel<shovel.png>", "Repair Ship<wrench.png>"};
 
         ArrayList<String> farmItemsArrList = new ArrayList<>();
         for (int i = 0; i < farmItems.length; i++) {
@@ -51,7 +51,7 @@ public class BeforeRegionPage {
         ArrayList<String> safariArrList = new ArrayList<>();
         String[] safariItems = {"Capuchin\nMonkey<monkey.png>",
             "Fuel<fuel.png>", "Diamond<diamond.png>",
-            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>", "Ship Health<wrench.png>"};
+            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>", "Repair Ship<wrench.png>"};
         for (int i = 0; i < safariItems.length; i++) {
             safariArrList.add(safariItems[i]);
         }
@@ -65,7 +65,7 @@ public class BeforeRegionPage {
 
         String[] boyBandItems = {"Justin Bieber:\nMy World 2.0<jb.png>",
             "Gold Chain<chain.png>", "Fuel<fuel.png>", "Ripped Denim<rippedjeans.png>",
-            "Jonas Brothers\nAlbum<year3000.png>", "Ship Health<wrench.png>"};
+            "Jonas Brothers\nAlbum<year3000.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> boyBandsArrList = new ArrayList<>();
         for (int i = 0; i < boyBandItems.length; i++) {
             boyBandsArrList.add(boyBandItems[i]);
@@ -79,7 +79,7 @@ public class BeforeRegionPage {
                 region3.getTax(), boyBandsArrList));
 
         String[] scandinavianItems = {"Rod & Reel<r&r.png>", "Fuel<fuel.png>", "Knife<knife.png>",
-            "Hiking Pack<pack.png>", "Fish<fish.png>", "Ship Health<wrench.png>"};
+            "Hiking Pack<pack.png>", "Fish<fish.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> scandinavianArrList = new ArrayList<>();
         for (int i = 0; i < scandinavianItems.length; i++) {
             scandinavianArrList.add(scandinavianItems[i]);
@@ -93,7 +93,7 @@ public class BeforeRegionPage {
                 region4.getTax(), scandinavianArrList));
 
         String[] arcticItems = {"Air\nConditioning<ac.png>", "Ice<ice.png>", "Fuel<fuel.png>",
-            "Ax<ax.png>", "Fur Coat<fur.png>", "Ship Health<wrench.png>"};
+            "Ax<ax.png>", "Fur Coat<fur.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> arcticArrList = new ArrayList<>();
         for (int i = 0; i < arcticItems.length; i++) {
             arcticArrList.add(arcticItems[i]);
@@ -107,7 +107,7 @@ public class BeforeRegionPage {
                 region5.getTax(), arcticArrList));
 
         String[] desertItems = {"Cactus<cactus.png>", "Fuel<fuel.png>", "Sand<sand.png>",
-            "Sunscreen<sunscreen.png>", "Water<water.png>", "Ship Health<wrench.png>"};
+            "Sunscreen<sunscreen.png>", "Water<water.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> desertArrList = new ArrayList<>();
         for (int i = 0; i < desertItems.length; i++) {
             desertArrList.add(desertItems[i]);
@@ -121,7 +121,7 @@ public class BeforeRegionPage {
                 region6.getTax(), desertArrList));
 
         String[] glitchItems = {"Panic<panic.png>", "GPS<gps.png>", "Broken Laptop<laptop.png>",
-            "Rage<rage.png>", "Fuel<fuel.png>", "Ship Health<wrench.png>"};
+            "Rage<rage.png>", "Fuel<fuel.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> glitchArrList = new ArrayList<>();
         for (int i = 0; i < glitchItems.length; i++) {
             glitchArrList.add(glitchItems[i]);
@@ -135,7 +135,7 @@ public class BeforeRegionPage {
                 region7.getTax(), glitchArrList));
 
         String[] medievalItems = {"Sword<sword.png>", "Fuel<fuel.png>", "Bow and\nArrow<b&w.png>",
-            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>", "Ship Health<wrench.png>"};
+            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> medievalArrList = new ArrayList<>();
         for (int i = 0; i < medievalItems.length; i++) {
             medievalArrList.add(medievalItems[i]);
@@ -149,7 +149,7 @@ public class BeforeRegionPage {
                 region8.getTax(), medievalArrList));
 
         String[] wildWestItems = {"Bison Burger<burger.png>", "Ax<ax.png>", "Fuel<fuel.png>",
-            "Lasso<lasso.png>", "Revolver<revolver.png>", "Ship Health<wrench.png>"};
+            "Lasso<lasso.png>", "Revolver<revolver.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> wildWestArrList = new ArrayList<>();
         for (int i = 0; i < wildWestItems.length; i++) {
             wildWestArrList.add(wildWestItems[i]);
@@ -164,7 +164,7 @@ public class BeforeRegionPage {
 
         String[] discoItems = {"Disco Pant<discopant.png>", "Fuel<fuel.png>",
             "Disco Ball<discoball.png>", "Gogo Boots<boots.png>",
-            "X-ray\nSunglasses <sunglasses.png>", "Ship Health<wrench.png>"};
+            "X-ray\nSunglasses <sunglasses.png>", "Repair Ship<wrench.png>"};
         ArrayList<String> discoArrList = new ArrayList<>();
         for (int i = 0; i < discoItems.length; i++) {
             discoArrList.add(discoItems[i]);

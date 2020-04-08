@@ -206,17 +206,21 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
-                        distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob "
-                        + "the trader. Your ship's health has decreased.");
-                DialogPane dialogPane = a.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                a.show();
+                if (p1.getSpaceShip().getHealth() <= 0) {
+                    GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                } else {
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob "
+                            + "the trader. Your ship's health has decreased.");
+                    DialogPane dialogPane = a.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a.show();
+                }
             }
         });
         option4.setAlignment(Pos.CENTER);

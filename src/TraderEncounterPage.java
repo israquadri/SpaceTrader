@@ -112,7 +112,7 @@ public class TraderEncounterPage {
         Button option3 = new Button("Negotiate with Trader");
         option3.setOnMouseClicked(mouseEvent -> {
             double previousPrice = trader.getItemToSell().getBuyPrice();
-            boolean success = trader.determineSuccess(p1.getFighterSkill());
+            boolean success = trader.determineSuccess(p1.getMerchantSkill());
             if (success) {
                 trader.decreasePrice();
                 traderOffer.setText("Trader: I can sell you a \n"
@@ -206,7 +206,7 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                if (p1.getSpaceShip().getHealth() <= 5) {
+                if (p1.getSpaceShip().getHealth() <= 0) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
                 } else {
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().

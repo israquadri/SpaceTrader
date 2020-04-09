@@ -38,7 +38,7 @@ public class SpaceShip {
     }
 
     public boolean checkIfGameOver() {
-        if (this.getHealth() <= 4) {
+        if (this.getHealth() <= 0) {
             return true;
         } else {
             return false;
@@ -85,12 +85,12 @@ public class SpaceShip {
     }
 
     public double reFuel(int buyPrice) {
-        if ((this.fuel + (buyPrice / 2.0)) > 50.0) {
+        if ((this.fuel + (buyPrice / 4.0)) > 50.0) {
             this.fuel += (50.0 - this.fuel);
         } else {
-            this.fuel += (buyPrice / 2.0);
+            this.fuel += (buyPrice / 4.0);
         }
-        return (buyPrice / 2.0);
+        return (buyPrice / 4.0);
     }
 
     public boolean isTankFull() {
@@ -98,6 +98,6 @@ public class SpaceShip {
     }
 
     public void setFuelAfterTravel(int distanceBetween) {
-        this.fuel -= (distanceBetween / 45.0);
+        this.fuel -= (distanceBetween / 30.0);
     }
 }

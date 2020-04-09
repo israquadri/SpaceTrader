@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -30,14 +31,6 @@ public class SpaceshipInterior {
         VBox controls = new VBox();
         controls.setPadding(new Insets(10, 10, 10, 10));
         controls.setSpacing(20.0);
-
-        // this will display the ship's health
-        Text shipHealth = new Text("Ship Health: " + p1.getSpaceShip().getHealth());
-        shipHealth.setFill(Color.WHITE);
-        shipHealth.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
-                + " -fx-font-size: 40px;");
-
-
 
         Button toMap = new Button("go to map");
         toMap.setOnMouseClicked(mouseEvent -> {
@@ -67,6 +60,37 @@ public class SpaceshipInterior {
                     InventoryPage(primaryStage, p1, p1.getCurrentRegion(), array);
         });
 
+        //fuel display
+        HBox fuelBox = new HBox();
+        //top.getChildren().add(fuelBox);
+        //HBox.setHgrow(fuelBox, Priority.ALWAYS);
+        fuelBox.setAlignment(Pos.BASELINE_RIGHT);
+        ProgressBar fuelTank = new ProgressBar(50);
+        fuelTank.setProgress(p1.getSpaceShip().getFuel() / 50.0);
+        //fuelTank.setLayoutX(100);
+        Text fuelText = new Text("Fuel");
+        fuelText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        fuelText.setFill(Color.WHITE);
+        fuelBox.getChildren().addAll(fuelText, fuelTank);
+        fuelBox.setSpacing(10);
+        fuelBox.setPadding(new Insets(5, 5, 5, 5));
+
+        //ship health display
+        HBox shipHealth = new HBox();
+        //HBox.setHgrow(shipHealth, Priority.ALWAYS);
+        shipHealth.setAlignment(Pos.BASELINE_RIGHT);
+        ProgressBar healthBar = new ProgressBar(5);
+        healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+        Text healthText = new Text("Ship Health");
+        healthText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        healthText.setFill(Color.WHITE);
+        shipHealth.getChildren().addAll(healthText, healthBar);
+        shipHealth.setSpacing(10);
+        shipHealth.setPadding(new Insets(5, 5, 5, 5));
+
+        VBox shipStats = new VBox();
+        shipStats.getChildren().addAll(shipHealth, fuelBox);
+        shipStats.setAlignment(Pos.TOP_RIGHT);
 
         //Drop Shadow effect
         DropShadow shadow = new DropShadow();
@@ -116,14 +140,12 @@ public class SpaceshipInterior {
                     }
                 });
 
-        controls.getChildren().addAll(shipHealth, viewInventory, toMap, toRegion);
+        controls.getChildren().addAll(viewInventory, toMap, toRegion);
         controls.setAlignment(Pos.CENTER);
-        controls.setPadding(new Insets(130, 0, 0, 0));
-
-
+        controls.setPadding(new Insets(100, 0, 0, 0));
 
         root.setAlignment(Pos.TOP_CENTER);
-        root.getChildren().add(controls);
+        root.getChildren().addAll(shipStats, controls);
 
         primaryStage.setTitle("Your spaceship");
         primaryStage.setScene(scene3);

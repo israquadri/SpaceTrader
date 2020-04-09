@@ -150,14 +150,23 @@ public class BanditGotchaPage {
                 Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your"
                         + " Pilot skill is " + p1.getPilotSkill() + ", you could flee back"
                         + " to the last planet you were on!");
+                DialogPane dialogPane = alert2.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 alert2.show();
             } else {
                 bandit.setCredits(p1.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
+                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - 5);
                 RegionPage rp = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "You weren't able to "
                         + "flee from the bandits! They damaged your ship and stole your credits!");
+                DialogPane dialogPane = alert1.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 alert1.show();
             }
         });
@@ -199,7 +208,7 @@ public class BanditGotchaPage {
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 //System.out.println("health: " + p1.getSpaceShip().getHealth());
-                if (p1.getSpaceShip().getHealth() <= 5) {
+                if (p1.getSpaceShip().getHealth() <= 0) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
                 } else {
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().

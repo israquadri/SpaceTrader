@@ -1,10 +1,16 @@
 package src;
 
+import javafx.animation.PathTransition;
+import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.HLineTo;
+import javafx.scene.shape.VLineTo;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
@@ -72,82 +78,51 @@ public class EndCreditsPage {
                     }
                 });
 
-        HBox bt2 = new HBox();
+        // ADDING DEV CREDIT SCREEN TEXT NODES
+        Text creditText = new Text("Game Credits:\n \n");
+        creditText.setStyle("-fx-font-size: 40px; -fx-font-family: 'Press Start 2P', cursive;");
+        creditText.setFill(Color.WHITE);
+        creditText.setTextAlignment(TextAlignment.CENTER);
 
-        // ADDING CHARACTER SHEET SCREEN TEXT NODES
-        Text yourCharacter = new Text("SEE YA,\n" + p1.getName());
-        yourCharacter.setFill(Color.INDIANRED);
-        yourCharacter.setStyle("-fx-background-color: black; -fx-font-size: 60px;"
-                + " -fx-font-family: 'Press Start 2P', cursive;");
+        Text credits = new Text("Game Planning: Hayden Smith \n \n" +
+                "User Interface Design: Savannah Joyner \n" +
+                "                       Isra \n \n" +
+                "Game Design: Hayden Smith\n" +
+                "             Sarah Yoo\n " +
+                "             Chris Turko\n \n" +
+                "Sound Design: Chris Turko\n");
+        credits.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
+        credits.setTextAlignment(TextAlignment.CENTER);
+        credits.setFill(Color.WHITE);
 
-        Text yourTraits = new Text("Your points for Pilot: " + p1.getPilotSkill()
-                + "\n \nYour points for Fighter: " + p1.getFighterSkill()
-                + "\n \nYour points for Merchant: " + p1.getMerchantSkill()
-                + "\n \nYour points for Engineer: " + p1.getEngineerSkill());
-        yourTraits.setFill(Color.WHITE);
-        yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
-                + " -fx-font-family: 'Press Start 2P', cursive;");
+        VBox box = new VBox();
+        box.setSpacing(30);
+        box.setPadding(new Insets(10, 20, 10, 20));
+        box.setAlignment(Pos.CENTER);
+        box.getChildren().addAll(creditText, credits, replay);
 
-        Text yourDiff = new Text("You ended the game with\n \n \n"
-                + p1.getCredits() + " credits");
-        yourDiff.setFill(Color.WHITE);
-        yourDiff.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
-                + " -fx-font-family: 'Press Start 2P', cursive;");
-        Text yourInventory = new Text("You ended the game with:\n \n ");
-        yourInventory.setFill(Color.WHITE);
-        yourInventory.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
-                + " -fx-font-family: 'Press Start 2P', cursive;");
+//        RotateTransition rotate = new RotateTransition(Duration.millis(3000));
+//        rotate.setNode(gameOver);
+//        rotate.setByAngle(360);
+//        rotate.setCycleCount(1);
+//        rotate.setAutoReverse(false);
+//        rotate.play();
 
+        Path path = new Path();
+        path.getElements().add(new MoveTo(400, 900));
+        path.getElements().add(new VLineTo(400));
+        //path.getElements().add(new MoveTo(800, 700));
+        //path.getElements().add(new HLineTo(-40));
 
-        VBox gridBox = new VBox();
-        gridBox.setBackground(new Background(new BackgroundFill(Color.rgb(0,
-                22, 43), CornerRadii.EMPTY, Insets.EMPTY)));
-        gridBox.setAlignment(Pos.CENTER);
-        Border border = new Border(new BorderStroke(Color.WHITE,
-                BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
-        gridBox.setBorder(border);
-        gridBox.setPrefWidth(200);
-        gridBox.setPrefHeight(200);
-        //grid.setStyle(" -fx-background-radius: 25;");
-        SpaceShip mySpaceship = p1.getSpaceShip();
-        int cols = 3;
-        int colCnt = 0;
-        int rowCnt = 0;
-        for (Item i: p1.getSpaceShip().getInventory().keySet()) {
-            ImageView iv = new ImageView(i.getImage());
-            iv.setFitWidth(50);
-            iv.setFitHeight(50);
-            iv.setPreserveRatio(true);
-            iv.setSmooth(true);
-            iv.setCache(true);
-            Button myItem = new Button(i.getName());
-            myItem.setTextAlignment(TextAlignment.CENTER);
-            myItem.setGraphic(iv);
-            myItem.setContentDisplay(ContentDisplay.TOP);
-            myItem.setBackground(Background.EMPTY);
-            Tooltip preSale = new Tooltip("Sell Price: " + i.getSellPrice() + "\n"
-                    + " Quantity:" + mySpaceship.getQuantity(i));
-            preSale.setShowDelay(Duration.ZERO);
-            myItem.setAlignment(Pos.CENTER);
-            myItem.setTooltip(preSale);
-            myItem.setStyle("-fx-font-family: 'Press Start 2P', cursive; -fx-text-fill: white;"
-                    + " -fx-font-size: 10px; -fx-text-align: center;");
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.seconds(3));
+        pathTransition.setNode(box);
+        //pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        pathTransition.setPath(path);
+        pathTransition.setCycleCount(1);
+        pathTransition.play();
 
-            //grid.add(myItem, colCnt, rowCnt);
-            gridBox.getChildren().add(myItem);
-            colCnt++;
-
-            if (colCnt > cols) {
-                rowCnt++;
-                colCnt = 0;
-            }
-        }
-        ScrollPane scrollpane = new ScrollPane(gridBox);
-        scrollpane.setBackground(new Background(new BackgroundFill(Color.rgb(0, 22, 43),
-                CornerRadii.EMPTY, Insets.EMPTY)));
-
-
-        root.getChildren().addAll(yourCharacter, bt2, yourTraits, yourDiff, gridBox ,replay);
+        root.getChildren().addAll(box);
         primaryStage.setTitle("End Credits");
         primaryStage.setScene(scene);
         primaryStage.show();

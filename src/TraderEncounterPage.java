@@ -112,7 +112,7 @@ public class TraderEncounterPage {
         Button option3 = new Button("Negotiate with Trader");
         option3.setOnMouseClicked(mouseEvent -> {
             double previousPrice = trader.getItemToSell().getBuyPrice();
-            boolean success = trader.determineSuccess(p1.getFighterSkill());
+            boolean success = trader.determineSuccess(p1.getMerchantSkill());
             if (success) {
                 trader.decreasePrice();
                 traderOffer.setText("Trader: I can sell you a \n"

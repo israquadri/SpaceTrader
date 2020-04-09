@@ -79,6 +79,8 @@ public class PolicePulloverPage {
         option1.setOnMouseClicked(mouseEvent ->  {
             police.addToPoliceInventory(police.getItemWanted());
             p1.getSpaceShip().getInventory().remove(police.getItemWanted());
+            p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                    distanceBetween(p1.getDestination()));
             RegionPage rp = new RegionPage(primaryStage, p1, p1.getDestination(), regions);
             Alert a1 = new Alert(Alert.AlertType.CONFIRMATION, "You complied,"
                     + " gave the police your " + police.getItemWanted().toString()
@@ -125,21 +127,22 @@ public class PolicePulloverPage {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
                 if (p1.getSpaceShip().getHealth() <= 0) {
                     GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                } else {
+                    p1.setCredits(p1.getCredits() - police.getFineDemanded());
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage , p1 ,
+                            p1.getDestination() , regions);
+                    Alert a2 = new Alert(Alert.AlertType.INFORMATION , "The police"
+                            + " have decreased your ship health, confiscated the"
+                            + " stolen items, and charged you a fine of "
+                            + police.getFineDemanded() + " credits.");
+                    DialogPane dialogPane = a2.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a2.show();
                 }
-                p1.setCredits(p1.getCredits() - police.getFineDemanded());
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
-                        distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police"
-                        + " have decreased your ship health, confiscated the"
-                        + " stolen items, and charged you a fine of "
-                        + police.getFineDemanded() + " credits.");
-                DialogPane dialogPane = a2.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                a2.show();
             }
         });
         option2.setAlignment(Pos.CENTER);
@@ -173,6 +176,7 @@ public class PolicePulloverPage {
                 dialogPane.getStyleClass().add("myDialog");
                 a1.show();
             } else {
+                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - 5); //flying to the encounter spot and then retreating should burn some fuel
                 RegionPage rp2 = new RegionPage(primaryStage, p1,
                         p1.getCurrentRegion(), regions);
                 Alert a2 = new Alert(Alert.AlertType.INFORMATION, "You did not"

@@ -197,13 +197,14 @@ public class InventoryPage {
                         getClass().getResource("myDialogs.css").toExternalForm());
                 dialogPane.getStyleClass().add("myDialog");
                 a.show();
+            } else {
+                p1.setCredits(p1.getCredits() - 50);
+                for (Region r : array) {
+                    r.setVisited();
+                }
+                right.getChildren().removeAll(gauntlet , upgrade1btn);
+                p1.setUpgrade1(true);
             }
-            p1.setCredits(p1.getCredits() - 50);
-            for (Region r : array) {
-                r.setVisited();
-            }
-            right.getChildren().removeAll(gauntlet, upgrade1btn);
-            p1.setUpgrade1(true);
         });
 
         right.getChildren().addAll(upgrade);

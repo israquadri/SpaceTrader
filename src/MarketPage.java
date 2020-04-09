@@ -301,26 +301,37 @@ public class MarketPage {
                         }
                     } else {
                         if (i.getName().equals("Infinity Gauntlet")) {
-                            WinGamePage winGamePage = new WinGamePage(primaryStage, p1);
-                        }
-                        Alert a = p1.buyGoods(i);
-                        DialogPane dialogPane = a.getDialogPane();
-                        dialogPane.getStylesheets().add(
-                                getClass().getResource("myDialogs.css").toExternalForm());
-                        dialogPane.getStyleClass().add("myDialog");
-                        a.show();
-                        if (i.getQuantity() == 0) {
-                            region.getMarket().removeItem(i);
-                            marketitems.getChildren().remove(item);
-                        }
+                            if (i.getBuyPrice() > p1.getCredits()) {
+                                Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
+                                        + " enough credits to purchase the Infinity Gauntlet.");
+                                DialogPane dialogPane = a.getDialogPane();
+                                dialogPane.getStylesheets().add(
+                                        getClass().getResource("myDialogs.css").toExternalForm());
+                                dialogPane.getStyleClass().add("myDialog");
+                                a.show();
+                            } else {
+                                WinGamePage winGamePage = new WinGamePage(primaryStage, p1);
+                            }
+                        } else {
+                            Alert a = p1.buyGoods(i);
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                            if (i.getQuantity() == 0) {
+                                region.getMarket().removeItem(i);
+                                marketitems.getChildren().remove(item);
+                            }
 
-                        String creditUpdate = "Credits: " + p1.getCredits();
-                        creditsLeft.setText(creditUpdate);
+                            String creditUpdate = "Credits: " + p1.getCredits();
+                            creditsLeft.setText(creditUpdate);
 
-                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
-                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
-                        postSale.setShowDelay(Duration.ZERO);
-                        item.setTooltip(postSale);
+                            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                    + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                            postSale.setShowDelay(Duration.ZERO);
+                            item.setTooltip(postSale);
+                        }
                     }
                 });
                 col1++;

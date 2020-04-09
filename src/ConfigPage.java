@@ -100,7 +100,7 @@ public class ConfigPage {
         easy.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(16);
             p1.setCredits(1000);
-            p1.setDifficulty("easy");
+            p1.setDifficulty("Easy");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
             p1.setPilotSkill(0);
             p1.setFighterSkill(0);
@@ -121,7 +121,7 @@ public class ConfigPage {
         medium.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(12);
             p1.setCredits(500);
-            p1.setDifficulty("medium");
+            p1.setDifficulty("Medium");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
             p1.setPilotSkill(0);
             p1.setFighterSkill(0);
@@ -141,7 +141,7 @@ public class ConfigPage {
         hard.setOnAction((ActionEvent e) -> {
             p1.setSkillPoints(8);
             p1.setCredits(100);
-            p1.setDifficulty("hard");
+            p1.setDifficulty("Hard");
             remain.setText("Skill Points Remaining: " + p1.getSkillPoints());
             p1.setPilotSkill(0);
             p1.setFighterSkill(0);

@@ -84,13 +84,13 @@ public class SpaceShip {
         return name;
     }
 
-    public double reFuel(int buyPrice) {
-        if ((this.fuel + (buyPrice / 4.0)) > 50.0) {
+    public int reFuel(int buyPrice) {
+        if ((this.fuel + (buyPrice / 3.0)) > 50.0) {
             this.fuel += (50.0 - this.fuel);
         } else {
-            this.fuel += (buyPrice / 4.0);
+            this.fuel += (buyPrice / 3.0);
         }
-        return (buyPrice / 4.0);
+        return (int)(buyPrice / 3.0);
     }
 
     public boolean isTankFull() {

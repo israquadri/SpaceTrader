@@ -74,15 +74,26 @@ public class Map {
             planet.setOnMouseClicked(mouseEvent -> {
                 p1.setDestination(r);
                 if (p1.getSpaceShip().getFuel() < 10) {
-                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
-                            + " low on fuel. In order to avoid getting stranded,"
-                            + " refuel at the " + p1.getCurrentRegion().getName()
-                            + " market.");
-                    DialogPane dialogPane = a.getDialogPane();
-                    dialogPane.getStylesheets().add(
-                            getClass().getResource("myDialogs.css").toExternalForm());
-                    dialogPane.getStyleClass().add("myDialog");
-                    a.show();
+                    if (p1.getSpaceShip().getInventoryCapacity() == 0 && p1.getCredits() == 0) {
+                        GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                        Alert a = new Alert(Alert.AlertType.ERROR, "You got stranded at" +
+                                p1.getCurrentRegion().getName() + "!");
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        a.show();
+                    } else {
+                        Alert a = new Alert(Alert.AlertType.ERROR , "You're running"
+                                + " low on fuel. In order to avoid getting stranded,"
+                                + " refuel at the " + p1.getCurrentRegion().getName()
+                                + " market.");
+                        DialogPane dialogPane = a.getDialogPane();
+                        dialogPane.getStylesheets().add(
+                                getClass().getResource("myDialogs.css").toExternalForm());
+                        dialogPane.getStyleClass().add("myDialog");
+                        a.show();
+                    }
                 }
                 else {
                     if (banditAndPoliceEncounter <= 5) {

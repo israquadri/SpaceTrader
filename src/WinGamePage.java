@@ -35,7 +35,7 @@ import java.awt.*;
 public class WinGamePage {
 
 	public WinGamePage(Stage primaryStage, Player p1, MediaPlayer sweethome) {
-		VBox root = new VBox();
+		VBox root = new VBox(250);
 		Scene scene = new Scene(root, 800, 800);
 
 		BackgroundImage myBI = new BackgroundImage(new Image("starback.jpg", 800,

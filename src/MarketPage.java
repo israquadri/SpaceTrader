@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -18,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.io.File;
 import java.lang.reflect.GenericArrayType;
 import java.util.Random;
 
@@ -37,10 +40,11 @@ public class MarketPage {
 
 
         //Music which i will promptly comment out
-        //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
-        //MediaPlayer music = new MediaPlayer(tradingsong);
-        //music.play();
-        //music.setCycleCount(100);
+        Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
+        MediaPlayer music = new MediaPlayer(tradingsong);
+        music.setCycleCount(100);
+        music.play();
+
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
@@ -91,7 +95,7 @@ public class MarketPage {
                     }
                 });
         back.setOnMouseClicked((MouseEvent m) -> {
-            //music.stop();
+            music.stop();
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
         top.getChildren().add(back);

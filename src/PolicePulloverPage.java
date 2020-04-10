@@ -12,6 +12,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -21,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.*;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.*;
 
 public class PolicePulloverPage {
@@ -33,6 +36,10 @@ public class PolicePulloverPage {
                 BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
+
+        //Add music
+        MediaPlayer player = new MediaPlayer(new Media(new File("policesong.m4a").toURI().toString()));
+        player.play();
 
         //itemWanted.quantity is incorrect
         ArrayList<Item> itemsCopy = new ArrayList<>(p1.getSpaceShip().getInventory().keySet());
@@ -90,6 +97,7 @@ public class PolicePulloverPage {
                     getClass().getResource("myDialogs.css").toExternalForm());
             dialogPane.getStyleClass().add("myDialog");
             a1.show();
+            player.stop();
         });
         option1.setAlignment(Pos.CENTER);
         option1.setTextFill(Color.WHITE);
@@ -122,6 +130,7 @@ public class PolicePulloverPage {
                         getClass().getResource("myDialogs.css").toExternalForm());
                 dialogPane.getStyleClass().add("myDialog");
                 alert.show();
+                player.stop();
             } else {
                 p1.getSpaceShip().getInventory().remove(police.getItemWanted());
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
@@ -143,6 +152,7 @@ public class PolicePulloverPage {
                     dialogPane.getStyleClass().add("myDialog");
                     a2.show();
                 }
+                player.stop();
             }
         });
         option2.setAlignment(Pos.CENTER);
@@ -187,6 +197,7 @@ public class PolicePulloverPage {
                 dialogPane.getStyleClass().add("myDialog");
                 a2.show();
             }
+            player.stop();
         });
         option3.setAlignment(Pos.CENTER);
         option3.setTextFill(Color.WHITE);

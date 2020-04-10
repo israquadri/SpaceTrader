@@ -43,10 +43,15 @@ public class SpaceshipInterior {
 
         //Music for my radio, had to instantiate uphere to work with the event handlers
         //Radio is an array of MediaPlayers
-        MediaPlayer[] radioarr = new MediaPlayer[3];
+        MediaPlayer[] radioarr = new MediaPlayer[7];
         radioarr[0] = new MediaPlayer(new Media(new File("SpaceTradeStorySong.m4a").toURI().toString()));
         radioarr[1] = new MediaPlayer(new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString()));
         radioarr[2] = new MediaPlayer(new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString()));
+        radioarr[3] = new MediaPlayer(new Media(new File("sweethomealabama.mp3").toURI().toString()));
+        radioarr[4] = new MediaPlayer(new Media(new File("Endgamesong.m4a").toURI().toString()));
+        radioarr[5] = new MediaPlayer(new Media(new File("banditsong.m4a").toURI().toString()));
+        radioarr[6] = new MediaPlayer(new Media(new File("policesong.m4a").toURI().toString()));
+
 
 
         Button toMap = new Button("go to map");
@@ -136,7 +141,7 @@ public class SpaceshipInterior {
             radioarr[curr].stop();
             curr--;
             if (curr < 0) {
-                curr = 2;
+                curr = radioarr.length - 1;
             }
             radioarr[curr].play();
         });

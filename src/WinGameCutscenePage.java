@@ -64,27 +64,33 @@ public class WinGameCutscenePage {
         FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
 
         MediaPlayer sweethome = new MediaPlayer(new Media(new File("sweethomealabama.mp3").toURI().toString()));
+        MediaPlayer og = new MediaPlayer(new Media(new File("Endgamesong.m4a").toURI().toString()));
 
         //Button to skip story details "c"
-
+        og.play();
         ft0.setOnFinished((ActionEvent e) -> {
             if (ndx == 4) {
                 ft1.setDuration(Duration.millis(2000));
-            }
-            if (ndx == storyarr.length - 2) {
-                sweethome.play();
             }
             ft1.setFromValue(1.0);
             ft1.setToValue(1.0);
             ft1.setNode(t);
             ft1.play();
             ft1.setOnFinished((ActionEvent k) -> {
+                if (ndx == storyarr.length - 2) {
+                    og.stop();
+                }
                 ft2.setFromValue(1.0);
                 ft2.setToValue(0);
                 ft2.setNode(t);
                 ft2.play();
                 ft2.setOnFinished((ActionEvent w) -> {
                     if (ndx < storyarr.length - 1) {
+                        if (ndx == storyarr.length - 2) {
+                            sweethome.seek(Duration.millis(2500));
+                            sweethome.play();
+                            og.stop();
+                        }
                         ndx++;
                         t.setText(storyarr[ndx]);
                         ft0.play();

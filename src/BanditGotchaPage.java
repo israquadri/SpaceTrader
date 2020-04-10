@@ -3,6 +3,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
 import javafx.scene.text.Text;
 import javafx.animation.Animation;
 import javafx.event.EventHandler;
@@ -21,6 +23,8 @@ import javafx.scene.shape.*;
 import javafx.animation.PathTransition;
 import javafx.util.Duration;
 
+import java.io.File;
+
 public class BanditGotchaPage {
 
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
@@ -31,6 +35,9 @@ public class BanditGotchaPage {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
 
+        //Add music
+        MediaPlayer player = new MediaPlayer(new Media(new File("banditsong.m4a").toURI().toString()));
+        player.play();
 
         ImageView banditShip = new ImageView(new Image("bandits.png"));
         banditShip.setFitHeight(900);
@@ -122,6 +129,7 @@ public class BanditGotchaPage {
                     alert1.show();
                 }
             }
+            player.stop();
         });
 
         // Option 2:
@@ -169,6 +177,7 @@ public class BanditGotchaPage {
                 dialogPane.getStyleClass().add("myDialog");
                 alert1.show();
             }
+            player.stop();
         });
 
         // Option 3:
@@ -225,6 +234,7 @@ public class BanditGotchaPage {
                 }
 
             }
+            player.stop();
         });
 
         //Drop Shadow effect

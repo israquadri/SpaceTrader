@@ -310,7 +310,7 @@ public class MarketPage {
                                 dialogPane.getStyleClass().add("myDialog");
                                 a.show();
                             } else {
-                                WinGamePage winGamePage = new WinGamePage(primaryStage, p1);
+                                WinGameCutscenePage winGameCutscenePage = new WinGameCutscenePage(primaryStage, p1);
                             }
                         } else {
                             Alert a = p1.buyGoods(i);

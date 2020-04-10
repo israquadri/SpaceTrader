@@ -39,7 +39,7 @@ public class RegionPage {
 
         //Everytime you enter a region, check to see if you have reached credits threshhold, if you have,
         //add infinity gauntlet to a randomly selected market
-        if (p1.getCredits() > 10 && !p1.isInfinitygauntletspawned()) {
+        if (p1.getCredits() >= 100 && !p1.isInfinitygauntletspawned()) {
             Random randal = new Random();
             int randy = randal.nextInt(array.length);
             array[randy].getMarket().getItems().add(new Item(array[randy].getTax(), p1.getMerchantSkill(),

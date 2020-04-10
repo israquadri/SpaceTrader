@@ -5,6 +5,7 @@ import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
@@ -28,11 +29,12 @@ import javafx.stage.Stage;
 import javafx.scene.layout.Background;
 import javafx.util.Duration;
 
+import javax.print.attribute.standard.Media;
 import java.awt.*;
 
 public class WinGamePage {
 
-	public WinGamePage(Stage primaryStage, Player p1) {
+	public WinGamePage(Stage primaryStage, Player p1, MediaPlayer sweethome) {
 		VBox root = new VBox();
 		Scene scene = new Scene(root, 800, 800);
 
@@ -71,6 +73,7 @@ public class WinGamePage {
 		Button playAgain = new Button("End Credits");
 		playAgain.setOnMouseClicked((MouseEvent m) -> {
 			EndCreditsPage endCreditsPage = new EndCreditsPage(primaryStage,p1);
+			sweethome.stop();
 		});
 		playAgain.setAlignment(Pos.BASELINE_CENTER);
 		playAgain.setTextFill(Color.WHITE);

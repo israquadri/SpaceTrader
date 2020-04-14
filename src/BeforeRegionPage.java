@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.event.ActionEvent;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -54,7 +53,8 @@ public class BeforeRegionPage {
         ArrayList<String> safariArrList = new ArrayList<>();
         String[] safariItems = {"Capuchin\nMonkey<monkey.png>",
             "Fuel<fuel.png>", "Diamond<diamond.png>",
-            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>", "Repair Ship<wrench.png>"};
+            "Meat<meat.png>", "Binoculars<bino.png>", "Safari Hat<hat.png>",
+            "Repair Ship<wrench.png>"};
         for (int i = 0; i < safariItems.length; i++) {
             safariArrList.add(safariItems[i]);
         }
@@ -138,7 +138,8 @@ public class BeforeRegionPage {
                 region7.getTax(), glitchArrList));
 
         String[] medievalItems = {"Sword<sword.png>", "Fuel<fuel.png>", "Bow and\nArrow<b&w.png>",
-            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>", "Repair Ship<wrench.png>"};
+            "Stick of\nFire<fire.png>", "Suit of\nArmor<suitofarmor.png>",
+            "Repair Ship<wrench.png>"};
         ArrayList<String> medievalArrList = new ArrayList<>();
         for (int i = 0; i < medievalItems.length; i++) {
             medievalArrList.add(medievalItems[i]);
@@ -188,7 +189,8 @@ public class BeforeRegionPage {
         // creating the gauntlet that is the special item
 
         //MUSIC :)
-        Media music = new Media(new File("SpaceTradeStorySong.m4a").toURI().toString());
+        Media music = new Media(new
+            File("SpaceTradeStorySong.m4a").toURI().toString());
         MediaPlayer mp = new MediaPlayer(music);
         mp.play();
 

@@ -1,52 +1,33 @@
 package src;
 
 import javafx.animation.FadeTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.shape.HLineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.stage.Stage;
-import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
-import javafx.scene.layout.Background;
 import javafx.util.Duration;
 
-import java.awt.*;
 import java.io.File;
 
 public class WinGameCutscenePage {
-    int ndx = 0;
+    private int ndx = 0;
 
     public WinGameCutscenePage(Stage primaryStage, Player p1) {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: black");
         root.setAlignment(Pos.CENTER);
         Scene cutscene = new Scene(root, 800, 800);
-        String[] storyarr = {"After searching space \n for glory", "And finding the most powerful\n" +
-                "weapon in the universe", "You realize that you\nno longer want power",
-                "What you truly desire\nis what you could have \n had all along", "A Tractor",
-                "A Farm", "A Family", "and...", "An Ice Cold Beer"};
+        String[] storyarr = {"After searching space \n for glory",
+            "And finding the most powerful\n"
+                + "weapon in the universe", "You realize that you\nno longer want power",
+            "What you truly desire\nis what you could have \n had all along", "A Tractor",
+            "A Farm", "A Family", "and...", "An Ice Cold Beer"};
 
         Text t = new Text(storyarr[ndx]);
         t.setTextAlignment(TextAlignment.CENTER);
@@ -63,8 +44,10 @@ public class WinGameCutscenePage {
         FadeTransition ft2 = new FadeTransition(Duration.millis(1000));
         FadeTransition ft1 = new FadeTransition(Duration.millis(4000));
 
-        MediaPlayer sweethome = new MediaPlayer(new Media(new File("sweethomealabama.mp3").toURI().toString()));
-        MediaPlayer og = new MediaPlayer(new Media(new File("Endgamesong.m4a").toURI().toString()));
+        MediaPlayer sweethome = new MediaPlayer(new Media(new
+                File("sweethomealabama.mp3").toURI().toString()));
+        MediaPlayer og = new MediaPlayer(new Media(new
+                File("Endgamesong.m4a").toURI().toString()));
 
         //Button to skip story details "c"
         og.play();

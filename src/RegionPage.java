@@ -37,13 +37,16 @@ public class RegionPage {
         text.setFill(Color.WHITE);
         text.setTextAlignment(TextAlignment.CENTER);
 
-        //Everytime you enter a region, check to see if you have reached credits threshhold, if you have,
+        //Everytime you enter a region, check to see if you have reached
+        // credits threshhold, if you have,
         //add infinity gauntlet to a randomly selected market
         if (p1.getCredits() >= 100 && !p1.isInfinitygauntletspawned()) {
             Random randal = new Random();
             int randy = randal.nextInt(array.length);
-            array[randy].getMarket().getItems().add(new Item(array[randy].getTax(), p1.getMerchantSkill(),
-                    array[randy].getTechLevel(), "Infinity Gauntlet<infinitygauntlet.png>", 1, 100));
+            array[randy].getMarket().getItems().add(new Item(array[randy].getTax(),
+                    p1.getMerchantSkill(),
+                    array[randy].getTechLevel(), "Infinity Gauntlet<infinitygauntlet.png>",
+                    1, 100));
             p1.setInfinitygauntletspawned(true);
         }
 

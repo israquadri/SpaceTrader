@@ -21,7 +21,6 @@ import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
 import java.io.File;
-import java.lang.reflect.GenericArrayType;
 import java.util.Random;
 
 public class MarketPage {
@@ -223,7 +222,7 @@ public class MarketPage {
                             }
                         });
                 // here we are setting the health price based on the engineer skill
-                if (i.getName().equals("Ship Health")) {
+                if (i.getName().equals("Repair Ship")) {
                     i.setBuyPrice(new Random().nextInt(20) + 30 - (p1.getEngineerSkill() * 4));
                     if (i.getBuyPrice() <= 0) {
                         i.setBuyPrice(10);
@@ -278,7 +277,8 @@ public class MarketPage {
                             dialogPane.getStyleClass().add("myDialog");
                             a.show();
                         } else if (p1.getSpaceShip().getHealth() == 5) {
-                            Alert a = new Alert(Alert.AlertType.ERROR, "Your ship is already at maximum health.");
+                            Alert a = new Alert(Alert.AlertType.ERROR, "Your ship "
+                                    + "is already at maximum health.");
                             DialogPane dialogPane = a.getDialogPane();
                             dialogPane.getStylesheets().add(
                                     getClass().getResource("myDialogs.css").toExternalForm());
@@ -314,7 +314,8 @@ public class MarketPage {
                                 dialogPane.getStyleClass().add("myDialog");
                                 a.show();
                             } else {
-                                WinGameCutscenePage winGameCutscenePage = new WinGameCutscenePage(primaryStage, p1);
+                                WinGameCutscenePage winGameCutscenePage = new
+                                    WinGameCutscenePage(primaryStage, p1);
                             }
                         } else {
                             Alert a = p1.buyGoods(i);

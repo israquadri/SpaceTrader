@@ -76,15 +76,15 @@ public class Map {
                 if (p1.getSpaceShip().getFuel() < 10) {
                     if (p1.getSpaceShip().getInventoryCapacity() == 0 && p1.getCredits() == 0) {
                         GameOverPage gameOver = new GameOverPage(primaryStage, p1);
-                        Alert a = new Alert(Alert.AlertType.ERROR, "You got stranded at" +
-                                p1.getCurrentRegion().getName() + "!");
+                        Alert a = new Alert(Alert.AlertType.ERROR, "You got stranded at"
+                                + p1.getCurrentRegion().getName() + "!");
                         DialogPane dialogPane = a.getDialogPane();
                         dialogPane.getStylesheets().add(
                                 getClass().getResource("myDialogs.css").toExternalForm());
                         dialogPane.getStyleClass().add("myDialog");
                         a.show();
                     } else {
-                        Alert a = new Alert(Alert.AlertType.ERROR , "You're running"
+                        Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
                                 + " low on fuel. In order to avoid getting stranded,"
                                 + " refuel at the " + p1.getCurrentRegion().getName()
                                 + " market.");
@@ -94,27 +94,26 @@ public class Map {
                         dialogPane.getStyleClass().add("myDialog");
                         a.show();
                     }
-                }
-                else {
+                } else {
                     if (banditAndPoliceEncounter <= 5) {
                         int randNum = new Random().nextInt(4); // now there's 1/2
                         //chance player will encounter bandit, and 1/2 chance player will
                         //encounter police
                         if (randNum < 2) {
                             BanditGotchaPage b = new BanditGotchaPage(primaryStage,
-                            regions, p1, new Bandit(25));
+                                regions, p1, new Bandit(25));
                         } else {
                             //check player's inventory size
                             if (p1.getSpaceShip().getInventory().size() == 0) {
                                 r.setVisited();
                                 p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.
-                                getCurrentRegion()));
+                                    getCurrentRegion()));
                                 RegionPage regionPage = new RegionPage(primaryStage, p1,
-                                r, regions);
+                                    r, regions);
                             } else {
                                 PolicePulloverPage p = new
-                                  PolicePulloverPage(primaryStage,
-                                regions, p1, new Police(null, 30));
+                                    PolicePulloverPage(primaryStage,
+                                    regions, p1, new Police(null, 30));
                             }
                         }
                     } else {
@@ -122,17 +121,17 @@ public class Map {
                         if (randNum < 4) { // 4/10 chances of encountering trader
                             //initialize trader's inventory here
                             String[] traderItemNames = new String[] {"Coke<coke.png>",
-                                    "Dasani<dasani.png>", "Groot<groot.png>",
-                                    "Binocular<binocular.png>",
-                                    "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
+                                "Dasani<dasani.png>", "Groot<groot.png>",
+                                "Binocular<binocular.png>",
+                                "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
                             TraderEncounterPage t = new TraderEncounterPage(primaryStage,
-                            regions, p1, new Trader(traderItemNames, p1));
+                                regions, p1, new Trader(traderItemNames, p1));
                         } else {
                             r.setVisited();
                             p1.getSpaceShip().setFuelAfterTravel(r.distanceBetween(p1.
-                            getCurrentRegion()));
+                                getCurrentRegion()));
                             RegionPage regionPage = new RegionPage(primaryStage, p1,
-                            r, regions);
+                                r, regions);
                         }
                     }
                 }
@@ -142,60 +141,62 @@ public class Map {
             // THIS CHUNK OF CODE IS FOR THE FORCED NPC ENCOUNTERS DURING THE DEMO
 
 
-//            planet.setOnMouseClicked(mouseEvent -> {
-//                p1.setDestination(r);
-//                if (p1.getSpaceShip().getFuel() < 10) {
-//                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
-//                            + " low on fuel. In order to avoid getting stranded,"
-//                            + " refuel at the " + p1.getCurrentRegion().getName()
-//                            + " market.");
-//                    DialogPane dialogPane = a.getDialogPane();
-//                    dialogPane.getStylesheets().add(
-//                            getClass().getResource("myDialogs.css").toExternalForm());
-//                    dialogPane.getStyleClass().add("myDialog");
-//                    a.show();
-//                } else {
-//                    int randNum = new Random().nextInt(4);
-//
-//                    //use randNum below to force encounters for demo
-//                    // int randNum = 0;
-//
-//                    if (randNum == 0) {
-//                        BanditGotchaPage b = new BanditGotchaPage(primaryStage, regions, p1,
-//                                new Bandit(25));
-//                    } else if (randNum == 1) {
-//                        //check player's inventory size
-//                        if (p1.getSpaceShip().getInventory().size() == 0) {
-//                            r.setVisited();
-//                            p1.getSpaceShip().setFuelAfterTravel(r.
-//                                    distanceBetween(p1.getCurrentRegion()));
-//                            p1.setCurrentRegion(r);
-//                            RegionPage regionPage = new RegionPage(primaryStage, p1,
-//                                    r, regions);
-//                        } else {
-//                            PolicePulloverPage p = new PolicePulloverPage(primaryStage,
-//                                    regions, p1,
-//                                    new Police(null, 30));
-//                        }
-//                    } else if (randNum == 2) {
-//                        //initialize trader's inventory here
-//                        String[] traderItemNames = new String[] {"Coke<coke.png>",
-//                            "Dasani<dasani.png>", "Groot<groot.png>",
-//                            "Binocular<binocular.png>",
-//                            "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
-//                        TraderEncounterPage t = new TraderEncounterPage(primaryStage,
-//                                regions, p1, new Trader(traderItemNames, p1));
-//                    } else {
-//                        r.setVisited();
-//                        p1.getSpaceShip().setFuelAfterTravel(r.
-//                                distanceBetween(p1.getCurrentRegion()));
-//                        p1.setCurrentRegion(r);
-//                        RegionPage regionPage = new RegionPage(primaryStage, p1,
-//                                r, regions);
-//                    }
-//                }
-//
-//            });
+            //            planet.setOnMouseClicked(mouseEvent -> {
+            //                p1.setDestination(r);
+            //                if (p1.getSpaceShip().getFuel() < 10) {
+            //                    Alert a = new Alert(Alert.AlertType.ERROR, "You're running"
+            //                            + " low on fuel. In order to avoid getting stranded,"
+            //                            + " refuel at the " + p1.getCurrentRegion().getName()
+            //                            + " market.");
+            //                    DialogPane dialogPane = a.getDialogPane();
+            //                    dialogPane.getStylesheets().add(
+            //                            getClass().getResource("myDialogs.css").toExternalForm());
+            //                    dialogPane.getStyleClass().add("myDialog");
+            //                    a.show();
+            //                } else {
+            //                    int randNum = new Random().nextInt(4);
+            //
+            //                    //use randNum below to force encounters for demo
+            //                    // int randNum = 0;
+            //
+            //                    if (randNum == 0) {
+            //                        BanditGotchaPage b = new
+            //                                BanditGotchaPage(primaryStage, regions, p1,
+            //                                new Bandit(25));
+            //                    } else if (randNum == 1) {
+            //                        //check player's inventory size
+            //                        if (p1.getSpaceShip().getInventory().size() == 0) {
+            //                            r.setVisited();
+            //                            p1.getSpaceShip().setFuelAfterTravel(r.
+            //                                    distanceBetween(p1.getCurrentRegion()));
+            //                            p1.setCurrentRegion(r);
+            //                            RegionPage regionPage = new RegionPage(primaryStage, p1,
+            //                                    r, regions);
+            //                        } else {
+            //                            PolicePulloverPage p = new
+            //                                    PolicePulloverPage(primaryStage,
+            //                                    regions, p1,
+            //                                    new Police(null, 30));
+            //                        }
+            //                    } else if (randNum == 2) {
+            //                        //initialize trader's inventory here
+            //                        String[] traderItemNames = new String[] {"Coke<coke.png>",
+            //                            "Dasani<dasani.png>", "Groot<groot.png>",
+            //                            "Binocular<binocular.png>",
+            //                            "Toilet Paper<toiletPaper.jpeg>", "Corona<corona.png>"};
+            //                        TraderEncounterPage t = new TraderEncounterPage(primaryStage,
+            //                                regions, p1, new Trader(traderItemNames, p1));
+            //                    } else {
+            //                        r.setVisited();
+            //                        p1.getSpaceShip().setFuelAfterTravel(r.
+            //                                distanceBetween(p1.getCurrentRegion()));
+            //                        p1.setCurrentRegion(r);
+            //                        RegionPage regionPage = new RegionPage(primaryStage, p1,
+            //                                r, regions);
+            //                    }
+            //                }
+            //
+            //            });
 
             // DROP SHADOW HOVER EFFECT ON START BUTTON
             DropShadow shadow = new DropShadow();

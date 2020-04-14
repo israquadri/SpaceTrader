@@ -6,7 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -23,7 +22,7 @@ import java.io.File;
 
 public class SpaceshipInterior {
     //This is for keeping track of place in radio
-    int curr = 0;
+    private int curr = 0;
 
 
     public SpaceshipInterior(Stage primaryStage, Player p1, Region[] array) {
@@ -44,13 +43,20 @@ public class SpaceshipInterior {
         //Music for my radio, had to instantiate uphere to work with the event handlers
         //Radio is an array of MediaPlayers
         MediaPlayer[] radioarr = new MediaPlayer[7];
-        radioarr[0] = new MediaPlayer(new Media(new File("SpaceTradeStorySong.m4a").toURI().toString()));
-        radioarr[1] = new MediaPlayer(new Media(new File("SpaceTraderIntroSong.m4a").toURI().toString()));
-        radioarr[2] = new MediaPlayer(new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString()));
-        radioarr[3] = new MediaPlayer(new Media(new File("sweethomealabama.mp3").toURI().toString()));
-        radioarr[4] = new MediaPlayer(new Media(new File("Endgamesong.m4a").toURI().toString()));
-        radioarr[5] = new MediaPlayer(new Media(new File("banditsong.m4a").toURI().toString()));
-        radioarr[6] = new MediaPlayer(new Media(new File("policesong.m4a").toURI().toString()));
+        radioarr[0] = new MediaPlayer(new Media(new
+                File("SpaceTradeStorySong.m4a").toURI().toString()));
+        radioarr[1] = new MediaPlayer(new Media(new
+                File("SpaceTraderIntroSong.m4a").toURI().toString()));
+        radioarr[2] = new MediaPlayer(new Media(new
+                File("SpaceTraderTradingSong.m4a").toURI().toString()));
+        radioarr[3] = new MediaPlayer(new Media(new
+                File("sweethomealabama.mp3").toURI().toString()));
+        radioarr[4] = new MediaPlayer(new Media(new
+                File("Endgamesong.m4a").toURI().toString()));
+        radioarr[5] = new MediaPlayer(new Media(new
+                File("banditsong.m4a").toURI().toString()));
+        radioarr[6] = new MediaPlayer(new Media(new
+                File("policesong.m4a").toURI().toString()));
 
 
 
@@ -160,7 +166,8 @@ public class SpaceshipInterior {
         playpause.setStyle("-fx-font-family: 'Press Start 2P', cursive;"
                 + " -fx-background-color: white; -fx-font-size: 20px;");
         playpause.setOnAction((ActionEvent e) -> {
-            if (radioarr[curr].getStatus().equals((MediaPlayer.Status.PAUSED)) || radioarr[curr].getStatus().equals(MediaPlayer.Status.READY)) {
+            if (radioarr[curr].getStatus().equals((MediaPlayer.Status.PAUSED))
+                || radioarr[curr].getStatus().equals(MediaPlayer.Status.READY)) {
                 radioarr[curr].play();
                 playpause.setGraphic(pause);
             } else {

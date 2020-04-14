@@ -1,37 +1,25 @@
 package src;
 
 import javafx.animation.PathTransition;
-import javafx.animation.RotateTransition;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.shape.HLineTo;
 import javafx.scene.shape.VLineTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.scene.layout.Background;
 import javafx.util.Duration;
-
-import java.io.File;
 
 public class EndCreditsPage {
     public EndCreditsPage(Stage primaryStage, Player p1) {
@@ -74,7 +62,7 @@ public class EndCreditsPage {
                 new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent mouseEvent) {
-                       playAgain.setEffect(null);
+                        playAgain.setEffect(null);
                     }
                 });
 
@@ -84,13 +72,13 @@ public class EndCreditsPage {
         creditText.setFill(Color.WHITE);
         creditText.setTextAlignment(TextAlignment.CENTER);
 
-        Text credits = new Text("Game Planning: Hayden Smith \n \n" +
-                "User Interface Design: Savannah Joyner \n" +
-                "                       Isra \n \n" +
-                "Game Design: Hayden Smith\n" +
-                "             Sarah Yoo\n " +
-                "             Chris Turko\n \n" +
-                "Sound Design: Chris Turko\n");
+        Text credits = new Text("Game Planning: Hayden Smith \n \n"
+                + "User Interface Design: Savannah Joyner \n"
+                + "                       Isra Quadri\n \n"
+                + "Game Design: Hayden Smith\n"
+                + "             Sarah Yoo\n "
+                + "             Chris Turko\n \n"
+                + "Sound Design: Chris Turko\n");
         credits.setStyle("-fx-font-size: 17px; -fx-font-family: 'Press Start 2P', cursive;");
         credits.setTextAlignment(TextAlignment.CENTER);
         credits.setFill(Color.WHITE);
@@ -101,12 +89,12 @@ public class EndCreditsPage {
         box.setAlignment(Pos.CENTER);
         box.getChildren().addAll(creditText, credits, replay);
 
-//        RotateTransition rotate = new RotateTransition(Duration.millis(3000));
-//        rotate.setNode(gameOver);
-//        rotate.setByAngle(360);
-//        rotate.setCycleCount(1);
-//        rotate.setAutoReverse(false);
-//        rotate.play();
+        //        RotateTransition rotate = new RotateTransition(Duration.millis(3000));
+        //        rotate.setNode(gameOver);
+        //        rotate.setByAngle(360);
+        //        rotate.setCycleCount(1);
+        //        rotate.setAutoReverse(false);
+        //        rotate.play();
 
         Path path = new Path();
         path.getElements().add(new MoveTo(400, 900));

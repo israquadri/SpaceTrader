@@ -36,7 +36,8 @@ public class BanditGotchaPage {
         root.setBackground(new Background(myBI));
 
         //Add music
-        MediaPlayer player = new MediaPlayer(new Media(new File("banditsong.m4a").toURI().toString()));
+        MediaPlayer player = new MediaPlayer(new Media(new
+            File("banditsong.m4a").toURI().toString()));
         player.play();
 
         ImageView banditShip = new ImageView(new Image("bandits.png"));

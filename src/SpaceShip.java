@@ -38,11 +38,7 @@ public class SpaceShip {
     }
 
     public boolean checkIfGameOver() {
-        if (this.getHealth() <= 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return (this.getHealth() <= 0);
     }
 
     public HashMap<Item, Integer> getInventory() {
@@ -90,7 +86,7 @@ public class SpaceShip {
         } else {
             this.fuel += (buyPrice / 3.0);
         }
-        return (int)(buyPrice / 3.0);
+        return (int) (buyPrice / 3.0);
     }
 
     public boolean isTankFull() {

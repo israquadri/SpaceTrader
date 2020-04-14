@@ -38,7 +38,8 @@ public class PolicePulloverPage {
         root.setBackground(new Background(myBI));
 
         //Add music
-        MediaPlayer player = new MediaPlayer(new Media(new File("policesong.m4a").toURI().toString()));
+        MediaPlayer player = new MediaPlayer(new Media(new
+            File("policesong.m4a").toURI().toString()));
         player.play();
 
         //itemWanted.quantity is incorrect
@@ -140,9 +141,9 @@ public class PolicePulloverPage {
                     p1.setCredits(p1.getCredits() - police.getFineDemanded());
                     p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
                             distanceBetween(p1.getDestination()));
-                    RegionPage proceed = new RegionPage(primaryStage , p1 ,
-                            p1.getDestination() , regions);
-                    Alert a2 = new Alert(Alert.AlertType.INFORMATION , "The police"
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert a2 = new Alert(Alert.AlertType.INFORMATION, "The police"
                             + " have decreased your ship health, confiscated the"
                             + " stolen items, and charged you a fine of "
                             + police.getFineDemanded() + " credits.");
@@ -186,7 +187,7 @@ public class PolicePulloverPage {
                 dialogPane.getStyleClass().add("myDialog");
                 a1.show();
             } else {
-                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - 5); //flying to the encounter spot and then retreating should burn some fuel
+                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - 5);
                 RegionPage rp2 = new RegionPage(primaryStage, p1,
                         p1.getCurrentRegion(), regions);
                 Alert a2 = new Alert(Alert.AlertType.INFORMATION, "You did not"

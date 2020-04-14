@@ -166,7 +166,7 @@ public class InventoryPage {
         //Making a right vbox for the character upgrades
         VBox right = new VBox();
         right.setSpacing(10);
-        right.setPadding(new Insets(10,0,0,10));
+        right.setPadding(new Insets(10, 0, 0, 10));
         right.setBorder(new Border(new BorderStroke(Color.WHITE,
                 BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
         right.setAlignment(Pos.TOP_CENTER);
@@ -202,7 +202,7 @@ public class InventoryPage {
                 for (Region r : array) {
                     r.setVisited();
                 }
-                right.getChildren().removeAll(gauntlet , upgrade1btn);
+                right.getChildren().removeAll(gauntlet, upgrade1btn);
                 p1.setUpgrade1(true);
             }
         });

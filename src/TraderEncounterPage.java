@@ -4,6 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.animation.Animation;
@@ -23,6 +25,7 @@ import javafx.scene.shape.Path;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TraderEncounterPage {
@@ -66,6 +69,10 @@ public class TraderEncounterPage {
         traderShip.setFitHeight(250);
         traderShip.setFitWidth(250);
 
+        //Music
+        MediaPlayer mp = new MediaPlayer(new Media(new File("Tradersong.m4a").toURI().toString()));
+        mp.play();
+
         Path path = new Path();
         path.getElements().add(new MoveTo(800, 90));
         path.getElements().add(new HLineTo(-20));
@@ -93,6 +100,7 @@ public class TraderEncounterPage {
                     distanceBetween(p1.getDestination()));
             RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
                     p1.getDestination(), regions);
+            mp.stop();
         });
         option2.setAlignment(Pos.CENTER);
         option2.setTextFill(Color.WHITE);
@@ -112,7 +120,7 @@ public class TraderEncounterPage {
         Button option3 = new Button("Negotiate with Trader");
         option3.setOnMouseClicked(mouseEvent -> {
             double previousPrice = trader.getItemToSell().getBuyPrice();
-            boolean success = trader.determineSuccess(p1.getFighterSkill());
+            boolean success = trader.determineSuccess(p1.getMerchantSkill());
             if (success) {
                 trader.decreasePrice();
                 traderOffer.setText("Trader: I can sell you a \n"
@@ -166,6 +174,7 @@ public class TraderEncounterPage {
                         getClass().getResource("myDialogs.css").toExternalForm());
                 dialogPane.getStyleClass().add("myDialog");
                 a.show();
+                mp.stop();
             } else {
                 Alert a = new Alert(Alert.AlertType.INFORMATION, "You don't have enough"
                         + " credits to purchase one " + trader.getItemToSell().getName()
@@ -206,18 +215,23 @@ public class TraderEncounterPage {
                 a.show();
             } else {
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
-                        distanceBetween(p1.getDestination()));
-                RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob "
-                        + "the trader. Your ship's health has decreased.");
-                DialogPane dialogPane = a.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                a.show();
+                if (p1.getSpaceShip().getHealth() <= 0) {
+                    GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                } else {
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage ignoreTrader = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert a = new Alert(Alert.AlertType.CONFIRMATION, "You failed to rob "
+                            + "the trader. Your ship's health has decreased.");
+                    DialogPane dialogPane = a.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    a.show();
+                }
             }
+            mp.stop();
         });
         option4.setAlignment(Pos.CENTER);
         option4.setTextFill(Color.WHITE);

@@ -37,6 +37,14 @@ public class SpaceShip {
         }
     }
 
+    public boolean checkIfGameOver() {
+        if (this.getHealth() <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public HashMap<Item, Integer> getInventory() {
         return this.inventory;
     }
@@ -76,13 +84,13 @@ public class SpaceShip {
         return name;
     }
 
-    public double reFuel(int buyPrice) {
-        if ((this.fuel + (buyPrice / 2.0)) > 50.0) {
+    public int reFuel(int buyPrice) {
+        if ((this.fuel + (buyPrice / 3.0)) > 50.0) {
             this.fuel += (50.0 - this.fuel);
         } else {
-            this.fuel += (buyPrice / 2.0);
+            this.fuel += (buyPrice / 3.0);
         }
-        return (buyPrice / 2.0);
+        return (int)(buyPrice / 3.0);
     }
 
     public boolean isTankFull() {
@@ -90,6 +98,6 @@ public class SpaceShip {
     }
 
     public void setFuelAfterTravel(int distanceBetween) {
-        this.fuel -= (distanceBetween / 45.0);
+        this.fuel -= (distanceBetween / 30.0);
     }
 }

@@ -3,6 +3,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
 import javafx.scene.text.Text;
 import javafx.animation.Animation;
 import javafx.event.EventHandler;
@@ -21,6 +23,8 @@ import javafx.scene.shape.*;
 import javafx.animation.PathTransition;
 import javafx.util.Duration;
 
+import java.io.File;
+
 public class BanditGotchaPage {
 
     public BanditGotchaPage(Stage primaryStage, Region[] regions, Player p1, Bandit bandit) {
@@ -31,6 +35,9 @@ public class BanditGotchaPage {
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         root.setBackground(new Background(myBI));
 
+        //Add music
+        MediaPlayer player = new MediaPlayer(new Media(new File("banditsong.m4a").toURI().toString()));
+        player.play();
 
         ImageView banditShip = new ImageView(new Image("bandits.png"));
         banditShip.setFitHeight(900);
@@ -122,6 +129,7 @@ public class BanditGotchaPage {
                     alert1.show();
                 }
             }
+            player.stop();
         });
 
         // Option 2:
@@ -150,16 +158,26 @@ public class BanditGotchaPage {
                 Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Phew! Because your"
                         + " Pilot skill is " + p1.getPilotSkill() + ", you could flee back"
                         + " to the last planet you were on!");
+                DialogPane dialogPane = alert2.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 alert2.show();
             } else {
                 bandit.setCredits(p1.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
+                p1.getSpaceShip().setFuel(p1.getSpaceShip().getFuel() - 5);
                 RegionPage rp = new RegionPage(primaryStage, p1, p1.getCurrentRegion(), regions);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "You weren't able to "
                         + "flee from the bandits! They damaged your ship and stole your credits!");
+                DialogPane dialogPane = alert1.getDialogPane();
+                dialogPane.getStylesheets().add(
+                        getClass().getResource("myDialogs.css").toExternalForm());
+                dialogPane.getStyleClass().add("myDialog");
                 alert1.show();
             }
+            player.stop();
         });
 
         // Option 3:
@@ -198,18 +216,25 @@ public class BanditGotchaPage {
                 bandit.setCredits(p1.getCredits() + bandit.getCredits());
                 p1.setCredits(0);
                 p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() - 1);
-                p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
-                        distanceBetween(p1.getDestination()));
-                RegionPage proceed = new RegionPage(primaryStage, p1,
-                        p1.getDestination(), regions);
-                Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole "
-                        + "your credits and decreased your ship health.");
-                DialogPane dialogPane = alert1.getDialogPane();
-                dialogPane.getStylesheets().add(
-                        getClass().getResource("myDialogs.css").toExternalForm());
-                dialogPane.getStyleClass().add("myDialog");
-                alert1.show();
+                //System.out.println("health: " + p1.getSpaceShip().getHealth());
+                if (p1.getSpaceShip().getHealth() <= 0) {
+                    GameOverPage gameOver = new GameOverPage(primaryStage, p1);
+                } else {
+                    p1.getSpaceShip().setFuelAfterTravel(p1.getCurrentRegion().
+                            distanceBetween(p1.getDestination()));
+                    RegionPage proceed = new RegionPage(primaryStage, p1,
+                            p1.getDestination(), regions);
+                    Alert alert1 = new Alert(Alert.AlertType.INFORMATION, "The bandit stole "
+                            + "your credits and decreased your ship health.");
+                    DialogPane dialogPane = alert1.getDialogPane();
+                    dialogPane.getStylesheets().add(
+                            getClass().getResource("myDialogs.css").toExternalForm());
+                    dialogPane.getStyleClass().add("myDialog");
+                    alert1.show();
+                }
+
             }
+            player.stop();
         });
 
         //Drop Shadow effect

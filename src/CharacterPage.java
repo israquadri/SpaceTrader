@@ -65,9 +65,9 @@ public class CharacterPage {
         HBox bt2 = new HBox();
 
         //SOUND EFFECT
-        //Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
-        //MediaPlayer mp = new MediaPlayer(effect);
-        //mp.play();
+        Media effect = new Media(new File("CompleteCharacterSound.m4a").toURI().toString());
+        MediaPlayer mp = new MediaPlayer(effect);
+        mp.play();
 
         // ADDING CHARACTER SHEET SCREEN TEXT NODES
         Text yourCharacter = new Text("WELCOME,\n" + p1.getName());
@@ -87,6 +87,7 @@ public class CharacterPage {
         yourTraits.setFill(Color.WHITE);
         yourTraits.setStyle("-fx-font-size: 20px; -fx-background-color: purple;"
                 + " -fx-font-family: 'Press Start 2P', cursive;");
+        yourTraits.setLineSpacing(5);
 
         Text yourDiff = new Text("Based on your difficulty level, you\nhave "
                 + p1.getCredits() + " credits");
@@ -97,7 +98,7 @@ public class CharacterPage {
         //        toScene4.setAlignment(Pos.BASELINE_RIGHT);
 
         toScene4.setOnMouseClicked(mouseEvent -> {
-            //mp.stop();
+            mp.stop();
             BeforeRegionPage beforeRegionPage = new BeforeRegionPage(primaryStage, p1);
         });
 

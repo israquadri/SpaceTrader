@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -18,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.ToggleButton;
 
+import java.io.File;
+import java.lang.reflect.GenericArrayType;
 import java.util.Random;
 
 public class MarketPage {
@@ -36,10 +40,11 @@ public class MarketPage {
 
 
         //Music which i will promptly comment out
-        //Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
-        //MediaPlayer music = new MediaPlayer(tradingsong);
-        //music.play();
-        //music.setCycleCount(100);
+        Media tradingsong = new Media(new File("SpaceTraderTradingSong.m4a").toURI().toString());
+        MediaPlayer music = new MediaPlayer(tradingsong);
+        music.setCycleCount(100);
+        music.play();
+
 
         //HBox for middle of screen
         VBox mid = new VBox(20);
@@ -90,14 +95,14 @@ public class MarketPage {
                     }
                 });
         back.setOnMouseClicked((MouseEvent m) -> {
-            //music.stop();
+            music.stop();
             RegionPage r = new RegionPage(primaryStage, p1, region, array);
         });
         top.getChildren().add(back);
 
         //fuel display
         HBox fuelBox = new HBox();
-        top.getChildren().add(fuelBox);
+        //top.getChildren().add(fuelBox);
         HBox.setHgrow(fuelBox, Priority.ALWAYS);
         fuelBox.setAlignment(Pos.BASELINE_RIGHT);
         ProgressBar fuelTank = new ProgressBar(50);
@@ -109,6 +114,26 @@ public class MarketPage {
         fuelBox.getChildren().addAll(fuelText, fuelTank);
         fuelBox.setSpacing(10);
         fuelBox.setPadding(new Insets(5, 5, 5, 5));
+
+        //ship health display
+        HBox shipHealth = new HBox();
+        //top.getChildren().add(shipHealth);
+        HBox.setHgrow(shipHealth, Priority.ALWAYS);
+        shipHealth.setAlignment(Pos.BASELINE_RIGHT);
+        ProgressBar healthBar = new ProgressBar(5);
+        healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+        healthBar.setLayoutX(150);
+        Text healthText = new Text("Ship Health");
+        healthText.setStyle("-fx-font-size: 12px; -fx-font-family: 'Press Start 2P', cursive;");
+        healthText.setFill(Color.WHITE);
+        shipHealth.getChildren().addAll(healthText, healthBar);
+        shipHealth.setSpacing(10);
+        shipHealth.setPadding(new Insets(5, 5, 5, 5));
+
+        VBox shipStats = new VBox();
+        shipStats.getChildren().addAll(shipHealth, fuelBox);
+        top.getChildren().add(shipStats);
+        HBox.setHgrow(shipStats, Priority.ALWAYS);
 
         //Text to show amount of credits
         Text creditsLeft = new Text("Credits: " + p1.getCredits());
@@ -243,45 +268,74 @@ public class MarketPage {
                                 getClass().getResource("myDialogs.css").toExternalForm());
                         dialogPane.getStyleClass().add("myDialog");
                         a.show();
-                    } else if (i.getName().equals("Ship Health")) {
-                        p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
-                        Alert al = p1.buyGoods(i);
-                        DialogPane dialogPane = al.getDialogPane();
-                        dialogPane.getStylesheets().add(
-                                getClass().getResource("myDialogs.css").toExternalForm());
-                        dialogPane.getStyleClass().add("myDialog");
-                        al.show();
-                        if (i.getQuantity() == 0) {
-                            region.getMarket().removeItem(i);
-                            marketitems.getChildren().remove(item);
+                    } else if (i.getName().equals("Repair Ship")) {
+                        if (i.getBuyPrice() > p1.getCredits()) {
+                            Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
+                                    + " enough credits to repair your ship.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                        } else if (p1.getSpaceShip().getHealth() == 5) {
+                            Alert a = new Alert(Alert.AlertType.ERROR, "Your ship is already at maximum health.");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                        } else {
+                            p1.setCredits(p1.getCredits() - i.getBuyPrice());
+                            p1.getSpaceShip().setHealth(p1.getSpaceShip().getHealth() + 1);
+                            healthBar.setProgress(p1.getSpaceShip().getHealth() / 5.0);
+                            String creditUpdate = "Credits: " + p1.getCredits();
+                            creditsLeft.setText(creditUpdate);
+                            Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Your ship health "
+                                    + "is now " + p1.getSpaceShip().getHealth() + ".");
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+
+                            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                    + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                            postSale.setShowDelay(Duration.ZERO);
+                            item.setTooltip(postSale);
                         }
-
-                        String creditUpdate = "Credits: " + p1.getCredits();
-                        creditsLeft.setText(creditUpdate);
-
-                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
-                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
-                        postSale.setShowDelay(Duration.ZERO);
-                        item.setTooltip(postSale);
                     } else {
-                        Alert a = p1.buyGoods(i);
-                        DialogPane dialogPane = a.getDialogPane();
-                        dialogPane.getStylesheets().add(
-                                getClass().getResource("myDialogs.css").toExternalForm());
-                        dialogPane.getStyleClass().add("myDialog");
-                        a.show();
-                        if (i.getQuantity() == 0) {
-                            region.getMarket().removeItem(i);
-                            marketitems.getChildren().remove(item);
+                        if (i.getName().equals("Infinity Gauntlet")) {
+                            if (i.getBuyPrice() > p1.getCredits()) {
+                                Alert a = new Alert(Alert.AlertType.ERROR, "You don't have"
+                                        + " enough credits to purchase the Infinity Gauntlet.");
+                                DialogPane dialogPane = a.getDialogPane();
+                                dialogPane.getStylesheets().add(
+                                        getClass().getResource("myDialogs.css").toExternalForm());
+                                dialogPane.getStyleClass().add("myDialog");
+                                a.show();
+                            } else {
+                                WinGameCutscenePage winGameCutscenePage = new WinGameCutscenePage(primaryStage, p1);
+                            }
+                        } else {
+                            Alert a = p1.buyGoods(i);
+                            DialogPane dialogPane = a.getDialogPane();
+                            dialogPane.getStylesheets().add(
+                                    getClass().getResource("myDialogs.css").toExternalForm());
+                            dialogPane.getStyleClass().add("myDialog");
+                            a.show();
+                            if (i.getQuantity() == 0) {
+                                region.getMarket().removeItem(i);
+                                marketitems.getChildren().remove(item);
+                            }
+
+                            String creditUpdate = "Credits: " + p1.getCredits();
+                            creditsLeft.setText(creditUpdate);
+
+                            Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
+                                    + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
+                            postSale.setShowDelay(Duration.ZERO);
+                            item.setTooltip(postSale);
                         }
-
-                        String creditUpdate = "Credits: " + p1.getCredits();
-                        creditsLeft.setText(creditUpdate);
-
-                        Tooltip postSale = new Tooltip("Price: " + i.getBuyPrice()
-                                + "\n" + i.getName() + "s left in stock: " + i.getQuantity());
-                        postSale.setShowDelay(Duration.ZERO);
-                        item.setTooltip(postSale);
                     }
                 });
                 col1++;
